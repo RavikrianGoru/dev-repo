@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="${project.name}" xmlns="http://maven.apache.org/DECORATION/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+
+    <version position="right" />
+    
+    <bannerRight>
+        <name>Maven Site Documentation</name>
+        <src>images/rkgoru.png</src>
+        <href>https://in.linkedin.com/in/ravikiran-goru-a3ab599a</href>
+        <alt>MAVEN SITE DOCUMENTATION</alt>
+    </bannerRight>
+
+    <poweredBy>
+        <logo name="GORU" href="http://nakedobjects.org" img="images/goru.png" />
+    </poweredBy>
+
+
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.3.0</version>
+    </skin>
+
+    <body>
+        <links>
+            <item name="gHub:Goru RaviKiran" href="https://github.com/RavikrianGoru" />
+            <!-- <item name="fB:Goru RaviKiran" href="https://github.com/RavikrianGoru" /> -->
+        </links>
+
+        <menu name="proj Design Documentation">
+            <item name="Apt Ref" href="APTFormatt.html" />
+            <item name="Core Java" href="corejava.html" />
+            <item name="DS &amp; Algo" href="ds-algorithms.html" />
+            <item name="InterVIEW" href="interview.html" />
+            <item name="POCs" href="pocs.html" />
+            <item name="Git &amp; Maven" href="git-maven.html" />
+            <item name="FAQ" href="faq.html" />
+            <item name="OSGi (PDF)" href="documents/pdf/osgi.pdf"/>
+            <item name="OSGi in Depth (PDF)" href="documents/pdf/osgi_in_depth.pdf"/>
+            
+            <item name="Cracking the Coding Interview(PDF)" href="documents/pdf/cci.pdf"/>
+            <item name="Programming Interview Exposed 1(PDF)" href="documents/pdf/pie.pdf"/>
+            <item name="Programming Interview Exposed 2(PDF)" href="documents/pdf/pie2.pdf"/>
+        </menu>
+        <menu ref="modules" inherit="top"/>
+        <menu ref="reports" />
+    </body>
+</project>

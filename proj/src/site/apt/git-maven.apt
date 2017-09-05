@@ -1,0 +1,49 @@
+ -----
+ The APT format
+ -----
+ The Maven Team
+ -----
+ -----
+
+Git and Maven Commands
+~~~~~~~~~~~~~~~~~~~~~~
+
+* create a new repository on the command line
+
+echo "# internal-mvn-repo" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/RavikrianGoru/internal-mvn-repo.git
+git push -u origin master
+
+* push an existing repository from the command line
+
+git remote add origin https://github.com/RavikrianGoru/internal-mvn-repo.git
+git push -u origin master
+
+
+
+
+
+
+
+1) clone git repo from github : copy the https clone link.
+	git clone https://github.com/RavikrianGoru/sample.git
+2) check git status
+	git status
+3) stage your changes(files)
+	git add <file or files separaed by space)
+4) commit the staged files
+	git commit -m "commit message"
+5) transfer your commits into git account(when you execute the following cmd 1st time it will ask github credentials)
+	git push -u origin master
+6) git log comman: it will give all commit logs
+	git log
+7) git commit ammend: updated the latest changes with previous commit
+	git commit --amend
+8) git pull rebase: it is like update the local code from repository
+	git pull --rebase
+9) git checkout file: it will override the local file with remote file. so lcal changes will be gone.
+git checkout <file>
+
