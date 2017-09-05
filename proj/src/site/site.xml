@@ -31,21 +31,19 @@
         </links>
 
         <menu name="proj Design Documentation">
-            <item name="Apt Ref" href="APTFormatt.html" />
+			<item name="Git &amp; Maven" href="git-maven.html" />
             <item name="Core Java" href="corejava.html" />
             <item name="DS &amp; Algo" href="ds-algorithms.html" />
-            <item name="InterVIEW" href="interview.html" />
+            <item name="Interview" href="interview.html" />
             <item name="POCs" href="pocs.html" />
-            <item name="Git &amp; Maven" href="git-maven.html" />
             <item name="FAQ" href="faq.html" />
-            <item name="OSGi (PDF)" href="documents/pdf/osgi.pdf"/>
+<!--             <item name="OSGi (PDF)" href="documents/pdf/osgi.pdf"/>
             <item name="OSGi in Depth (PDF)" href="documents/pdf/osgi_in_depth.pdf"/>
-            
             <item name="Cracking the Coding Interview(PDF)" href="documents/pdf/cci.pdf"/>
             <item name="Programming Interview Exposed 1(PDF)" href="documents/pdf/pie.pdf"/>
             <item name="Programming Interview Exposed 2(PDF)" href="documents/pdf/pie2.pdf"/>
-        </menu>
-        <menu ref="modules" inherit="top"/>
+ -->        </menu>
+<!--        <menu ref="modules" inherit="top"/> -->
         <menu ref="reports" />
     </body>
 </project>

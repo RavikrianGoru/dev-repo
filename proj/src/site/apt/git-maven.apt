@@ -1,49 +1,79 @@
- -----
- The APT format
- -----
- The Maven Team
- -----
- -----
+													-----
+													Title: maven site documentation (Frequently used Git and Maven commands) 
+													-----
+													Author:RavikiranGoru,... 
+													-----
+													Date: 2017-09-05
+													-----
+
 
 Git and Maven Commands
 ~~~~~~~~~~~~~~~~~~~~~~
+ 
+  Here, we will update frequently used Git and Maven commands. If we create a repository in GitHub without README file and git ignore files then we need to follow the below steps.  
+  Create a repository in GitHub(WebSite) without readme and gitignore files ex: rmpRepo
+ 
+* Create a new repository on the command line
 
-* create a new repository on the command line
+* Syntax:
 
-echo "# internal-mvn-repo" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin https://github.com/RavikrianGoru/internal-mvn-repo.git
-git push -u origin master
+--------------------------------
+ 1	mkdir tmpRepo
+ 2	cd tmpRepo
+ 3	touch tmp.txt
+ 4	git init
+ 5	git add tmp.txt
+ 6	git commit -m "added empty file tmp.txt"
+	Push an existing repository from the command line
+ 7	git remote add origin https://github.com/RavikrianGoru/tmpRepo.git
+ 8	git push -u origin master
+--------------------------------
 
-* push an existing repository from the command line
+* Frequently used git commands
 
-git remote add origin https://github.com/RavikrianGoru/internal-mvn-repo.git
-git push -u origin master
-
-
-
-
-
-
-
-1) clone git repo from github : copy the https clone link.
-	git clone https://github.com/RavikrianGoru/sample.git
-2) check git status
+---------------------------------
+ 1	clone git repository from github : copy the https clone link.
+	git clone https://github.com/RavikrianGoru/dev-repo.git
+		
+ 2	check git status
 	git status
-3) stage your changes(files)
-	git add <file or files separaed by space)
-4) commit the staged files
+ 
+ 3	stage your changes(files)
+	git add <file or files separated by space)
+ 
+ 4	commit the staged files
 	git commit -m "commit message"
-5) transfer your commits into git account(when you execute the following cmd 1st time it will ask github credentials)
+ 
+ 5	transfer your commits into git account(when you execute the following cmd 1st time it will ask github credentials)
 	git push -u origin master
-6) git log comman: it will give all commit logs
+ 
+ 6	git log command: it will give all commit logs
 	git log
-7) git commit ammend: updated the latest changes with previous commit
+ 
+ 7	git commit ammend: updated the latest changes with previous commit
 	git commit --amend
-8) git pull rebase: it is like update the local code from repository
+ 
+ 8	git pull rebase: it is like update the local code from repository
 	git pull --rebase
-9) git checkout file: it will override the local file with remote file. so lcal changes will be gone.
-git checkout <file>
+	git pull origin master
+ 
+ 9	git checkout file: it will override the local file with remote file. So local changes will be gone.
+	git checkout <file>
+ 
+ 10	Shows diff between files (local) and repo fils.
+ 	git diff 
+	git diff fileName
+ 
+ 11	Next .....
+ 	cmd......		
+---------------------------------
+ 	
+* Other Git commands
+
+---------------------------------
+	git remote
+	git remote -v
+	git branch
+	git branch -v
+---------------------------------	   
 
