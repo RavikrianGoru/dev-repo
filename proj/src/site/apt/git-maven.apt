@@ -46,6 +46,7 @@ Git and Maven Commands
  
  5	transfer your commits into git account(when you execute the following cmd 1st time it will ask github credentials)
 	git push -u origin master
+	git push origin HEAD:refs/for/master
  
  6	git log command: it will give all commit logs
 	git log
@@ -64,8 +65,33 @@ Git and Maven Commands
  	git diff 
 	git diff fileName
  
- 11	Next .....
- 	cmd......		
+ 11	Checkout code form specific branch and push the code into that branch Ex: branch=1.18
+ 	git branch -v -a
+ 	git checkout release/1.18
+ 	git add <fileName>
+ 	git commit -m "msg"
+ 	git push origin HEAD:refs/for/release/1.8	
+
+ 12	Stash your local code changes, update your code with repo and then apply your local changes.
+  	do some local file changes
+  	git status
+  	git stash save s1
+ 	Saved working directory and index state On master: s1
+ 	git status
+ 	git pull origin master
+ 	git apply s1
+ 	
+ 	or
+ 	
+ 	git stash
+ 	git stash apply
+ 	
+ 13	CMD.....
+ 	............
+ 	............
+ 
+ 
+  	
 ---------------------------------
  	
 * Other Git commands
@@ -75,5 +101,46 @@ Git and Maven Commands
 	git remote -v
 	git branch
 	git branch -v
----------------------------------	   
+	scp -p -P 29418 .....hooks/commit-msg .git/hooks/
+	git reset HEAD <fileName>
+	git log
+	git reset <filename>
+	git reset --hard <commit id>
+	git rm -r <file or dir> remove file or folders
+	git checkout --<filename> undo your changes.
+	git rm --cached <filename>
+	
+	git mergetool <fileName>
+	git cherry-pick --continue
+---------------------------------	
+
+* Frequently used Maven commands
+
+---------------------------------
+
+ 1	mvn --version
+
+ 2	mvn clean
+ 
+ 3	mvn install
+ 
+ 4	mvn clean install
+ 
+ 5	mvn site:site -rf :<proj>
+ 
+ 6	mvn site:site -rf .
+ 
+ 7	mvn eclipse:eclipse
+ 
+ 8	mvn clean install -DskipTests=true -Djavadoc.skip=true
+ 
+ 9	mvn -pl '!module/sub-module' clean install
+ 	use single quotes or double quotes it depends on OS environment
+ 	
+ 10	mvn -pl "!submodule1,!submodule2" install
+ 	use single quotes or double quotes it depends on OS environment
+ 	
+ 11	mvn dependency:tree
+ 
+--------------------------------
 

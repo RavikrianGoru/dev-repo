@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 
-<project name="${project.name}" xmlns="http://maven.apache.org/DECORATION/1.0.0"
+<project name="Maven Site Documentation: ${project.name}" xmlns="http://maven.apache.org/DECORATION/1.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
 
@@ -31,10 +31,10 @@
         </links>
 
         <menu name="proj Design Documentation">
-			<item name="Git &amp; Maven" href="git-maven.html" />
+			<item name="Git,Maven &amp; Unix" href="git-maven.html" />
             <item name="Core Java" href="corejava.html" />
             <item name="DS &amp; Algo" href="ds-algorithms.html" />
-            <item name="Interview" href="interview.html" />
+            <item name="Interview Qtns" href="interview.html" />
             <item name="POCs" href="pocs.html" />
             <item name="FAQ" href="faq.html" />
 <!--             <item name="OSGi (PDF)" href="documents/pdf/osgi.pdf"/>
