@@ -4,20 +4,18 @@
  Regular Maven Site
  -----
 
-Maven site for your project
+Contributors and Developers note:
 
- Congratulations! If you are looking at this page then you have successfully generated a regular maven site:
+---------------
 
-+-----+
-
-mvn site
-
-or
-
-mvn site:site -rf .
-
-or 
-
-mvn site:site -rf <module/project Name>
-
-+-----+
+ Please update maven site document and use appropriate package structure for your code changes.
+ Please use the following code formatter in eclipse. proj/sit/resources/documents/xml/EclipseJavaCodeFormatter.xml
+ Use the following maven sit command for generating maven site documen:
+ 
+ mvn site
+ 
+ mav site:site -rf .
+ 
+ mvn site:site -rf :<module/project Name>
+ 
+---------------
