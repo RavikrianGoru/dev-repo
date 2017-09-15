@@ -140,7 +140,10 @@ Git and Maven Commands
  10	mvn -pl "!submodule1,!submodule2" install
  	use single quotes or double quotes it depends on OS environment
  	
- 11	mvn dependency:tree
+ 11	mvn -pl '!integration/swrecord' clean install -DskipTests=true -Djavadoc.skip=true
+ 
+ 12 mvn dependency:tree
+ 
  
 --------------------------------
 
