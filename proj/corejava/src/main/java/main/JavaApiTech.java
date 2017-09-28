@@ -1,4 +1,6 @@
-package com.rk.learn.proj.corejava;
+package main;
+
+import util.JavaApiUtils;
 
 /**
  * Hello world!
@@ -10,6 +12,5 @@ public class JavaApiTech
     {
     	JavaApiUtils.showEnvVariables();
     	JavaApiUtils.showSystemProperties();
-    	
     }
 }

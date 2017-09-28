@@ -31,7 +31,9 @@
         </links>
 
         <menu name="proj Design Documentation">
-			<item name="Git,Maven &amp; Unix" href="git-maven.html" />
+			<item name="Git" href="git.html" />
+			<item name="Maven" href="maven.html" />
+			<item name="Unix" href="unix.html" />
             <item name="Core Java" href="corejava.html" />
             <item name="DS &amp; Algo" href="ds-algorithms.html" />
             <item name="Interview Qtns" href="interview.html" />

@@ -1,4 +1,4 @@
-package com.rk.learn.proj.corejava;
+package util;
 
 import java.util.Map;
 import java.util.Properties;

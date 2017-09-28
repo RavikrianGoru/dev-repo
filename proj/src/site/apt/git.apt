@@ -1,5 +1,5 @@
 													-----
-													Title: maven site documentation (Frequently used Git and Maven commands) 
+													Title: maven site documentation (Git) 
 													-----
 													Author:RavikiranGoru,... 
 													-----
@@ -12,7 +12,7 @@ Git and GitHub
   Git is a version control system.
   GitHub is a website to host your code with version control system.
 
-Problems
+Problems without VCS
 
 --------------------
 
@@ -22,18 +22,19 @@ Problems
 
 --------------------
   
-Solutions
+Solutions with Git(VCS)
 
 -------------------- 
 
  1) Code is stored in cloud.
- 2) different tools are there for merging, conflict resolving.
- 3) versional are controlled.  
+ 2) Different tools are there for merging, conflict resolving.
+ 3) versions are controlled.  
 
 --------------------
  
- Here, we will update frequently used Git and Maven commands. If we create a repository in GitHub without README file and git ignore files then we need to follow the below steps.  
-  Create a repository in GitHub(WebSite) without readme and gitignore files ex: tmpRepo
+ Here, we will update frequently used Git commands. 
+ If we create a repository in GitHub without README file and git ignore files then we need to follow the below steps.  
+ Create a repository in GitHub(WebSite) without readme and gitignore files ex: tmpRepo
  
 * Create a new repository on the command line
 
@@ -54,31 +55,31 @@ Solutions
 * Frequently used git commands
 
 ---------------------------------
- 1	clone git repository from github : copy the https clone link.
+ 1	Clone git repository from github : copy the https clone link.
 	git clone https://github.com/RavikrianGoru/dev-repo.git
 		
- 2	check git status
+ 2	Check git status
 	git status
  
- 3	stage your changes(files)
+ 3	Stage your changes(files)
 	git add <file or files separated by space)
  	git add .
  	
- 4	commit the staged files
+ 4	Commit the staged files
 	git commit -m "commit message"
  
- 5	transfer your commits into git account(when you execute the following cmd 1st time it will ask github credentials)
+ 5	Transfer your commits into git account(when you execute the following cmd 1st time it will ask github credentials)
 	git push -u origin master
 	git push origin HEAD:refs/for/master
  	git push
  	
- 6	git log command: it will give all commit logs
+ 6	Git log command: it will give all commit logs
 	git log
  
- 7	git commit ammend: updated the latest changes with previous commit
+ 7	Git commit ammend: commit the latest changes with previous commit id
 	git commit --amend
  
- 8	git pull rebase: it is like update the local code from repository
+ 8	Git pull rebase: it is like update the local code from repository
 	git pull --rebase
 	git pull origin master
  
@@ -99,7 +100,7 @@ Solutions
 	git push origin HEAD:refs/for/release/1.8	
 
  12	Stash your local code changes, update your code with repo and then apply your local changes.
-	do some local file changes
+	Do some local file changes
 	git status
 	git stash save s1
 	git stash list
@@ -113,7 +114,7 @@ Solutions
 	git stash
 	git stash apply
 	 	
- 13	Undo uncommited changes
+ 13	Undo uncommitted changes
 	git stash
 	git stash drop
  
@@ -126,7 +127,7 @@ Solutions
  16	You can also revert uncommitted changes only to particular file or directory:
 	git checkout [some_dir|file.txt]
  
- 17	Yet another way to revert all uncommitted changes (longer to type, but works from any subdirectory):
+ 17	Yet another way to revert all uncommitted changes (longer to type, but works from any sub directory):
 	git reset --hard HEAD
  
  18	This will remove all local untracked files, so only git tracked files remain:
@@ -174,6 +175,8 @@ Solutions
 	git difftool -t meld
 	default difftool is vimdiff	
 	git mergetool
+	
+	git difftool HEAD
 	
 ---------------------------------------
  	 
@@ -243,7 +246,7 @@ Meld tool for diff and merge the code:
  
  4	mvn clean install
  
- 5	mvn site:site -rf :<proj>
+ 5	mvn site:site -rf :<proj/module>
  
  6	mvn site:site -rf .
  
@@ -261,8 +264,35 @@ Meld tool for diff and merge the code:
  
  12 mvn dependency:tree
  
- 13 git difftool HEAD
- 
+ 13 mvn dependency:analyze
+ 	mvn dependency:analyze -DoutputXML=true
+ 	
+ 	
+ 	
+ 	This will print a list of Used undeclared and Unused declared dependencies (while gnoring Runtime/Provided/Test/System scopes for unused dependency analysis.)
+	ref https://maven.apache.org/plugins/maven-dependency-plugin/analyze-mojo.html 
  
 --------------------------------
 
+SonarQube
+ 
+ This is the tool that analyzes your code and reports back to your patchset.
+ 
+Local analyze
+
+ To get all the needed data the code needs to be compiled and all tests run. Run following command in aggregator/root pom.
+ 
+--------------------------------
+ mvn clean org.jacoco:jacoco-maven-plugin:0.7.4.201502262128:prepare-agent install sonar:sonar
+--------------------------------
+
+
+
+UNIX
+ 	
+------------------
+ grep mypackage.MyMissing.Class ~/.m2/repository -r --include *.jar
+ curl -i -H "Accept:application/json" "http://localhost:11281/edm/internal/v1/edmcli/status/rebase/EDM1"
+ 
+ 
+------------------
