@@ -286,13 +286,23 @@ Local analyze
  mvn clean org.jacoco:jacoco-maven-plugin:0.7.4.201502262128:prepare-agent install sonar:sonar
 --------------------------------
 
-
-
 UNIX
  	
 ------------------
  grep mypackage.MyMissing.Class ~/.m2/repository -r --include *.jar
  curl -i -H "Accept:application/json" "http://localhost:11281/edm/internal/v1/edmcli/status/rebase/EDM1"
  
+ RPM (Red Hat Package Manager) is an default open source and most popular package management utility for Red Hat based systems like (RHEL, CentOS and Fedora). The tool allows system administrators and users to install, update, uninstall, query, verify and manage system software packages in Unix/Linux operating systems. The RPM formerly known as .rpm file, that includes compiled software programs and libraries needed by the packages. This utility only works with packages that built on .rpm format.
  
+ RPM keeps the information of all the installed packages under /var/lib/rpm database.
+ 
+ RPM is the only way to install packages under Linux systems, if you’ve installed packages using source code, then rpm won’t manage it.
+ 
+ Ref
+ https://www.tecmint.com/20-practical-examples-of-rpm-commands-in-linux/
 ------------------
+
+                
+    
+                
+                
