@@ -1,4 +1,4 @@
-package javatpoint;
+package javatpoint.block;
 
 public class VariablesBlocks {
 	int a=1;

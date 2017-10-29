@@ -1,5 +1,9 @@
-package javatpoint;
+package javatpoint.arithmetic;
 
+/**
+ * @author zgorrav
+ *
+ */
 public class ArithmeticUtils {
 	public static void negationTildOperations() {
 		int g = 10;

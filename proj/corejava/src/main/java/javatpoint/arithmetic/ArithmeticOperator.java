@@ -1,4 +1,4 @@
-package javatpoint;
+package javatpoint.arithmetic;
 
 public class ArithmeticOperator {
 
