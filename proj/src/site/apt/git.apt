@@ -1,5 +1,5 @@
 													-----
-													Title: maven site documentation (Git) 
+													Title: maven site documentation (Frequently used Git Commands) 
 													-----
 													Author:RavikiranGoru,... 
 													-----
@@ -7,34 +7,11 @@
 													-----
 
 
-Git and GitHub
-~~~~~~~~~~~~~~
-  Git is a version control system.
-  GitHub is a website to host your code with version control system.
-
-Problems without VCS
-
---------------------
-
- 1) No version control
- 2) No centralized storage. if HD fails data would be lost.
- 3) Difficult to do collaborative work.
-
---------------------
-  
-Solutions with Git(VCS)
-
--------------------- 
-
- 1) Code is stored in cloud.
- 2) Different tools are there for merging, conflict resolving.
- 3) versions are controlled.  
-
---------------------
+Git Commands
+~~~~~~~~~~~~
  
- Here, we will update frequently used Git commands. 
- If we create a repository in GitHub without README file and git ignore files then we need to follow the below steps.  
- Create a repository in GitHub(WebSite) without readme and gitignore files ex: tmpRepo
+  Here, we will update frequently used Git commands. If we create a repository in GitHub without README file and git ignore files then we need to follow the below steps.  
+  Create a repository in GitHub(WebSite) without readme and gitignore files ex: tmpRepo
  
 * Create a new repository on the command line
 
@@ -55,163 +32,67 @@ Solutions with Git(VCS)
 * Frequently used git commands
 
 ---------------------------------
- 1	Clone git repository from github : copy the https clone link.
+ 1	clone git repository from github : copy the https clone link.
 	git clone https://github.com/RavikrianGoru/dev-repo.git
 		
- 2	Check git status
+ 2	check git status
 	git status
  
- 3	Stage your changes(files)
+ 3	stage your changes(files)
 	git add <file or files separated by space)
- 	git add .
- 	
- 4	Commit the staged files
+ 
+ 4	commit the staged files
 	git commit -m "commit message"
  
- 5	Transfer your commits into git account(when you execute the following cmd 1st time it will ask github credentials)
+ 5	transfer your commits into git account(when you execute the following cmd 1st time it will ask github credentials)
 	git push -u origin master
 	git push origin HEAD:refs/for/master
- 	git push
- 	
- 6	Git log command: it will give all commit logs
+ 
+ 6	git log command: it will give all commit logs
 	git log
  
- 7	Git commit ammend: commit the latest changes with previous commit id
+ 7	git commit ammend: updated the latest changes with previous commit
 	git commit --amend
  
- 8	Git pull rebase: it is like update the local code from repository
+ 8	git pull rebase: it is like update the local code from repository
 	git pull --rebase
 	git pull origin master
  
- 9	git checkout file: undo uncommited changes. it will override the local file with remote file. So local changes will be gone.
+ 9	git checkout file: it will override the local file with remote file. So local changes will be gone.
 	git checkout <file>
-	git checkout -- <fileName or directory>
-	git checkout -- .
  
  10	Shows diff between files (local) and repo fils.
-	git diff 
+ 	git diff 
 	git diff fileName
  
  11	Checkout code form specific branch and push the code into that branch Ex: branch=1.18
-	git branch -v -a
-	git checkout release/1.18
-	git add <fileName>
-	git commit -m "msg"
-	git push origin HEAD:refs/for/release/1.8	
+ 	git branch -v -a
+ 	git checkout release/1.18
+ 	git add <fileName>
+ 	git commit -m "msg"
+ 	git push origin HEAD:refs/for/release/1.8	
 
  12	Stash your local code changes, update your code with repo and then apply your local changes.
-	Do some local file changes
-	git status
-	git stash save s1
-	git stash list
-	Saved working directory and index state On master: s1
-	git status
-	git pull origin master
-	git apply s1
+  	do some local file changes
+  	git status
+  	git stash save s1
+ 	Saved working directory and index state On master: s1
+ 	git status
+ 	git pull origin master
+ 	git apply s1
  	
-	or
-	 	
-	git stash
-	git stash apply
-	 	
- 13	Undo uncommitted changes
-	git stash
-	git stash drop
- 
- 14	This will unstage all files you might have staged with git add:
-	git reset
- 
- 15	This will revert all local uncommitted changes (should be executed in repo root):
-	git checkout .
- 
- 16	You can also revert uncommitted changes only to particular file or directory:
-	git checkout [some_dir|file.txt]
- 
- 17	Yet another way to revert all uncommitted changes (longer to type, but works from any sub directory):
-	git reset --hard HEAD
- 
- 18	This will remove all local untracked files, so only git tracked files remain:
-	git clean -fdx
-    
-	WARNING: -x will also remove all ignored files!
- 
- 19	To sum it up: executing commands below is basically equivalent to fresh git clone from original source (but it does not re-download anything, so is much faster):
-    
-	git reset
-	git checkout .
-	git clean -fdx
-
- 20	To see the diff changes with previous version
-    
-	git difftool HEAD
-
- 21	Revert committed changes by commit Id with additional commit.
-	git log
-	git revert <commitId> 	  	
-	
-	Revert committed changes by commit Id without additional commit. it shows changes as modified files.
-	git revert -n <commitId>
-	git commit -m "msg"
-	
- 22	Switch branch
- 	git checkout master
- 	git checkout <branchName>
+ 	or
  	
- 23	Merge one branch in master
- 	Do changes in branch and commit the code changes in that branch(push).
+ 	git stash
+ 	git stash apply
  	
- 	git checkout master
- 	git merge <branchName>
+ 13	CMD.....
+ 	............
+ 	............
  
- 24	Delete branch
- 	git branch
-	git checkout -b dummy
-	git branch -d dummy
-	
- 25	Used Meld tool for diff and merge
- 	git difftool origin/master
-	git difftool
-	git difftool -t vimdiff
-	git difftool -t meld
-	default difftool is vimdiff	
-	git mergetool
-	
-	git difftool HEAD
-	
----------------------------------------
- 	 
-HEAD
-
-	HEAD is a reference to the most recent commit in the current branch.(in most of cases).
-
------------
-	git log
-	git show HEAD
-
-	git checkout commitId
-	git checkout master
------------	
-
-Meld tool for diff and merge the code:
-
-	Download and install Meld tool.
-	open .gitconfig file add the following lines.
-
------------
-	[diff]
-	tool = meld
-	[difftool "meld"]
-	path = C:/Program Files/Meld/meld/meld.exe
-	[difftool]
-	prompt = false
-	
-	[merge]
-	tool = meld
-	[mergetool "meld"]
-	path = C:/Program Files/Meld/meld/meld.exe
-	[mergetool]
-	keepBackup = false	
-----------
+ 
+  	
+---------------------------------
  	
 * Other Git commands
 
@@ -231,78 +112,4 @@ Meld tool for diff and merge the code:
 	
 	git mergetool <fileName>
 	git cherry-pick --continue
-	
 ---------------------------------	
-
-* Frequently used Maven commands
-
----------------------------------
-
- 1	mvn --version
-
- 2	mvn clean
- 
- 3	mvn install
- 
- 4	mvn clean install
- 
- 5	mvn site:site -rf :<proj/module>
- 
- 6	mvn site:site -rf .
- 
- 7	mvn eclipse:eclipse
- 
- 8	mvn clean install -DskipTests=true -Djavadoc.skip=true
- 
- 9	mvn -pl '!module/sub-module' clean install
- 	use single quotes or double quotes it depends on OS environment
- 	
- 10	mvn -pl "!submodule1,!submodule2" install
- 	use single quotes or double quotes it depends on OS environment
- 	
- 11	mvn -pl '!integration/swrecord' clean install -DskipTests=true -Djavadoc.skip=true
- 
- 12 mvn dependency:tree
- 
- 13 mvn dependency:analyze
- 	mvn dependency:analyze -DoutputXML=true
- 	
- 	
- 	
- 	This will print a list of Used undeclared and Unused declared dependencies (while gnoring Runtime/Provided/Test/System scopes for unused dependency analysis.)
-	ref https://maven.apache.org/plugins/maven-dependency-plugin/analyze-mojo.html 
- 
---------------------------------
-
-SonarQube
- 
- This is the tool that analyzes your code and reports back to your patchset.
- 
-Local analyze
-
- To get all the needed data the code needs to be compiled and all tests run. Run following command in aggregator/root pom.
- 
---------------------------------
- mvn clean org.jacoco:jacoco-maven-plugin:0.7.4.201502262128:prepare-agent install sonar:sonar
---------------------------------
-
-UNIX
- 	
-------------------
- grep mypackage.MyMissing.Class ~/.m2/repository -r --include *.jar
- curl -i -H "Accept:application/json" "http://localhost:11281/edm/internal/v1/edmcli/status/rebase/EDM1"
- 
- RPM (Red Hat Package Manager) is an default open source and most popular package management utility for Red Hat based systems like (RHEL, CentOS and Fedora). The tool allows system administrators and users to install, update, uninstall, query, verify and manage system software packages in Unix/Linux operating systems. The RPM formerly known as .rpm file, that includes compiled software programs and libraries needed by the packages. This utility only works with packages that built on .rpm format.
- 
- RPM keeps the information of all the installed packages under /var/lib/rpm database.
- 
- RPM is the only way to install packages under Linux systems, if you’ve installed packages using source code, then rpm won’t manage it.
- 
- Ref
- https://www.tecmint.com/20-practical-examples-of-rpm-commands-in-linux/
-------------------
-
-                
-    
-                
-                

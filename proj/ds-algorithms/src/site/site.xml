@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="DS-Algo Maven Site Documentation: ${project.name}" xmlns="http://maven.apache.org/DECORATION/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/DECORATION/1.0.0 http://maven.apache.org/xsd/decoration-1.0.0.xsd">
+
+    <version position="right" />
+    
+    <bannerRight>
+        <name>Maven Site Documentation</name>
+        <src>images/rkgoru.png</src>
+        <href>https://in.linkedin.com/in/ravikiran-goru-a3ab599a</href>
+        <alt>MAVEN SITE DOCUMENTATION</alt>
+    </bannerRight>
+
+    <poweredBy>
+        <logo name="GORU" href="http://nakedobjects.org" img="images/goru.png" />
+    </poweredBy>
+
+
+    <skin>
+        <groupId>org.apache.maven.skins</groupId>
+        <artifactId>maven-fluido-skin</artifactId>
+        <version>1.3.0</version>
+    </skin>
+
+    <body>
+        <links>
+            <item name="gHub:Goru RaviKiran" href="https://github.com/RavikrianGoru" />
+            <!-- <item name="fB:Goru RaviKiran" href="https://github.com/RavikrianGoru" /> -->
+        </links>
+
+        <menu name="ds-algo Design Documentation">
+            <item name="DS &amp; Algo" href="ds-algorithms.html" />
+            <item name="FAQ" href="faq.html" />
+        </menu>
+        <menu ref="reports" />
+    </body>
+</project>
