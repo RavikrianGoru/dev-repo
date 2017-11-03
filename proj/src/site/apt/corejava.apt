@@ -19,3 +19,109 @@ Core Java
 
 
 --------------------------
+
+* An object has three characteristics:
+	state: represents data (value) of an object.
+	behavior: represents the behavior (functionality) of an object such as deposit, withdraw etc.
+	identity: Object identity is typically implemented via a unique ID. The value of the ID is not visible to the external user. But, it is used internally by the JVM to identify each object uniquely
+
+* The new keyword is used to allocate memory at run time. All objects get memory in Heap memory area.
+
+* Initializing object
+	1) by reference: 	s1.rollNo=10; s1.name="ravi";
+	2) by method:	 	s1.insertRecord(10,"ravi");
+	3) by constructor:	new Student(10,"ravi");
+	
+	Student
+	{
+		int rollNo;
+		String name;
+		insertRecord(int rollNo,String name){}
+		Student(){}
+		Student(int rollNo,String name){}
+	}
+* What are the different ways to create an object in Java?
+	1) By new keyword
+	2) By newInstance() method
+	3) By clone() method
+	4) By deserialization
+	5) By factory method etc.
+
+
+static keyword:
+	variables
+	methods
+	block
+	nested class
+* static method can not access non-static data members and methods directly.
+* static method can not use this and super keywords.
+
+this keyword usage:
+	it refers to current class object.
+		this.instanceVarible
+		this.instanceMethod()
+		method(this)
+		Constructor(this)
+		this()-->constructor-default
+		return this;---> current class obj.
+
+inheritance: one object/class acquires all the properties and behavior of parent object/class.
+	code reusability and runtime polymorphism.
+	1) IS-A relationship or parent-child relation: a class extends other class
+	2) Aggregation or Has-A relation:If a class have an entity reference, it is known as Aggregation.
+	3) consist a relation
+types:  single
+		multilevel
+		hierarchical 	
+		multiple(with interfaces)
+		hybrid(wuth interface)
+Method overloading:
+	*If a class has multiple methods having same name but different in parameters, it is known as Method Overloading.
+	*In java, Method Overloading is not possible by changing the return type of the method only because of ambiguity..
+Note: Compile Time Error is better than Run Time Error. So, java compiler renders compiler time error if you declare the same method having same parameters.
+
+Method overriding:
+If subclass (child class) has the same method as declared in the parent class, it is known as method overriding in java.
+	Method overriding is used to provide specific implementation of a method that is already provided by its super class & used for runtime polymorphism.
+
+super keyword:
+	The super keyword in java is a reference variable which is used to refer immediate parent class object.
+	Whenever you create the instance of subclass, an instance of parent class is created implicitly which is referred by super reference variable.	
+		
+	super()----constructor
+	super.instanceMethod()
+	super.instanceVariable;
+* Note: super() is added in each class constructor automatically by compiler if there is no super() or this().
+
+final keyword: 
+	variable
+	method
+	class
+
+Polymorphism in java is a concept by which we can perform a single action by different ways.		
+	1) Compile time polymorphism
+		If you overload static method in java, it is the example of compile time polymorphism.
+	2) Runtime polymorphism(Dynamic Method Dispatch): it is a process in which a call to an overridden method is resolved at runtime rather than compile-time.
+		In this process, an overridden method is called through the reference variable of a superclass. 
+		The determination of the method to be called is based on the object being referred to by the reference variable.
+	* Method is overridden not the datamembers, so runtime polymorphism can't be achieved by data members.		
+
+Static Binding and Dynamic Binding:
+	Connecting a method call to the method body is known as binding.
+	There are two types of binding
+	static binding (also known as early binding): When type of the object is determined at compiled time(by the compiler), it is known as static binding.
+		If there is any private, final or static method in a class, there is static binding.
+		
+	dynamic binding (also known as late binding):	
+	
+* The java instanceof operator is used to test whether the object is an instance of the specified type (class or subclass or interface).
+* When Subclass type refers to the object of Parent class, it is known as downcasting.
+
+
+There are two ways to achieve abstraction in java
+	Abstract class (0 to 100%):
+		A class that is declared as abstract is known as abstract class.
+		It cannot be instantiated.
+	Interface (100%)	
+
+	

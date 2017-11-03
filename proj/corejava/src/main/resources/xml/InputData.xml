@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<properties>
+    <TestData Profile="default" Enabled="true">	               
+        <PostTODBOnly>false</PostTODBOnly>                             
+        <Events>
+                <Event1>1</Event1>           
+                <Event2>2</Event2>           
+                <Event3>3</Event3>           
+                <Event4>4</Event4>           
+                <Event5>5</Event5>           
+        </Events>
+        <Topic>T1_default_events_1,T2_default_events_2,T3_default_events_3</Topic>
+        <DBName>Default_Oracle</DBName>
+        <EnableAutoGeneration>true</EnableAutoGeneration>              
+    </TestData>
+    <TestData Profile="customized" Enabled="false">	               
+        <PostTODBOnly>true</PostTODBOnly>                             
+        <Events>
+                <Event1>10</Event1>           
+                <Event2>20</Event2>           
+                <Event3>30</Event3>           
+                <Event4>40</Event4>           
+                <Event5>50</Event5>           
+        </Events>
+        <Topic>T1_customized_events_1,T2_customized_events_2,T3_customized_events_3</Topic>
+        <DBName>Customized_SQL</DBName>
+        <EnableAutoGeneration>false</EnableAutoGeneration>              
+    </TestData>
+</properties>
+

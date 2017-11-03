@@ -7,3 +7,16 @@
 
 DS and Algorithms
 ~~~~~~~~~~~~~~~~~
+
+DS- is a way to store and organize the data in a computer, so that it can be used efficiently.
+	1) Abstract Data Type:(ADT)
+	ex :List
+	2) Concrete Implementation
+	ex: ArrayList,LinkedList
+	We will see Logical View
+				Operations
+				Cost of Operations
+				Implementation.
+					
+			
+			

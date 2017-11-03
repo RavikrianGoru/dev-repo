@@ -1,0 +1,57 @@
+ -----
+ The APT format: 
+ -----
+ The Maven Team:
+ -----
+ -----
+
+AVRO file
+~~~~~~~~~
+
+--------------------------
+ 
+
+
+--------------------------
+
+
+1) XML Parsing: Ref: http://www.mkyong.com/tutorials/java-xml-tutorials/
+	XML Parsing:In Java JDK, two built-in XML parsers are available – DOM and SAX, both have their pros and cons
+		i) DOM XML Parser
+			The DOM is the easiest to use Java XML Parser. 
+			It parses an entire XML document and load it into memory, then models it in a “TREE” structure for easy traversal or manipulation. 
+			DOM Parser is slow and consume a lot memory if it load a XML document which contains a lot of data. 
+			It turns a XML file into DOM or Tree structure, and you have to traverse a node by node to get what you want.
+		
+		ii)SAX XML Parser
+			 It does not load any XML document into memory and create some object representation of the XML document.
+			 Instead, the SAX parser use callback function (org.xml.sax.helpers.DefaultHandler) to informs clients of the XML document structure.
+
+How to create, modify and read a XML file with Java DOM, SAX, JDOM
+
+
+Python Script:
+=============
+
+1) Python latest sw download with customize:
+	The script is importing these packages jsonpath-rw-1.4.0.tar.gz adn jsonschema-2.6.0.tar.gz download
+	
+2) Go to installed python folder script location:
+	C:\Program Files (x86)\Python36-32\Scripts
+	
+	pip install <jsonpath-rw-1.4.0.tar.gz loction>
+	pip install <jsonschema-2.6.0.tar.gz loction>
+	
+3) create the folder structure:
+
+	<parent>
+		|--------updatetransformschema.py
+		|--------final
+		|--------new
+		|--------old
+		|--------fragments------<Files given by DAT>
+		
+4) Run the following script:
+------------------------
+python C:/tools/puthonScript/ActualScript/updatetransformschema.py -r C:/tools/puthonScript/ActualScript/fragments -t C:/tools/puthonScript/ActualScript/old -o C:/tools/puthonScript/ActualScript/new -f C:/tools/puthonScript/ActualScript/final
+		

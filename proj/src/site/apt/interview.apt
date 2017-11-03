@@ -5,5 +5,238 @@
  -----
  -----
 
-Crack Coding Interview
-~~~~~~~~~~~~~~~~~~~~~~
+Sample Interview Questions in Java
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+OOPS?
+
+Object Oriented Programming Language vs Object Based Programming Language(OOPS-Inharitance ex: JavaScript).
+
+Can we overload main method or static method? Yes.
+
+Constructor returns a value but, what ?
+yes, that is current class instance (You cannot use return type yet it returns a value).
+
+Can we create a program without main method ?
+Yes, one of the way is static block but in previous version of JDK not in JDK 1.7.
+	In JDK7 and above, output will be:
+	Output:Error: Main method not found in class A3, please define the main method as:
+	public static void main(String[] args)
+
+What are the 6 ways to use this keyword ?
+
+Why multiple inheritance is not supported in java ?
+To reduce the complexity and simplify the language, multiple inheritance is not supported in java.
+Diamond problem?
+
+Why use aggregation ?: code reusability
+
+When use Aggregation?
+Code reuse is also best achieved by aggregation when there is no is-a relationship.
+Inheritance should be used only if the relationship is-a is maintained throughout the lifetime of the objects involved; otherwise, aggregation is the best choice.
+
+Can we override the static method or main method? No
+
+
+What is covariant return type ?
+since Java5, it is possible to override method by changing the return type if subclass overrides any method whose return type is Non-Primitive but it changes its return type to subclass type.
+
+What are the three usage of super keyword?
+Why use instance initializer block?
+
+What is the usage of blank final variable ?
+A final variable that is not initialized at the time of declaration is known as blank final variable.
+
+Is final method inherited?
+Yes, final method is inherited but you cannot override it.
+
+Can we initialize blank final variable?
+Yes, but only in constructor. For example:
+*A static final variable that is not initialized at the time of declaration is known as static blank final variable. It can be initialized only in static block.
+
+Can we declare a constructor final?
+No, because constructor is never inherited.
+
+What is marker or tagged interface ?
+
+What is runtime polymorphism or dynamic method dispatch ?
+What is the difference between static and dynamic binding ?
+How downcasting is possible in java ?
+What is the purpose of private constructor?
+What is object cloning ?
+
+Advantage of OOPs
+Naming Convention
+Object and class
+Method overloading
+Constructor
+static keyword
+this keyword with 6 usage
+Inheritance
+Aggregation
+Method Overriding
+Covariant Return Type
+super keyword
+Instance Initializer block
+final keyword
+Abstract class
+Interface
+Runtime Polymorphism
+Static and Dynamic Binding
+Downcasting with instanceof operator
+Package
+Access Modifiers
+Encapsulation
+Object Cloning
+
+
+
+How many ways we can create an object?
+
+There are five different ways to create an object in Java,
+
+1. Using new keyword → constructor get called
+
+Employee emp1 = new Employee();
+2. Using newInstance() method of Class → constructor get called
+
+Employee emp2 = (Employee) Class.forName("org.programming.mitra.exercises.Employee")
+                                .newInstance();
+It can also be written as
+
+Employee emp2 = Employee.class.newInstance();
+3. Using newInstance() method of Constructor → constructor get called
+
+Constructor<Employee> constructor = Employee.class.getConstructor();
+Employee emp3 = constructor.newInstance();
+4. Using clone() method → no constructor call
+
+Employee emp4 = (Employee) emp3.clone();
+5. Using deserialization → no constructor call
+
+ObjectInputStream in = new ObjectInputStream(new FileInputStream("data.obj"));
+Employee emp5 = (Employee) in.readObject();
+
+
+	
+
+Spring:
+
+1) What are the types of Dependency Injection Spring supports?
+
+2) Types of IOC container in spring
+    BeanFactory
+    ApplicationContext
+
+
+3) Bean lifecycle in Spring framework
+	Instantiate: First the spring container finds the bean’s definition from the XML file and instantiates the bean.
+	Populate properties: Using the dependency injection, spring populates all of the properties as specified in the bean definition.
+	Set Bean Name: If the bean implements BeanNameAware interface, spring passes the bean’s id to setBeanName() method.
+	Set Bean factory: If Bean implements BeanFactoryAware interface, spring passes the beanfactory to setBeanFactory() method.
+	Pre Initialization: Also called post process of bean. If there are any bean BeanPostProcessors associated with the bean, Spring calls postProcesserBeforeInitialization() method.
+	Initialize beans: If the bean implements IntializingBean,its afterPropertySet() method is called. If the bean has init method declaration, the specified initialization method is called.
+	Post Initialization: – If there are any BeanPostProcessors associated with the bean, their postProcessAfterInitialization() methods will be called.
+	Ready to use: Now the bean is ready to use by the application
+	Destroy: If the bean implements DisposableBean , it will call the destroy() method
+
+
+4) What is Spring IOC container
+
+5) What bean scopes does Spring support
+	Singleton: This scopes the bean definition to a single instance per Spring IoC container.
+	Prototype: This scopes a single bean definition to have any number of object instances.
+	Request: This scopes a bean definition to an HTTP request. Only valid in the context of a web-aware Spring ApplicationContext
+	Session: This scopes a bean definition to an HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
+	Global-session: This scopes a bean definition to a global HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
+
+5a) In which scenario, you will use singleton and prototype scope
+
+6) Difference between BeanFactory and ApplicationContext(BeanFactory + spring AOP, message resource handling for i18n etc.)?
+7) What is autowiring in spring? What are the autowiring modes(no,byName,byType,constructor)?
+
+7) which ViewResolver class widely used ?
+org.springframework.web.servlet.view.InternalResourceViewResolver class is widely used
+
+8) What does @Controller annotation,@RequestMapping  
+
+Webservices
+==========
+http://docs.oracle.com/javaee/6/tutorial/doc/gijvh.html
+
+(JAX-WS)? (JAX-RS)?
+
+How can we decide which type of web service to use?
+
+JAX-WS: addresses advanced QoS requirements commonly occurring in enterprise computing.provide standards for security and reliability.
+
+Web Services Description Language (WSDL)?
+Diff b/w SOAP and RestFul?
+
+
+
+Java API for XML Web Services (JAX-WS) and Java API for RESTful Web Services (JAX-RS)
+
+
+JAX-RS provides the functionality for Representational State Transfer (RESTful) web services.
+
+Exaplain different annotations u used in RestFul webservices?
+@Path,@GET,@PUT,@POST,@DELETE,@HEAD,
+@PathParam
+@QueryParam
+@Consumes
+@Produces
+@Provider
+
+Diff @PUT and @POST?
+How can you validate a path param? www.facebook.com/viswa123
+
+@Path("users/{username: [a-zA-Z][a-zA-Z_0-9]*}")
+In this example the username variable will match only user names that begin with one uppercase or lowercase letter and zero or more alphanumeric characters and the underscore character. If a user name does not match that template, a 404 (Not Found) response will be sent to the client.
+ 
+Can we maintain user session in web services?
+Web services are stateless so we can’t maintain user sessions in web services.
+
+Can you tell some Headers in HTTP Request?(Accept, Context-Type)
+
+
+https://localhost:8080/UserManagement/rest/UserService/users/1
+If you hit the above url using your browser or using a java based client or using Postman, 
+The result will always be the User XML whose Id is 1 because the server does not store any information about the client.
+
+
+
+OOPS concepts?
+Polymorphism- Method overloading and overridig?
+what is synchronization? where and why we use it?
+Dynamic binding
+	When type of the object is determined at run-time, it is known as dynamic binding. 
+
+Life cycle of thread?
+What is theread sheduler? preemptive or time slicing scheduling
+
+when we get IllegalThreadStateException?
+join() method?
+public void join()throws InterruptedException
+public void join(long milliseconds)throws InterruptedException
+
+Thread pool? how cn we create thread pool?
+java.util.concurrent.Executors;
+java.util.concurrent.ExecutorService;
+
+diff sleep() or wait()?
+
+what is immutable class and how to create it?
+
+peek and pool methods in  Queue?
+
+Java 1.7 features?
+JVM, JDK and JRE?
+
+
+
+
+
+
+
+
