@@ -1,4 +1,4 @@
-package javatpoint.arithmetic;
+package javatpoint.progs;
 
 public class PimeNumber
 {
