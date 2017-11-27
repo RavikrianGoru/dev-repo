@@ -54,4 +54,16 @@ Python Script:
 4) Run the following script:
 ------------------------
 python C:/tools/puthonScript/ActualScript/updatetransformschema.py -r C:/tools/puthonScript/ActualScript/fragments -t C:/tools/puthonScript/ActualScript/old -o C:/tools/puthonScript/ActualScript/new -f C:/tools/puthonScript/ActualScript/final
-		
+
+
+Add or Map network drive
+========================
+
+Windows Explorer -> Right click on Computer->Map Network Drive->
+Drive:[]
+Folder:[]
+ex: Y
+\\sekagicstorage.e.e.s\uproj
+
+=======================
+

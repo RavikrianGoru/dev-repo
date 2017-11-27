@@ -9,6 +9,10 @@ Core Java
 ~~~~~~~~~
 
 --------------------------
+
+http://mrbool.com
+http://javahungry.blogspot.com/
+http://tutorials.jenkov.com/java-concurrency/benefits.html
  
  1. Please make sure your env/set uo ready: installed java and set env variables.
  2. Use Note Pad to write java programs as we have to use white board/paper in interview.
@@ -118,10 +122,35 @@ Static Binding and Dynamic Binding:
 * When Subclass type refers to the object of Parent class, it is known as downcasting.
 
 
+Abstraction is a process of hiding the implementation details and showing only functionality to the user.
 There are two ways to achieve abstraction in java
 	Abstract class (0 to 100%):
 		A class that is declared as abstract is known as abstract class.
 		It cannot be instantiated.
 	Interface (100%)	
+* A factory method is the method that returns the instance of the class.
+* An abstract class can have data member, abstract method, method body, constructor and even main() method.
+  An interface in java is a blueprint of a class. It has static constants and abstract methods.
+* Java Interface also represents IS-A relationship.
+* Multiple inheritance is not supported in case of class because of ambiguity. But it is supported in case of interface because there is no ambiguity as implementation is provided by the implementation class. 
 
-	
+* An interface that have no member is known as marker or tagged interface. 
+  For example: Serializable, Cloneable, Remote etc. 
+  They are used to provide some essential information to the JVM so that JVM may perform some useful operation.
+  if the JVM sees a Class is implementing the Serializable interface it does some special operation on it and writes the state of the object into object stream. This object stream is then available to be read by another JVM. Similarly if JVM finds that a class is implementing Clonnable interface, it performs some special operation in order to support cloning. The same theory goes for RMI and Remote interface.
+  With the introduction of annotation in java 5, annotation has become a better choice over maker interface.
+  In short a marker interface in Java is used to indicate something to compiler, JVM or any other tool but Annotation is better way of doing same thing.
+
+  Serialization :The serializable interface provides a mechanism of object serialization where an object is represented as a sequence of bytes.
+  Deserialization is the process of reading the object from the file and reconstructing the object in the memory.
+  Ref: http://mrbool.com/what-is-marker-interface-in-java/28557
+  
+
+Mutithreading & Concurrency :http://tutorials.jenkov.com/java-concurrency/benefits.html
+
+  
+  
+  
+  
+Java 8- feature:
+An interface can have default method and static method.	

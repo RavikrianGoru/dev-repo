@@ -1,0 +1,27 @@
+													-----
+													Title: maven site documentation (Ionic) 
+													-----
+													Author:RavikiranGoru,... 
+													-----
+													Date: 2017-09-05
+													-----
+
+
+Ionic:
+~~~~~~
+It is used to develop/build hybrid mobile applications using HTML5, JavaScript and CSS. Ionic is built on top of Angular.
+	- Use Android emulator to testing
+	- Use WebStorm for coding
+
+Ref: http://mrbool.com/introduction-ionic-course-part-1/36796
+Ionic features:
+	- we can use ObjectC for IOS and/or Java for Android apps.
+	- Develop mobile apps(UI) by using web technologies(HTML,CSS,JavaScript,SAAS AngularJS) and H/W interaction with ngCordova and Ionic market.
+
+Ref: http://mrbool.com/installation-and-startup-ionic-course-part-2/36797	
+Installation:
+	- Download and install Node.js
+	- Download and install WebStrome
+	- npm (note pad manager)
+	 
+ 
