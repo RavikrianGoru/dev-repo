@@ -20,6 +20,10 @@ abstract class AbstractClass
     {
         System.out.println("An abstract class can have data member, abstract method, method body, constructor and even main() method.");
     }
+    public void toDoMethod()
+    {
+        System.out.println("toDoMethod() of AbstractClass");
+    }
 }
 
 abstract class AbstractClass2 extends AbstractClass
@@ -49,6 +53,7 @@ public class AbstractClassDemo extends AbstractClass2
 
     public static void main(String[] args)
     {
+//        AbstractClass absObj=new AbstractClass().toDoMethod();
         AbstractClassDemo obj = new AbstractClassDemo();
         obj.print();
         System.out.println("An abstract class can have data member, abstract method, method body, constructor and even main() method.");
