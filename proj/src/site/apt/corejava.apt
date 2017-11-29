@@ -13,6 +13,7 @@ Core Java
 http://mrbool.com
 http://javahungry.blogspot.com/
 http://tutorials.jenkov.com/java-concurrency/benefits.html
+https://github.com/sreedharnuli/Learnings
  
  1. Please make sure your env/set uo ready: installed java and set env variables.
  2. Use Note Pad to write java programs as we have to use white board/paper in interview.
@@ -46,11 +47,12 @@ http://tutorials.jenkov.com/java-concurrency/benefits.html
 	}
 * What are the different ways to create an object in Java?
 	1) By new keyword
-	2) By newInstance() method
-	3) By clone() method
-	4) By deserialization
-	5) By factory method etc.
-
+	2) By clone() method
+	3) By deserialization
+	
+	*) By newInstance() method--Class.forName("ClassName").newInstance()----it internally uses new key word.
+	*) By factory method etc----it internally uses new key word.
+* Actually, 3 ways to create objects.(new keyword, clone() and deserialization).
 
 static keyword:
 	variables
