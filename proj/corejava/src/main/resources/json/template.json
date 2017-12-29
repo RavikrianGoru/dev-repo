@@ -1,0 +1,41 @@
+{
+  "TPGArray": [
+    {
+      "TPG": "COBA",
+      "ServiceArray":[
+      {
+        "serviceId": {
+          "serviceEnv": "Prod",
+          "serviceName": "COBA_EntityManagement",
+          "serviceType": "REST",
+          "serviceVersion": "2.0",
+          "EntityArray": []
+        }
+      }
+     ]
+    },
+    {
+      "TPG": "RMCA",
+      "ServiceArray":[
+       {
+        "serviceId": {
+          "serviceEnv": "Prod",
+          "serviceName": "RMCA_BillingManagement",
+          "serviceType": "REST",
+          "serviceVersion": "1",
+          "EntityArray": []
+        }
+       },
+       {
+        "serviceId": {
+          "serviceEnv": "Prod",
+          "serviceName": "RMCA_EntityRead",
+          "serviceType": "REST",
+          "serviceVersion": "1",
+          "EntityArray": []
+        }
+       }
+     ]
+    }
+  ]
+}

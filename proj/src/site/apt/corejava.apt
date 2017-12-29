@@ -9,7 +9,9 @@ Core Java
 ~~~~~~~~~
 
 --------------------------
-
+http://www.geeksforgeeks.org/jvm-works-jvm-architecture/
+https://www.journaldev.com
+http://javaconceptoftheday.com/difference-between-shallow-copy-vs-deep-copy-in-java/
 http://mrbool.com
 http://javahungry.blogspot.com/
 http://tutorials.jenkov.com/java-concurrency/benefits.html
@@ -153,6 +155,7 @@ There are two ways to achieve abstraction in java
   Deserialization is the process of reading the object from the file and reconstructing the object in the memory.
   Ref: http://mrbool.com/what-is-marker-interface-in-java/28557
   
+  private-> default-> protected-> public
 * Access modifiers in java:
 	private-variable,method,constructor
 	default
@@ -176,9 +179,26 @@ There are two ways to achieve abstraction in java
 Mutithreading & Concurrency :http://tutorials.jenkov.com/java-concurrency/benefits.html
 
   
-  
-  
-  
+Nested Class
+	1. static nested class: (static nested class): Static nested classes can access only static members of the outer class.
+	2. java inner class: (non static nested class): can access all the variables and methods of the outer class. we can not have any static variables inside them.
+		2.1 local inner class: (a class is defined in a method body): 
+		2.2 anonymous inner class: (A local inner class without name is known as anonymous inner class)
+		
+	  
+ClassLoader:
+	1.Bootstrap  class loader:	Every JVM implements this loader.
+								It loads core java API classes from JAVA_HOME/jre/lib directory(bootstrap path).
+								This is implemented by native languages like C C++.
+	2.Extension class loader:	Child of Bootstrap class loader. implemented by java.
+								It loads classes form JAVA_HOME/jre/lib/ext or any other path specified by java.ext.dirs
+								sun.misc.Launcher$ExtClassLoader class.
+	3.System/Application class loader:
+								child of extension class loader to load classes from application path or any other from environment variable java.class.path.
+								sun.misc.Launcher$AppClassLoader class.
+								
+								
+	  
 Java 8- feature:
 An interface can have default method and static method.	
 

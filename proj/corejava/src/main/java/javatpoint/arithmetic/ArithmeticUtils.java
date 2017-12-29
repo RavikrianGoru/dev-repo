@@ -56,7 +56,7 @@ public class ArithmeticUtils {
 		System.out.println(b << 4);// 3*2^4=3*16=48
 
 		int c = -20;
-		System.out.println(c << 2);
+		System.out.println(c << 2);// -20*2^2=-80
 	}
 
 	public static void doRightShift() {

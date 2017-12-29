@@ -1,0 +1,71 @@
+													-----
+													Title: maven site documentation (Zookeeper) 
+													-----
+													Author:RavikiranGoru,... 
+													-----
+													Date: 2017-09-05
+													-----
+
+		
+A distributed application can run on multiple systems in a n/w at a given time (simultaneously) by coordinating among themselves
+to complete a particular task in a fast and efficient manner.
+													
+Zookeeper:
+~~~~~~~~~
+ZooKeeper is a distributed co-ordination service to manage large set of hosts.
+ZooKeeper (ZK) is a highly-available, highly-reliable and fault-tolerant coordination and consensus service for distributed applications like Apache Storm or Kafka. 
+(Specifically in the case of Kafka it also acts as distributed metadata and configurations service). 
+ZK uses a simple database a.k.a data tree.
+
+Highly-available and highly-reliable – ZK achieves these through replication, and is designed to have good performance in read-heavy workloads. 
+Total replication of the ZK database is performed on an ensemble, i.e., an array of hosts/nodes, of which one is the leader of a quorum (i.e., majority)
+
+Quorum is nothing but the number of nodes that should be up and running in the ensemble for the ZK service to be considered up. ZK, by default uses “node majority quorum”.
+
+
+ENSEMBLE
+--------------------------
+|						|
+| ZKNode1	ZKNode2		|
+|						|
+| ZKNode3	ZKNode4		|
+|						|
+|		ZKNode5			|
+-------------------------
+Size of quorum =(N+1)/2---------(5+1)/2=3
+
+Number of failures that can be tolerated =round(N/2)-1
+if n=5
+		round(5/2)-1=3-1=2
+if n=6
+		round(6/2)-1=3-1=2
+if it is recommended to have odd number of nodes.
+
+* if you want N failures to tolerate , then you need 2N+1 nodes in your cluster.
+		
+
+
+
+
+The ZooKeeper framework was originally built at “Yahoo!” for accessing their applications in an easy and robust manner.
+
+
+Ref: https://www.tutorialspoint.com/zookeeper/zookeeper_overview.htm
+
+Zookeeper Architecture: ref: https://www.tutorialspoint.com/zookeeper/zookeeper_fundamentals.htm
+
+Client ?
+Server ?
+Ensemble ? [min number of node required is 3 in ensemble (odd number is recommended)]
+Leader- when Leader is elected ?
+Follower ?
+what is zk quorum?
+
+znode?
+types of znodes?
+	Persistence znode
+	Ephemeral znode
+	Sequential znode
+The strict majority of nodes is called as Quorum.	
+Ref:https://www.tutorialspoint.com/zookeeper/
+													
