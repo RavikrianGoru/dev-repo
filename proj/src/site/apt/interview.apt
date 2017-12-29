@@ -10,6 +10,9 @@ Caterpiller-
 
 Sample Interview Questions in Java
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ref: https://www.journaldev.com/7153/core-java-tutorial#core-java-tutorial
+http://javaconceptoftheday.com/difference-between-shallow-copy-vs-deep-copy-in-java/
+
 
 OOPS?
 
@@ -120,8 +123,24 @@ Employee emp4 = (Employee) emp3.clone();
 ObjectInputStream in = new ObjectInputStream(new FileInputStream("data.obj"));
 Employee emp5 = (Employee) in.readObject();
 
-
+* What are the different ways to create an object in Java?
+	1) By new keyword
+	2) By clone() method
+	3) By deserialization
 	
+	*) By newInstance() method--Class.forName("ClassName").newInstance()----it internally uses new key word.
+	*) By factory method etc----it internally uses new key word.
+* Actually, 3 ways to create objects.(new keyword, clone() and deserialization).
+
+
+Why String is immutable in java?
+	1) String pool is possible as String is immutable. it saves a lot of heap memory.
+	2) Security threats: if String is not immutable. Socket programming(host and port) and to get DB connection(username and pwd) as Strings. Sice String is immutable value can not be changed.
+	3) Thread-safety: As String is immutable it can be shared across thread without any synchronization.
+	4) String are used in classloaders, no one change the calss name as String is immutable.
+	5) String is immutable and hashcode is generated at the time of String creation.There is no need to calculate hash code again.
+	   String type the best suitable type for key in HashMap.
+String pool?	 	
 
 Spring:
 

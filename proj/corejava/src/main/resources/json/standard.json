@@ -1,0 +1,53 @@
+{
+  "TPGArray": [
+    {
+      "TPG": "COBA",
+      "ServiceArray":[
+      {
+        "serviceId": {
+          "serviceEnv": "Prod",
+          "serviceName": "COBA_EntityManagement",
+          "serviceType": "REST",
+          "serviceVersion": "2.0",
+          "EntityArray": [
+                       "UnitOfMeasurement",
+                       "LifeCycleState",
+                       "DayOfWeek"
+                      ]
+        }
+      }
+     ]
+    },
+    {
+      "TPG": "RMCA",
+      "ServiceArray":[
+       {
+        "serviceId": {
+          "serviceEnv": "Prod",
+          "serviceName": "RMCA_BillingManagement",
+          "serviceType": "REST",
+          "serviceVersion": "1",
+          "EntityArray": [
+                       "billingAccountSpecification"
+                      ]
+        }
+       },
+       {
+        "serviceId": {
+          "serviceEnv": "Prod",
+          "serviceName": "RMCA_EntityRead",
+          "serviceType": "REST",
+          "serviceVersion": "1",
+          "EntityArray": [
+                       "productOffering",
+                       "customerFacingServiceSpecification",
+                       "resourceFacingServiceSpecification",
+                       "resourceSpecification?specificationType=PRODUCT_BUCKET",
+                       "resourceSpecification?specificationType=BILLING_ACCOUNT_BUCKET"
+                      ]
+        }
+       }
+     ]
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+{
+  "TPGArray": [
+    {
+      "TPG": "COBA",
+      "ServiceArray":[
+      {
+        "serviceId": {
+          "serviceEnv": "Prod",
+          "serviceName": "COBA_EntityManagement",
+          "serviceType": "REST",
+          "serviceVersion": "2.0",
+          "EntityArray": [
+                       "AmountType",
+                       "AnnouncementCallState",
+                       "AnnouncementFrequency",
+                       "AnnouncementGroup",
+                       "AnnouncementSetting",
+                       "AristocraticTitle",
+                       "BalanceAdjustmentReason",
+                       "BillingCycle",
+                       "BucketClass",
+                       "CalendarRole",
+                       "ChannelType",
+                       "ContactRole",
+                       "ContactType",
+                       "Country",
+                       "Currency",
+                       "CustomerFacingServiceSpecificationSubtype",
+                       "CustomerTaxCategory",
+                       "DeliveryMethod",
+                       "DerivedDataType",
+                       "Direction",
+                       "DocFormatType",
+                       "DocType",
+                       "EntityCategory",
+                       "entitySpecification",
+                       "ExternalNotificationActionType",
+                       "ExternalNotificationQueue",
+                       "FinancialEntryAccountClass",
+                       "FinancialEntryType",
+                       "FinancialHeaderType",
+                       "Frequency",
+                       "Gender",
+                       "GLCode",
+                       "Holiday",
+                       "IdentificationType",
+                       "JurisdictionCode",
+                       "JurisdictionType",
+                       "Language",
+                       "LifeCycleStateReason",
+                       "MaritalStatus",
+                       "Measure",
+                       "MeasureType",
+                       "MonthOfYear",
+                       "Nationality",
+                       "NotificationGroup",
+                       "NumberClass",
+                       "NumberingScheme",
+                       "Operation",
+                       "PartyRoleCategory",
+                       "PaymentContext",
+                       "PaymentMethod",
+                       "PersonalTitle",
+                       "PriceTaxClass",
+                       "PriceType",
+                       "ProductSpecificationSubtype",
+                       "PricingActionType",
+                       "ProvisioningSystem",
+                       "Purpose",
+                       "RateType",
+                       "ReasonCode",
+                       "ReasonContext",
+                       "ResourceFacingServiceSpecificationSubtype",
+                       "ResourceOwningSystem",
+                       "SalesChannel",
+                       "Scenario",
+                       "ScenarioConfiguration",
+                       "SpecialDay",
+                       "State",
+                       "TaxCode",
+                       "TaxType",
+                       "TaxationType",
+                       "TimeZone",
+                       "TimeZoneType",
+                       "Weekend"
+                      ]
+        }
+      }
+     ]
+    },
+    {
+      "TPG": "RMCA",
+      "ServiceArray":[
+       {
+        "serviceId": {
+          "serviceEnv": "Prod",
+          "serviceName": "RMCA_BillingManagement",
+          "serviceType": "REST",
+          "serviceVersion": "1",
+          "EntityArray": [
+                       "billingAccountBucketSpecification",
+                       "billingCycleSpecification",
+                       "bucketPriorityList",
+                       "scheduleDefinition"
+                      ]
+        }
+       },
+       {
+        "serviceId": {
+          "serviceEnv": "Prod",
+          "serviceName": "RMCA_EntityRead",
+          "serviceType": "REST",
+          "serviceVersion": "1",
+          "EntityArray": [
+                       "bucketTag",
+                       "bucketTagSet",
+                       "characteristicSetSpecification",
+                       "customerFacingServiceSpecification",
+                       "eventTriggerDetails",
+                       "logicAlgorithmSpecification",
+                       "normalizedEventSpecification",
+                       "policyEvent",
+                       "policyValue",
+                       "policyValueSpecification",
+                       "productOffering",
+                       "productOfferingPriceSpecification",
+                       "productSpecification",
+                       "resourceFacingServiceSpecification",
+                       "resourceSpecification",
+                       "scheduleDefinition"
+                      ]
+        }
+       }
+     ]
+    }
+  ]
+}
