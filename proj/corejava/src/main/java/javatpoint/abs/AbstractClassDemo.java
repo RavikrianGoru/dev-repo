@@ -63,7 +63,7 @@ public class AbstractClassDemo extends AbstractClass2
     @Override
     void print()
     {
-        System.out.println("AbstractClassDemo provides print() implementation");
+        System.out.println("AbstractClassDemo provides print() implementation ");
     }
 
 }
