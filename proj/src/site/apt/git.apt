@@ -11,7 +11,7 @@ Git Commands
 ~~~~~~~~~~~~
  
   Here, we will update frequently used Git commands. If we create a repository in GitHub without README file and git ignore files then we need to follow the below steps.  
-  Create a repository in GitHub(WebSite) without readme and gitignore files ex: tmpRepo
+  Create a repository inp GitHub(WebSite) without readme and gitignore files ex: tmpRepo
  
 * Create a new repository on the command line
 
@@ -27,6 +27,7 @@ Git Commands
 	Push an existing repository from the command line
  7	git remote add origin https://github.com/RavikrianGoru/tmpRepo.git
  8	git push -u origin master
+ 9  git push origin
 --------------------------------
 
 * Frequently used git commands
@@ -103,6 +104,9 @@ Git Commands
 	git branch -v
 	scp -p -P 29418 .....hooks/commit-msg .git/hooks/
 	git reset HEAD <fileName>
+	git rest --soft HEAD~1	-----------------> revert local commits. but keep those changes locally
+	git rest --hard HEAD~1	-----------------> revert local commits. and remove those changes locally.
+	
 	git log
 	git reset <filename>
 	git reset --hard <commit id>
