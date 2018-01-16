@@ -1,0 +1,229 @@
+
+
+Ref: https://drill.apache.org/docs/why-drill/
+
+* It is developed inspired by Google’s Dremel.
+
+Apache Drill: Drill is an Apache open-source SQL query engine for Big Data exploration.
+			  It supports the standard SQL:2003 syntax.
+			  It works with standard BI tools. such as Tableau, MicroStrategy, QlikView and Excel.
+			  It is extensible means we can connect multiple file systems(local, distribute such S3,HDFS), Hbase and Hive..
+			  It can combine data from multiple data sources by using different storage plugins.
+			  It supports User defined functions.
+			  It is designed from the ground up for high throughput and low latency.
+			  It also provides a columnar and vectorized execution engine, resulting in higher memory and CPU efficiency.
+			  It scales form single laptop to 1000-node cluster.
+			  It can be accessed through Drill shell, Drill Web Console, ODBC/JDBC and C++ API.
+			  Drill does not require schema or type specification for data in order to start the query execution process.
+			  Drill uses classpath scanning to find and load plugins, and to add additional storage plugins, functions, and operators with minimal configuration.
+			  Drill generates highly efficient custom code for every single query.(Runtime compilation)
+
+* Storage plugins in Drill represent the abstractions that Drill uses to interact with the data sources.
+* When Drill is working with data stored in columnar formats such as Parquet, Drill avoids disk access for columns that are not involved in a query. 
+  Drill's execution layer also performs SQL processing directly on columnar data without row materialization.
+  		  
+Self-describing data formats such as Parquet, JSON, AVRO, and NoSQL databases have schema specified as part of the data itself, which Drill leverages dynamically at query time.
+Because the schema can change over the course of a Drill query, many Drill operators are designed to reconfigure themselves when schemas change.
+
+DrillBit: A Drillbit is the process running on each active Drill node that coordinates, plans, and executes queries,
+		   as well as distributes query work across the cluster to maximize data locality.
+		   
+
+Drill Query Execution:
+		   
+		   <<image>>ApacheDrill_query-flow-client.png<</image>>
+		   <<image>>ApacheDrill_leaf-frag.png<</image>
+
+		   
+To work with drill bit embedded mode:
+	Download and extract s/w.
+	
+	Connect Drill Shell:
+	-------------------
+	go to bin folder through cmd prompt and run the following cmd to start.
+		start			--->	sqlline.bat -u "jdbc:drill:zk=local" 
+						--->	sqlline.bat -u "jdbc:drill:schema=dfs;zk=local"
+						--->	sqlline.bat -u "jdbc:drill:schema=cp;zk=local"
+						            
+		sample query	--->	select * from cp.`employee.json` limit 2;
+		stop			--->   	!quit	
+	
+	Open Drillbit in Browser:
+	------------------------
+				http://localhost:8047/
+				
+	Sample queries:
+	==============
+	To check whether drill bit is running or not.
+	>	select  * from sys.drillbits;
+		
+	>	select * from cp.`employee.json` limit 2;
+	>	select * from dfs.`<path to sample-data\region.parquet` limit 2;
+		select * from dfs.`C:\tools\apache-drill-1.12.0\sample-data\region.parquet` limit 2;
+	>	!set maxwidth 10000
+	
+	Sample drill configuration/setting:
+	==================================
+	>	SHOW schemas;
+	>	show databases;
+	>	use hive.`default`;
+	>	describe orders;
+	>	use maprdb;
+	>	use dfs.clicks;
+	>	use dfs.logs;
+	>	select * from logs limit 2;
+
+	Change Drill to work in all text mode
+	>	alter system set `store.json.all_text_mode` = true;
+	>	alter system set `store.json.all_text_mode` = false;
+	
+	Enable the DECIMAL Data Type 
+	>	alter session set `planner.enable_decimal_data_type`=true;
+	>	alter session set `planner.enable_decimal_data_type`=false;
+	
+	Download an place Yelp Data in your disk then start practiecing:
+	===============================================================
+	
+	>	select * from  dfs.`C:\tools\dataset\business.json` limit 1;
+	>	select sum(stars) from  dfs.`C:\tools\dataset\business.json`;
+	>	select state, city, sum(stars) from  dfs.`C:\tools\dataset\business.json` group by state, city order by sum(stars) desc limit 10;
+	>	select stars, review_count from  dfs.`C:\tools\dataset\business.json` limit 5;
+	>	select stars, avg(review_count) from  dfs.`C:\tools\dataset\business.json` group by stars order by stars desc;
+	>	select stars, trunc(avg(review_count)) from  dfs.`C:\tools\dataset\business.json` group by stars order by stars desc;
+				trunc(x,y)
+				trunc(x)
+	>	select name, city, state, `review_count` from  dfs.`C:\tools\dataset\business.json` where `review_count`>3000 order by `review_count` desc;
+	>	select name, city, state, `review_count` from  dfs.`C:\tools\dataset\business.json` where `review_count`>3000 order by `review_count` asc;
+	
+	The following query results may contain null values.
+	>	select b.hours.`Friday` from  dfs.`C:\tools\dataset\business.json` b limit 10;
+	>	select attributes from  dfs.`C:\tools\dataset\business.json` b limit 10;
+	>	select b.name, b.attributes.BusinessParking.valet `IsValetPrkingAvailable` from  dfs.`C:\tools\dataset\business.json` b limit 10;
+
+	>	select b.name, b.categories from  dfs.`C:\tools\dataset\business.json` b limit 10;
+	
+	>	select categories,repeated_count(categories) as NoOfElements from dfs.`C:\tools\dataset\business.json` b limit 10;
+				repeated_count(array)------------- no of elements in array(like size of array).
+				repeated_contains(array,'element')----- true/fale. if the element is contained in array(true) else (false).
+				
+	>	select name, state, city, review_count  as TotalRestaurants from  dfs.`C:\tools\dataset\business.json` where true=repeated_contains(categories,'Restaurants')order by repeated_count(categories) desc limit 10 ;
+	>	select name, state, city, review_count  as TotalRestaurants from  dfs.`C:\tools\dataset\business.json` where true=repeated_contains(categories,'Restaurants')order by review_count desc limit 10 ;
+				
+	>	select name, repeated_count(categories) CategoriesCount, categories from  dfs.`C:\tools\dataset\business.json` where true=repeated_contains(categories,'Restaurants')order by repeated_count(categories) desc limit 10 ;
+	>	select categories[0], count(categories[0]) as categorycount from dfs.`C:\tools\dataset\business.json` group by categories[0] order by count(categories[0]) desc limit 10;
+	>	select categories[1], count(categories[1]) as categorycount from dfs.`C:\tools\dataset\business.json` group by categories[1] order by count(categories[1]) desc limit 10;
+	
+	>	select * from  dfs.`C:\tools\dataset\business.json` limit 1;
+	>	select t1.business_id from dfs.`C:\tools\dataset\review.json` t1 group by t1.business_id having sum(t1.cool)>2000 order by sum(t1.cool);
+	>	select t1.business_id , sum(t1.cool) from dfs.`C:\tools\dataset\review.json` t1 group by t1.business_id having sum(t1.cool)>2000 order by sum(t1.cool);
+	>	select t1.name from dfs.`C:\tools\dataset\business.json` t1 where t1.business_id in (select t2.business_id from dfs.`C:\tools\dataset\review.json` t2 group by t2.business_id having sum(t2.cool)>2000 order by sum(t2.cool));
+	
+	
+	
+	VIEWS:
+	=====
+	* Note that Drill views are lightweight, and can just be created in the local file system. 
+	Drill in standalone mode comes with a dfs.tmp workspace, which we can use to create views (or you can can define your own workspaces on a local or distributed file system). 
+	
+	Create a view with the combined business and reviews data sets
+	>	create or replace view dfs.tmp.businessreviews as Select b.name,b.stars,b.state,b.city,r.votes.funny,r.votes.useful,r.votes.cool, r.`date` from dfs.`C:\tools\dataset\business.json` b, dfs.`C:\tools\dataset\review.json` r where r.business_id=b.business_id;
+
+	Let’s get the total number of records from the view.
+	>	select count(*) as Total from dfs.tmp.businessreviews;
+	
+	* If you are not comfortable with writing queries manually, you can use a BI/Analytics tools such as Tableau/MicroStrategy to query raw files/Hive/HBase data or Drill-created views directly using Drill ODBC/JDBC drivers.
+	
+	
+	COALESCE(exp1, exp2,....expn)
+	============================
+		If all expressions evaluate to null, then the COALESCE function returns null.
+		
+	NULLIF(exp1,exp2)
+	================
+		Returns the first expression if the two expressions are not equal, or returns a null value of the type of the first expression if the two expressions are equal.	
+	
+	FLATTEN(array)
+	============== 
+		FLATTEN will be applicable on array, it results each element in separate row.
+	>	select b.name, b.categories from  dfs.`C:\tools\dataset\business.json` b limit 2;
+		+-------------------------------------+----------------------------------------------------------+
+		|                name                 |                        categories                        |
+		+-------------------------------------+----------------------------------------------------------+
+		| Richmond Town Square                | ["Shopping","Shopping Centers"]                          |
+		| South Florida Style Chicken & Ribs  | ["Food","Soul Food","Convenience Stores","Restaurants"]  |
+		+-------------------------------------+----------------------------------------------------------+
+		
+	>	select b.name, flatten(b.categories) from  dfs.`C:\tools\dataset\business.json` b limit 4;
+		+-------------------------------------+-------------------+
+		|                name                 |      EXPR$1       |
+		+-------------------------------------+-------------------+
+		| Richmond Town Square                | Shopping          |
+		| Richmond Town Square                | Shopping Centers  |
+		| South Florida Style Chicken & Ribs  | Food              |
+		| South Florida Style Chicken & Ribs  | Soul Food         |
+		+-------------------------------------+-------------------+
+	
+	
+	Some queries:
+	==========================
+	sum(x)
+	select t.user_info.device, count(*) from `clicks/clicks.json` t group by t.user_info.device having count(*) > 1000;
+	select t.trans_id transaction, t.user_info.cust_id customer from `clicks/clicks.campaign.json` t union all select u.trans_id, u.user_info.cust_id  from `clicks/clicks.json` u limit 5;
+	select ny_sales.cust_id, ny_sales.total_orders, ca_sales.total_orders from (select o.cust_id, sum(o.order_total) as total_orders from hive.orders o where state = 'ny' group by o.cust_id) ny_sales left outer join (select o.cust_id, sum(o.order_total) as total_orders from hive.orders o where state = 'ca' group by o.cust_id) ca_sales on ny_sales.cust_id = ca_sales.cust_id order by ny_sales.cust_id limit 20;
+	
+	cast(row_key as int)
+	cast(t.personal.name as varchar(20))
+	cast(t.loyalty.agg_rev as dec(7,2))
+	
+	* We can use CONVERT_TO/CONVERT_FROM functions to decode the string columns. 
+		CONVERT_TO/CONVERT_FROM are more efficient than CAST in most cases. 
+		Use only CONVERT_TO to convert binary types to any type other than VARCHAR.
+		
+	* The row_key column functions as the primary key of the table.
+	
+	* The table alias t is required; otherwise the column family names would be parsed as table names and the query would return an error.
+	
+	* We can use the regexp_replace function to remove the quotes around the strings in the query results
+	>	select cast(row_key as int), regexp_replace(cast(t.address.state as varchar(10)),'"','') from customers t limit 1;
+	
+	Drill queries on files:
+	======================
+	
+	* Access directories and sub directories of files in a single SELECT statement.
+	* Access complex data from json files
+	
+	>	use dfs.logs;
+	>	select * from logs where dir0='2013' limit 10;
+	>	select dir0 as yr, dir1 as mth, cust_id from logs where dir0='2013' and dir1='8' and device='IOS5' and purch_flag='true' order by `date`;
+	>	select cust_id, dir1 month_no, count(*) month_count from logs where dir0=2014 group by cust_id, dir1 order by cust_id, month_no limit 10;
+	>	select t.trans_id, t.trans_info.prod_id[0] from `clicks/clicks.json` t limit 5;
+	>	select t.trans_id, t.trans_info.prod_id[20] from `clicks/clicks.json` t where t.trans_info.prod_id[20] is not null order by trans_id limit 5;
+	
+	* repeated_count(-)
+	>	select t.trans_id, t.`date` as session_date, t.user_info.cust_id as cust_id, t.user_info.device as device, repeated_count(t.trans_info.prod_id) as prod_count, t.trans_info.purch_flag as purch_flag from `clicks/clicks.json` t where t.trans_info.purch_flag = 'true' order by prod_count desc;
+	
+	Queries on Yelp Datasets:
+	========================
+	> 	SELECT * FROM dfs.`/users/nrentachintala/Downloads/yelp/yelp_academic_dataset_checkin.json` limit 2;
+	>	SELECT KVGEN(checkin_info) checkins FROM dfs.`/users/nrentachintala/Downloads/yelp/yelp_academic_dataset_checkin.json` LIMIT 2;
+	>	SELECT FLATTEN(KVGEN(checkin_info)) checkins FROM dfs.`/users/nrentachintala/Downloads/yelp/yelp_academic_dataset_checkin.json` LIMIT 20;
+
+	>	SELECT SUM(checkintbl.checkins.`value`) AS TotalCheckins FROM (SELECT FLATTEN(KVGEN(checkin_info)) checkins FROM dfs.`/users/nrentachintala/Downloads/yelp/yelp_academic_dataset_checkin.json` ) checkintbl;	
+	>	SELECT SUM(checkintbl.checkins.`value`) AS SundayMidnightCheckins FROM (SELECT FLATTEN(KVGEN(checkin_info)) checkins FROM dfs.`/users/nrentachintala/Downloads/yelp/yelp_academic_dataset_checkin.json` ) checkintbl WHERE checkintbl.checkins.key='23-0';
+	>	SELECT `right`(checkintbl.checkins.key,1) WeekDay,sum(checkintbl.checkins.`value`) TotalCheckins from (select flatten(kvgen(checkin_info)) checkins FROM dfs.`/users/nrentachintala/Downloads/yelp/yelp_academic_dataset_checkin.json`  ) checkintbl GROUP BY `right`(checkintbl.checkins.key,1) ORDER BY TotalCheckins;
+	
+	*	`right`(checkintbl.checkins.key,1)
+	*	SUBSTR(checkintbl.checkins.key,1,strpos(checkintbl.checkins.key,'-')-1) AS HourOfTheDay
+	
+	Drill supports the following SQL window functions:
+	=================================================
+	* PARTITION BY and OVER clauses
+	* A  variety of aggregated window functions for Sum, Max, Min, Count, Avg
+	* Analytic functions such as First_Value, Last_Value, Lead, Lag, NTile, Row_Number, and Rank
+	Note : Window functions are highly versatile. You can reduce the joins, subqueries, and explicit cursors that you need to write. Window functions solve a variety of use cases with minimal coding effort.
+	
+	
+	
+	
+	
+		
