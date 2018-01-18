@@ -276,6 +276,15 @@ Preventing Race Conditions:
       }
 	}
 	
+	* Code that is safe to call by multiple threads simultaneously is called thread safe.
+
+Local Variables:
+	Local variables are stored in each thread's own stack. 
+	That means that local variables are never shared between threads.
+Local Object Reference:
+	All objects are stored in the shared heap.
+		
+	
 Distributed systems
 -------------------
 Multiple processors communicate each other(different computers).

@@ -1,0 +1,20 @@
+
+Cloud Computing:
+	Cloud computing is the on-demand delivery of compute power, database storage, applications, and other IT resources
+ 	through a cloud services platform via the internet with pay-as-you-go pricing.
+Ref:
+	https://aws.amazon.com/what-is-cloud-computing/?nc2=h_l2_cc
+	https://aws.amazon.com/types-of-cloud-computing/
+	
+
+	
+	
+
+IAM Ref: https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html
+
+* AWS Identity and Access Management (IAM) is a web service that helps you securely control access to AWS resources. 
+	Provides Authentication(Users,Groups and Roles) and Authorization(Policy).
+	We use IAM to control who is authenticated (signed in) and authorized (has permissions) to use resources.
+	
+	
+	

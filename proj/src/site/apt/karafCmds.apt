@@ -1,0 +1,217 @@
+													-----
+													Title: maven site documentation (Frequently used karaf/osgi commands) 
+													-----
+													Author:RavikiranGoru,... 
+													-----
+													Date: 2017-09-05
+													-----
+													
+karaf commands
+~~~~~~~~~~~~~~
+
+Useful commands
+
+bundle:
+	list
+		Lists all installed bundles.
+	
+	diag [ids] 
+		Displays diagnostic information why a bundle is not Active
+	
+	uninstall <id>
+	install --start -s <url>
+	start <id>
+	
+	
+		
+
+scr:
+	list
+		Display available components
+		
+feature:
+	list   [-i, --installed]
+		Lists all existing features [application] available from the defined repositories.
+	info edm
+		lists all the bundles of EDM expo
+	repo-list
+		Displays a list of all defined repositories.
+		Ex: 
+		Repository                   | URL                                                                                                     
+		-----------------------------------------------------------------------------------
+		karaf                        | mvn:com.ericsson.ngee/oam-bundle/LATEST/xml/features
+	repo-add name/url  [-i, --install]
+		Add a features repository
+	install [options] features
+		Installs a feature with the specified name and version.													
+		
+====================
+Karaf Assignments
+
+1.	Create Two maven projects (Bundling & Package â€“ Export, Import)
+a.	Bundle 1 (ValidationUtil) â€“ String utility to check date format (Any random utility)
+b.	In Bundle 1 write one more class & do not expose it (Handle it in export-package)
+c.	Bundle 2  (FormatCheck Bundle)â€“ Use the String utility class (from bundle 1) to check the format
+d.	Package both the maven project as OSGI bundle using maven bundle plugin & generate the manifest
+e.	Explicitly mention the import & export package in both the bundles
+f.	Deploy the bundles in Karaf & test
+
+2.	Bundle Activator & Service 
+a.	In the above Bundles add a Bundle activator in Bundle 1 & register the StringUtility class as service
+b.	In Bundle 2 get the String utility as service using Bundle Context & check the format
+
+3.	Declarative service 
+a.	In the above bundles declare the StringUtility as service using Annotation
+b.	In Bundle 2 inject the service & use it
+c.	In Karaf add repo scr & install scr feature before testing this bundle
+
+4.	Redeploy Bundles
+a.	After deploying the bundles , make few changes in the bundle (Modify a sysout in bundle activator)
+b.	Remove data cache , replace the bundles & check if the features as to be re-installed
+
+5.	KAR Packaging
+a.	Package both the bundles as KAR
+b.	Add SCR feature/repo as dependency & test the bundles
+
+6.	Blue Print
+a.	Create a blue print xml 
+b.	Define a StringUtility Service & inject it has dependency in blue print xml
+
+7.	Config Admin
+a.	Create a property/CFG file in karaf etc
+b.	Use Config admin to listen to this file
+c.	Whenever this file is changed , print the changes in the listener in Karaf
+
+8.	Shaded Jar (Big Jar)
+a.	Use xml parsers (dom) to parse a xml
+b.	Or use Joda time jar to do date format validation
+c.	Package all the required 3pp jars as Big jar using Maven-Shade plugin or Maven-Bundle plugin & test it
+
+9.	Different Version of Same 3PP
+a.	Create a Bundle 1 which uses Apache Common lang (version 3.5 ) & use the StringUtils class inside it to check if string is empty
+b.	Create a Bundle 2 which uses Apache Common lang (version 2.6 ) & use the StringUtils class inside it to check if string is empty
+c.	Deploy both the bundles along with apache common lang (version 3.5 & 2.6)
+d.	Make sure the bundle 1 imports package from common lang 3.5
+e.	Make sure the bundle 2 imports package from common lang 2.6
+============================
+
+1)	How to create a bundle in EDM
+
+a)	Add below properties in that project pom.xml (maven project) 
+
+bundle.synbolicName and bundle.namespace
+
+For ex. <for consolidation bundle>, 
+
+<properties> 
+   <bundle.symbolicName>
+     com.ericsson.bss.rm.edm.exposure.common.integration.processors.eventconsolidator
+   </bundle.symbolicName>     
+   <bundle.namespace>
+     com.ericsson.bss.rm.edm.exposure.common.integration.processors.eventconsolidator
+        </bundle.namespace>
+</properties>
+
+b)	Packaging should be ‘bundle’ instead of ‘jar’, 
+    <packaging>bundle</packaging>
+c)	Add the below Felix maven-bundle-plugin under build->plugins for creating bundle, 
+In that 
+1)	add <Export-Package> by mentioning the source code package that needs to exported,
+2)	add <Import-Package>  if it is needed, otherwise ignore it   
+For ex., 
+<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <instructions>
+                        <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+                        <Bundle-Name>${project.Name}</Bundle-Name>
+                        <Bundle-Version>${project.version}</Bundle-Version>
+                        <Export-Package>com.ericsson.bss.rm.edm.exposure.eventFilter.*</Export-Package>
+                        <Import-Package>*,com.ericsson.bss.rmca.entityserviceviews.cdac</Import-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+===========================
+2)	How to shade a jar under a bundle
+
+-	Using Maven shade plugin (maven-shade-plugin), a jar can be shaded under a bundle, 
+Add below plugin along with the existing plugins in Maven POM xml file,
+-	<groupId>org.apache.maven.plugins</groupId>
+-	<artifactId>maven-shade-plugin</artifactId>
+In EDM, we are Relocating Classes in few projects,
+Relocation classes is done to avoid class loading conflicts if the same classes are reused as a dependency of some other projects, To address this issue, one can relocate the classes which get included in the shaded artifact in order to create a private copy of their bytecode:
+For ex., zookeeper is relocated from org.apache.zookeeper to org.shaded.apache.zookeeper like below,
+<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <relocations>
+                                <relocation>
+                                    <pattern>org.apache.zookeeper</pattern>
+                                    <shadedPattern>org.shaded.apache.zookeeper</shadedPattern>
+                                </relocation>
+                                <relocation>
+                                    <pattern>org.apache.curator</pattern>
+                                    <shadedPattern>org.shaded.apache.curator</shadedPattern>
+                                </relocation>
+                            </relocations>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+Refer below links for more details,
+https://maven.apache.org/plugins/maven-shade-plugin/usage.html
+How to add an external dependency to our package
+-	Using <Export-Package> option in ‘maven-bundle-plugin’, external dependencies can be included in our package.
+Refer : https://karaf.apache.org/manual/latest-2.x/developers-guide/creating-bundles.html
+
+===================
+3)	How to debug bundle failures
+
+Before starting the troubleshooting for any failures, change the log level to debug or trace as below  
+
+From Karaf console (karaf@edm=>), try
+=> log:set DEBUG
+
+How to identify whether any bundle is not in active state/Bundle failures? 
+
+From Karaf console (karaf@edm=>), try
+ => list | grep -v 'Act
+- output will be listing out the bundles that are not active
+How to find the root cause for bundle failures
+From Karaf console (karaf@edm=>), try
+=> diag
+- output will be showing the error log that are generated for the bundle failure
+
+Typical scenarios when bundle failure occurs, 
+a)	Mismatch in the dependent bundle/component version that is already installed
+b)	Activate/init method failed with an error (NPE) due to any failures in the dependent components which is not active   
+c)	Code errors
+d)	Previous installation is corrupted and bundles are in wrong status
+e)	Edm is not installed 
+Solution to try for above failures:
+a)	Install and activate the appropriate component to match with the expected version, use headers <bundle-id> command to see the details about the bundle
+b)	Check the order of the activation, if it is required, change the start-level of a bundle to lesser number than the dependent bundle [usage: start-level <bundle-id> <any less no>]
+c)	1. Add more debug logs if the existing log is not enough to identify the reason 
+2. Replace the installed bundle alone with the newly created bundle with more logs
+	uninstall <old-bundle-id>
+	install file:/<jar file location>
+	start <bundle-id> 
+3.  if the bundle is failed to be active, follow solution b) and then restart the instance  
+d)	1. Clean ‘data’ folder for the karaf instance, 
+
+feature:install <featureName> 
+
+		

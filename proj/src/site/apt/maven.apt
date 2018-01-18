@@ -41,3 +41,10 @@ Maven commands
  
 --------------------------------
 
+* How to display console data and store in file at a time:
+	mvn <command> [-option] | tee <file>
+	Ex: 
+	mvn clean install | tee log.txt
+		
+
+

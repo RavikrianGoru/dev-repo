@@ -77,6 +77,8 @@ To work with drill bit embedded mode:
 	>	alter system set `store.json.all_text_mode` = true;
 	>	alter system set `store.json.all_text_mode` = false;
 	
+	>	ALTER SESSION SET `store.format` = 'parquet';
+	
 	Enable the DECIMAL Data Type 
 	>	alter session set `planner.enable_decimal_data_type`=true;
 	>	alter session set `planner.enable_decimal_data_type`=false;
@@ -163,18 +165,20 @@ To work with drill bit embedded mode:
 		| South Florida Style Chicken & Ribs  | Soul Food         |
 		+-------------------------------------+-------------------+
 	
+	CAST (<expression> AS <data type>):The CAST function converts an entity, such as an expression that evaluates to a single value, from one type to another.
+	=================================
+	* Use CONVERT_TO and CONVERT_FROM instead of the CAST function for converting binary data types.
 	
-	Some queries:
-	==========================
-	sum(x)
-	select t.user_info.device, count(*) from `clicks/clicks.json` t group by t.user_info.device having count(*) > 1000;
-	select t.trans_id transaction, t.user_info.cust_id customer from `clicks/clicks.campaign.json` t union all select u.trans_id, u.user_info.cust_id  from `clicks/clicks.json` u limit 5;
-	select ny_sales.cust_id, ny_sales.total_orders, ca_sales.total_orders from (select o.cust_id, sum(o.order_total) as total_orders from hive.orders o where state = 'ny' group by o.cust_id) ny_sales left outer join (select o.cust_id, sum(o.order_total) as total_orders from hive.orders o where state = 'ca' group by o.cust_id) ca_sales on ny_sales.cust_id = ca_sales.cust_id order by ny_sales.cust_id limit 20;
-	
-	cast(row_key as int)
-	cast(t.personal.name as varchar(20))
+	cast(10 as int)-------------------- 10
+	cast(20 as decimal(2,2))----------- 20.0
 	cast(t.loyalty.agg_rev as dec(7,2))
+	cast(4567 as varchar(3))----------- 456
+	cast(4567 as char(3))-------------- 456
+	CAST (column_name AS INTERVAL DAY)
+	CAST (column_name AS INTERVAL YEAR)
+	CAST (column_name AS INTERVAL SECOND)
 	
+
 	* We can use CONVERT_TO/CONVERT_FROM functions to decode the string columns. 
 		CONVERT_TO/CONVERT_FROM are more efficient than CAST in most cases. 
 		Use only CONVERT_TO to convert binary types to any type other than VARCHAR.
@@ -185,6 +189,12 @@ To work with drill bit embedded mode:
 	
 	* We can use the regexp_replace function to remove the quotes around the strings in the query results
 	>	select cast(row_key as int), regexp_replace(cast(t.address.state as varchar(10)),'"','') from customers t limit 1;
+	
+	
+	
+	Configuring Drill Memory:
+	========================
+		https://drill.apache.org/docs/configuring-drill-memory/
 	
 	Drill queries on files:
 	======================
@@ -222,6 +232,21 @@ To work with drill bit embedded mode:
 	* Analytic functions such as First_Value, Last_Value, Lead, Lag, NTile, Row_Number, and Rank
 	Note : Window functions are highly versatile. You can reduce the joins, subqueries, and explicit cursors that you need to write. Window functions solve a variety of use cases with minimal coding effort.
 	
+	Roles(user and admin) and Privileges:
+	====================================
+	
+	User Role: 
+		Users can execute queries on data that he/she has access to. Each storage plugin manages the read/write permissions. 
+		Users can create views on top of data to provide granular access to that data.
+	
+	Administrator Role:
+		When authentication is enabled, only Drill users who are assigned Drill cluster administrator privileges can perform the following tasks:
+	    
+	    * Change system-level options by issuing the ALTER SYSTEM command.
+    	* Update a storage plugin configuration through the REST API or Web Console.
+    	* Users and administrators have different navigation bars in the web console. Various tabs are shown based on privilege. For example, only administrators can see the Storage tab and create/read/update/delete storage plugin configuration.
+    	* View profiles of all queries that all users have run or are currently running in a cluster.
+    	* Cancel running queries that were launched by any user in the cluster.
 	
 	
 	
