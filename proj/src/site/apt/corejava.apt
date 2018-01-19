@@ -5,245 +5,316 @@
  -----
  -----
 
-Core Java
-~~~~~~~~~
+<<Core Java>>
 
---------------------------
-http://www.geeksforgeeks.org/jvm-works-jvm-architecture/
-https://www.journaldev.com
-http://javaconceptoftheday.com/difference-between-shallow-copy-vs-deep-copy-in-java/
-http://mrbool.com
-http://javahungry.blogspot.com/
-http://tutorials.jenkov.com/java-concurrency/benefits.html
-https://github.com/sreedharnuli/Learnings
+ <<An object has three characteristics:>>
  
- 1. Please make sure your env/set uo ready: installed java and set env variables.
- 2. Use Note Pad to write java programs as we have to use white board/paper in interview.
- 3. JVM 
- 
- 
-
-
-
---------------------------
-
-* An object has three characteristics:
-	state: represents data (value) of an object.
-	behavior: represents the behavior (functionality) of an object such as deposit, withdraw etc.
-	identity: Object identity is typically implemented via a unique ID. The value of the ID is not visible to the external user. But, it is used internally by the JVM to identify each object uniquely
-
-* The new keyword is used to allocate memory at run time. All objects get memory in Heap memory area.
-
-* Initializing object
-	1) by reference: 	s1.rollNo=10; s1.name="ravi";
-	2) by method:	 	s1.insertRecord(10,"ravi");
-	3) by constructor:	new Student(10,"ravi");
+ [[1]]state: represents data (value) of an object.
 	
-	Student
-	{
-		int rollNo;
-		String name;
-		insertRecord(int rollNo,String name){}
-		Student(){}
-		Student(int rollNo,String name){}
-	}
-* What are the different ways to create an object in Java?
-	1) By new keyword
-	2) By clone() method
-	3) By deserialization
+ [[2]]behavior: represents the behavior (functionality) of an object such as deposit, withdraw etc.
 	
-	*) By newInstance() method--Class.forName("ClassName").newInstance()----it internally uses new key word.
-	*) By factory method etc----it internally uses new key word.
-* Actually, 3 ways to create objects.(new keyword, clone() and deserialization).
+ [[3]]identity: Object identity is typically implemented via a unique ID. The value of the ID is not visible to the external user. But, it is used internally by the JVM to identify each object uniquely
 
-static keyword:
-	variables
-	methods
-	block
-	nested class
-* static method can not access non-static data members and methods directly.
-* static method can not use this and super keywords.
+[]
+ 
+ The new keyword is used to allocate memory at run time. All objects get memory in Heap memory area.
 
-this keyword usage:
-	it refers to current class object.
-		this.instanceVarible
-		this.instanceMethod()
-		method(this)
-		Constructor(this)
-		this()-->constructor-default
-		return this;---> current class obj.
+ <<Initializing object>>
+ 
+ [[1]] by reference: 	s1.rollNo=10; s1.name="ravi";
+	
+ [[2]] by method:	 	s1.insertRecord(10,"ravi");
+	
+ [[3]] by constructor:	new Student(10,"ravi");
+ 
+[]
 
-inheritance: one object/class acquires all the properties and behavior of parent object/class.
-	code reusability and runtime polymorphism.
-	1) IS-A relationship or parent-child relation: a class extends other class
-	2) Aggregation or Has-A relation:If a class have an entity reference, it is known as Aggregation.
-	3) consists-a relation
-types:  single
-		multilevel
-		hierarchical 	
-		multiple(with interfaces)
-		hybrid(wuth interface)
-Method overloading:
-	*If a class has multiple methods having same name but different in parameters, it is known as Method Overloading.
-	*In java, Method Overloading is not possible by changing the return type of the method only because of ambiguity..
-Note: Compile Time Error is better than Run Time Error. So, java compiler renders compiler time error if you declare the same method having same parameters.
++-------------------------------+	
+ Student
+ {
+	int rollNo;
+	String name;
+	insertRecord(int rollNo,String name){}
+	Student(){}
+	Student(int rollNo,String name){}
+ }
++-------------------------------+
 
-Method overriding:
-If subclass (child class) has the same method as declared in the parent class, it is known as method overriding in java.
+ <<What are the different ways to create an object ?>>
+
+ [[1]] By new keyword
+	
+ [[2]] By clone() method
+	
+ [[3]] By deserialization
+	
+ [[4]] By newInstance() method
+ 	   Class.forName("ClassName").newInstance()----it internally uses new key word.
+	
+ [[5]] By factory method etc----it internally uses new key word.
+ 
+ []
+	
+ <Actually, 3 ways to create objects.(new keyword, clone() and deserialization).>
+
+ <<Usage of >><static><< keyword:>>
+
+ [[1]]variables
+	
+ [[2]]methods
+	
+ [[3]]block
+	
+ [[4]]nested class
+ 
+ []
+	
+ <static method can not access non-static data members and methods directly.>
+ <static method can not use this and super keywords.>
+
+ <<Usage of >><this><< keyword:>> refers to current class object.
+ 
++-------------------------------+
+  this.instanceVarible
+  this.instanceMethod()
+  method(this)
+  Constructor(this)
+  this()-->constructor-default
+  return this;---> current class obj.
++-------------------------------+
+
+ <<Inheritance:>>  One object/class acquires all the properties and behavior of parent object/class. code reusability and runtime polymorphism.
+  
+ [[1]] IS-A relationship or parent-child relation: a class extends other class
+	
+ [[2]] Aggregation or Has-A relation:If a class have an entity reference, it is known as Aggregation.
+	
+ [[3]] consist a relation
+ 
+ []
+	
+ <<Types of Inheritance:>>
+	 
+ [[1]] single
+	 
+ [[2]] multilevel
+	 
+ [[3]] hierarchical
+	  	
+ [[4]] multiple(with interfaces)
+	 
+ [[5]] hybrid(with interface)
+ 
+ []
+		
+ <<Method overloading:>> If a class has multiple methods having same name but different in parameters, it is known as Method Overloading.
+  Method Overloading is not possible by changing the return type of the method only because of ambiguity..
+	
+ <Compile Time Error is better than Run Time Error. So, java compiler renders compiler time error if you declare the same method having same parameters inside a class>
+
+ <<Method overriding:>> If subclass (child class) has the same method as declared in the parent class, it is known as method overriding .
 	Method overriding is used to provide specific implementation of a method that is already provided by its super class & used for runtime polymorphism.
 
-super keyword:
-	The super keyword in java is a reference variable which is used to refer immediate parent class object.
+ <<super keyword:>> super keyword is a reference variable which is used to refer immediate parent class object.
 	Whenever you create the instance of subclass, an instance of parent class is created implicitly which is referred by super reference variable.	
-		
-	super()----constructor
+
++-------------------------------+		
+	super() : default constructor
 	super.instanceMethod()
 	super.instanceVariable;
-* Note: super() is added in each class constructor automatically by compiler if there is no super() or this().
++-------------------------------+
+	
+ <super() is added in each class constructor automatically by compiler if there is no super() or this().>
 
-final keyword: 
+ <<Usage of final keyword:>> 
+ 
++-------------------------------+	
 	variable
-	method
+	method 
 	class
++-------------------------------+	
 
-Polymorphism in java is a concept by which we can perform a single action by different ways.		
-	1) Compile time polymorphism
-		If you overload static method in java, it is the example of compile time polymorphism.
-	2) Runtime polymorphism(Dynamic Method Dispatch): it is a process in which a call to an overridden method is resolved at runtime rather than compile-time.
+ <<Polymorphism >> It is a concept by which we can perform a single action by different ways.		
+ 
+ [[1]] Compile time polymorphism
+	
+		If you overload static method , it is the example of compile time polymorphism.
+ 
+ [[2]] Runtime polymorphism(Dynamic Method Dispatch):
+
+	 it is a process in which a call to an overridden method is resolved at runtime rather than compile-time.
 		In this process, an overridden method is called through the reference variable of a superclass. 
 		The determination of the method to be called is based on the object being referred to by the reference variable.
-	* Method is overridden not the datamembers, so runtime polymorphism can't be achieved by data members.		
+	
+	<Method is overridden not the datamembers, so runtime polymorphism can't be achieved by data members.>		
 
+[]
 
-Static Binding and Dynamic Binding:
+ <<Static Binding and Dynamic Binding:>>
 	Connecting a method call to the method body is known as binding.
 	There are two types of binding
-	static binding (also known as early binding): When type of the object is determined at compiled time(by the compiler), it is known as static binding.
+	
+ [[1]]static binding (also known as early binding):
+ 
+	   When type of the object is determined at compiled time(by the compiler), it is known as static binding.
 		If there is any private, final or static method in a class, there is static binding.
 		
-	dynamic binding (also known as late binding):	
+ [[2]]dynamic binding (also known as late binding):	
+  
+  When type of the object is determined at run time, it is known as late binding. Overridden methods
+ 
+ []
 	
-* The java instanceof(type comparison) operator is used to test whether the object is an instance of the specified type (class or subclass or interface).
-* When Subclass type refers to the object of Parent class, it is known as downcasting.
-* If we perform it directly, compiler gives Compilation error. If you perform it by typecasting, ClassCastException is thrown at runtime. 
-  But if we use instanceof operator, downcasting is possible.
+ <<instanceof>> type comparison operator is used to test whether the object is an instance of the specified type (class or subclass or interface).
+ 
+ <<downcasting>> When Subclass type refers to the object of Parent class, it is known as downcasting.
+ If we perform it directly, compiler gives Compilation error. If you perform it by typecasting, ClassCastException is thrown at runtime. But if we use instanceof operator, downcasting is possible.
 
+ <<Abstraction>> It is a process of hiding the implementation details and showing only functionality to the user.
+ There are two ways to achieve abstraction 
 
-
-Abstraction is a process of hiding the implementation details and showing only functionality to the user.
-There are two ways to achieve abstraction in java
-	Abstract class (0 to 100%):
+ [[1]] Abstract class (0 to 100%):
 		A class that is declared as abstract is known as abstract class.
 		It cannot be instantiated.
-	Interface (100%)	
-* A factory method is the method that returns the instance of the class.
-* An abstract class can have data member, abstract method, concrete method, constructor and even main() method.
-  An interface in java is a blueprint of a class. It has static constants and abstract methods.
-* Java Interface also represents IS-A relationship.
-* Multiple inheritance is not supported in case of class because of ambiguity. 
-  But it is supported in case of interface because there is no ambiguity as implementation is provided by the implementation class. 
+		
+ [[2]] Interface (100%)
+ 	
+ []
+ 
+ <<Factory method>> A factory method is the method that returns the instance of the class.
+ An abstract class can have data member, abstract method, concrete method, constructor and even main() method.
+  
 
-* An interface that have no member is known as marker or tagged interface. 
-  For example: Serializable, Cloneable, Remote etc. 
-  They are used to provide some essential information to the JVM so that JVM may perform some useful operation.
-  if the JVM sees a Class is implementing the Serializable interface it does some special operation on it and writes the state of the object into object stream. 
-  This object stream is then available to be read by another JVM. 
-  Similarly if JVM finds that a class is implementing Clonnable interface, it performs some special operation in order to support cloning. 
-  The same theory goes for RMI and Remote interface.
-  With the introduction of annotation in java 5, annotation has become a better choice over maker interface.
-  In short a marker interface in Java is used to indicate something to compiler, JVM or any other tool but Annotation is better way of doing same thing.
+ << Java Interface>> It is a blueprint of a class. It has static constants and abstract methods.
+ It also represents IS-A relationship. Multiple inheritance is not supported in case of class because of ambiguity. But it is supported in case of interface because there is no ambiguity as implementation is provided by the implementation class. 
+ An interface that have no member is known as marker or tagged interface. 
+ 
+ For example: Serializable, Cloneable, Remote etc. 
+ They are used to provide some essential information to the JVM so that JVM may perform some useful operation.
+ if the JVM sees a Class is implementing the Serializable interface it does some special operation on it and writes the state of the object into object stream. 
+ This object stream is then available to be read by another JVM. 
+ Similarly if JVM finds that a class is implementing Clonnable interface, it performs some special operation in order to support cloning. 
+ The same theory goes for RMI and Remote interface.
+ With the introduction of annotation  5, annotation has become a better choice over maker interface.
+ In short a marker interface  is used to indicate something to compiler, JVM or any other tool but Annotation is better way of doing same thing.
+ 
+ Ref: {{http://mrbool.com/what-is-marker-interface-in-java/28557}}
 
-  Serialization :The serializable interface provides a mechanism of object serialization where an object is represented as a sequence of bytes.
-  Deserialization is the process of reading the object from the file and reconstructing the object in the memory.
-  Ref: http://mrbool.com/what-is-marker-interface-in-java/28557
+ <<Serialization>> The serializable interface provides a mechanism of object serialization where an object is represented as a sequence of bytes.
+ <<Deserialization>> is the process of reading the object from the file and reconstructing the object in the memory.
+  
   
   private-> default-> protected-> public
-* Access modifiers in java:
-	private-variable,method,constructor
-	default
-	protected
-	public
-* Non-Access modifiers in java:
-	static
-	abstract
-	synchronized
-	native
-	volatile
-	transient
+  
+ <<Access modifiers :>>
+	
+	[[1]] private-variable,method,constructor
+	
+	[[2]] default
+	
+	[[3]] protected
+	
+	[[4]] public
+	
+	[]
+	
+ <<Non-Access modifiers :>>
+ 
+	[[1]] static
+	
+	[[2]] abstract
+	
+	[[3]] synchronized
+	
+	[[4]] native
+	
+	[[5]] volatile
+	
+	[[6]] transient
 	...etc
-* If you are overriding any method, overridden method (i.e. declared in subclass) must not be more restrictive.
+	
+  <If you are overriding any method, overridden method (i.e. declared in subclass) must not be more restrictive.>
 
-* Encapsulation in java is a process of wrapping code and data together into a single unit.
-	By providing only setter or getter method, you can make the class read-only or write-only. Fully encapsulated class- java bean
+ <<Encapsulation >>
+ 
+ It is a process of wrapping code and data together into a single unit.
+ By providing only setter or getter method, you can make the class read-only or write-only. Fully encapsulated class- java bean
 
 	
 
-Mutithreading & Concurrency :http://tutorials.jenkov.com/java-concurrency/benefits.html
-
-Concurrent systems
-------------------
-Multiple threads communicate each other. 
-Concurrent model
----------------
-	1) Parallel Workers: Incoming jobs are assigned to different workers. a delegator distributes the incoming jobs to different workers. Each worker completes the full job. 
+ <<Mutithreading & Concurrency :>> {{http://tutorials.jenkov.com/java-concurrency/benefits.html}}
+ 
+ <<Concurrent systems>> Multiple threads communicate each other. 
+ 
+ <<Concurrent model>>
+ 
+	[[1]] Parallel Workers: Incoming jobs are assigned to different workers. a delegator distributes the incoming jobs to different workers. Each worker completes the full job. 
 						 The workers work in parallel, running in different threads, and possibly on different CPUs.
 						 The parallel worker concurrency model is the most commonly used concurrency model in Java.
 						 Ex: Many of the concurrency utilities in the java.util.concurrent
 						 
-						 + Easy to understand
-						 + Add workers to increase parallelization.
++-------------------------------+							 
+	+ Easy to understand
+	+ Add workers to increase parallelization.
 						 
-						 - Shared state(in memory or/and database) access is complex
-						 - The job execution order is nondeterministic. 
-						 
-* Many concurrent data structures are blocking, meaning one or a limited set of threads can access them at any given time.
-* A persistent data structure always preserves the previous version of itself when modified. 
-If multiple threads point to the same persistent data structure and one thread modifies it, the modifying thread gets a reference to the new structure. All other threads keep a reference to the old structure which is still unchanged and thus consistent.						 
+	- Shared state(in memory or/and database) access is complex
+	- The job execution order is nondeterministic. 
++-------------------------------+	
+					 
+ Many concurrent data structures are blocking, meaning one or a limited set of threads can access them at any given time.
+ A persistent data structure always preserves the previous version of itself when modified. 
+ If multiple threads point to the same persistent data structure and one thread modifies it, the modifying thread gets a reference to the new structure. All other threads keep a reference to the old structure which is still unchanged and thus consistent.						 
 
-	2) Assembly Line or Shared nothing or Reactive or Event Driven System: The workers are organized like workers at an assembly line in a factory. Each worker only performs a part of the full job. 
+	[[2]] Assembly Line or Shared nothing or Reactive or Event Driven System: The workers are organized like workers at an assembly line in a factory. Each worker only performs a part of the full job. 
 					    When that part is finished the worker forwards the job to the next worker.
-					    
-					    + No shared data
-					    + Stateful workers
-					    + Job ordering
+	
++-------------------------------+					    
+	+ No shared data
+	+ Stateful workers
+	+ Job ordering
 	  					
-	  					- Hard to identify which part of code is being executed: that the execution of a job is often spread out over multiple workers, and thus over multiple classes in your project. Thus it becomes harder to see exactly what code is being executed for a given job.
+	- Hard to identify which part of code is being executed: that the execution of a job is often spread out over multiple workers, and thus over multiple classes in your project. Thus it becomes harder to see exactly what code is being executed for a given job.
++-------------------------------+	
 	  					
-* Non-blocking IO means that when a worker starts an IO operation (e.g. reading a file or data from a network connection) the worker does not wait for the IO call to finish.
+ <Non-blocking IO means that when a worker starts an IO operation (e.g. reading a file or data from a network connection) the worker does not wait for the IO call to finish.>
 
-	3) Functional Parallelism: The basic idea of functional parallelism is that you implement your program using function calls. Functions can be seen as "agents" or "actors" that send messages to each other, just like in the assembly line concurrency model.
+	[[3]] Functional Parallelism: The basic idea of functional parallelism is that you implement your program using function calls. Functions can be seen as "agents" or "actors" that send messages to each other, just like in the assembly line concurrency model.
 						With Java 7 we got the java.util.concurrent package contains the ForkAndJoinPool which can help you implement something similar to functional parallelism.
 						With Java 8 we got parallel streams which can help you parallelize the iteration of large collections. 
 
-* In order to utilize all the cores in the CPU, a single-threaded system can be scaled out to utilize the whole computer.
+ <In order to utilize all the cores in the CPU, a single-threaded system can be scaled out to utilize the whole computer.>
 
-	4) Same-threading: is a concurrency model where a single-threaded systems are scaled out to N single-threaded systems. 
+	[[4]] Same-threading: is a concurrency model where a single-threaded systems are scaled out to N single-threaded systems. 
 					   The result is N single-threaded systems running in parallel.
 					   A same-threaded system is not a pure single-threaded system, because it contains of multiple threads. 
 					   But - each of the threads run like a single-threaded system.
 					   
-* Concurrency: Multiple tasks progress at the same time.
+	[]
+					   
+ <<Concurrency:>> Multiple tasks progress at the same time.
 
-* Parallelism: Each task is broken into subtasks which can be processed in parallel.
+ <<Parallelism:>> Each task is broken into subtasks which can be processed in parallel.
 
-* An application may process one task at at time (sequentially) or work on multiple tasks at the same time (concurrently).
-* Parallelism on the other hand, is related to how an application handles each individual task. An application may process the task serially from start to end, or split the task up into subtasks which can be completed in parallel.
+ <An application may process one task at at time (sequentially) or work on multiple tasks at the same time (concurrently).>
+ <Parallelism on the other hand, is related to how an application handles each individual task. An application may process the task serially from start to end, or split the task up into subtasks which can be completed in parallel.>
 
-Threads:
-	1) Creating thread by extending Thread class.
-	2) Creating thread by implementing Runnable interface.
+ <<Threads:>>
+	[[1]] Creating thread by extending Thread class.
+	[[2]] Creating thread by implementing Runnable interface.
 	
- * Implementing Runnable interface is preferable one. it gives more option for thread pool for execution. 
+  Implementing Runnable interface is preferable one. it gives more option for thread pool for execution. 
    It is easy to queue up the Runnable instances until a thread from the pool is idle.
    
    The problems arise when multiple threads access the same resources. For instance the same memory (variables, arrays, or objects), systems (databases, web services etc.) or files.
    In fact, problems only arise if one or more of the threads write to these resources. It is safe to let multiple threads read the same resources, as long as the resources do not change.
    
-Race Condition and Critical Section:
+ <<Race Condition and Critical Section:>>
    The situation where two threads compete for the same resource, where the sequence in which the resource is accessed is significant, is called race conditions. 
    A code section that leads to race conditions is called a critical section.
    
    Sample code for Critical Section:
+
++-------------------------------+
    public class Counter 
    {
 		protected long count = 0;
@@ -252,13 +323,16 @@ Race Condition and Critical Section:
 			this.count = this.count + value;
 		}
    }
++-------------------------------+
 
-Preventing Race Conditions:
+ <<Preventing Race Conditions:>>
 	To prevent race conditions from occurring you must make sure that the critical section is executed as an atomic instruction. 
 	That means that once a single thread is executing it, no other threads can execute it until the first thread has left the critical section.  
 	By using synchronized blocks or synchronized methods 	
 
   Sample code for Preventing Critical Section:
+  
++-------------------------------+
    public class TwoSums 
    {
     private int sum1 = 0;
@@ -276,42 +350,65 @@ Preventing Race Conditions:
       }
 	}
 	
-	* Code that is safe to call by multiple threads simultaneously is called thread safe.
++-------------------------------+
+	
+ <Code that is safe to call by multiple threads simultaneously is called thread safe.>
 
-Local Variables:
+ <<Local Variables:>>
 	Local variables are stored in each thread's own stack. 
 	That means that local variables are never shared between threads.
-Local Object Reference:
+	
+ <<Local Object Reference:>>
 	All objects are stored in the shared heap.
 		
 	
-Distributed systems
--------------------
-Multiple processors communicate each other(different computers).
-
-
+ <<Distributed systems>> Multiple processors communicate each other(different computers).
+ 
 
   
-Nested Class
-	1. static nested class: (static nested class): Static nested classes can access only static members of the outer class.
-	2. java inner class: (non static nested class): can access all the variables and methods of the outer class. we can not have any static variables inside them.
-		2.1 local inner class: (a class is defined in a method body): 
-		2.2 anonymous inner class: (A local inner class without name is known as anonymous inner class)
+ <<Nested Class>>
+ 
+	[[1]] static nested class: (static nested class): Static nested classes can access only static members of the outer class.
+	
+	[[2]] java inner class: (non static nested class): can access all the variables and methods of the outer class. we can not have any static variables inside them.
+	
+		[[a]] local inner class: (a class is defined in a method body): 
+		
+		[[b]] anonymous inner class: (A local inner class without name is known as anonymous inner class)
 		
 	  
-ClassLoader:
-	1.Bootstrap  class loader:	Every JVM implements this loader.
-								It loads core java API classes from JAVA_HOME/jre/lib directory(bootstrap path).
+ <<ClassLoader:>>
+
+	[[1]]Bootstrap  class loader:	Every JVM implements this loader.
+									It loads core java API classes from JAVA_HOME/jre/lib directory(bootstrap path).
 								This is implemented by native languages like C C++.
-	2.Extension class loader:	Child of Bootstrap class loader. implemented by java.
+								
+	[[2]]Extension class loader:	Child of Bootstrap class loader. implemented by java.
 								It loads classes form JAVA_HOME/jre/lib/ext or any other path specified by java.ext.dirs
 								sun.misc.Launcher$ExtClassLoader class.
-	3.System/Application class loader:
+								
+	[[3]]System/Application class loader:
 								child of extension class loader to load classes from application path or any other from environment variable java.class.path.
 								sun.misc.Launcher$AppClassLoader class.
 								
 								
 	  
-Java 8- feature:
+ <<Java 8- feature:>>
 An interface can have default method and static method.	
+
+ <<Reference Sites>>
+
+ {{http://www.geeksforgeeks.org/jvm-works-jvm-architecture/}}
+ 
+ {{https://www.journaldev.com}}
+ 
+ {{http://javaconceptoftheday.com/difference-between-shallow-copy-vs-deep-copy-in-java/}}
+ 
+ {{http://mrbool.com}}
+ 
+ {{http://javahungry.blogspot.com/}}
+ 
+ {{http://tutorials.jenkov.com/java-concurrency/benefits.html}}
+ 
+ {https://github.com/sreedharnuli/Learnings}
 

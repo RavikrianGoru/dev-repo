@@ -7,17 +7,16 @@
 													-----
 
 
-Git Commands
-~~~~~~~~~~~~
+ <<Git Commands>>
  
   Here, we will update frequently used Git commands. If we create a repository in GitHub without README file and git ignore files then we need to follow the below steps.  
   Create a repository inp GitHub(WebSite) without readme and gitignore files ex: tmpRepo
  
-* Create a new repository on the command line
+ Create a new repository on the command line
 
-* Syntax:
+ Syntax:
 
---------------------------------
++-------------------------------+
  1	mkdir tmpRepo
  2	cd tmpRepo
  3	touch tmp.txt
@@ -27,12 +26,12 @@ Git Commands
 	Push an existing repository from the command line
  7	git remote add origin https://github.com/RavikrianGoru/tmpRepo.git
  8	git push -u origin master
- 9  git push origin
---------------------------------
+ 9  git push origin master
++-------------------------------+
 
-* Frequently used git commands
+ <<Frequently used git commands>>
 
----------------------------------
++-------------------------------+
  1	clone git repository from github : copy the https clone link.
 	git clone https://github.com/RavikrianGoru/dev-repo.git
 		
@@ -92,13 +91,12 @@ Git Commands
  	............
  	............
  
- 
++-------------------------------+
   	
----------------------------------
  	
-* Other Git commands
+ <<Other Git commands>>
 
----------------------------------
++-------------------------------+
 	git remote
 	git remote -v
 	git branch
@@ -117,4 +115,4 @@ Git Commands
 	
 	git mergetool <fileName>
 	git cherry-pick --continue
----------------------------------	
++-------------------------------+	
