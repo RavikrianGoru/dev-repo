@@ -23,9 +23,9 @@ Maven commands
  
  4	mvn clean install
  
- 5	mvn site:site -rf :<proj>
+ 5	mvn site
  
- 6	mvn site:site -rf .
+ 6	mvn site:site -rf :<proj>
  
  7	mvn eclipse:eclipse
  
@@ -41,10 +41,11 @@ Maven commands
  
 +-------------------------------+
 
-* How to display console data and store in file at a time:
+<<How to display console data and store in file at a time:>>
+
++-------------------------------+
 	mvn <command> [-option] | tee <file>
-	Ex: 
-	mvn clean install | tee log.txt
-		
+	Ex: mvn clean install | tee log.txt
++-------------------------------+		
 
 

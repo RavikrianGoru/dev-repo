@@ -308,8 +308,7 @@
    The problems arise when multiple threads access the same resources. For instance the same memory (variables, arrays, or objects), systems (databases, web services etc.) or files.
    In fact, problems only arise if one or more of the threads write to these resources. It is safe to let multiple threads read the same resources, as long as the resources do not change.
    
- <<Race Condition and Critical Section:>>
-   The situation where two threads compete for the same resource, where the sequence in which the resource is accessed is significant, is called race conditions. 
+ <<Race Condition and Critical Section:>> The situation where two threads compete for the same resource, where the sequence in which the resource is accessed is significant, is called race conditions. 
    A code section that leads to race conditions is called a critical section.
    
    Sample code for Critical Section:
@@ -325,8 +324,7 @@
    }
 +-------------------------------+
 
- <<Preventing Race Conditions:>>
-	To prevent race conditions from occurring you must make sure that the critical section is executed as an atomic instruction. 
+ <<Preventing Race Conditions:>> To prevent race conditions from occurring you must make sure that the critical section is executed as an atomic instruction. 
 	That means that once a single thread is executing it, no other threads can execute it until the first thread has left the critical section.  
 	By using synchronized blocks or synchronized methods 	
 
@@ -354,16 +352,97 @@
 	
  <Code that is safe to call by multiple threads simultaneously is called thread safe.>
 
- <<Local Variables:>>
-	Local variables are stored in each thread's own stack. 
+ <<Local Variables:>> Local variables are stored in each thread's own stack. 
 	That means that local variables are never shared between threads.
 	
- <<Local Object Reference:>>
-	All objects are stored in the shared heap.
+ <<Local Object Reference:>> All objects are stored in the shared heap.
+	If an object created locally never escapes the method it was created in, it is thread safe. 
+	In fact you can also pass it on to other methods and objects as long as none of these methods or objects make the passed object available to other threads.	
+
+ <<Thread Safety and Immutability:>> Race condition occurs when two or more threads writes to shared resource[s].
+	Race condition can not occur when two or more threads reads shared resource.
+	We can make sure that objects shared between threads are never updated by any of the threads by making the shared objects immutable, and thereby thread safe.
+
+ <<Java Memory Model:>>
+
+ [[I]] Thread stack[s] and Heap memory
 		
+		[[1]] Each thread running in the Java virtual machine has its own thread stack.
+		 
+		  The thread stack contains information about what methods the thread has called to reach the current point of execution.
+		  The thread stack also contains all local variables for each method being executed
+		  A thread can only access it's own thread stack
 	
- <<Distributed systems>> Multiple processors communicate each other(different computers).
+		[[2]] The heap contains all objects created in your Java application, regardless of what thread created the object.
+		 
+		  This includes the object versions of the primitive types (e.g. Byte, Integer, Long etc.). 
+		  It does not matter if an object was created and assigned to a local variable, or created as a member variable of another object, the object is still stored on the heap.
+	
+		[[3]] Static class variables are also stored on the heap along with the class definition.
+		
+		[]
+		
+	<We have to understand Java memory model as we focus on concurrent programs.>
+	
+	JMM, specifies
+		How different threads see the values written to the shared variables by  other threads.
+		How to synchronize access to shared variables when necessary.
+
+[images/java-memory-model-2.png]
+
+ <<Hardware memory architecture:>> Modern hardware memory architecture is somewhat different from the internal Java memory model.
  
+[/images/java-memory-model-4.png]
+	
+ 	A modern computer often has 2 or more CPUs in it. Some of these CPUs may have multiple cores too. The point is, that on a modern computer with 2 or more CPUs it is possible to have more than one thread running simultaneously. Each CPU is capable of running one thread at any given time. That means that if your Java application is multithreaded, one thread per CPU may be running simultaneously (concurrently) inside your Java application.
+
+	Each CPU contains a set of registers which are essentially in-CPU memory. The CPU can perform operations much faster on these registers than it can perform on variables in main memory. That is because the CPU can access these registers much faster than it can access main memory.
+
+	Each CPU may also have a CPU cache memory layer. In fact, most modern CPUs have a cache memory layer of some size. The CPU can access its cache memory much faster than main memory, but typically not as fast as it can access its internal registers. So, the CPU cache memory is somewhere in between the speed of the internal registers and main memory. Some CPUs may have multiple cache layers (Level 1 and Level 2), but this is not so important to know to understand how the Java memory model interacts with memory. What matters is to know that CPUs can have a cache memory layer of some sort.
+
+	A computer also contains a main memory area (RAM). All CPUs can access the main memory. The main memory area is typically much bigger than the cache memories of the CPUs.
+
+	Typically, when a CPU needs to access main memory it will read part of main memory into its CPU cache. It may even read part of the cache into its internal registers and then perform operations on it. When the CPU needs to write the result back to main memory it will flush the value from its internal register to the cache memory, and at some point flush the value back to main memory.
+
+	The values stored in the cache memory is typically flushed back to main memory when the CPU needs to store something else in the cache memory. The CPU cache can have data written to part of its memory at a time, and flush part of its memory at a time. It does not have to read / write the full cache each time it is updated. Typically the cache is updated in smaller memory blocks called "cache lines". One or more cache lines may be read into the cache memory, and one or mor cache lines may be flushed back to main memory again.			
+		
+ <<Bridging The Gap Between The Java Memory Model And The Hardware Memory Architecture>>
+
+[images/java-memory-model-5.png]
+
+	When objects and variables can be stored in various different memory areas in the computer, certain problems may occur. The two main problems are:
+
+	<Visibility of thread updates (writes) to shared variables.>
+	<Race conditions when reading, checking and writing shared variables.>
+
+ <<Visibility of Shared Objects>>
+
+	If two or more threads are sharing an object, without the proper use of either volatile declarations or synchronization, updates to the shared object made by one thread may not be visible to other threads.
+	The following diagram illustrates the sketched situation. One thread running on the left CPU copies the shared object into its CPU cache, and changes its count variable to 2. This change is not visible to other threads running on the right CPU, because the update to count has not been flushed back to main memory yet.
+
+[images/java-memory-model-6.png]
+
+	To solve this problem you can use Java's volatile keyword. The volatile keyword can make sure that a given variable is read directly from main memory, and always written back to main memory when updated.
+
+ <<Race Conditions>>
+	If two or more threads share an object, and more than one thread updates variables in that shared object, race conditions may occur.
+	Imagine if thread A reads the variable count of a shared object into its CPU cache. Imagine too, that thread B does the same, but into a different CPU cache. Now thread A adds one to count, and thread B does the same. Now var1 has been incremented two times, once in each CPU cache.
+	If these increments had been carried out sequentially, the variable count would be been incremented twice and had the original value + 2 written back to main memory.
+
+[images/java-memory-model-7.png]
+
+ To solve this problem you can use a Java synchronized block. A synchronized block guarantees that only one thread can enter a given critical section of the code at any given time. Synchronized blocks also guarantee that all variables accessed inside the synchronized block will be read in from main memory, and when the thread exits the synchronized block, all updated variables will be flushed back to main memory again, regardless of whether the variable is declared volatile or not.
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <<Distributed systems>> Multiple processors communicate each other(different computers).
+	Multiple processors communicate each other(different computers).
+
 
   
  <<Nested Class>>
