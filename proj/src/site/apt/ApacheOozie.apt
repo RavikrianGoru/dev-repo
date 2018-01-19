@@ -1,30 +1,34 @@
 													-----
 													Title: maven site documentation (Apache Oozie) 
 													-----
-													Author:RavikiranGoru,... 
+													Author:RavikiranGoru,ramachandran289... 
 													-----
 													Date: 2017-09-05
 													-----
 
-Apache Oozie: it is a tool or framework. Apache Oozie is a scheduler system to run and manage Hadoop jobs in a distributed environment.
+ <<Apache Oozie:>> it is a tool or framework. Apache Oozie is a scheduler system to run and manage Hadoop jobs in a distributed environment.
 		it allows user to execute jobs(Hive, Pig, sqoop, Java, drill, shell etc) in desired order and/or in scheduled manner in Hadoop's distributed env.
 		It is responsible for triggering the workflow actions, which in turn uses the Hadoop execution engine to actually execute the task.
 		
 		Oozie detects completion of tasks through callback and polling. When Oozie starts a task, it provides a unique callback HTTP URL to the task, and notifies that URL when it is complete. 
 		If the task fails to invoke the callback URL, Oozie can poll the task for completion.
 
-Three types of jobs are common in Oozie:
-	1. Oozie Workflow Jobs:
-		These are represented as Directed Acyclic Graphs (DAGs) to specify a sequence of actions to be executed.
-	2. Oozie Coordinator Jobs:
-		These consist of workflow jobs triggered by time and data availability.
-	3. Oozie Bundle:
-		These can be referred to as a package of multiple coordinator and workflow jobs.
-		
-Oozie editor: http://gethue.com/new-apache-oozie-workflow-coordinator-bundle-editors/
+ Three types of jobs are common in Oozie:
 
-WorkFlow in oozie:
-	Workflow in Oozie is a sequence of actions arranged in a control dependency DAG (Direct Acyclic Graph).
+	[[1]] Oozie Workflow Jobs:
+		These are represented as Directed Acyclic Graphs (DAGs) to specify a sequence of actions to be executed.
+		
+	[[2]] Oozie Coordinator Jobs:
+		These consist of workflow jobs triggered by time and data availability.
+		
+	[[3]] Oozie Bundle:
+		These can be referred to as a package of multiple coordinator and workflow jobs.
+	
+	[]	
+		
+ <<Oozie editor:>>  {{http://gethue.com/new-apache-oozie-workflow-coordinator-bundle-editors/}}
+
+ <<WorkFlow in oozie:>>	Workflow in Oozie is a sequence of actions arranged in a control dependency DAG (Direct Acyclic Graph).
 	The actions are in controlled dependency as the next action can only run as per the output of current action.
 	Subsequent actions are dependent on its previous action. 
 	
@@ -35,13 +39,13 @@ WorkFlow in oozie:
 			
 	Hadoop Developers use Oozie for performing ETL operations on data in a sequential order and saving the output in a specified format (Avro, ORC, etc.) in HDFS.		
 		
-* In an enterprise, Oozie jobs are scheduled as coordinators or bundles.
+ <In an enterprise, Oozie jobs are scheduled as coordinators or bundles.>
 
-https://www.tutorialspoint.com/apache_oozie/apache_oozie_workflow.htm
+ {{https://www.tutorialspoint.com/apache_oozie/apache_oozie_workflow.htm}}
 
 
 
------------------------------------------------------
++-------------------------------+
 <!-- This is a comment -->
 <workflow-app xmlns = "uri:oozie:workflow:0.4" name = "simple-Workflow">
   
@@ -90,11 +94,11 @@ https://www.tutorialspoint.com/apache_oozie/apache_oozie_workflow.htm
    <end name = "end" />
 
 </workflow-app>
-------------------------------
++-------------------------------+
 
-Fork and Join Control Node in Workflow (Paraller tasks)
+ <<Fork and Join Control Node in Workflow (Paraller tasks)>>
 
------------------------------
++-------------------------------+
 <workflow-app xmlns = "uri:oozie:workflow:0.4" name = "simple-Workflow">
    <start to = "fork_node" />
    
@@ -146,13 +150,11 @@ Fork and Join Control Node in Workflow (Paraller tasks)
    <end name = "end" />
 	
 </workflow-app>
---------------------------------
++-------------------------------+
 
-Decision Nodes in Workflow
+ <<Decision Nodes in Workflow>>
 
-
-
------------------
++-------------------------------+
 <workflow-app xmlns = "uri:oozie:workflow:0.4" name = "simple-Workflow">
    <start to = "external_table_exists" />
    
@@ -213,10 +215,11 @@ Decision Nodes in Workflow
    <end name = "end" />
 	
 </workflow-app>
--------------------
++-------------------------------+
 
-Coordinator applications allow users to schedule complex workflows, including workflows that are scheduled regularly. 
-Oozie Coordinator models the workflow execution triggers in the form of time, data or event predicates.
+ <Coordinator applications allow users to schedule complex workflows, including workflows that are scheduled regularly.> 
+ 
+ <Oozie Coordinator models the workflow execution triggers in the form of time, data or event predicates.>
 
 
 

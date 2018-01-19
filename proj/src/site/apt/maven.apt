@@ -13,7 +13,7 @@ Maven commands
 
 * Frequently used Maven commands
 
----------------------------------
++-------------------------------+
 
  1	mvn --version
 
@@ -39,7 +39,7 @@ Maven commands
  	
  11	mvn dependency:tree
  
---------------------------------
++-------------------------------+
 
 * How to display console data and store in file at a time:
 	mvn <command> [-option] | tee <file>

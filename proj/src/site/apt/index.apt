@@ -6,7 +6,7 @@
 
 Contributors and Developers note:
 
----------------
++-------------------------------+
 
  Please update maven site document and use appropriate package structure for your code changes.
  Please use the following code formatter in eclipse. proj/sit/resources/documents/xml/EclipseJavaCodeFormatter.xml
@@ -18,4 +18,4 @@ Contributors and Developers note:
  
  mvn site:site -rf :<module/project Name>
  
----------------
++-------------------------------+
