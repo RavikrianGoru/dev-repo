@@ -9,23 +9,26 @@
 
  <<An object has three characteristics:>>
  
- [[1]]state: represents data (value) of an object.
+ [[1]] <<state:>> represents data (value) of an object.
 	
- [[2]]behavior: represents the behavior (functionality) of an object such as deposit, withdraw etc.
+ [[2]] <<behavior:>> represents the behavior (functionality) of an object such as deposit, withdraw etc.
 	
- [[3]]identity: Object identity is typically implemented via a unique ID. The value of the ID is not visible to the external user. But, it is used internally by the JVM to identify each object uniquely
+ [[3]] <<identity:>> Object identity is typically implemented via a unique ID. 
+ 
+ 		The value of the ID is not visible to the external user. 
+ 		But, it is used internally by the JVM to identify each object uniquely
 
 []
  
- The new keyword is used to allocate memory at run time. All objects get memory in Heap memory area.
+ <The new keyword is used to allocate memory at run time. All objects get memory in Heap memory area.>
 
  <<Initializing object>>
  
- [[1]] by reference: 	s1.rollNo=10; s1.name="ravi";
+ [[1]] By <<reference:>> s1.rollNo=10; s1.name="ravi";
 	
- [[2]] by method:	 	s1.insertRecord(10,"ravi");
+ [[2]] By <<method:>> s1.insertRecord(10,"ravi");
 	
- [[3]] by constructor:	new Student(10,"ravi");
+ [[3]] By <<constructor:>> new Student(10,"ravi");
  
 []
 
@@ -49,13 +52,16 @@
  [[3]] By deserialization
 	
  [[4]] By newInstance() method
- 	   Class.forName("ClassName").newInstance()----it internally uses new key word.
+ 
+ 	   Class.forName("ClassName").newInstance(); <it internally uses new key word.>
 	
- [[5]] By factory method etc----it internally uses new key word.
+ [[5]] By factory method etc <it internally uses new key word.>
+ 
+ <Ex: ObjectCreationWays.java>
  
  []
 	
- <Actually, 3 ways to create objects.(new keyword, clone() and deserialization).>
+ <Actually, 3 ways to create objects.(><<new keyword>>, <<clone()>> and <<deserialization>><).>
 
  <<Usage of >><static><< keyword:>>
 
@@ -70,141 +76,154 @@
  []
 	
  <static method can not access non-static data members and methods directly.>
+ 
  <static method can not use this and super keywords.>
 
  <<Usage of >><this><< keyword:>> refers to current class object.
  
 +-------------------------------+
-  this.instanceVarible
-  this.instanceMethod()
-  method(this)
-  Constructor(this)
-  this()-->constructor-default
-  return this;---> current class obj.
+  this.instanceVarible      ----- refers to current class variables
+  this.instanceMethod()     ----- refers to current class instance method
+  method(this)              ----- can be passed as method argument
+  Constructor(this)         ----- can be passed as constructor argument
+  this()                    ----- constructor-default
+  return this;              ----- returns current class obj.
 +-------------------------------+
 
  <<Inheritance:>>  One object/class acquires all the properties and behavior of parent object/class. code reusability and runtime polymorphism.
   
- [[1]] IS-A relationship or parent-child relation: a class extends other class
+ [[1]] <<IS-A>> relationship or parent-child relation: <a class extends other class>
 	
- [[2]] Aggregation or Has-A relation:If a class have an entity reference, it is known as Aggregation.
+ [[2]] Aggregation or <<Has-A>> relation:If <a class has an entity reference> is known as Aggregation.
 	
- [[3]] consist a relation
+ [[3]] <<Consist-A>> relation:If <a method/block has an entity reference>
  
  []
 	
  <<Types of Inheritance:>>
 	 
- [[1]] single
+ [[1]] Single
 	 
- [[2]] multilevel
+ [[2]] Multilevel
 	 
- [[3]] hierarchical
+ [[3]] Hierarchical
 	  	
- [[4]] multiple(with interfaces)
+ [[4]] Multiple(with interfaces)
 	 
- [[5]] hybrid(with interface)
+ [[5]] Hybrid(with interface)
  
  []
 		
- <<Method overloading:>> If a class has multiple methods having same name but different in parameters, it is known as Method Overloading.
-  Method Overloading is not possible by changing the return type of the method only because of ambiguity..
+ <<Method overloading:>> If a class has multiple methods having same name but different in parameters, it is known as method overloading.
+ 		Method Overloading is not possible by changing the return type of the method only because of ambiguity.
 	
- <Compile Time Error is better than Run Time Error. So, java compiler renders compiler time error if you declare the same method having same parameters inside a class>
+ <Compile Time Error is better than Run Time Error.> So, java compiler renders compiler time error if you declare the same method having same parameters inside a class.
 
- <<Method overriding:>> If subclass (child class) has the same method as declared in the parent class, it is known as method overriding .
-	Method overriding is used to provide specific implementation of a method that is already provided by its super class & used for runtime polymorphism.
+ <<Method overriding:>> If subclass (child class) has the same method as declared in the parent class, it is known as method overriding. 
+ 		Method overriding is used to provide <specific implementation> of a method that is already provided by its super class & used for runtime polymorphism.
 
- <<super keyword:>> super keyword is a reference variable which is used to refer immediate parent class object.
-	Whenever you create the instance of subclass, an instance of parent class is created implicitly which is referred by super reference variable.	
+ <<super keyword:>> <super> keyword is a reference variable which is used to refer <immediate parent class object>. 
+ 		Whenever we create the instance of subclass, an instance of parent class is created implicitly which is referred by super reference variable.
 
 +-------------------------------+		
-	super() : default constructor
-	super.instanceMethod()
-	super.instanceVariable;
+ super() : default constructor
+ super.instanceMethod()
+ super.instanceVariable;
 +-------------------------------+
 	
- <super() is added in each class constructor automatically by compiler if there is no super() or this().>
-
- <<Usage of final keyword:>> 
+ <super() is added in each class constructor automatically by compiler if there is no super()>
+ <if we want to call immediate parent call constructor it should be 1st statement inside current class constructor.>
+ 
+ <<Usage of >><final><< keyword:>> <final> keyword can be used at the following levels. 
  
 +-------------------------------+	
-	variable
-	method 
-	class
+ variable ------ constants, can not be modified once initialized or assigned value at 1st time.
+ method   ------ can not be overridden in subclass.
+ class    ------ can not be inherited.
 +-------------------------------+	
 
  <<Polymorphism >> It is a concept by which we can perform a single action by different ways.		
  
- [[1]] Compile time polymorphism
+ [[1]] <<Compile time polymorphism:>> Caller of the method is identified at compile time.
 	
-		If you overload static method , it is the example of compile time polymorphism.
+		Ex:  overloaded static methods
  
- [[2]] Runtime polymorphism(Dynamic Method Dispatch):
-
-	 it is a process in which a call to an overridden method is resolved at runtime rather than compile-time.
+ [[2]] <<Runtime polymorphism>> <(Dynamic Method Dispatch):>
+		It is a process in which a call to an overridden method is resolved at runtime rather than compile-time.
 		In this process, an overridden method is called through the reference variable of a superclass. 
 		The determination of the method to be called is based on the object being referred to by the reference variable.
 	
-	<Method is overridden not the datamembers, so runtime polymorphism can't be achieved by data members.>		
+		<Method can be overridden not the datamembers, so runtime polymorphism can't be achieved by data members.>		
 
 []
 
  <<Static Binding and Dynamic Binding:>>
-	Connecting a method call to the method body is known as binding.
-	There are two types of binding
+		Connecting a method call to the method body is known as binding.
+		There are two types of binding
 	
- [[1]]static binding (also known as early binding):
+ [[1]] <<Static binding>> <(Early binding):>
  
-	   When type of the object is determined at compiled time(by the compiler), it is known as static binding.
-		If there is any private, final or static method in a class, there is static binding.
+		When type of the object is determined at compiled time(by the compiler), it is known as static binding. 
+		If there is any <private, final or static method in a class>, there is static binding.
 		
- [[2]]dynamic binding (also known as late binding):	
+ [[2]] <<Dynamic binding>> <(Late binding):>
   
-  When type of the object is determined at run time, it is known as late binding. Overridden methods
+		When type of the object is determined at run time, it is known as late binding. Overridden methods
  
  []
 	
- <<instanceof>> type comparison operator is used to test whether the object is an instance of the specified type (class or subclass or interface).
+ <<instanceof>> <type comparison operator> is used to test whether the object is an instance of the specified type (class or subclass or interface).
  
- <<downcasting>> When Subclass type refers to the object of Parent class, it is known as downcasting.
- If we perform it directly, compiler gives Compilation error. If you perform it by typecasting, ClassCastException is thrown at runtime. But if we use instanceof operator, downcasting is possible.
+ <<Downcasting>> When Subclass type refers to the object of Parent class, it is known as downcasting.
+		If we perform it directly, compiler gives Compilation error. If you perform it by typecasting, ClassCastException is thrown at runtime. 
+		But if we use instanceof operator, downcasting is possible.
+
+ <<Upcasting>> When Parent type refers to the object of child class, it is known as upcasting.
+
 
  <<Abstraction>> It is a process of hiding the implementation details and showing only functionality to the user.
- There are two ways to achieve abstraction 
+ 		There are two ways to achieve abstraction.
 
- [[1]] Abstract class (0 to 100%):
-		A class that is declared as abstract is known as abstract class.
-		It cannot be instantiated.
+ [[1]] <<Abstract class (0 to 100%)>>
+ 		An abstract class can have data member, abstract method, concrete method, constructor and even main() method.
+
+ [[2]] <<Interface (100%)>>
+		It is a blueprint of a class. It has static constants and abstract methods.
+		It also represents IS-A relationship. Multiple inheritance is not supported in case of class because of ambiguity. 
+		But it is supported in case of interface because there is no ambiguity as implementation is provided by the implementation class. 
 		
- [[2]] Interface (100%)
- 	
+		<<Marker interfacs>>< or ><<Tagged interface>>< :An interface that have no member.>
+		They are used to provide some essential information to the JVM so that JVM may perform some useful operation.
+		
+		<Ex: Serializable, Cloneable, Remote etc.>
+		
+		If the JVM sees a Class is implementing the Serializable interface it does some special operation on it and writes the state of the object into object stream. 
+		This object stream is then available to be read by another JVM. 
+		
+		If JVM finds that a class is implementing Clonnable interface, it performs some special operation in order to support cloning. 
+		The same theory goes for RMI and Remote interface.
+ 
+ 		With the introduction of annotation, annotation has become a better choice over maker interface.
+		In short a marker interface  is used to indicate something to compiler, JVM or any other tool but Annotation is better way of doing same thing.
+ 
+ 		Ref: {{http://mrbool.com/what-is-marker-interface-in-java/28557}}
+		
  []
  
  <<Factory method>> A factory method is the method that returns the instance of the class.
- An abstract class can have data member, abstract method, concrete method, constructor and even main() method.
-  
 
- << Java Interface>> It is a blueprint of a class. It has static constants and abstract methods.
- It also represents IS-A relationship. Multiple inheritance is not supported in case of class because of ambiguity. But it is supported in case of interface because there is no ambiguity as implementation is provided by the implementation class. 
- An interface that have no member is known as marker or tagged interface. 
+ <<Serialization>> is the process of converting the state of an object into byte stream so that the byte stream can be reverted back into a copy of the object.
  
- For example: Serializable, Cloneable, Remote etc. 
- They are used to provide some essential information to the JVM so that JVM may perform some useful operation.
- if the JVM sees a Class is implementing the Serializable interface it does some special operation on it and writes the state of the object into object stream. 
- This object stream is then available to be read by another JVM. 
- Similarly if JVM finds that a class is implementing Clonnable interface, it performs some special operation in order to support cloning. 
- The same theory goes for RMI and Remote interface.
- With the introduction of annotation  5, annotation has become a better choice over maker interface.
- In short a marker interface  is used to indicate something to compiler, JVM or any other tool but Annotation is better way of doing same thing.
+ <<Deserialization>> is the process of converting the serialized form of an object back into a copy of the object.
  
- Ref: {{http://mrbool.com/what-is-marker-interface-in-java/28557}}
-
- <<Serialization>> The serializable interface provides a mechanism of object serialization where an object is represented as a sequence of bytes.
- <<Deserialization>> is the process of reading the object from the file and reconstructing the object in the memory.
+		<Any class which implements <java.io.Serializable interface> or <java.io.Externalizable> can be serialized and deserialized.>
   
+  <<Immutable class and custom immutable class>> 
   
-  private-> default-> protected-> public
+  TO-DO.......................
+  
+  ............................
+  
   
  <<Access modifiers :>>
 	
@@ -217,6 +236,12 @@
 	[[4]] public
 	
 	[]
+
++----------------------------+	
+	private-> default-> protected-> public
+	
+	If you are overriding any method, overridden method (i.e. declared in subclass) must not be more restrictive.
++----------------------------+
 	
  <<Non-Access modifiers :>>
  
@@ -230,43 +255,84 @@
 	
 	[[5]] volatile
 	
-	[[6]] transient
-	...etc
+	[[6]] transient ...etc
 	
-  <If you are overriding any method, overridden method (i.e. declared in subclass) must not be more restrictive.>
+	[]
+	
 
- <<Encapsulation >>
+
+ <<Encapsulation:>> It is a process of wrapping code and data together into a single unit.
+		By providing only setter or getter method, you can make the class read-only or write-only. Fully encapsulated class- java bean
+
+ <<Nested Class>>
  
- It is a process of wrapping code and data together into a single unit.
- By providing only setter or getter method, you can make the class read-only or write-only. Fully encapsulated class- java bean
-
+	[[1]] <<static nested class >> <(static nested class):> Static nested classes can access only static members of the outer class.
 	
+	[[2]] <<inner class >><(non static nested class):> can access all the variables and methods of the outer class. we can not have any static variables inside them.
+	
+		[[i]] <<Local inner class :>> A class is defined in a method body/block.
+		
+		[[ii]] <<Anonymous inner class:>> A local inner class without name is known as anonymous inner class.
+		
+	  
+ <<ClassLoader>>
+
+	[[1]] <<Bootstrap class loader:>> Every JVM implements this loader.
+		It loads core java API classes from <JAVA_HOME/jre/lib directory>(bootstrap path).
+		
+		<This is implemented by native languages like C C++.>
+								
+	[[2]] <<Extension class loader:>> Child of Bootstrap class loader. implemented by java.
+		It loads classes form <JAVA_HOME/jre/lib/ext> or any other path specified by <java.ext.dirs> path
+		
+		JVM implemented extension class loader is <sun.misc.Launcher$ExtClassLoader> class.
+								
+	[[3]] <<System/Application class loader:>>It is child of extension class loader.
+		It loads classes from <application path> or any other from environment variable <java.class.path>.
+		
+		JVM implemented extension class loader is <sun.misc.Launcher$AppClassLoader> class.
+	
+ <<Concurrent systems>> Multiple threads communicate each other. 
+ 
+ <<Distributed systems>> Multiple processors communicate each other(different computers).
 
  <<Mutithreading & Concurrency :>> {{http://tutorials.jenkov.com/java-concurrency/benefits.html}}
  
- <<Concurrent systems>> Multiple threads communicate each other. 
- 
  <<Concurrent model>>
  
-	[[1]] Parallel Workers: Incoming jobs are assigned to different workers. a delegator distributes the incoming jobs to different workers. Each worker completes the full job. 
-						 The workers work in parallel, running in different threads, and possibly on different CPUs.
-						 The parallel worker concurrency model is the most commonly used concurrency model in Java.
-						 Ex: Many of the concurrency utilities in the java.util.concurrent
+	[[1]] <<Parallel Workers:>> Incoming jobs are assigned to different workers. A delegator distributes the incoming jobs to different workers.
+		Each worker completes the full job. 
+		The workers work in parallel, running in different threads, and possibly on different CPUs.
+		The parallel worker concurrency model is the most commonly used concurrency model in Java.
+		
+		<Ex: Many of the concurrency utilities in the java.util.concurrent>
 						 
 +-------------------------------+							 
-	+ Easy to understand
-	+ Add workers to increase parallelization.
+ + Easy to understand
+ + Add workers to increase parallelization.
 						 
-	- Shared state(in memory or/and database) access is complex
-	- The job execution order is nondeterministic. 
+ - Shared state(in memory or/and database) access is complex
+ - The job execution order is nondeterministic. 
 +-------------------------------+	
 					 
- Many concurrent data structures are blocking, meaning one or a limited set of threads can access them at any given time.
- A persistent data structure always preserves the previous version of itself when modified. 
- If multiple threads point to the same persistent data structure and one thread modifies it, the modifying thread gets a reference to the new structure. All other threads keep a reference to the old structure which is still unchanged and thus consistent.						 
+ Additionally, part of the parallelization is lost when threads are waiting for each other when accessing the shared data structures.
+ <Many concurrent data structures> are <blocking>, meaning one or a limited set of threads can access them at any given time.
+ 
+ <Modern non-blocking concurrency> algorithms may decrease contention and increase performance, but non-blocking algorithms are hard to implement.
+ 
+ <A persistent data structure> always preserves the previous version of itself when modified. 
+ If multiple threads point to the same persistent data structure and <one thread modifies it, the modifying thread gets a reference to the new structure. 
+ All other threads keep a reference to the old structure which is still unchanged and thus consistent.>
+ 
+ While persistent data structures are an elegant solution to concurrent modification of shared data structures, <persistent data structures tend not to perform that well.>						 
 
-	[[2]] Assembly Line or Shared nothing or Reactive or Event Driven System: The workers are organized like workers at an assembly line in a factory. Each worker only performs a part of the full job. 
-					    When that part is finished the worker forwards the job to the next worker.
+	[[2]] <<Assembly Line>> or <<Shared nothing>> or <<Reactive or Event Driven System:>> The workers are organized like workers at an assembly line in a factory. 
+ Each worker only performs a part of the full job. When that part is finished the worker forwards the job to the next worker.
+ 
+ Systems using the assembly line concurrency model are usually designed to use non-blocking IO.
+ <Non-blocking IO means that when a worker starts an IO operation (e.g. reading a file or data from a network connection) the worker does not wait for the IO call to finish.>
+ 
+ <The system's workers react to events occurring in the system, either received from the outside world or emitted by other workers. Examples of events could be an incoming HTTP request, or that a certain file finished loading into memory etc.>
 	
 +-------------------------------+					    
 	+ No shared data
@@ -276,11 +342,10 @@
 	- Hard to identify which part of code is being executed: that the execution of a job is often spread out over multiple workers, and thus over multiple classes in your project. Thus it becomes harder to see exactly what code is being executed for a given job.
 +-------------------------------+	
 	  					
- <Non-blocking IO means that when a worker starts an IO operation (e.g. reading a file or data from a network connection) the worker does not wait for the IO call to finish.>
-
-	[[3]] Functional Parallelism: The basic idea of functional parallelism is that you implement your program using function calls. Functions can be seen as "agents" or "actors" that send messages to each other, just like in the assembly line concurrency model.
-						With Java 7 we got the java.util.concurrent package contains the ForkAndJoinPool which can help you implement something similar to functional parallelism.
-						With Java 8 we got parallel streams which can help you parallelize the iteration of large collections. 
+	[[3]] <<Functional Parallelism:>> The basic idea of functional parallelism is that you implement your program using function calls. 
+ Functions can be seen as "agents" or "actors" that send messages to each other, just like in the assembly line concurrency model.
+ With Java 7 we got the java.util.concurrent package contains the ForkAndJoinPool which can help you implement something similar to functional parallelism.
+ With Java 8 we got parallel streams which can help you parallelize the iteration of large collections. 
 
  <In order to utilize all the cores in the CPU, a single-threaded system can be scaled out to utilize the whole computer.>
 
@@ -298,8 +363,17 @@
  <An application may process one task at at time (sequentially) or work on multiple tasks at the same time (concurrently).>
  <Parallelism on the other hand, is related to how an application handles each individual task. An application may process the task serially from start to end, or split the task up into subtasks which can be completed in parallel.>
 
+ <<Same-Threading>>
+ A same-threaded system is not a pure single-threaded system, because it contains of multiple threads. But - each of the threads run like a single-threaded system.
+
+ Same-threaded systems usually has 1 thread running per CPU in the computer. If a computer contains 4 CPUs, or a CPU with 4 cores, then it would be normal to run 4 instances of the same-threaded system (4 single-threaded systems).
+
+ The difference between a same-threaded and a multi-threaded system is that the threads in a same-threaded system do not share state. There is no shared memory which the threads access concurrently. No concurrent data structures etc.
+ 
  <<Threads:>>
+ 
 	[[1]] Creating thread by extending Thread class.
+	
 	[[2]] Creating thread by implementing Runnable interface.
 	
   Implementing Runnable interface is preferable one. it gives more option for thread pool for execution. 
@@ -326,7 +400,7 @@
 
  <<Preventing Race Conditions:>> To prevent race conditions from occurring you must make sure that the critical section is executed as an atomic instruction. 
 	That means that once a single thread is executing it, no other threads can execute it until the first thread has left the critical section.  
-	By using synchronized blocks or synchronized methods 	
+	By using <synchronized blocks> or <synchronized methods> 	
 
   Sample code for Preventing Critical Section:
   
@@ -359,8 +433,8 @@
 	If an object created locally never escapes the method it was created in, it is thread safe. 
 	In fact you can also pass it on to other methods and objects as long as none of these methods or objects make the passed object available to other threads.	
 
- <<Thread Safety and Immutability:>> Race condition occurs when two or more threads writes to shared resource[s].
-	Race condition can not occur when two or more threads reads shared resource.
+ <<Thread Safety and Immutability:>> Race condition <occurs> when two or more threads <writes> to shared resource[s].
+	Race condition can <not occur> when two or more threads <reads> shared resource.
 	We can make sure that objects shared between threads are never updated by any of the threads by making the shared objects immutable, and thereby thread safe.
 
  <<Java Memory Model:>>
@@ -431,50 +505,182 @@
 
 [images/java-memory-model-7.png]
 
- To solve this problem you can use a Java synchronized block. A synchronized block guarantees that only one thread can enter a given critical section of the code at any given time. Synchronized blocks also guarantee that all variables accessed inside the synchronized block will be read in from main memory, and when the thread exits the synchronized block, all updated variables will be flushed back to main memory again, regardless of whether the variable is declared volatile or not.
+ To solve this problem you can use a Java synchronized block. A synchronized block guarantees that only one thread can enter a given 
+ critical section of the code at any given time. Synchronized blocks also guarantee that all variables accessed inside the synchronized block will be read in from main memory,
+ and when the thread exits the synchronized block, all updated variables will be flushed back to main memory again, regardless of whether the variable is declared volatile or not.
 
  
- 
- 
- 
- 
- 
- 
- <<Distributed systems>> Multiple processors communicate each other(different computers).
-	Multiple processors communicate each other(different computers).
+ <<Synchronized keyword:>> A Java synchronized block marks a method or a block of code as synchronized. Java synchronized blocks can be used to avoid race conditions.
+	The synchronized keyword can be used to mark four different types of blocks. 
 
++--------------------+ 
+1. Instance methods
+2. Static methods
+3. Code blocks inside instance methods
+4. Code blocks inside static methods
++--------------------+ 
 
+  <<synchronized instance method:>> we can make an instance method synchronized by declaring a method with synchronized keyword as follow. 
+   this can be synchronized on <instance(object)>. Only one thread can execute inside the synchronized method at a time.
   
- <<Nested Class>>
++-----------------+
+public synchronized viod add(int value)
+{
+	this.count=+value;
+}
++-----------------+
+
+  <<synchronized static method:>> Synchronized static methods are synchronized on the class object of the class the synchronized static method belongs to. 
+   Since only one class object exists in the Java VM per class, only one thread can execute inside a static synchronized method in the same class.
+   
+   If the static synchronized methods are located in different classes, then one thread can execute inside the static synchronized methods of each class. 
+   One thread per class regardless of which static synchronized method it calls.
+  
++-----------------+
+public static synchronized viod add(int value)
+{
+	count=+value; 
+}
++-----------------+
+  
+ <<Synchronized Blocks in Instance Methods:>> it is preferable to synchronize only part of a method.
+  The object taken in the parentheses by the synchronized construct is called a monitor object. The code is said to be synchronized on the monitor object. 
+  A synchronized instance method uses the object it belongs to as monitor object.
+
++-----------------+
+public viod add(int value)
+{
+	synchronized(this)
+	{
+		this.count=+value;
+	}
+}
++-----------------+
+
+	 <<Synchronized Blocks in static Methods:>> static synchronized block been synchronized on a different object than MyClass.class, 
+	  then one thread could execute inside each method at the same time.
+
++-----------------+
+public class MyClass 
+{
+	public viod add(int value)
+	{
+		synchronized(MyClass.class)
+		{
+			this.count=+value;
+		}
+	}
+}
++-----------------+	  
+ 	  
+ <<Java Concurrency Utilities:>> The synchronized mechanism was Java's first mechanism for synchronizing access to objects shared by multiple threads. 
+  The synchronized mechanism isn't very advanced though. That is why Java 5 got a whole set of concurrency utility classes to help developers implement more fine grained concurrency control than what we get with synchronized.
  
-	[[1]] static nested class: (static nested class): Static nested classes can access only static members of the outer class.
-	
-	[[2]] java inner class: (non static nested class): can access all the variables and methods of the outer class. we can not have any static variables inside them.
-	
-		[[a]] local inner class: (a class is defined in a method body): 
-		
-		[[b]] anonymous inner class: (A local inner class without name is known as anonymous inner class)
-		
-	  
- <<ClassLoader:>>
+ <<volatile Keyword:>> The Java volatile keyword is used to mark a Java variable as "being stored in main memory". 
+  More precisely that means, that every read of a volatile variable will be read from the computer's main memory, and not from the CPU cache, 
+  and that every write to a volatile variable will be written to main memory, and not just to the CPU cache.
+  
+  In a multithreaded application where the threads operate on non-volatile variables, 
+  each thread may copy variables from main memory into a CPU cache while working on them, for performance reasons. 
+  If your computer contains more than one CPU, each thread may run on a different CPU. That means, 
+  that each thread may copy the variables into the CPU cache of different CPUs.
+  
+[images/java-volatile-1.png] 
+ 
+ With non-volatile variables there are no guarantees about when the Java Virtual Machine (JVM) reads data from main memory into CPU caches, 
+  or writes data from CPU caches to main memory.
+ Imagine a situation in which two or more threads have access to a shared object which contains a counter variable declared like this:
+  
++-------------------+
+public class SharedObject 
+{
 
-	[[1]]Bootstrap  class loader:	Every JVM implements this loader.
-									It loads core java API classes from JAVA_HOME/jre/lib directory(bootstrap path).
-								This is implemented by native languages like C C++.
-								
-	[[2]]Extension class loader:	Child of Bootstrap class loader. implemented by java.
-								It loads classes form JAVA_HOME/jre/lib/ext or any other path specified by java.ext.dirs
-								sun.misc.Launcher$ExtClassLoader class.
-								
-	[[3]]System/Application class loader:
-								child of extension class loader to load classes from application path or any other from environment variable java.class.path.
-								sun.misc.Launcher$AppClassLoader class.
-								
-								
-	  
- <<Java 8- feature:>>
-An interface can have default method and static method.	
+    public int counter = 0;
 
+}
++-------------------+  
+  
+  If the counter variable is not declared volatile there is no guarantee about when the value of the counter variable is written from the CPU cache back to main memory. This means, that the counter variable value in the CPU cache may not be the same as in main memory. 
+  
+[images/java-volatile-2.png]
+
+ The problem with threads not seeing the latest value of a variable because it has not yet been written back to main memory by another thread, is called a "visibility" problem.
+ 
+ By declaring the counter variable volatile all writes to the counter variable will be written back to main memory immediately. Also, all reads of the counter variable will be read directly from main memory.
+ 
++-------------------+
+public class SharedObject 
+{
+
+    public volatile int counter = 0;
+
+}
++-------------------+   
+  
+  <<Look at this example:>>
+
++-------------+
+Thread A:
+    sharedObject.nonVolatile = 123;
+    sharedObject.counter     = sharedObject.counter + 1;
+
+Thread B:
+    int counter     = sharedObject.counter;
+    int nonVolatile = sharedObject.nonVolatile;
++-------------+  
+  
+  Since Thread A writes the non-volatile variable sharedObject.nonVolatile before writing to the volatile sharedObject.counter, then both sharedObject.nonVolatile and sharedObject.counter are written to main memory when Thread A writes to sharedObject.counter (the volatile variable).
+  
+  Since Thread B starts by reading the volatile sharedObject.counter, then both the sharedObject.counter and sharedObject.nonVolatile are read from main memory into the CPU cache used by Thread B. By the time Thread B reads sharedObject.nonVolatile it will see the value written by Thread A.
+  
+ <<Look at this example:>>
+
++-----------------+
+sharedObject.nonVolatile1 = 123;
+sharedObject.nonVolatile2 = 456;
+sharedObject.nonVolatile3 = 789;
+
+sharedObject.volatile     = true; //a volatile variable
+
+int someValue1 = sharedObject.nonVolatile4;
+int someValue2 = sharedObject.nonVolatile5;
+int someValue3 = sharedObject.nonVolatile6;
++-----------------+  
+
+ The JVM may reorder the first 3 instructions, as long as all of them happens before the volatile write instruction (they must all be executed before the volatile write instruction).
+
+ Similarly, the JVM may reorder the last 3 instructions as long as the volatile write instruction happens before all of them. None of the last 3 instructions can be reordered to before the volatile write instruction.
+
+ That is basically the meaning of the Java volatile happens before guarantee.
+ 
+ <<volatile is Not Always Enough>>
+ 
+ Even if the volatile keyword guarantees that all reads of a volatile variable are read directly from main memory, and all writes to a volatile variable are written directly to main memory, there are still situations where it is not enough to declare a variable volatile.
+ 
+ The situation where multiple threads are incrementing the same counter is exactly such a situation where a volatile variable is not enough.
+ 
+ Imagine if Thread 1 reads a shared counter variable with the value 0 into its CPU cache, increment it to 1 and not write the changed value back into main memory. Thread 2 could then read the same counter variable from main memory where the value of the variable is still 0, into its own CPU cache. Thread 2 could then also increment the counter to 1, and also not write it back to main memory.
+ 
+[images/java-volatile-3.png] 
+ 
+ Thread 1 and Thread 2 are now practically out of sync. The real value of the shared counter variable should have been 2, but each of the threads has the value 1 for the variable in their CPU caches, and in main memory the value is still 0. It is a mess! Even if the threads eventually write their value for the shared counter variable back to main memory, the value will be wrong. 
+
+ <<When is volatile Enough?>>
+  
+  if two threads are both reading and writing to a shared variable, then using the volatile keyword for that is not enough. 
+  
+  [[i]]  We can use synchronization which makes the reading and writing of the variable is atomic.
+  
+  [[ii]] We can also use one of the many atomic data types found in the java.util.concurrent package. < AutomicLong , AutomicReference...>
+  
+  
+ <<Performance Considerations of volatile>>
+ 
+ Reading and writing of volatile variables causes the variable to be read or written to main memory. Reading from and writing to main memory is more expensive than accessing the CPU cache. Accessing volatile variables also prevent instruction reordering which is a normal performance enhancement technique. Thus, you should only use volatile variables when you really need to enforce visibility of variables.
+   
+ <ThreadLocal :>>
+ 
+ 	  
  <<Reference Sites>>
 
  {{http://www.geeksforgeeks.org/jvm-works-jvm-architecture/}}
@@ -483,11 +689,9 @@ An interface can have default method and static method.
  
  {{http://javaconceptoftheday.com/difference-between-shallow-copy-vs-deep-copy-in-java/}}
  
- {{http://mrbool.com}}
- 
  {{http://javahungry.blogspot.com/}}
  
- {{http://tutorials.jenkov.com/java-concurrency/benefits.html}}
- 
  {https://github.com/sreedharnuli/Learnings}
+ 
+ {http://tutorials.jenkov.com/java-util-concurrent/index.html}
 
