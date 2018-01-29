@@ -679,7 +679,201 @@ int someValue3 = sharedObject.nonVolatile6;
  Reading and writing of volatile variables causes the variable to be read or written to main memory. Reading from and writing to main memory is more expensive than accessing the CPU cache. Accessing volatile variables also prevent instruction reordering which is a normal performance enhancement technique. Thus, you should only use volatile variables when you really need to enforce visibility of variables.
    
  <ThreadLocal :>>
+ The ThreadLocal class in Java enables you to create variables that can only be read and written by the same thread. 
+ Thus, even if two threads are executing the same code, and the code has a reference to a ThreadLocal variable, 
+ then the two threads cannot see each other's ThreadLocal variables.
+
++---------+
+ private ThreadLocal<Integer> threadLocal=new ThreadLocal<>();
  
+ System.out.println(Thread.currentThread().getName());
+ threadLocal.set((int)(Math.random()*100));
+ 
+ System.out.println(Thread.currentThread().getName());
+ System.out.println(threadLocal.get());
++---------+ 
+
+ <The InheritableThreadLocal class is a subclass of ThreadLocal. Instead of each thread having its own value inside a ThreadLocal, the InheritableThreadLocal grants access to values to a thread and all child threads created by that thread.>
+ 
+ <<Thread Signaling>> is to enable threads to send signals to each other. Additionally, thread signaling enables threads to wait for signals from other threads.
+ 
+ Busy waiting: Signaling via shared object, one thread waits(while loop) till other thread gives signal on shared object with synchronization.
+ 
+ Busy waiting is not a very efficient utilization of the CPU in the computer running the waiting thread, except if the average waiting time is very small.
+ 
+ <It would be smarter if the waiting thread could somehow sleep or become inactive until it receives the signal it is waiting for.>
+ 
+ Java has a builtin wait mechanism that enable threads to become inactive while waiting for signals. The class java.lang.Object defines three methods, wait(), notify(), and notifyAll(), to facilitate this.
+ 
+ <Thread that calls wait() on any object becomes inactive until another thread calls notify() on that object.  the calling thread must call wait() or notify() from inside a synchronized block.>
+ 
+ A thread cannot call wait(), notify() or notifyAll() without holding the lock on the object the method is called on. If it does, an IllegalMonitorStateException is thrown.
+ Once a thread calls wait() it releases the lock it holds on the monitor object.
+ 
+ <<Thread Deadlock>> A deadlock is when two or more threads are blocked waiting to obtain locks that some of the other threads in the deadlock are holding.
+ Ex: if thread 1 locks A, and tries to lock B, and thread 2 has already locked B, and tries to lock A, a deadlock arises. Thread 1 can never get B, and thread 2 can never get A.
+
++-----------+
+Thread 1  locks A, waits for B
+Thread 2  locks B, waits for A
++-----------+
+
+ <<Deadlock Prevention:>>
+	[[1]] Lock Ordering: Deadlock occurs when multiple threads need the same locks but obtain them in different order. If you make sure that all locks are always taken in the same order by any thread, deadlocks cannot occur. 
+	
+	
+	[[2]] Lock Timeout: Another deadlock prevention mechanism is to put a timeout on lock attempts meaning a thread trying to obtain a lock will only try for so long before giving up.
+	
+	[[3]] Deadlock Detection : Deadlock detection is a heavier deadlock prevention mechanism aimed at cases in which lock ordering isn't possible, and lock timeout isn't feasible.
+	Every time a thread takes a lock it is noted in a data structure (map, graph etc.) of threads and locks. Additionally, whenever a thread requests a lock this is also noted in this data structure.
+	
+ <<Starvation:>> If a thread is not granted CPU time because other threads grab it all, it is called "starvation".
+	
+ The solution to starvation is called <<fairness>> - that all threads are fairly granted a chance to execute.
+	
+ <<Causes of Starvation:>>
+	
+	[[1]] Threads with high priority swallow all CPU time from threads with lower priority.(we can set the priority of threads between 1 and 10.)
+	
+	[[2]] Threads are blocked indefinately waiting to enter a synchronized block, because other threads are constantly allowed access before it. synchronized code block makes no guarantee about the sequence in which threads waiting to enter the synchronized block are allowed to enter.
+	
+	[[3]] Threads waiting on an object (called wait() on it) remain waiting indefinitely because other threads are constantly awakened instead of it.
+	
+ It is not possible to implement 100% fairness in java to avoid starvation.
+ 
++------------+
+ public class Synchronizer
+ {
+  	public synchronized void doSynchronized()
+  	{
+    	//do a lot of work which takes a long time.
+ 	}
+ }
+
+ * If more than one thread call the doSynchronized() method, some of them will be blocked until the first thread granted access has left the method. 
+   If more than one thread are blocked waiting for access there is no guarantee about which thread is granted access next.
++------------+ 
+ 
+ <To increase the fairness, use locks instead of synchronized blocks.>
+
++------------+
+public class Synchronizer
+{
+  Lock lockObj = new Lock();//it is not class, ||y implementation of Lock interface
+
+  public void doSynchronized() throws InterruptedException
+  {
+    this.lockObj.lock();
+    //critical section, do a lot of work which takes a long time
+    this.lockObj.unlock();
+  }
+}
++------------+ 
+
+ <<A simple implementation of the Lock class could look like this:>>
+
++-------+
+public class Lock{
+  private boolean isLocked      = false;
+  private Thread  lockingThread = null;
+
+  public synchronized void lock() throws InterruptedException{
+    while(isLocked){
+      wait();
+    }
+    isLocked      = true;
+    lockingThread = Thread.currentThread();
+  }
+
+  public synchronized void unlock(){
+    if(this.lockingThread != Thread.currentThread()){
+      throw new IllegalMonitorStateException(
+        "Calling thread has not locked this lock");
+    }
+    isLocked      = false;
+    lockingThread = null;
+    notify();
+  }
+}
++-------+
+ <Notice the while(isLocked) loop, which is also called a <<spin lock">>.>
+ 
+ <<Locks:>> A lock is a thread synchronization mechanism like synchronized blocks except locks can be more sophisticated than Java's synchronized blocks.
+ 
+ <From Java 5 the package java.util.concurrent.locks contains several lock implementations>.
+  
+ <<Lock Reentrance :>> Synchronized blocks in Java are reentrant. This means, that if a Java thread enters a synchronized block of code, and thereby take the lock on the monitor object the block is synchronized on, the thread can enter other Java code blocks synchronized on the same monitor object.
+
++------+
+public class Reentrant{
+  public synchronized outer()
+  {
+    inner();
+  }
+
+  public synchronized inner()
+  {
+    //do something
+  }
+}
++------+ 
+
+ Notice how both outer() and inner() are declared synchronized, which in Java is equivalent to a synchronized(this) block. 
+ If a thread calls outer() there is no problem calling inner() from inside outer(), since both methods (or blocks) are synchronized on the same monitor object ("this"). 
+ If a thread already holds the lock on a monitor object, it has access to all blocks synchronized on the same monitor object. This is called <<reentrance>>.
+ 	
+ The lock implementation shown earlier is not reentrant. 
+ If we rewrite the Reentrant class like below, the thread calling outer() will be blocked inside the lock.lock() in the inner() method.
+
++-------+ 
+public class Reentrant
+{
+
+  Lock lock = new Lock();
+
+  public outer()
+  {
+    lock.lock();
+    inner();
+    lock.unlock();
+  }
+
+  public synchronized inner()
+  {
+    lock.lock();
+    //do something
+    lock.unlock();
+  }
+}
++-------+ 
+ 
+ <When guarding a critical section with a Lock, and the critical section may throw exceptions, it is important to call the unlock() method from inside a finally-clause>
+
++-----+
+	lock.lock();
+	try
+	{
+  		//do critical section code, which may throw exception
+	} 
+	finally 
+	{
+  		lock.unlock();
+	} 
++-----+  
+  
+  <<Read / Write Locks>> A read / write lock is more sophisticated lock than the Lock implementations shown in the text Locks in Java.
+  Locking mechanism is required while writing to shared resource not while reading shared resource. Java 5 comes with read / write lock implementations in the java.util.concurrent package. Even so, it may still be useful to know the theory behind their implementation.
+ 
+  <<Read / Write Lock Java Implementation:>> First let's summarize the conditions for getting read and write access to the resource
+  
+  <Read Access:>   	If no threads are writing, and no threads have requested write access.
+  
+  <Write Access:>   	If no threads are reading or writing.  
+  
+  If a thread wants to read the resource, it is okay as long as no threads are writing to it, and no threads have requested write access to the resource. 
+  By up-prioritizing write-access requests we assume that write requests are more important than read-requests.
+  
+  
  	  
  <<Reference Sites>>
 

@@ -28,7 +28,7 @@ class CounterThread extends Thread
     {
         for (int i = 1; i <= 10; ++i)
         {
-            counter.add(1);
+            counter.add(i);
         }
 
     }
