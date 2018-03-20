@@ -103,9 +103,9 @@ Git Commands
 	git branch
 	git branch -v
 	scp -p -P 29418 .....hooks/commit-msg .git/hooks/
-	git reset HEAD <fileName>
-	git rest --soft HEAD~1	-----------------> revert local commits ~1 commit. but keep those changes locally
-	git rest --hard HEAD~1	-----------------> revert local commits. and remove those changes locally.
+	git reset HEAD <fileName> ------ (keeps in unstaged area)
+	git reset --soft HEAD~1	-----------------> revert local commits ~1 commit. but keep those changes locally(keeps in staged area)
+	git reset --hard HEAD~1	-----------------> revert local commits. and remove those changes locally.
 	
 	git log
 	git reset <filename>

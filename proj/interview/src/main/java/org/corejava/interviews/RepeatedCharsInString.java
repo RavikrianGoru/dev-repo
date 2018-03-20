@@ -1,4 +1,4 @@
-package org.corejava;
+package org.corejava.interviews;
 import java.util.Arrays;
 
 public class RepeatedCharsInString

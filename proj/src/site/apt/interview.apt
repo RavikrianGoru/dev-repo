@@ -14,13 +14,17 @@ Ref: https://www.journaldev.com/7153/core-java-tutorial#core-java-tutorial
 http://javaconceptoftheday.com/difference-between-shallow-copy-vs-deep-copy-in-java/
 
 
-OOPS?
 
-Object Oriented Programming Language vs Object Based Programming Language(OOPS-Inharitance ex: JavaScript).
+
+
+OOPS?
 
 Can we overload main method or static method? Yes.
 
+Can we override the static method or main method? No
+
 Constructor returns a value but, what ?
+
 yes, that is current class instance (You cannot use return type yet it returns a value).
 
 Can we create a program without main method ?
@@ -35,13 +39,13 @@ Why multiple inheritance is not supported in java ?
 To reduce the complexity and simplify the language, multiple inheritance is not supported in java.
 Diamond problem?
 
-Why use aggregation ?: code reusability
+Why use aggregation(has-a relation) ?: code reusability
 
 When use Aggregation?
 Code reuse is also best achieved by aggregation when there is no is-a relationship.
 Inheritance should be used only if the relationship is-a is maintained throughout the lifetime of the objects involved; otherwise, aggregation is the best choice.
 
-Can we override the static method or main method? No
+
 
 
 What is covariant return type ?

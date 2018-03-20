@@ -9,4 +9,81 @@
 
 Unix Commands
 ~~~~~~~~~~~~~
- 
+man <cmd>
+
+
+get hostname
+> hostname
+get host ip address
+> hostname -i
+get host domain name
+> hostname -d
+get hostname and domain name
+> hostname -f
+
+
+sed is a stream editor. A stream editor is used to perform basic text transformations on an input stream (a file, or input from a pipeline).
+
+
+* netstat (network statistics) is a command line tool for monitoring network connections both incoming and outgoing as well as viewing routing tables, interface statistics etc.
+
+> netstat -a		[tcp and udp connections]
+> netstat -at		[tcp only]
+> netstat -au		[udp only]
+> netstat -l 		[listing all active listening ports]
+> netstat -lt		[listening tcp ports]
+> netstat -lu 		[listening udp port]
+> netstat -lx		[all listening unix ports]
+> netstat -a		[Displays statistics by protocol. By default, statistics are shown for the TCP, UDP, ICMP, and IP protocols. ]
+> netstat -st		[Displays statistics by protocol. By default, statistics are shown for the TCP, UDP, ICMP, and IP protocols. ]
+> netstat -su
+> netstat -tp		[Displaying service name with their PID number]
+> netstat -ac |grep tcp [Displaying Promiscuous mode with -ac switch, netstat print the selected information or refresh screen every five second.]
+> netstat -k 		[Display Kernel IP routing table with netstat and route command.]
+> netstat -i 		[Showing Network Interface Transactions]
+> netstat -ie 		[Showing Kernel interface table, similar to ifconfig command.]
+> netstat -g		[Displays multicast group membership information for both IPv4 and IPv6.]
+> netstat -c 		[To get netstat information every few second, then use the following command, it will print netstat information continuously, say every few seconds.]
+> netstat --verbose 	[Finding un-configured address families with some useful information.]
+> netstat -ap | grep http	[Find out how many listening programs running on a port.]
+
+
+File operation:
+--------------
+A file is having 1000 lines of data:
+
+0) see line number in file
+
+open file in vi editor
+> vi <fileName>
+> <esc> + :set number
+
+1) view only 500 th line to end of file.
+> tail -n +500 <fileName>
+
+try these:
+---------
+
+sed 1,42d dump.sql
+sed -i 1,42d dump.sql
+
+tail -n +500 <file.txt >tile2.txt
+tail -n +500 file.txt >tile2.txt
+
+sed '1,42d' test.sql > test2.sql
+
+	
+We can connect remove machine: 
+Jconsole
+Java VisualVM
+JMC
+	
+
+https://www.programiz.com/dsa
+Example #1: Age Group Problem
+Example #2: Rubik's Cube Problem
+Example #3: DNA Problem- KMP algorithm
+
+
+https://discuss.codechef.com/questions/48877/data-structures-and-algorithms
+	

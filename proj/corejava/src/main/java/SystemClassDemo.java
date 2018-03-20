@@ -1,7 +1,6 @@
 
 public class SystemClassDemo
 {
-
     public static void printArray(int[] array)
     {
         System.out.println("Printing Array:");

@@ -312,7 +312,7 @@
  + Add workers to increase parallelization.
 						 
  - Shared state(in memory or/and database) access is complex
- - The job execution order is nondeterministic. 
+ - The job execution order is nondeterministic.
 +-------------------------------+	
 					 
  Additionally, part of the parallelization is lost when threads are waiting for each other when accessing the shared data structures.
@@ -332,20 +332,22 @@
  Systems using the assembly line concurrency model are usually designed to use non-blocking IO.
  <Non-blocking IO means that when a worker starts an IO operation (e.g. reading a file or data from a network connection) the worker does not wait for the IO call to finish.>
  
- <The system's workers react to events occurring in the system, either received from the outside world or emitted by other workers. Examples of events could be an incoming HTTP request, or that a certain file finished loading into memory etc.>
+ <The system's workers react to events occurring in the system, either received from the outside world or emitted by other workers. 
+  Examples of events could be an incoming HTTP request, or that a certain file finished loading into memory etc.>
 	
 +-------------------------------+					    
 	+ No shared data
 	+ Stateful workers
 	+ Job ordering
 	  					
-	- Hard to identify which part of code is being executed: that the execution of a job is often spread out over multiple workers, and thus over multiple classes in your project. Thus it becomes harder to see exactly what code is being executed for a given job.
+	- Hard to identify which part of code is being executed: that the execution of a job is often spread out over multiple workers, and thus over multiple classes in your project. 
+	  Thus it becomes harder to see exactly what code is being executed for a given job.
 +-------------------------------+	
 	  					
 	[[3]] <<Functional Parallelism:>> The basic idea of functional parallelism is that you implement your program using function calls. 
  Functions can be seen as "agents" or "actors" that send messages to each other, just like in the assembly line concurrency model.
- With Java 7 we got the java.util.concurrent package contains the ForkAndJoinPool which can help you implement something similar to functional parallelism.
- With Java 8 we got parallel streams which can help you parallelize the iteration of large collections. 
+ With <Java 7 we got the java.util.concurrent> package contains the ,ForkAndJoinPool> which can help you implement something similar to functional parallelism.
+ With <Java 8 we got parallel streams> which can help you parallelize the iteration of large collections. 
 
  <In order to utilize all the cores in the CPU, a single-threaded system can be scaled out to utilize the whole computer.>
 
@@ -361,7 +363,8 @@
  <<Parallelism:>> Each task is broken into subtasks which can be processed in parallel.
 
  <An application may process one task at at time (sequentially) or work on multiple tasks at the same time (concurrently).>
- <Parallelism on the other hand, is related to how an application handles each individual task. An application may process the task serially from start to end, or split the task up into subtasks which can be completed in parallel.>
+ <Parallelism on the other hand, is related to how an application handles each individual task. 
+ An application may process the task serially from start to end, or split the task up into subtasks which can be completed in parallel.>
 
  <<Same-Threading>>
  A same-threaded system is not a pure single-threaded system, because it contains of multiple threads. But - each of the threads run like a single-threaded system.
@@ -861,8 +864,9 @@ public class Reentrant
 	} 
 +-----+  
   
-  <<Read / Write Locks>> A read / write lock is more sophisticated lock than the Lock implementations shown in the text Locks in Java.
-  Locking mechanism is required while writing to shared resource not while reading shared resource. Java 5 comes with read / write lock implementations in the java.util.concurrent package. Even so, it may still be useful to know the theory behind their implementation.
+  <<Read / Write Locks>> A read / write lock is more sophisticated lock than the Lock implementations.
+  Locking mechanism is required while writing to shared resource not while reading shared resource. 
+  Java 5 comes with read / write lock implementations in the java.util.concurrent package. Even so, it may still be useful to know the theory behind their implementation.
  
   <<Read / Write Lock Java Implementation:>> First let's summarize the conditions for getting read and write access to the resource
   
@@ -889,3 +893,12 @@ public class Reentrant
  
  {http://tutorials.jenkov.com/java-util-concurrent/index.html}
 
+ Data Science:
+  Read white papers by Google....
+  Open source contribution. writing blogs, linkedin connections,...
+ {https://www.meetup.com/}
+ {https://www.kaggle.com/}
+ {http://www.hackathon.io/events}
+ {https://www.coursera.org/}
+ 
+ {https://aws.amazon.com/training/course-descriptions/machine-learning/}

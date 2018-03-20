@@ -1,4 +1,4 @@
-package org.corejava;
+package org.corejava.interviews;
 
 public class ObjectClassDemo implements Cloneable
 {

@@ -8,11 +8,8 @@ public class StringDemo
 
         String str1 = "ravi";
         String str2 = new String("Ravi");
-        System.out.println(str1);
-        System.out.println(str2);
 
-        byte byteArray[] =
-        { 82, 97, 118, 105 };
+        byte byteArray[] ={ 82, 97, 118, 105 };
         String str3 = new String(byteArray);
         System.out.println(str3);
 
@@ -26,6 +23,6 @@ public class StringDemo
         String inputTwo = "GorUChinna";
         System.out.println(inputOne.regionMatches(true, 9, inputTwo, 0, 4));
         System.out.println(inputOne.regionMatches(false, 9, inputTwo, 0, 4));
-}
+    }
 
 }
