@@ -19,7 +19,6 @@
         <module>ds-algorithms</module>
         <module>interview</module>
         <module>pocs</module>
-        <module>git-maven</module>
     </modules>
 
     <distributionManagement>
