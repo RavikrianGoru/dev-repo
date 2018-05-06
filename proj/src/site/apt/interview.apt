@@ -260,6 +260,9 @@ Java 1.7 features?
 JVM, JDK and JRE?
 
 
+1)will finally block executes after exit, break, return.
+A)finally executes in all senarios except exit which causes JVM failure/terminating the process. Also at power shutdown finally/OS failover wont executes.
+
 
 
 

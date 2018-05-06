@@ -1,0 +1,26 @@
+1) OutOfMemoryError:
+	cell schema changes caused caused OutOfMemoryError.
+	1st schema change creates 1 cell object.
+	2st schema change creates 2^1=2 cell object.
+	3st schema change creates 2^3=9 cell object.
+	4st schema change trying to create 2^9=24 cell object.
+		And throws OutOfMemoryError
+	Some issue with Cell i.e proc is trying to creates cell objects as cell is giving many notifications.
+
+2) OutOfMemoryError: Not able to login karaf, log fill is keep on increasing, events are not processing, max open files reached.
+   proc has queue/topic list.
+   proc polls data from cell for each queue/topic. if specific queue/topic is not available in cell it tries to create object.(event that queue/topic is not available in cell).
+   fixed: by checking queue/topic availability in cell.
+
+3) Expo performance: 
+   REST API related expo processing thread count restriction in karaf.
+   karaf and jetty version issue: config file changes.
+
+4) Multiple REST Calls through java code: Keeping all responses in Map and writing in MapR File system.(code changes)
+
+   
+   
+   
+    
+	
+		 

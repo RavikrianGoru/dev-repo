@@ -1,6 +1,6 @@
 package com.jenkov.concurrent;
 
-class Counter
+class Counter//Shared Resource
 {
     private long count = 0;
 
@@ -30,14 +30,11 @@ class CounterThread extends Thread
         {
             counter.add(i);
         }
-
     }
-
 }
 
 public class ConcurrentThreadExample
 {
-
     public static void main(String[] args)
     {
         Counter counterObj = new Counter();//same shared object will be used in threads
@@ -57,5 +54,4 @@ public class ConcurrentThreadExample
 
         System.out.println(counterObj.getCount());
     }
-
 }
