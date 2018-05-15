@@ -47,7 +47,7 @@ Git Commands
  5	transfer your commits into git account(when you execute the following cmd 1st time it will ask github credentials)
 	git push -u origin master
 	git push origin HEAD:refs/for/master
-	gir push origin master
+	git push origin master
 	git push origin HEAD
  
  6	git log command: it will give all commit logs
