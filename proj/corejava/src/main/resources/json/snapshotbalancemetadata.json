@@ -1,0 +1,300 @@
+{
+"version":"8.0",
+    "EntityAcronyms": {
+        "BA": "BillingAccountBucketBalance",
+        "PB": "ProductBucketBalance",
+        "VC": "ValueContainer"
+    },
+    "BillingAccountBucketBalance": {
+        "tables": [
+            {
+                "table": "/EDMCustomerBaseline/baseline_balance",
+                "qualifier": "BAM"
+            },
+            {
+                "table": "/EDMCustomerBaseline/baseline_balance",
+                "qualifier": "RA"
+            }
+        ],
+        "customerId": {
+            "type": "SIMPLE",
+            "source": "customerId",
+            "required": "true"
+        },
+        "billingAccountId": {
+            "type": "SIMPLE",
+            "source": "BillingAccountBucket-billingAccountId",
+            "required": "true"
+        },
+        "billingAccountBucketId": {
+            "type": "SIMPLE",
+            "source": "BillingAccountBucket-billingAccountBucketId",
+            "required": "true"
+        },
+        "billingAccountSpecId": {
+            "type": "SIMPLE",
+            "source": "billingAccountBucketBalances.billingAccountSpecificationId",
+            "required": "true"
+        },
+        "billingAccountBucketSpecId": {
+            "type": "SIMPLE",
+            "source": "billingAccountBucketBalances.billingAccountBucketSpecificationId",
+            "required": "true"
+        },
+        "amount": {
+            "type": "SIMPLE",
+            "source": [
+                "billingAccountBucketBalances.balance.amount.number",
+                "billingAccountBucketBalances.balance.amount.decimalPlaces"
+            ],
+            "rebase_source": [
+                "billingAccountBucketBalances.value.number",
+                "billingAccountBucketBalances.value.decimalPlaces"
+            ],
+            "operation": "shift",
+            "required": "true",
+            "condition":"or"
+        },
+        "unitOfMeasure": {
+            "type": "SIMPLE",
+            "source": "billingAccountBucketBalances.balance.unitOfMeasurement",
+            "required": "true",
+            "condition":"or",
+            "rebase_source":"billingAccountBucketBalances.unitOfMeasure"
+        },
+        "lastRefillDate" : {
+            "type": "TABLELOOKUP",
+            "attributes": {
+                "table": "/EDMCustomerBaseline/baseline_balance",
+                "qualifier": "RA",
+                "sourceId": "BillingAccountBucket-billingAccountBucketId",
+                "lookupId": "billingAccountBucketId"
+            },
+            "source": "timestamp",
+            "operation": "getdate",
+            "required": "true"
+        },
+
+        "lastRefillAmount" : {
+            "type": "TABLELOOKUP",
+            "attributes": {
+                "table": "/EDMCustomerBaseline/baseline_balance",
+                "qualifier": "RA",
+                "sourceId": "BillingAccountBucket-billingAccountBucketId",
+                "lookupId": "billingAccountBucketId"
+            },
+            "source": [
+                "refillAmount.number",
+                "refillAmount.decimalPlaces"
+            ],
+            "operation": "shift",
+            "required": "true"
+        },
+        
+        "lastRefillOperation" : {
+            "type": "TABLELOOKUP",
+            "attributes": {
+                "table": "/EDMCustomerBaseline/baseline_balance",
+                "qualifier": "RA",
+                "sourceId": "BillingAccountBucket-billingAccountBucketId",
+                "lookupId": "billingAccountBucketId"
+            },
+            "source": "refillOperation",
+            "required": "true"
+        },
+
+        "lastAdjustmentDate" : {
+            "type": "TABLELOOKUP",
+            "attributes": {
+                "table": "/EDMCustomerBaseline/baseline_balance",
+                "qualifier": "BAM",
+                "sourceId": "BillingAccountBucket-billingAccountBucketId",
+                "lookupId": "billingAccountBucketId"
+            },
+            "source": "timestamp",
+            "operation": "getdate",
+            "required": "true"
+        },
+
+        "lastAdjustmentAmount" : {
+            "type": "TABLELOOKUP",
+            "attributes": {
+                "table": "/EDMCustomerBaseline/baseline_balance",
+                "qualifier": "BAM",
+                "sourceId": "BillingAccountBucket-billingAccountBucketId",
+                "lookupId": "billingAccountBucketId"
+            },
+            "source": [
+                "balanceAdjustmentAmount.number",
+                "balanceAdjustmentAmount.decimalPlaces"
+            ],
+            "operation": "shift",
+            "required": "true"
+        },
+        
+        "lastAdjustmentOperation" : {
+            "type": "TABLELOOKUP",
+            "attributes": {
+                "table": "/EDMCustomerBaseline/baseline_balance",
+                "qualifier": "BAM",
+                "sourceId": "BillingAccountBucket-billingAccountBucketId",
+                "lookupId": "billingAccountBucketId"
+            },
+            "source": "balanceAdjustmentOperation",
+            "required": "true"
+        }
+    },
+    "ValueContainer": {
+        "customerId": {
+            "type": "SIMPLE",
+            "source": "customerId",
+            "required": "true"
+        },
+        "contractId": {
+            "type": "SIMPLE",
+            "source": "ValueContainer-contractId",
+            "required": "true"
+        },
+        "productId": {
+            "type": "SIMPLE",
+            "source": "ValueContainer-productId",
+            "required": "true"
+        },
+        "productBucketId": {
+            "type": "SIMPLE",
+            "source": "ValueContainer-productBucketId",
+            "required": "true"
+        },
+        "validFrom": {
+            "type": "SIMPLE",
+            "source": "ValueContainer-validFrom",
+            "required": "true"
+        },
+        "validTo": {
+            "type": "SIMPLE",
+            "source": "ValueContainer-validTo",
+            "required": "true"
+        },
+        "amount": {
+            "type": "SIMPLE",
+            "source": [
+                "valueContainers.amount.number",
+                "valueContainers.amount.decimalPlaces"
+            ],
+            "rebase_source": [
+                "valueContainers.value.number",
+                "valueContainers.value.decimalPlaces"
+            ],
+            "operation": "shift",
+            "required": "true",
+            "condition":"or"
+        },
+        "unitOfMeasure": {
+            "type": "SIMPLE",
+            "source": "ValueContainer-balance.unitOfMeasurement",
+            "required": "true"
+        },
+        "valueContainerRemoved": {
+            "type": "SIMPLE",
+            "source":"BucketMaintenanceResults-maintenanceReason",
+            "values": ""
+        }
+    },
+    "ProductBucketBalance": {
+        "tables": [
+            {
+                "table": "/EDMCustomerBaseline/baseline_balance",
+                "qualifier": "RB"
+            }
+        ],
+        "customerId": {
+            "type": "SIMPLE",
+            "source": "customerId",
+            "required": "true"
+        },
+        "contractId": {
+            "type": "SIMPLE",
+            "source": "ProductBucket-contractId",
+            "required": "true"
+        },
+        "productId": {
+            "type": "SIMPLE",
+            "source": "ProductBucket-productId",
+            "required": "true"
+        },
+        "productBucketId": {
+            "type": "SIMPLE",
+            "source": "ProductBucket-productBucketId",
+            "required": "true"
+        },
+        "productOfferingId": {
+            "type": "SIMPLE",
+            "source": "productBucketBalances.productOfferingId",
+            "required": "true"
+        },
+        "productBucketSpecificationId": {
+            "type": "SIMPLE",
+            "source": "productBucketBalances.productBucketSpecificationId",
+            "required": "true"
+        },
+        "amount": {
+            "type": "SIMPLE",
+            "source": [
+                "productBucketBalances.balance.amount.number",
+                "productBucketBalances.balance.amount.decimalPlaces"
+            ],
+            "rebase_source": [
+                "productBucketBalances.value.number",
+                "productBucketBalances.value.decimalPlaces"
+            ],
+            "operation": "shift",
+            "required": "true",
+            "condition":"or"
+        },
+        "unitOfMeasure": {
+            "type": "SIMPLE",
+            "source": "productBucketBalances.balance.unitOfMeasurement",
+            "required": "true",
+            "condition":"or",
+            "rebase_source":"productBucketBalances.unitOfMeasure"
+        },
+        "lastRefillDate" : {
+            "type": "TABLELOOKUP",
+            "attributes": {
+                "table": "/EDMCustomerBaseline/baseline_balance",
+                "qualifier": "RB",
+                "sourceId": "ProductBucket-productBucketId",
+                "lookupId": "productBucketId"
+            },
+            "source": "timestamp",
+            "operation": "getdate",
+            "required": "true"
+        },
+        "lastRefillAmount" : {
+            "type": "TABLELOOKUP",
+            "attributes": {
+                "table": "/EDMCustomerBaseline/baseline_balance",
+                "qualifier": "RB",
+                "sourceId": "ProductBucket-productBucketId",
+                "lookupId": "productBucketId"
+            },
+            "source": [
+                "refillAmount.number",
+                "refillAmount.decimalPlaces"
+            ],
+            "operation": "shift",
+            "required": "true"
+        },
+        "lastRefillOperation" : {
+            "type": "TABLELOOKUP",
+            "attributes": {
+                "table": "/EDMCustomerBaseline/baseline_balance",
+                "qualifier": "RB",
+                "sourceId": "ProductBucket-productBucketId",
+                "lookupId": "productBucketId"
+            },
+            "source": "refillOperation",
+            "required": "true"
+        }
+    }
+}
