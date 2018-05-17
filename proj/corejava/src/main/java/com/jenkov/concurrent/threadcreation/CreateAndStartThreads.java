@@ -27,7 +27,6 @@ class MyThreadByThread extends Thread
         System.out.println(Thread.currentThread().getName());
         // throw new Exception("Jaffa");
         // We can handle threads but can not throw.
-
     }
 }
 
@@ -56,19 +55,12 @@ class CallablePrintNumbers implements Callable<Integer>
     }
 
     @Override
-    public Integer call() throws Exception//We can throw Exception & we return object(Future).
+    public Integer call() throws Exception// We can throw Exception & we return object(Future).
     {
-        int count = 0;
-        for (int i = 1; i <= 10; i++)
-        {
-            System.out.println(i1);
-            Thread.sleep(1000);
-            count += i1;
-            i1++;
-        }
-        return count;
+        System.out.println("This is call method of sub class of Callable interface.");
+        return i1;
     }
-    
+
 }
 
 public class CreateAndStartThreads
@@ -89,31 +81,75 @@ public class CreateAndStartThreads
         myRunnable.setName("ThreadByInterface-One");
         myRunnable.start();
 
-        //4. Create Threads by using Callable , Executors framework
+        // 3a. Create Thread by implementing anonymous Runnable interface
+        Thread myRunnable1 = new Thread(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                System.out.println("This is anonymous implementation of Runnable interface new Thread(new Runnable(){ @Override public void run(){//business logic}}):");
+            }
+        });
+        myRunnable1.setName("ThreadByInterface-OneA");
+        myRunnable1.start();
+
+        // 3b. Create Thread by implementing lambda expression Runnable interface
+        Thread myRunnable2 = new Thread(() -> {
+            System.out.println("This is lambda implementation of Runnable interface new Thread(()->{//business logic}):");
+        });
+        myRunnable2.setName("ThreadByInterface-OneB");
+        myRunnable2.start();
+
+        // 4. Create Threads by using Callable , Executors framework
+
+        // 4a. Create Thread by implementing Callable interface
         ExecutorService pool = Executors.newFixedThreadPool(10);
         Future<Integer> item;
-        List<Future<Integer>> futureList = new ArrayList<Future<Integer>>();
 
-        for (int i = 1; i <= 10; i++)
+        List<Future<Integer>> futureList = new ArrayList<Future<Integer>>();
+        for (int i = 1; i <= 5; i++)
         {
             item = pool.submit(new CallablePrintNumbers(10));
+                   pool.execute(new MyRunnableThread());
+            
             futureList.add(item);
         }
-        
-        int sum=0;
-        for(Future<Integer> f:futureList)
+        int sum = 0;
+        for (Future<Integer> f : futureList)
         {
-            sum+=f.get();
+            sum += f.get();
+            System.out.println("f.isDone() : " + f.isDone());
+            System.out.println("f.isCancelled() : " + f.isCancelled());
         }
-        System.out.println("Sum :"+sum);
+        System.out.println("Sum :" + sum);
 
-        System.out.println("-------Creating 10 thread and starting all order of thered exection not determined-----");
+        // 4b. Create Thread by implementing anonymous Callable interface
+        ExecutorService pool1 = Executors.newFixedThreadPool(10);
+        Future<Integer> item1;
 
-        for (int i = 1; i <= 10; i++)
+        List<Future<Integer>> futureList1 = new ArrayList<Future<Integer>>();
+        for (int i = 1; i <= 5; i++)
         {
-            Thread tn = new MyThreadByThread("Ravi-"+i);
-            tn.start();
+            item1 = pool1.submit(new Callable<Integer>()
+            {
+                @Override
+                public Integer call() throws Exception
+                {
+                    int count = 10;
+                    System.out.println("Anomymous Callable implementation in submit(-) method");
+                    return count;
+                }
+            });
+            futureList1.add(item1);
         }
+        int sum1 = 0;
+        for (Future<Integer> f : futureList1)
+        {
+            sum += f.get();
+            System.out.println("f.isDone() : " + f.isDone());
+            System.out.println("f.isCancelled() : " + f.isCancelled());
+        }
+        System.out.println("Sum :" + sum);
     }
 
 }

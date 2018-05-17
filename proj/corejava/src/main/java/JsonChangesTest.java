@@ -125,18 +125,18 @@ public class JsonChangesTest
     public static void main(String[] args) throws JsonProcessingException, IOException
     {
 
-        SnapshotConfig csvConfig = setSnapshotConfig();
-        JsonNode metaDataRoot = getJsonNode("json/snapshotbalancemetadata.json");
-        System.out.println("Read json file and print as JsonNode obj:" + metaDataRoot);
-        System.out.println("JsonNode obj to String:" + metaDataRoot.toString());
-        String parentNode = metaDataRoot.path(ENTITY_ACRONYMS).path("BA").asText();
-        String[] parentTag = parentNode.split(";");
-        System.out.println("Parent Node:" + parentNode);
-        System.out.println("Parent Node[0]:" + parentTag[0]);
-        System.out.println(metaDataRoot.path(parentTag[0]).path("tables"));
-        String tableNameWithPartition = BALANCE_BASELINE + "_1";
-        HashMap<String, String> headersList = getAllkeyofSnapshots(csvConfig, tableNameWithPartition);
-        System.out.println("Map :" + headersList);
+//        SnapshotConfig csvConfig = setSnapshotConfig();
+//        JsonNode metaDataRoot = getJsonNode("json/snapshotbalancemetadata.json");
+//        System.out.println("Read json file and print as JsonNode obj:" + metaDataRoot);
+//        System.out.println("JsonNode obj to String:" + metaDataRoot.toString());
+//        String parentNode = metaDataRoot.path(ENTITY_ACRONYMS).path("BA").asText();
+//        String[] parentTag = parentNode.split(";");
+//        System.out.println("Parent Node:" + parentNode);
+//        System.out.println("Parent Node[0]:" + parentTag[0]);
+//        System.out.println(metaDataRoot.path(parentTag[0]).path("tables"));
+//        String tableNameWithPartition = BALANCE_BASELINE + "_1";
+//        HashMap<String, String> headersList = getAllkeyofSnapshots(csvConfig, tableNameWithPartition);
+//        System.out.println("Map :" + headersList);
 
         String attrRoot = "{\"table\":\"/EDMCustomerBaseline/baseline_balance\",\"qualifier\":\"RA\",\"sourceId\":\"BillingAccountBucket-billingAccountBucketId\",\"lookupId\":\"billingAccountBucketId\"}";
         String str = "{\"billingAccountBucketId\":\"BE69BDF55CBA4648BF9997B42856A97A\",\"refillAmount\":\"{\\\"number\\\":24,\\\"decimalPlaces\\\":2}\",\"customerId\":\"A7A6A231A9A841C59E42FB0CF4F3CF7E\",\"billingAccountId\":\"22809125FE40460CBDD081758CAC6BC5\",\"refillOperation\":\"SUBTRACT\",\"eventType\":\"ChaRefillEvent\",\"pk\":\"meta-customerId,billingAccountId,billingAccountBucketId\",\"triggerTimestamp\":\"2018-05-02T10:15:20+0200\",\"cq\":\"meta-d:RA\",\"timestamp\":\"2018-05-02T10:15:20+0200\"}";
@@ -151,32 +151,40 @@ public class JsonChangesTest
         String tableName = attributeRoot.path("table").asText();
         String qualifier = attributeRoot.path("qualifier").asText();
         String resultset = cacheBaseLineTableRoot.get(tableName + qualifier);
-        System.out.println(tableName);
-        System.out.println(qualifier);
-        System.out.println(resultset);
+//        System.out.println(tableName);
+//        System.out.println(qualifier);
+//        System.out.println(resultset);
 
+        System.out.println("attributeRoot :"+attributeRoot);
         JsonNode inputRootFromTable1 = jsonMapper.readTree(resultset);
-        System.out.println("inputRootFromTable:" + inputRootFromTable1);
+        System.out.println("inputRootFromTable:  " + inputRootFromTable1);
         String sourceMatchingId = attributeRoot.path("sourceId").asText();
-        System.out.println("sourceMatchingId:" + sourceMatchingId);
+        System.out.println("sourceMatchingId:    " + sourceMatchingId);
         String sourceMatchingValue = inputRoot.path(sourceMatchingId).asText();
-        System.out.println("sourceMatchingValue:" + sourceMatchingValue);
+        System.out.println("sourceMatchingValue: " + sourceMatchingValue);
         String lookupMatchingId = attributeRoot.path("lookupId").asText();
-        System.out.println("lookupMatchingId:" + lookupMatchingId);
+        System.out.println("lookupMatchingId:    " + lookupMatchingId);
+        System.out.println("sourceMatchingValue by lookupMatchingId: " + lookupMatchingId);
         JsonNode lookupEntry;
         if (null != inputRootFromTable1)
         {
-            Iterator<Map.Entry<String, JsonNode>> itr = inputRootFromTable1.fields();
-            while (itr.hasNext())
-            {
-                System.out.println(itr.next());
-            }
+//            Iterator<Map.Entry<String, JsonNode>> itr = inputRootFromTable1.fields();
+//            while (itr.hasNext())
+//            {
+//                System.out.println(itr.next());
+//            }
 
-            for (JsonNode each : inputRootFromTable1)
-            {
-                System.out.println(each);
-            }
+//            System.out.println("--------------");
+//            for (JsonNode each : inputRootFromTable1)
+//            {
+//                System.out.println(each);
+//                if(each.isObject())
+//                {
+//                    System.out.println("Above is object");
+//                }
+//            }
 
+            System.out.println("========================");
             if (inputRootFromTable1.isObject())
             {
                 Iterator<JsonNode> nodeIterator = inputRootFromTable1.iterator();
@@ -185,17 +193,18 @@ public class JsonChangesTest
                     lookupEntry = nodeIterator.next();
                     if (lookupEntry.path(lookupMatchingId).asText().equals(sourceMatchingValue))
                     {
-                        System.out.println("lookupEntry:" + lookupEntry);
+                        System.out.println("Object lookupEntry:" + lookupEntry);
                     }
                 }
             }
+            
             if (inputRootFromTable1.isArray())
             {
                 for (JsonNode lookupEntryObj : inputRootFromTable1)
                 {
                     if (lookupEntryObj.path(lookupMatchingId).asText().equals(sourceMatchingValue))
                     {
-                        System.out.println("lookupEntryObj:" + lookupEntryObj);
+                        System.out.println("Array lookupEntryObj:" + lookupEntryObj);
                     }
                 }
             }

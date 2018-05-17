@@ -1,0 +1,75 @@
+14th June(tel-Happiest Minds)
+=============================
+What are the methods available in Thread?
+What are the difference between sleep and wait mathods?
+what do we need to do if we want to use CustomClass as key in HashMap and TreeMap? why?
+HashMap implementation? TreeMap, Set, List Map  internal implementation?--------http://javahungry.blogspot.com/2013/08/hashing-how-hash-map-works-in-java-or.html
+how Set restricts duplicate entries? and why?
+levels of synchronization?
+different locks in synchronization?
+Design patterns (In your project)?
+Create your own String class?
+
+
+Design Pattern:--------------------
+
+1)
+we have news to be passed.
+We have to pass this news through all channels? which DP we use. how can we achive?
+
+2)
+Print: A1B2C3........S10 through Threads. (Not OK)
+
+3)
+depth of well 10, frog jumps 3 up, 2 down in a day. how many days it requies to come out?
+write the program. (OK)
+
+4) find the total number of digits fr given number?
+
+===================================================================================================================================
+ThreadLocal?
+ServiceExecutor?
+Train And Track design?
+Reflection and Interceptor?
+what will happen Class.forName(-)? how it loads? what are the class loader?
+how do we knaw what are the threads and number of threads are curently running?
+Abstarct class and interfaces? can we create an obj for abstract class. main method?
+Collections and Collection?
+Chacing machanisam in java?
+Garbage collection in java?
+=============================================================================================================================
+how to start a sleeping thread? 
+what is read lock ,write lock,re entered lock 
+inner static class how it store in JVM 
+how can you identify memory leaks 
+how you will do High availablility?
+Interger i=2;//is it possible
+how can you block clone?
+real world object tree how can you design?
+can we create wrapper class?
+how JVM garbage collect?
+
+Spring Webservices
+Spring Authentication
+Spring Security
+
+
+=============================
+http://www.journaldev.com
+http://javahungry.blogspot.com
+============================
+15th Jun1
+============================
+Difference between String, StringBuilder, StringBuffer?
+find the length of String with put using length() method?
+Converting String type number into in type number without using built in functions?
+Test given data is Palindrome or Not? not using any library methods?
+Reverse of String without using built in reverse method.?
+characters count in String with out using built-in methods?
+find the first non repeatable character i string?
+
+can you create your own marker interface?
+Internal implementation of DeQueue, ConcurrentSet Map,HashMap..... etc.
+JVM, JRE, implementation?
+
+

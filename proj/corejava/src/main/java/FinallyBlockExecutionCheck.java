@@ -10,10 +10,10 @@ public class FinallyBlockExecutionCheck
             try
             {
                 System.out.println("Try block");
-//                return;
-//                break;
-//                continue;
-//                System.exit(0);
+                // return;
+                // break;
+                // continue;
+                // System.exit(0);
             }
             catch (Exception e)
             {
@@ -22,7 +22,6 @@ public class FinallyBlockExecutionCheck
             finally
             {
                 System.out.println("Finally block");
-
             }
         }
 
@@ -32,7 +31,8 @@ public class FinallyBlockExecutionCheck
     {
         doFinallyTest();
     }
-//    1)will finally block executes after exit, break, continue, return.
-//    A)finally executes in all senarios except exit which causes JVM failure/terminating the process. Also at power shutdown finally/OS failover wont executes.
+    // 1)will finally block executes after exit, break, continue, return.
+    // A)finally executes in all senarios except exit which causes JVM failure/terminating the process. Also at power shutdown finally/OS failover
+    // wont executes.
 
 }
