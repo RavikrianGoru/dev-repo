@@ -1,4 +1,4 @@
-package jse8;
+package java8features.defaultstatic.methods;
 
 import java.util.IdentityHashMap;
 

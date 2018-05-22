@@ -26,10 +26,7 @@ class CounterThread extends Thread
 
     public void run()
     {
-        for (int i = 1; i <= 10; ++i)
-        {
-            counter.add(i);
-        }
+            counter.add(5+5);
     }
 }
 
@@ -45,7 +42,7 @@ public class ConcurrentThreadExample
         threadTwo.start();
         try
         {
-            Thread.sleep(5000);
+            Thread.sleep(1000);
         }
         catch (InterruptedException e)
         {

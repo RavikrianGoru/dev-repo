@@ -10,6 +10,7 @@ public class PrimeTest {
 		{
 			if(num%i==0)
 			{
+			    System.out.println(num +" is divisible by "+i);
 				System.out.println("Given number "+num+" is not a prime number");
 				flag=1;
 				break;

@@ -1,4 +1,4 @@
-package jse8;
+package java8features.functionalinterface;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -23,7 +23,6 @@ interface InterF2
 }
 interface InterF3 extends InterF1,InterF2
 {
-
     @Override
     default void test()
     {

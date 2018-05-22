@@ -1,4 +1,4 @@
-package jse8;
+package java8features.functionalinterface;
 
 @FunctionalInterface
 interface CustomConvertInterface<F, T>

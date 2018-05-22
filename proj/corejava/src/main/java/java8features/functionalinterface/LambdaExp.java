@@ -1,10 +1,8 @@
-package jse8;
+package java8features.functionalinterface;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-
 
 class Employee
 {

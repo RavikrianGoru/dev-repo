@@ -1,6 +1,8 @@
 package jenkov.concurrency;
 /*
 
+https://www.journaldev.com/2856/java-jvm-memory-model-memory-management-in-java
+
 Java Memory Model:
 ------------------
 The Java memory model used internally in the JVM divides memory between thread stacks and the heap

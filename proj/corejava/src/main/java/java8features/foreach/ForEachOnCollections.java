@@ -1,4 +1,4 @@
-package jse8;
+package java8features.foreach;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -45,8 +45,6 @@ public class ForEachOnCollections {
 		ht.put(2, "KIRAN");
 		ht.put(3, "");
 		
-		ht.forEach((k,v)->{});
-		
 		System.out.println("Get all keys of Hashtable-------by calling Enumeration<Object> en=ht.elements();-----hasMoreElemenets()-----nextElement()");
 		Enumeration<Object> en=ht.elements();
 		while(en.hasMoreElements())
@@ -55,6 +53,8 @@ public class ForEachOnCollections {
 		}
 		System.out.println("Get all keys of Hashtable-------by calling------ht.keySet().forEach((s)->System.out.println(ht.get(s)));");
 		ht.keySet().forEach((s)->System.out.println(ht.get(s)));
+		System.out.println("Get all key,value of Hashtable-------by calling------hashtable.forEach((k,v)->{...})");
+		ht.forEach((k,v)->{System.out.println(k+"    "+v);});
 
 		System.out.println("Get all keys of Hashtable-------by calling-------ht.keySet().stream().map((s)->ht.get(s)).collect(Collectors.toCollection(()->valueList));");
 		List valueList=new ArrayList();

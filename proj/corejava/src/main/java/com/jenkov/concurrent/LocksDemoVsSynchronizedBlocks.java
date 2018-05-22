@@ -20,7 +20,6 @@ class Lock
         isLocked = false;
         notify();
     }
-
 }
 
 class Synchronizer
@@ -75,15 +74,15 @@ class MyThread extends Thread
     @Override
     public void run()
     {
-        try
-        {
-            // this.sync.synchronizedPrint();
-            this.sync.lockedPrint();// ordered
-        }
-        catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
+//        this.sync.synchronizedPrint();
+            try
+            {
+                this.sync.lockedPrint();
+            }
+            catch (InterruptedException e)
+            {
+                e.printStackTrace();
+            }// ordered
     }
 }
 

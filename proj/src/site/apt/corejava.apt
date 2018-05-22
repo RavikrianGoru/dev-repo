@@ -465,7 +465,7 @@
  	   
  +-----------------------------------------------+
 
-ExecutorService is an interface: used to create pool of threads and and submit callable or execute runnable or schedule callable/runnable threads.
+ExecutorService is an interface: used to create pool of threads and submit callable or execute runnable or schedule callable/runnable threads.
 
  +------------+
 
@@ -615,10 +615,188 @@ public static synchronized void add(int value)
 }
 +-----------------+
 
+ <<Synchronized Blocks in Instance Methods:>> it is preferable to synchronize only part of a method.
+  The object taken in the parentheses by the synchronized construct is called a monitor object. The code is said to be synchronized on the monitor object. 
+  A synchronized instance method uses the object it belongs to as monitor object.
 
++-----------------+
+public void add(int value)
+{
+	synchronized(this)
+	{
+		this.count=+value;
+	}
+}
++-----------------+
+
+	 <<Synchronized Blocks in static Methods:>> static synchronized block been synchronized on a different object than MyClass.class, 
+	  then one thread could execute inside each method at the same time.
+
++-----------------+
+public class MyClass 
+{
+	public static void add(int value)
+	{
+		synchronized(MyClass.class)
+		{
+			this.count=+value;
+		}
+	}
+}
++-----------------+	
 
  
+ <<volatile is Not Always Enough>>
  
+ Even if the volatile keyword guarantees that all reads of a volatile variable are read directly from main memory, and all writes to a volatile variable are 
+ written directly to main memory, there are still situations where it is not enough to declare a variable volatile.
+ 
+ <<When is volatile Enough?>>
+  
+  if two threads are both reading and writing to a shared variable, then using the volatile keyword for that is not enough. 
+  
+  [[i]]  We can use synchronization which makes the reading and writing of the variable is atomic.
+  
+  [[ii]] We can also use one of the many atomic data types found in the java.util.concurrent package. < AutomicLong , AutomicReference...>
+  
+ 
+  <<Performance Considerations of volatile>>
+
+  Reading and writing of volatile variables causes the variable to be read or written to main memory. Reading from and writing to main memory is more expensive than accessing the CPU cache.
+  We should only use volatile variables when you really need to enforce visibility of variables.
+ 
+  <ThreadLocal :>>
+ The ThreadLocal class in Java enables you to create variables that can only be read and written by the same thread. 
+ Thus, even if two threads are executing the same code, and the code has a reference to a ThreadLocal variable, 
+ then the two threads cannot see each other's ThreadLocal variables.
+
++---------+
+ private ThreadLocal<Integer> threadLocal=new ThreadLocal<>();
+ 
+ System.out.println(Thread.currentThread().getName());
+ threadLocal.set((int)(Math.random()*100));
+ 
+ System.out.println(Thread.currentThread().getName());
+ System.out.println(threadLocal.get());
++---------+ 
+
+ <The InheritableThreadLocal class is a subclass of ThreadLocal. Instead of each thread having its own value inside a ThreadLocal, the InheritableThreadLocal grants access to values to a thread and all child threads created by that thread.>
+ 
+  Java has a builtin wait mechanism that enable threads to become inactive while waiting for signals. The class java.lang.Object defines three methods, wait(), notify(), and notifyAll(), to facilitate this.
+ 
+ <Thread that calls wait() on any object becomes inactive until another thread calls notify() on that object.  the calling thread must call wait() or notify() from inside a synchronized block.>
+ 
+ A thread cannot call wait(), notify() or notifyAll() without holding the lock on the object the method is called on. If it does, an IllegalMonitorStateException is thrown.
+ Once a thread calls wait() it releases the lock it holds on the monitor object.
+ 
+ <<Thread Deadlock>> A deadlock is when two or more threads are blocked waiting to obtain locks that some of the other threads in the deadlock are holding.
+ Ex: if thread 1 locks A, and tries to lock B, and thread 2 has already locked B, and tries to lock A, a deadlock arises. Thread 1 can never get B, and thread 2 can never get A.
+
++-----------+
+Thread 1  locks A, waits for B
+Thread 2  locks B, waits for A
++-----------+
+ 
+ 
+ 
+ <<Deadlock Prevention:>>
+ 	
+ 	[[1]] Lock Ordering:
+ 	
+ 	[[2]] Lock Timeout:
+ 	
+ 	[[3]] Deadlock Detection :
+
+ <<Starvation:>> If a thread is not granted CPU time because other threads grab it all, it is called "starvation".
+	 The solution to starvation is called <<fairness>> - that all threads are fairly granted a chance to execute.
+
+  <<A simple implementation of the Lock class could look like this:>>
+ 
+ +-------+
+public class Lock{
+  private boolean isLocked      = false;
+  private Thread  lockingThread = null;
+
+  public synchronized void lock() throws InterruptedException{
+    while(isLocked){
+      wait();
+    }
+    isLocked      = true;
+    lockingThread = Thread.currentThread();
+  }
+
+  public synchronized void unlock(){
+    if(this.lockingThread != Thread.currentThread()){
+      throw new IllegalMonitorStateException(
+        "Calling thread has not locked this lock");
+    }
+    isLocked      = false;
+    lockingThread = null;
+    notify();
+  }
+}
+ +-------+
+
+<To increase the fairness, use locks instead of synchronized blocks.>
+
+ +------------+
+ 
+class Lock
+{
+    private boolean isLocked = false;
+
+    public synchronized void lock() throws InterruptedException
+    {
+        while (isLocked)
+        {
+            wait();
+        }
+        isLocked = true;
+    }
+
+    public synchronized void unlock()
+    {
+        isLocked = false;
+        notify();
+    }
+}
+ 
+public class Synchronizer
+{
+  Lock lockObj = new Lock();//it is not class, ||y implementation of Lock interface
+
+  public void doSynchronized() throws InterruptedException
+  {
+    this.lockObj.lock();
+    //critical section, do a lot of work which takes a long time
+    this.lockObj.unlock();
+  }
+}
+ +------------+ 
+
+ Reentrant means that a thread that already holds a lock can retake it. Java's synchronized blocks are reentrant. 
+ 
+ +---------------+
+ 
+ public class Reentrant{
+
+  public synchronized outer(){
+    inner();
+  }
+
+  public synchronized inner(){
+    //do something
+  }
+}
+
+ +---------------+
+ 
+ Notice how both outer() and inner() are declared synchronized, which in Java is equivalent to a synchronized(this) block. 
+ If a thread calls outer() there is no problem calling inner() from inside outer(), since both methods (or blocks) are synchronized on the same monitor object ("this"). 
+ If a thread already holds the lock on a monitor object, it has access to all blocks synchronized on the same monitor object. This is called reentrance.
+ 		
+
+
  	  
  <<Reference Sites>>
 
