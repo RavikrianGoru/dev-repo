@@ -72,6 +72,7 @@ public class DataTeam
         String case2_InputOne = "203,204,205,203,204";
         String case2_inputTwo = "204,203,205,203,204";
         getOrderedUniqueElements(case2_InputOne, case2_inputTwo);
+//        printUncommon(null,null,1,2);
     }
 
     public static void getOrderedUniqueElements(String inputOne, String inputTwo)
@@ -121,6 +122,47 @@ public class DataTeam
         else
         {
             System.out.println(sb.toString());
+        }
+    }
+    
+    public static void printUncommon(int a[], int b[], int n1, int n2)
+    {
+        int a1[]= {203,204,205,206,207,208,203,204,205,206};
+        int b1[]= {204,204,203,209,206,203,201,208,205,205};
+        n1=a1.length;
+        n2=b1.length;
+        int i = 0, j = 0, k = 0;
+        while (i < n1 && j < n2) {
+ 
+            // If not common, print smaller
+            if (a1[i] <b1[j]) {
+                System.out.print(a1[i] + " ");
+                i++;
+                k++;
+            }
+            else if (b1[j] < a1[i]) {
+                System.out.print(b1[j] + " ");
+                k++;
+                j++;
+            }
+ 
+            // Skip common element
+            else {
+                i++;
+                j++;
+            }
+        }
+ 
+        // printing remaining elements
+        while (i < n1) {
+            System.out.print(a1[i] + " ");
+            i++;
+            k++;
+        }
+        while (j < n2) {
+            System.out.print(b1[j] + " ");
+            j++;
+            k++;
         }
     }
 

@@ -254,7 +254,8 @@
   	
   	<<Synchronization and concurrency:>> making String immutable automatically makes them thread safe thereby solving the synchronization issues.
   	
-  	<<Caching:>> when compiler optimizes your String objects, it sees that if two objects have same value (a="test", and b="test") and thus you need only one string object (for both a and b, these two will point to the same object).
+  	<<Caching:>> when compiler optimizes your String objects, it sees that 
+  	if two objects have same value (a="test", and b="test") and thus you need only one string object (for both a and b, these two will point to the same object).
   	
   	<<Class loading:>> String is used as arguments for class loading. If mutable, it could result in wrong class being loaded (because mutable objects change their state).	
   	
@@ -473,6 +474,9 @@ ExecutorService is an interface: used to create pool of threads and submit calla
 	1b) ExecutorService fixedThreadPoolExecutorService=Executors.newFixedThreadPool(5);
 	
 	2a) ExecutorService cashedThreadPoolExecutorService=Executors.newCachedThreadPool();
+	
+	ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(5);
+	scheduledExecutorService.schedule(()->{"System.out.println("Callable interface");});
 	
 	3a) ScheduledFuture<?> scheduledFuture1 = Executors.newSingleThreadScheduledExecutor().scheduleAtFixedRate(new MyRunnable(), 2, 1, TimeUnit.SECONDS);
 	3b) ScheduledFuture<?> schesuledThreadPoolFuture1 = Executors.newScheduledThreadPool(5).scheduleAtFixedRate(new MyRunnable(), 2, 1, TimeUnit.SECONDS);
@@ -795,6 +799,10 @@ public class Synchronizer
  If a thread calls outer() there is no problem calling inner() from inside outer(), since both methods (or blocks) are synchronized on the same monitor object ("this"). 
  If a thread already holds the lock on a monitor object, it has access to all blocks synchronized on the same monitor object. This is called reentrance.
  		
+
+<<Decompiler:CFR>>
+
+C:\Users\zgorrav\codebase\dev-repo\proj\corejava\target\classes\java8features\functionalinterface>java -jar C:\tools\cfr_0_129.jar LambdaExpForCustomInterface.class
 
 
  	  

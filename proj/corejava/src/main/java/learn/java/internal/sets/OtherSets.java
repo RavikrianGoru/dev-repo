@@ -2,6 +2,7 @@ package learn.java.internal.sets;
 
 import java.util.LinkedHashSet;
 import java.util.concurrent.ConcurrentSkipListSet;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 public class OtherSets
@@ -77,6 +78,7 @@ public class OtherSets
          */
         System.out.println("CopyOnWriteArraySet=====internal instance CopyOnWriteArrayList======No ConcurrentModificationException, allows null");
         CopyOnWriteArraySet cowas = new CopyOnWriteArraySet();
+        CopyOnWriteArrayList dffd=null;
         cowas.add(null);
         cowas.add("ravi");
         cowas.add(1);
