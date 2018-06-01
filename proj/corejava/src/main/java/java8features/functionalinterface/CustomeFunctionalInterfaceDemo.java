@@ -1,10 +1,5 @@
 package java8features.functionalinterface;
 
-import javax.swing.plaf.synth.SynthSeparatorUI;
-
-import org.apache.log4j.helpers.SyslogQuietWriter;
-import org.apache.log4j.net.SyslogAppender;
-
 @FunctionalInterface
 interface AddtionaInf
 {
