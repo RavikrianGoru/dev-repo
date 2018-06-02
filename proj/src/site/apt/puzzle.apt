@@ -1,0 +1,44 @@
+1) Three Cuts to Turn a Round Cake Into Eight Equal Slices?
+
+	
+2) A machine has n pipes to fill n different quantities of products per mins 
+	such as pipe-1, 1 gram, pipe-2 2 grams, pipe-3 3 grams..... pipi-n n grams
+	per min.
+	
+	After 10 mins pipe-1=10 grams, pipe-2=20 grams.... pipe-n=n*10 grams will fill.
+	
+	But one of the pipe-r filling r-1 grams per min. 
+	Can you fing wich one is filling wrong products.
+
+		---1----2----3----4----5---
+	    ---||---||---||---||---||----
+
+
+
+	Actual:
+	1(10)+2(10)+3(10)+4(10)+5(10)=150 grams 
+
+	Suppose 4th pipe filling 9 grams per min then
+		1(10)+2(10)+3(10)+4(9)+5(10)=144
+		
+	then 150-146=4 so 4th pipe is wrong filling pipe.
+
+3) N feets pole, and one monkey trying to climb the poll.
+	For every jump it reaches 5(a) feets up and slips 2(b) feet down.
+	when at what number of jump it climbs the pole. ex:N=100
+	  
+	  N<=r(a-b);
+	
+
+	|-10
+	|-9
+	|-8
+	|-7
+	|-6
+	|-5
+	|-4
+	|-3
+	|-2
+	|-1
+---------  j1
+		
