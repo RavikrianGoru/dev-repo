@@ -44,37 +44,37 @@ class Emp implements Comparable
         this.sal = sal;
     }
 
-    @Override
-    public int hashCode()
-    {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + id;
-        result = prime * result + ((name == null) ? 0 : name.hashCode());
-        result = prime * result + ((sal == null) ? 0 : sal.hashCode());
-        return result;
-    }
-
-    @Override
-    public boolean equals(Object obj)
-    {
-        if (this == obj) return true;
-        if (obj == null) return false;
-        if (getClass() != obj.getClass()) return false;
-        Emp other = (Emp) obj;
-        if (id != other.id) return false;
-        if (name == null)
-        {
-            if (other.name != null) return false;
-        }
-        else if (!name.equals(other.name)) return false;
-        if (sal == null)
-        {
-            if (other.sal != null) return false;
-        }
-        else if (!sal.equals(other.sal)) return false;
-        return true;
-    }
+//    @Override
+//    public int hashCode()
+//    {
+//        final int prime = 31;
+//        int result = 1;
+//        result = prime * result + id;
+//        result = prime * result + ((name == null) ? 0 : name.hashCode());
+//        result = prime * result + ((sal == null) ? 0 : sal.hashCode());
+//        return result;
+//    }
+//
+//    @Override
+//    public boolean equals(Object obj)
+//    {
+//        if (this == obj) return true;
+//        if (obj == null) return false;
+//        if (getClass() != obj.getClass()) return false;
+//        Emp other = (Emp) obj;
+//        if (id != other.id) return false;
+//        if (name == null)
+//        {
+//            if (other.name != null) return false;
+//        }
+//        else if (!name.equals(other.name)) return false;
+//        if (sal == null)
+//        {
+//            if (other.sal != null) return false;
+//        }
+//        else if (!sal.equals(other.sal)) return false;
+//        return true;
+//    }
 
     @Override
     public String toString()
@@ -117,11 +117,11 @@ public class Temp
 
         System.out.println("e1.equals(e3):"+e1.equals(e3));
         
-        HashSet<Emp> hs = new HashSet();
-        hs.add(e1);
-        hs.add(e2);
-        hs.add(e3);
-        System.out.println("HashSet:"+hs);
+//        HashSet<Emp> hs = new HashSet();
+//        hs.add(e1);
+//        hs.add(e2);
+//        hs.add(e3);
+//        System.out.println("HashSet:"+hs);
 
         TreeSet<Emp> ts = new TreeSet();
         ts.add(e1);

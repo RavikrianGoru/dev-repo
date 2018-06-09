@@ -19,7 +19,8 @@ class Bike extends Vehicle
 public class OperatorinstanceOf {
 
 	public static void main(String[] args) {
-		Vehicle v=new Nano();//new Vehicle();
+	    Vehicle v=new Nano();
+//	    Vehicle v=new Vehicle();
 		if(v instanceof Car)
 		{
 			System.out.println("v instanceof Car");

@@ -8,15 +8,15 @@ import java.util.TreeSet;
 
 public class FindOutputOrErrorLine {
 
-/*	public static void m1()// C.T Error
-	{
-		
-	}
-	public int m1()// C.T Error
-	{
-		return 1;
-	}
-*/	
+//	public static void m1()// C.T Error
+//	{
+//		
+//	}
+//	public int m1()// C.T Error
+//	{
+//		return 1;
+//	}
+	
 	public static void main(String[] args) 
 	{
 		//1.
@@ -57,9 +57,9 @@ public class FindOutputOrErrorLine {
 		System.out.println("HashSet----Allows one null, if many--overrides");
 		
 		TreeSet treeSet=new TreeSet();
-		treeSet.add("Ravi");
-		treeSet.add("Ravi");
-		//treeSet.add(null);------------------------RunTime Error
+//		treeSet.add("Ravi");
+//		treeSet.add("Ravi");
+//		treeSet.add(null);------------------------RunTime Error
 		//treeSet.add(null);
 		System.out.println("TreeSet------"+treeSet);
 		System.out.println("TreeSet----does not allow  null---- Runtime Exception");		

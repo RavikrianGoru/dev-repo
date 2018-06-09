@@ -43,10 +43,10 @@ public class TreeSetInternals
 
          */
         
-        populateStringTypeTreeSet();
-       // populateEmpPojoTreeSet();//Exception in thread "main" java.lang.ClassCastException: learn.java.internal.EmpPojo cannot be cast to java.lang.Comparable
+//        populateStringTypeTreeSet();
+        populateEmpPojoTreeSet();//Exception in thread "main" java.lang.ClassCastException: learn.java.internal.EmpPojo cannot be cast to java.lang.Comparable
        // populateEmpPojoAsKeyTreeSet();//Exception in thread "main" java.lang.ClassCastException:learn.java.internal.EmpPojoAsKey cannot be cast to java.lang.Comparable
-        populateEmpAsKeyComparableTreeSet();
+//        populateEmpAsKeyComparableTreeSet();
     }
     public static void populateStringTypeTreeSet()
     {
@@ -76,9 +76,9 @@ public class TreeSetInternals
         System.out.println("===================EmpPojo not implements equals(-) and hashCode() methods");
         TreeSet<EmpPojo> ts =new TreeSet<>();
         System.out.println("ts.add(new EmpPojo(20,\"ravi\",20000)):----->"+ts.add(new EmpPojo(20,"ravi",20000)));
-        System.out.println("ts.add(new EmpPojo(2,\"kiran\",40000)):----->"+ts.add(new EmpPojo(2,"kiran",40000)));
-        System.out.println("ts.add(new EmpPojo(20,\\\"ravi\\\",20000))----->"+ts.add(new EmpPojo(20,"ravi",20000)));
-        System.out.println("ts.add(new EmpPojo(1,\\\"chinnu\\\",20000))----->"+ts.add(new EmpPojo(1,"chinnu",20000)));
+//        System.out.println("ts.add(new EmpPojo(2,\"kiran\",40000)):----->"+ts.add(new EmpPojo(2,"kiran",40000)));
+//        System.out.println("ts.add(new EmpPojo(20,\\\"ravi\\\",20000))----->"+ts.add(new EmpPojo(20,"ravi",20000)));
+//        System.out.println("ts.add(new EmpPojo(1,\\\"chinnu\\\",20000))----->"+ts.add(new EmpPojo(1,"chinnu",20000)));
 
         Iterator<EmpPojo> itr=ts.iterator();
         System.out.println("Print each element:");

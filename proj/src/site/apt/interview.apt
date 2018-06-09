@@ -267,5 +267,154 @@ A)finally executes in all senarios except exit which causes JVM failure/terminat
 
 
 
+Singleton:
+
+1) What is Singleton class? Have you used Singleton before?
+	
+2) Which classes are candidates of Singleton? Which kind of class do you make Singleton in Java?
+
+3) Can you write code for getInstance() method of a Singleton class in Java?
+	public static synchronized  Singleton getInstance()
+	{
+		return new Singleton();
+	}
+	
+	or
+	
+	private volatile static Singleton _instance;//volatile is recommended
+	public static Singleton getInstance()
+	{
+		if(_instance==null)//Singe-check: get rid of half intitialization issue
+		{
+			sychronized(Singleton.class)
+			{
+				if(_instance==null)//Double-check
+				{
+					return new Singleton();
+				}
+				return _instance;
+			}
+		}
+		return _instance;
+	}	
+	
+4) Is it better to make whole getInstance() method synchronized or just critical section is enough? Which one you will prefer?
+
+5) What is lazy and early loading of Singleton and how will you implement it?
+
+6) Give me some examples of Singleton pattern from Java Development Kit?
+	Runtime.java
+	
+7) What is double checked locking in Singleton?
+	See above
+8) It is recommended to used synchronized block then synchronized method due to cost expensive.
+	
+9) How do you prevent for creating another instance of Singleton using clone() method?
+	Dont implement Clonable interface or Override clone method and return same obj/ throw Exception.
+10) How do you prevent for creating another instance of Singleton using reflection?
+	private cunstructor can be called by using reflection. we throw Exception in constructor or return same obj.
+
+11) How do you prevent for creating another instance of Singleton during serialization?
+	You can prevent this by using readResolve() method, since during deserialization readObject() is used to create instance and 
+	it return new instance every time but by using readResolve you can replace it with original Singleton instance.	
+
+
+
+
+int[] arr = {4,1,9,8,.......10,....1,9,4,8,....}
+
+class Employee{
+  String name;
+  int id;
+  Date doj;
+  Address addr;
+}
+
+class Employee implements Serializable{
+  
+}
+
+class Manager extends Employee{
+  
+}
+
+mgr1 mgr2 mgr3 mgr4
+
+
+class Employee{
+String name; setters/getters
+}
+Employee e1 = new Employee("Sapient");
+HashMap<Employee,String> map
+map.put(e1,"ABC");
+e1.setName("Nitro");
+map.get(e1); -- > ??
+  
+Set<Employee> obj = new TreeSet();
+
+
+
+1-5-2-8-6-9-4-7-0-null
+  
+  
+2/3/4/5 -->
+
+==============================
+  
+  
+
+1-5-2-8-6-9-4-7-0-null
+  
+  
+2/3/4/5 -->
+
+==============================
+  
+  Singleton:
+
+  private Singleton single=null;
+
+  public static Singleton getInstance()
+  {
+    
+    //why another check
+    if(single!=null)
+    
+    synchronized(Singleton.class)
+    {
+      
+    if(single==null)
+    {
+      single= new Singleton();
+    }
+    }
+    return single;
+  }
+
+syncronized reccursive method with deal lock issue.(Reentrancelock).
+
+
+Real time example for all DPs.
+
+
+arr---[ 1,3,8,4,5,2,7,24,25,67,24,26,4,78,97,9} sum=9
+(1,8),(2,7),(4,7)---- print 9
+
+
+diff wait() and sleep()?
+Overriding rules wrt access modifiers and Exception?
+REST diff Accept and ContentType headers?
+Diff b/w SOAP and REST?
+
+How to handle shared resource in mapR jobs?
+Zk for small shared data and DistributedCache for large data.
+How to optimized SQL queries?
+SQL query for All managers and emp-->manager?
+joins ?
+how many joins required to get data from 4 tables?
+
+
+
+
 
 

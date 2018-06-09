@@ -22,6 +22,7 @@ public class NoOfWordsInString
         Matcher m = p.matcher(input);
         while (m.find())
         {
+            System.out.println(m.group());
             noOfWords++;
         }
         System.out.println("total number of words:" + noOfWords);

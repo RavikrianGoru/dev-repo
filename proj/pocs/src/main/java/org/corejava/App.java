@@ -21,7 +21,8 @@ public class App
        String line;
        while((line=reader.readLine())!=null)
        {
-           writer.write(String.format("%04d", i)+line.substring(4,line.length())+"\n");
+           System.out.println(String.format("%04d", i)+line.substring(4,line.length()));
+          // writer.write(String.format("%04d", i)+line.substring(4,line.length())+"\n");
            i++;
        }
     }

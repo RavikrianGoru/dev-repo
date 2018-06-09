@@ -1,6 +1,8 @@
 package java8features.streams;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
@@ -9,6 +11,8 @@ public class _3_StreamTerminalOpts
 
     public static void main(String[] args)
     {
+        ConcurrentHashMap<String,List<Double>> opriceMap =new ConcurrentHashMap<>();
+        
         Supplier<Stream<Integer>> streamSupplier=()->Stream.of(1,3,3,6,6);
 
         System.out.println("----- Optional<Integer> optn=streamSupplier.get().findFirst();");

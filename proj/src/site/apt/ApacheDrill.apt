@@ -248,7 +248,23 @@ To work with drill bit embedded mode:
     	* View profiles of all queries that all users have run or are currently running in a cluster.
     	* Cancel running queries that were launched by any user in the cluster.
 	
-	
+
+SQL:
+---	
+1st highest Sal----------- select max(sal) from employees;
+2st highest Sal----------- select max(sal) from employees where sal < (select max(sal) from employees);
+
+nth highest sal----------- select top 1 sal from (select distinct top n sal from employees order by sal desc);
+						   select top 1 sal from (select distinct top 5 from employees order by desc) results order by sal;
+						   
+select sal, DENSE_RANK() over (order by sal DESC) as DENSERANK from employees;
+						   
+						with RESULTS as 
+							(
+							select sal, DENSE_RANK() over (order by sal DESC) as DENSERANK from employees
+							)						   
+						select top 1 sal from RESULTS where RESULTS.DESNSERANK=5;
+
 	
 	
 		

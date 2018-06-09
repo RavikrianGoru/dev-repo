@@ -19,7 +19,7 @@ public class CommonElementsInTwoArrays
                 }
             }
         }
-        System.out.println("Here, O(n^2) is the time complexity");
+        System.out.println("Here, O(m*n) is the time complexity");
         System.out.println(sb.substring(0, sb.lastIndexOf(",")));
     }
 

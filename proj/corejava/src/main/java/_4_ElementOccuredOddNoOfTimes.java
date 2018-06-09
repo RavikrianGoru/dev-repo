@@ -8,6 +8,8 @@ public class _4_ElementOccuredOddNoOfTimes {
 			result = result ^ ar[i];
 		}
 		return result;
+		
+		//to be continued
 	}
 
 	public static void main(String[] args) {

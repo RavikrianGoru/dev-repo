@@ -49,8 +49,8 @@ public class ObjectClassDemo implements Cloneable
         }
         try
         {
-            System.out.println("*. By using Class.forName(\"ClassName\").newInstance() :  It internally uses new key word :" + Class.forName("ObjectClassDemo").newInstance());
             System.out.println("*. By using Class.forName(\"ClassName\") : It gives Class details not instance:" + Class.forName("ObjectClassDemo"));
+            System.out.println("*. By using Class.forName(\"ClassName\").newInstance() :  It internally uses new key word :" + Class.forName("ObjectClassDemo").newInstance());
         }
         catch (InstantiationException e)
         {
