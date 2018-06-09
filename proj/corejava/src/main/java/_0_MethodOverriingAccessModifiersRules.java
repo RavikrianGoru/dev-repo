@@ -78,6 +78,19 @@ public class _0_MethodOverriingAccessModifiersRules
         System.out.println("1. private,static and final methods can not be overriden.");
         System.out.println("2. private,static methods of Parent class can be hide in child calls.");
         System.out.println("3. The access modifier for an overriding method can allow same/more, but not less, access than the overridden method.");
+        System.out.println("4. The overriding method must have same return type (or subtype) :covariant type");
+        
+        
+        //Overriding and Exception-Handling : Below are two rules to note when overriding methods related to exception-handling.
+        
+        //Rule#1 : If the super-class overridden method does not throws an exception, subclass overriding method can only throws the unchecked exception, 
+        //throwing checked exception will lead to compile-time error.
+        
+        //Rule#2 : If the super-class overridden method does throws an exception, subclass overriding method can only throw same, subclass exception. 
+        //Throwing parent exception in Exception hierarchy will lead to compile time error.
+        //Also there is no issue if subclass overridden method is not throwing any exception.
+        
+        
         MOA_Parent p = new MOA_Parent();
         MOA_Child c = new MOA_Child();
         p.defaultAMMethod();
