@@ -76,7 +76,7 @@ public class _0_MethodOverriingAccessModifiersRules
         System.out.println("private-->default-->protected--->public");
         System.out.println("-------Method overriding with access modifiers has to following rules--------");
         System.out.println("1. private,static and final methods can not be overriden.");
-        System.out.println("2. private,static methods of Parent class can be hide in child calls.");
+        System.out.println("2. private,static methods of Parent class can be hide in child class.");
         System.out.println("3. The access modifier for an overriding method can allow same/more, but not less, access than the overridden method.");
         System.out.println("4. The overriding method must have same return type (or subtype) :covariant type");
         
