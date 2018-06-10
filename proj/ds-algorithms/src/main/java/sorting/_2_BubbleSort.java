@@ -25,22 +25,43 @@ public class _2_BubbleSort
         return a;
     }
 
+    public static int[] recursiveSort(int a[], int size)
+    {
+        if (size == 1)
+            return a;
+        else
+        {
+            for (int i = 0; i < size - 1; i++)
+            {
+                if (a[i] > a[i + 1])
+                {
+                    a[i] = a[i] + a[i + 1];
+                    a[i + 1] = a[i] - a[i + 1];
+                    a[i] = a[i] - a[i + 1];
+                }
+            }
+            return recursiveSort(a, size - 1);
+        }
+    }
+
     public static void main(String[] args)
     {
-        // Bubble sort with in-place algo
-        // Buble sort is better one compare to Selection sort when element are already sorted. inner loop will get executed only once in this case.
-        // O(n2) Time complexity-Avg Case
+        System.out.println("Bubble sort : in-place algo");
+        System.out.println("Bubble sort is better than selection sort when array is already soreted then inner loop will get executed only once in this case.");
+
+        System.out.println("----- Time complexity: O(n^2)-->worst case, O(n) in best case if array already sorted.");
+        System.out.println("----- Space complexity: constant space");
+
         int a[] =
         { 3, 6, 1, 9, 2, 7, 5, 5, 7, 29 }; // {1, 2, 3, 5, 5, 6, 7, 7, 9, 29};
-        for (int each : a)
-        {
-            System.out.print(each + " ");
-        }
-        System.out.println();
-        for (int each : sort(a, a.length))
-        {
-            System.out.print(each + " ");
-        }
+
+        _0_SortingUtils.print(a);
+
+        System.out.println("Buble sort:iterative");
+        _0_SortingUtils.print(sort(a, a.length));
+
+        System.out.println("\nBuble sort:recursive");
+        _0_SortingUtils.print(recursiveSort(a, a.length));
 
     }
 

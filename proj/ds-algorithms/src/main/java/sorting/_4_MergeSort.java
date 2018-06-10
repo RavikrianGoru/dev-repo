@@ -69,34 +69,20 @@ public class _4_MergeSort
         }
     }
 
-    static void print(int a[])
-    {
-        System.out.println();
-        StringBuffer sb = new StringBuffer();
-        for (int each : a)
-        {
-            sb.append(each).append(" ");
-        }
-        System.out.print(sb.toString());
-    }
-
     public static void main(String[] args)
     {
+        System.out.println("Merge sort: Devide and conqure algo and recursive approach");
+        System.out.println("----- Time complexity: O(n log n)");
+        System.out.println("----- Space complexity: O(n)");
 
-        // Merge sort- O(n logn) in worst case it used recursive methods.
-        // devide and conquer : dive the problem into sub problems and recursive approaches.
-        // it not in-place algo: we create extra spaces and space complexity O(n)
-        // time complexity O(n log n)
-
+        System.out.println("Merge sort : not in-place algo. it uses O(n) space");
+        
         int a[] =
         { 3, 6, 1, 9, 2, 7, 5, 5, 7, 29 };
-        for (int each : a)
-        {
-            System.out.print(each + " ");
-        }
 
+        _0_SortingUtils.print(a);
         doMergeSort(a);
-        print(a);
+        _0_SortingUtils.print(a);
 
     }
 

@@ -21,21 +21,18 @@ public class _3_InsertionSort
     public static void main(String[] args)
     {
 
-        // It is not best algo but it is better than selection / bubble sort.
-        // array divided as sorted part and unsorted part.
-        // O(n2) Time complexity-Avg Case
+        System.out.println("It is not best sorting algo but is better than selection/bubble sort.");
+        System.out.println("Insertion sort takes maximum time to sort if elements are sorted in reverse order. And it takes minimum time (Order of n) when elements are already sorted.");
+        System.out.println("Use : when no of elements are small");
+
+        System.out.println("----- Time complexity: O(n^2)");
+        System.out.println("----- Space complexity: constant space");
 
         int a[] =
         { 3, 6, 1, 9, 2, 7, 5, 5, 7, 29 };
-        for (int each : a)
-        {
-            System.out.print(each + " ");
-        }
-        System.out.println();
-        for (int each : sort(a, a.length))
-        {
-            System.out.print(each + " ");
-        }
+
+        _0_SortingUtils.print(a);
+        _0_SortingUtils.print(sort(a, a.length));
 
     }
 

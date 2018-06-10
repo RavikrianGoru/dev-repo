@@ -2,48 +2,43 @@ package sorting;
 
 public class _1_SelectionSort
 {
-
     public static int[] sort(int a[], int size)
     {
         for (int i = 0; i < size - 1; i++)
         {
-            int iM=i;
-            for(int j=i+1;j<size;j++)
+            int iM = i;
+            for (int j = i + 1; j < size; j++)
             {
-                if(a[j]<a[iM])
-                    iM=j;
+                if (a[j] < a[iM])
+                    iM = j;
             }
-            if(i!=iM)
+            if (i != iM)
             {
-                a[i]=a[i]+a[iM];
-                a[iM]=a[i]-a[iM];
-                a[i]=a[i]-a[iM];
-                
+                a[i] = a[i] + a[iM];
+                a[iM] = a[i] - a[iM];
+                a[i] = a[i] - a[iM];
             }
-
         }
         return a;
     }
 
     public static void main(String[] args)
     {
-        // Selection sort with in-place algo
-        // for 1st iteration select min/max the swap in 1 st possition of array.
-        // for 2st iteration select min/max the swap in 2 nd possition of array..... and so on.
+        System.out.println("Selection sort : in-place algo");
+        System.out.println("1st iteration selects min/max and swap it in 1st posssion of array.");
+        System.out.println("2nd iteration selects 2nd min/max and swap it in 2nd posssion of array....... and so on.");
 
-        // O(n2) Time complexity-Avg Case
+        System.out.println("----- Time complexity: O(n^2)");
+        System.out.println("----- Space complexity: constant space");
+        System.out.println("The good thing about selection sort is it never makes more than O(n) swaps and can be useful when memory write is a costly operation.");
+
+        System.out.println("Ref: https://www.geeksforgeeks.org/selection-sort/");
 
         int a[] =
         { 3, 6, 1, 9, 2, 7, 5, 5, 7, 29 };
-        for (int each : a)
-        {
-            System.out.print(each + " ");
-        }
-        System.out.println();
-        for (int each : sort(a, a.length))
-        {
-            System.out.print(each + " ");
-        }
+
+        _0_SortingUtils.print(a);
+        _0_SortingUtils.print(sort(a, a.length));
 
     }
 
