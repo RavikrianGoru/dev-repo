@@ -48,8 +48,17 @@ public class OtherMaps
     public static void populateLinkedHashMap()
     {
         /* 
+         * LinkedHashMap is the Hashtable (synchronized HashMap) and linkedlist implementation of the Map interface , with predictable iteration order.
          LinkedHashMap: implementation Map and double linked list.
          : Insertion order
+         Note that this implementation is not synchronized.
+         
+         Collections.synchronizedMap()
+         
+         Insertion order of the LinkedHashMap does not get affected if a key is re-inserted into the LinkedHashMap object.
+         It first checks containsKey() method  before invoking put() method . If containsKey(K) returns true then the key is not added to the LinkedHashMap.
+
+         O(1) add,remove & contains operations.
          */
         
         System.out.println("=======LinkedHashMap====== allows null key, null value");

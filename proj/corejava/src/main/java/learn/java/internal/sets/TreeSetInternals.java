@@ -14,13 +14,15 @@ public class TreeSetInternals
     public static void main(String[] args)
     {
         /*
+         
+         TreeSet is like HashSet which contains the unique elements only but in a sorted manner. 
          TreeSet-  extends  AbstractSet and implements NavigableSet, Cloneable 
          
          private transient NavigableMap<E,Object> m;
          
          TreeSet contains NavigableMap(TreeMap) internally.
          
-         It takes O(n) time cost on add(-), remove(-) & contains().
+         It takes O(n)/O(log n) time cost on add(-), remove(-) & contains().
          
          Not synchronized.
          
@@ -40,6 +42,12 @@ public class TreeSetInternals
             return m.remove(o)==PRESENT;
          }
 
+
+         Collections.synchronizedSortedSet() thread safe Set
+
+         1) How to find index of element in TreeSet?
+            set.headSet(element).size()--- will give the index of element.
+            ad
 
          */
         

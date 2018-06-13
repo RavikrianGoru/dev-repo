@@ -75,7 +75,7 @@ public class _4_MergeSort
         System.out.println("----- Time complexity: O(n log n)");
         System.out.println("----- Space complexity: O(n)");
 
-        System.out.println("Merge sort : not in-place algo. it uses O(n) space");
+        System.out.println("Merge sort : Not in-place algo. it uses O(n) space");
         
         int a[] =
         { 3, 6, 1, 9, 2, 7, 5, 5, 7, 29 };

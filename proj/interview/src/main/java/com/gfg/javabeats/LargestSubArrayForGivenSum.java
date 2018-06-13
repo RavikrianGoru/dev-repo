@@ -1,4 +1,4 @@
-package org.corejava.interviews.google;
+package com.gfg.javabeats;
 
 public class LargestSubArrayForGivenSum
 {
@@ -26,6 +26,16 @@ public class LargestSubArrayForGivenSum
         return 0;
     }
 
+    private static int findSubArrayForGivenSum1(int[] a, int size, int sum)
+    {
+
+        int start = 0, end = 0, length = a.length;
+        int c_sum = 0;
+
+        // TO-DO
+
+        return 0;
+    }
 
     public static void main(String[] args) throws Exception
     {

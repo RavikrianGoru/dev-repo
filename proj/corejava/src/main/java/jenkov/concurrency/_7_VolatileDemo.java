@@ -1,15 +1,22 @@
 package jenkov.concurrency;
 /*
+
 The Java volatile Visibility Guarantee:
 ---------------------------------------
-In a multithreaded application where the threads operate on non-volatile variables, each thread may copy variables from main memory into a CPU cache while working on them, for performance reasons. 
-If your computer contains more than one CPU, each thread may run on a different CPU. That means, that each thread may copy the variables into the CPU cache of different CPUs.
+In a multi-threaded application where the threads operate on non-volatile variables,
+each thread may copy variables from main memory into a CPU cache while working on them, for performance reasons. 
+If your computer contains more than one CPU, each thread may run on a different CPU. That means, 
+that each thread may copy the variables into the CPU cache of different CPUs.
 
-With non-volatile variables there are no guarantees about when the Java Virtual Machine (JVM) reads data from main memory into CPU caches, or writes data from CPU caches to main memory. 
 
-The problem with threads not seeing the latest value of a variable because it has not yet been written back to main memory by another thread, is called a "visibility" problem.
+With non-volatile variables there are no guarantees about when the Java Virtual Machine (JVM) reads data from main memory into CPU caches, 
+or writes data from CPU caches to main memory. 
 
-By declaring the counter variable volatile all writes to the counter variable will be written back to main memory immediately. Also, all reads of the counter variable will be read directly from main memory. 
+The problem with threads not seeing the latest value of a variable because it has not yet been written back to main memory by another thread, 
+is called a "visibility" problem.
+
+By declaring the counter variable volatile all writes to the counter variable will be written back to main memory immediately. 
+Also, all reads of the counter variable will be read directly from main memory. 
 
 public class SharedObject 
 {
@@ -20,7 +27,8 @@ volatile is Not Always Enough:
 ------------------------------
  A volatile variable is no longer enough to guarantee correct visibility. 
  The short time gap in between the reading of the volatile variable and the writing of its new value, 
- creates an race condition where multiple threads might read the same value of the volatile variable, generate a new value for the variable, and when writing the value back to main memory - overwrite each other's values
+ creates an race condition where multiple threads might read the same value of the volatile variable, generate a new value for the variable, 
+ and when writing the value back to main memory - overwrite each other's values
 
 
 */

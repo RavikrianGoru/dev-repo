@@ -26,11 +26,20 @@ public class ThreadSafeHashMap
         5) Fail-fast: Throws ConcurrentModificationException when tries to do structural changes while iteration hashtable.
            modCount....
            
+        0) Collections.synchronizedMap(-) gives Map instance equalent to Hashtable. 
+        1) when we do any operations of this map it will locak entire Map object.
+        2) Fail-fast iterator
         
         0) ConcurrentHashMap is synchronized except retrieval operations.
-        1) default capacity=16, load factor:0.75
-        2) ConcurrentHashMap does not allow null for key/value
+            i.e while inseting entry in Map, it locks shared resources. while retrieving no lock.
+        1) It locks portion of Map object while doing write operations. 
+        2) default capacity=16, load factor:0.75
+        3) ConcurrentHashMap does not allow null for key/value
         
+        Performance:
+        -----------
+        Hashtable<= Collections.synchronizedMap() <  ConcurrentHashMap < HashMap
+         
         
         
         */

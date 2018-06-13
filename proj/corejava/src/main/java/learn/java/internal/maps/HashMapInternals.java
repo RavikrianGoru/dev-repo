@@ -249,6 +249,7 @@ public class HashMapInternals
     {
         System.out.println("==========HashMap<Integer,String>======== Wrappers have hashCode() & equals(-) implementation");
         HashMap<Integer,String> hm=new HashMap<>();
+        hm.get(1);
         System.out.println("Put (key,value) in Map--------- put(-,-) returns the old value for given key.");
         System.out.println("hm.put(1, \"Ravi\"): "+hm.put(1, "Ravi"));
         System.out.println("hm.put(2,\"Kiran\"): "+hm.put(2,"Kiran"));
