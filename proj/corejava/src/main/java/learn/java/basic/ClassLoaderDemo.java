@@ -2,6 +2,15 @@ package learn.java.basic;
 public class ClassLoaderDemo
 {
 
+    /*
+
+    1) Bootstarp Class Loader: developed in native PL such C/C++.
+       
+       
+
+
+
+     */
     public static void main(String[] args)
     {
         System.out.println("The classes available in <JAVA_HOME/jre/lib directory>. can be loaded by Boostrap class loader.");

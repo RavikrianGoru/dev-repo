@@ -26,7 +26,7 @@ public class _1_SelectionSort
     {
         System.out.println("Selection sort : in-place algo");
         System.out.println("1st iteration selects min/max and swap it in 1st posssion of array.");
-        System.out.println("2nd iteration selects 2nd min/max and swap it in 2nd posssion of array....... and so on.");
+        System.out.println("2nd iteration selects 2nd min/max and swap it in 2nd possision of array....... and so on.");
 
         System.out.println("----- Time complexity: O(n^2)");
         System.out.println("----- Space complexity: constant space");

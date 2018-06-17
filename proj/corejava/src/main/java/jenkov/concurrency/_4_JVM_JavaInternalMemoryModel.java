@@ -91,6 +91,13 @@ all updated variables will be flushed back to main memory again, regardless of w
 
 
 
+----------
+
+
+1) The most important thing to remember about Java memory management is "nullify" your reference.
+    Only objects that are not referenced are to be garbage collected.
+    
+    
 */
 
 public class _4_JVM_JavaInternalMemoryModel {

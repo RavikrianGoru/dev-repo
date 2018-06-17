@@ -31,6 +31,17 @@ volatile is Not Always Enough:
  and when writing the value back to main memory - overwrite each other's values
 
 
+When to use volatile variables:
+    1) Reading and writing long/double type data(64bit) data type and by default writing of long and double is not atomic and platform dependence.
+    Many platform perform write in long and double variable 2 step, writing 32 bit in each step, due to this its possible for a Thread to see 32 bit from two different write.
+
+    2) Volatile variable can be used to inform the compiler that a particular field is subject to be accessed by multiple threads, 
+    which will prevent the compiler from doing any reordering or any kind of optimization which is not desirable in a multi-threaded environment.
+    Without volatile variable compiler can re-order the code, free to cache value of volatile variable instead of always reading from main memory.
+
+    3) Another place where a volatile variable can be used is to fixing double checked locking in Singleton pattern.
+
+
 */
 
 class SharedResource

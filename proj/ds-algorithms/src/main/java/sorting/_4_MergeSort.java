@@ -23,9 +23,6 @@ public class _4_MergeSort
             right[i - mid] = a[i];
         }
 
-//        print(left);
-//        print(right);
-
         // do recurssive for sub arrays.
         doMergeSort(left);
         doMergeSort(right);
