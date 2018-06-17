@@ -92,9 +92,14 @@ public class _14_SynchronousQueue
      * SynchronousQueue is the default BlockingQueue used for the Executors.newCachedThreadPool() methods.
      * 
      */
-    public static void main(String[] args)
+    public static void main(String[] args) throws InterruptedException
     {
         final BlockingQueue<String> synchronousQueue = new SynchronousQueue<String>();
+ 
+//        System.out.println(synchronousQueue);
+//        synchronousQueue.put("Ravi");
+//        System.out.println(synchronousQueue.take());
+//        System.out.println(synchronousQueue);
 
         SynchronousQueueProducer queueProducer = new SynchronousQueueProducer(synchronousQueue);
         new Thread(queueProducer).start();
@@ -104,6 +109,7 @@ public class _14_SynchronousQueue
 
         SynchronousQueueConsumer queueConsumer2 = new SynchronousQueueConsumer(synchronousQueue);
         new Thread(queueConsumer2).start();
+
 
     }
 

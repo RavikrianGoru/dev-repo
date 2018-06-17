@@ -73,10 +73,16 @@ public class _13_PriorityBlockingQueue
 
     /*
      * 
-     * PriorityBlockingQueue is an unbounded collection. Ordering of elements in the PriorityBlockingQueue is done same as in PriorityQueue.
+     * PriorityBlockingQueue is an unbounded collection. 
+     * Ordering of elements in the PriorityBlockingQueue is done same as in PriorityQueue.
      * 
-     * We should see PriorityBlockingQueue as a PriorityQueue with added operations for blocking retrieval. All the rules of PriorityQueue applies
-     * here like elements are ordered based on their priority level among the elements.
+     * All elements inserted into the PriorityBlockingQueue must implement the java.lang.Comparable interface
+     * The elements thus order themselves according to whatever priority you decide in your Comparable implementation.
+     * 
+     * The Iterator does not guarantee to iterate the elements in priority order. 
+     *  
+     * We should see PriorityBlockingQueue as a PriorityQueue with added operations for blocking retrieval. 
+     * All the rules of PriorityQueue applies here like elements are ordered based on their priority level among the elements.
      * 
      * 
      * 
