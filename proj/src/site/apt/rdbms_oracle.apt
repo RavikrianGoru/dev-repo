@@ -1,0 +1,153 @@
+ -----
+ The APT format: 
+ -----
+ The Maven Team:
+ -----
+ -----
+
+RDBMS-ORACLE file
+~~~~~~~~~
+ 
+
+ 
+ 
++--------------------------+
+
+http://artoftesting.com/interviewSection/sql-interview-questions.html
+http://artoftesting.com/interviewSection/sql-queries-for-interview.html
+
+
+> set linesize 300;
+> set pagesize 100;
+
+Create table which holds duplicate records:
+-------------------------------------------
+create table d_emp
+(
+	empno number(4) not null,
+    ename varchar2(12),
+    mgr number(4)
+);
+
+create table d_proj
+(
+	empno number(4) not null,
+    proj varchar2(12),
+    sal number(7,2)
+);
+
+
+Insert records in tables:
+-------------------------
+insert into d_emp values(1001,'ravi',1007);
+insert into d_emp values(1001,'ravi',1007);
+insert into d_emp values(1002,'kiran',1001);
+insert into d_emp values(1003,'goru',1001);
+insert into d_emp values(1004,'kumar',1002);
+insert into d_emp values(1005,'kumar',1003);
+insert into d_emp values(1006,'kumar',1004);
+insert into d_emp(empno,ename) values(1007,'raj');
+
+insert into d_proj values(1001,'p1',25000.00);
+insert into d_proj values(1002,'p2',30000.00);
+insert into d_proj values(1003,'p4',35000.00);
+insert into d_proj values(1004,'p3',40000.00);
+insert into d_proj values(1005,'p4',20000.00);
+insert into d_proj values(1006,'p3',31000.00);
+insert into d_proj(empno,proj) values(1007,'p5');
+insert into d_proj values(1008,'p1',25000.00);
+
+SQL> select * from d_emp;
+SQL> select * from d_proj;
+
+1. Fetch the count of employees working in project 'p1'.
+	select count(*) from d_proj where proj='p1'
+2) Fetch emono who works in multiple projects.
+    select empno from d_proj group by empno having count(*)>1;
+3) Fetch empno, ename whose sal is 30000 to 40000
+    select distinct empno, ename from d_emp where empno in (select empno from d_proj where sal>=30000 and sal<=40000);
+4) Fetch proj and emp count project wise in descending order.
+	select proj,count(empno) empCountInProj from d_proj group by proj order by empCountInProj desc;
+*)
+5) Fetch emp name and his managers names. if emp is not has mgr show blank.
+	select distinct e1.ename ,e2.ename MgrName from d_emp e1 left join d_emp e2 on e1.mgr=e2.empno;
+*)
+6) Fetch emp name, sal info even if emp is not having sal.
+	select distinct e1.ename , e2.sal from d_emp e1 left join d_proj e2 on e1.empno=e2.empno;
+*)	
+7) Fetch all emp names who are also managers.
+	select distinct e1.empno, e1.ename from d_emp e1 inner join d_emp e2 on e1.empno=e2.mgr;
+		or
+	select distinct e1.empno, e1.ename from d_emp e1, d_emp e2 where e1.empno=e2.mgr;
+*)
+8) Fetch duplicate record from table;
+	select * from d_emp group by (empno,ename,mgr) having count(*) >1;
+*)
+9) Remove duplicate records without using temporary table.
+	 
+	 delete from d_emp where rowid not in (select max(rowid) from d_emp group by empno,ename,mgr);
+	 
+	 select rowid from d_emp where rowid not in (select max(rowid) from d_emp group by empno,ename,mgr);
+*)
+10) Fetch top n records based on sal of employee.(sal may be null for some employees)(records may be duplicate).
+	
+	select * from 
+		(select * from d_proj where sal is not null group by (empno,proj,sal) order by sal desc)
+	where rownum<=3;
+
+10) mySQL Query:
+		SELECT * FROM EmployeeSalary ORDER BY Salary DESC LIMIT N
+
+10) sql query
+		SELECT TOP N * FROM EmployeeSalary ORDER BY Salary DESC
+		
+*)
+11) Fetch top nth records based on sal of employee.(sal may be null for some employees)(records may be duplicate).
+
+	select * from 
+		(select * from 
+				(select * from 
+						(select * from d_proj where sal is not null group by (empno,proj,sal) order by sal desc)
+				where rownum<=3) 
+		order by sal)
+	where rownum<=1;
+	
+11) mySQl query
+		SELECT Salary FROM Employee ORDER BY Salary DESC LIMIT N-1,1;
+
+*)
+11) Write SQL query to find the 3rd highest salary from table without using TOP/limit keyword.
+	Ans. The below SQL query make use of correlated subquery wherein in order to find the 3rd highest salary the inner query will return the count of till 
+	we find that there are two rows that salary greater than other distinct salaries.		
+	
+	select sal from d_proj e1 
+		where 2 =( select count(distinct e2.sal) from d_proj e2 where e2.sal >e1.sal);
+
+	Note: Nth highest n-1 =(....)
+	
+	
+12) Fetch only odd rown from table.
+	
+	select E.empno, E.ename, E.mgr from (select Row_number() over(order by empno) as Rownumber, empno,ename,mgr from d_emp) E where MOD(E.Rownumber,2) =0;
+		or
+	select e1.empno, e1.ename ,e1.mgr from ( select rownum as RowNumber from d_emp order by empno) e1 where mod(RowNumber,2) =0;
+	
+12) Fetch only even rown from table.
+	
+	select E.empno, E.ename, E.mgr from (select Row_number() over(order by empno) as Rownumber, empno,ename,mgr from d_emp) E where MOD(E.Rownumber,2) =1;
+		or
+	select e1.empno, e1.ename ,e1.mgr from ( select rownum as RowNumber from d_emp order by empno) e1 where mod(RowNumber,2) =1;
+
+13) Copy entire table and data from one table to another.
+	select * info newTale from oldTable;-----(not working in oracle)
+
+13) Copy only structure f table from one to another.
+	select * info newTale from oldTable where 1=0;-----(not working in oracle)
+
+14) Fetch common records between two tables.
+		(select * from table1) intersect (select * from table2);
+15) Fetch records that are present in one table but not in another table.
+		(select * from table1) minus (select * from table2);
+
+	
++--------------------------+
