@@ -2,29 +2,9 @@ package com.jenkov.concurrent;
 
 import java.util.Date;
 
-class Lock
-{
-    private boolean isLocked = false;
-
-    public synchronized void lock() throws InterruptedException
-    {
-        while (isLocked)
-        {
-            wait();
-        }
-        isLocked = true;
-    }
-
-    public synchronized void unlock()
-    {
-        isLocked = false;
-        notify();
-    }
-}
-
 class Synchronizer
 {
-    private Lock lockObj = new Lock();
+    private CustomLock lockObj = new CustomLock();
 
     public synchronized void synchronizedPrint()
     {
@@ -44,20 +24,25 @@ class Synchronizer
     public void lockedPrint() throws InterruptedException
     {
         lockObj.lock();
-
-        long startTime = System.currentTimeMillis();
-        long endTime = 0;
-        System.out.println("Start time:" + new Date(startTime));
-        for (int i = 1; i <= 1000000; ++i)
+        try
         {
-            if (i % 1000000 == 0)
-                System.out.println(Thread.currentThread().getName() + ":" + i);
+            long startTime = System.currentTimeMillis();
+            long endTime = 0;
+            System.out.println("Start time:" + new Date(startTime));
+            for (int i = 1; i <= 1000000; ++i)
+            {
+                if (i % 1000000 == 0)
+                    System.out.println(Thread.currentThread().getName() + ":" + i);
+            }
+            endTime = System.currentTimeMillis();
+            System.out.println("End time:" + new Date(endTime));
+            System.out.println("Total time taken is :" + (endTime - startTime) + " milliSecs");
         }
-        endTime = System.currentTimeMillis();
-        System.out.println("End time:" + new Date(endTime));
-        System.out.println("Total time taken is :" + (endTime - startTime) + " milliSecs");
+        finally
+        {
+            lockObj.unlock();// Calling unlock() From a finally-clause
+        }
 
-        lockObj.unlock();
     }
 
 }
@@ -74,19 +59,19 @@ class MyThread extends Thread
     @Override
     public void run()
     {
-//        this.sync.synchronizedPrint();
-            try
-            {
-                this.sync.lockedPrint();
-            }
-            catch (InterruptedException e)
-            {
-                e.printStackTrace();
-            }// ordered
+        // this.sync.synchronizedPrint();
+        try
+        {
+            this.sync.lockedPrint();
+        }
+        catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        } // ordered
     }
 }
 
-public class LocksDemoVsSynchronizedBlocks
+public class _2_LocksDemoVsSynchronizedBlocks
 {
     public static void main(String[] args)
     {
