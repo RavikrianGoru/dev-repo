@@ -714,7 +714,7 @@ Thread 2  locks B, waits for A
  <<Starvation:>> If a thread is not granted CPU time because other threads grab it all, it is called "starvation".
 	 The solution to starvation is called <<fairness>> - that all threads are fairly granted a chance to execute.
 
-  <<A simple implementation of the Lock class could look like this:>>
+  <<A simple implementation of the Lock class could look like this: but it is not reentrant lock>>
  
  +-------+
 public class Lock{
@@ -741,7 +741,7 @@ public class Lock{
 }
  +-------+
 
-<To increase the fairness, use locks instead of synchronized blocks.>
+<To increase the fairness, use locks instead of synchronized blocks. the following is not reentrant lock>
 
  +------------+
  
@@ -767,13 +767,23 @@ class Lock
  
 public class Synchronizer
 {
-  Lock lockObj = new Lock();//it is not class, ||y implementation of Lock interface
+  Lock lockObj = new Lock();//it is not built-in class, ||y implementation of Lock interface
 
   public void doSynchronized() throws InterruptedException
   {
-    this.lockObj.lock();
-    //critical section, do a lot of work which takes a long time
-    this.lockObj.unlock();
+    this.lockObj.lock();---------->lock
+    try
+    {
+    	//critical section, do a lot of work which takes a long time
+    }
+    catch(Exception e)
+    {
+    	
+    }
+    finally
+    {
+    	this.lockObj.unlock();//recommended to unlock in finally block.
+    }
   }
 }
  +------------+ 
@@ -799,6 +809,55 @@ public class Synchronizer
  If a thread calls outer() there is no problem calling inner() from inside outer(), since both methods (or blocks) are synchronized on the same monitor object ("this"). 
  If a thread already holds the lock on a monitor object, it has access to all blocks synchronized on the same monitor object. This is called reentrance.
  		
+
++------------------+
+
+public class ReentrantCustomLock
+{
+    private boolean isLocked = false;
+    private Thread lockedThread = null;
+    private int lockCount = 0;
+
+    public synchronized void lock() throws InterruptedException
+    {
+        Thread callingThread = Thread.currentThread();
+        while (isLocked && lockedThread != callingThread)
+        {
+            wait();
+        }
+        isLocked = true;
+        lockCount++;
+        lockedThread = callingThread;
+    }
+
+    public synchronized void unlock()
+    {
+        if (Thread.currentThread() == lockedThread)
+        {
+            lockCount--;
+            if (lockCount == 0)
+            {
+                isLocked = false;
+                notify();
+            }
+        }
+        else
+        {
+            throw new IllegalMonitorStateException("Calling thread is not accuaired lock.");
+        }
+    }
+}
+
++------------------+
+
+
+<Read / Write Lock:>
+
+Read Access: No threads are writing / not requested for write access.
+Write Access: No threads are reading/writing.
+
+
+
 
 <<Decompiler:CFR>>
 
@@ -832,5 +891,21 @@ C:\Users\zgorrav\codebase\dev-repo\proj\corejava\target\classes\java8features\fu
  
  
  Serialization:
+ 	
+ 	All subtypes of a serializable class are themselves serializable.
  
+ 		private void writeObject(java.io.ObjectOutputStream out) throws IOException
+ 		private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException;
+ 		private void readObjectNoData() throws ObjectStreamException;
+
+	The writeObject method is responsible for writing the state of the object for its particular class so that the corresponding readObject method can restore it.
+	
+	ANY-ACCESS-MODIFIER Object writeReplace() throws ObjectStreamException;
+	
+	ANY-ACCESS-MODIFIER Object readResolve() throws ObjectStreamException;
+	
+	serialVersionUID: which is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization.
+	If different serialVersionUIDs throws InvalidClassException.
+	
+	
  
