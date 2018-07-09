@@ -147,6 +147,11 @@ public class HashMapInternals
     
     Problem2: Custom Class is mutable. when we change the object after putting into map. key hashCode will be different. map will return null for updated key object.
     
+    
+    To address this issue in Java 8 hash elements use balanced trees instead of linked lists after a certain threshold is reached. 
+    Which means HashMap starts with storing Entry objects in linked list, but after the number of items in a hash becomes larger than a certain threshold, 
+    the hash will change from using a linked list to a balanced tree. This improves the worst case performance from O(n) to O(log n)
+    
     */
         populateIntStringHashMap();
         populateEmpPojoStringMap();

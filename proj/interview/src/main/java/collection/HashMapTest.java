@@ -1,8 +1,8 @@
 package collection;
 
+import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Random;
-import java.util.TreeMap;
 
 class Dog implements Comparable<Dog>
 {
@@ -42,8 +42,8 @@ public class HashMapTest
 
     public static void main(String[] args)
     {
-        // HashMap<Dog, Integer> hashMap = new HashMap<Dog, Integer>();
-        TreeMap<Dog, Integer> hashMap = new TreeMap<Dog, Integer>();
+         HashMap<Dog, Integer> hashMap = new HashMap<Dog, Integer>();
+//        TreeMap<Dog, Integer> hashMap = new TreeMap<Dog, Integer>();
         Dog d1 = new Dog("red");
         Dog d2 = new Dog("black");
         Dog d3 = new Dog("white");

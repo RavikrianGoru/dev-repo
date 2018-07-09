@@ -1,32 +1,32 @@
 
+public class _3_GenerateAllSubStringsOfLength_k
+{
 
-public class _3_GenerateAllSubStringsOfLength_k {
-	
-	public static void allSubs(char[] data,String preFix,int length,int size)
-	{
-		if(size==0)
-		{
-			System.out.println(preFix);
-			return;
-		}
-		
-		for(int i=0;i<length;++i)
-		{
-		String newPrefix=preFix+data[i];
-		
-		allSubs(data,newPrefix,length,size-1);	
-		}
-	}
+    public static void allSubs(char[] data, String preFix, int length, int size)
+    {
+        if (size == 0)
+        {
+            System.out.println(preFix);
+            return;
+        }
+        for (int i = 0; i < length; ++i)
+        {
+            String newPrefix = preFix + data[i];
 
-	public static void main(String[] args) {
-		char[] data = "Ravi".toCharArray();
-		int size=2;
+            allSubs(data, newPrefix, length, size - 1);
+        }
+    }
 
-		int length=data.length;
-		String preFix="";
+    public static void main(String[] args)
+    {
+        char[] data = "Ravi".toCharArray();
+        int size = 2;
 
-		//recursive calls
-		allSubs(data,preFix,length,size);
-		
-	}
+        int length = data.length;
+        String preFix = "";
+
+        // recursive calls
+        allSubs(data, preFix, length, size);
+
+    }
 }
