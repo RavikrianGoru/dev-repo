@@ -31,8 +31,8 @@ public class _3_InsertionSort
         int a[] =
         { 3, 6, 1, 9, 2, 7, 5, 5, 7, 29 };
 
-        _0_SortingUtils.print(a);
-        _0_SortingUtils.print(sort(a, a.length));
+        _Utils.print(a);
+        _Utils.print(sort(a, a.length));
 
     }
 

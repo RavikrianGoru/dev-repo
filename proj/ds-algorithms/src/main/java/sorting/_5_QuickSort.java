@@ -47,9 +47,9 @@ public class _5_QuickSort
 
         int a[] =
         { 3, 6, 1, 9, 2, 7, 5, 5, 7, 29, 8 };
-        _0_SortingUtils.print(a);
+        _Utils.print(a);
         quickSort(a, 0, a.length - 1);
-        _0_SortingUtils.print(a);
+        _Utils.print(a);
     }
 
 }

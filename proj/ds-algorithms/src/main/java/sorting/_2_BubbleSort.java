@@ -55,13 +55,13 @@ public class _2_BubbleSort
         int a[] =
         { 3, 6, 1, 9, 2, 7, 5, 5, 7, 29 }; // {1, 2, 3, 5, 5, 6, 7, 7, 9, 29};
 
-        _0_SortingUtils.print(a);
+        _Utils.print(a);
 
         System.out.println("Buble sort:iterative");
-        _0_SortingUtils.print(sort(a, a.length));
+        _Utils.print(sort(a, a.length));
 
         System.out.println("\nBuble sort:recursive");
-        _0_SortingUtils.print(recursiveSort(a, a.length));
+        _Utils.print(recursiveSort(a, a.length));
 
     }
 

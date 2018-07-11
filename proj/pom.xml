@@ -18,7 +18,6 @@
         <module>corejava</module>
         <module>ds-algorithms</module>
         <module>interview</module>
-        <module>pocs</module>
     </modules>
 
     <distributionManagement>

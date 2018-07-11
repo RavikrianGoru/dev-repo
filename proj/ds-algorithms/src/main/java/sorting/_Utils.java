@@ -1,7 +1,15 @@
 package sorting;
 
-public class _0_SortingUtils
+import java.util.Arrays;
+
+public class _Utils
 {
+    /**
+     * We can use System.out.print(Arrays.toString(a));
+     * 
+     * This method prints data of array (int type)
+     * @param a
+     */
     public static void print(int a[])
     {
         System.out.println();
