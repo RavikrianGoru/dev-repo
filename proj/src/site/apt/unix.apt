@@ -72,7 +72,7 @@ tail -n +500 file.txt >tile2.txt
 
 sed '1,42d' test.sql > test2.sql
 
-	
+		
 We can connect remove machine: 
 Jconsole
 Java VisualVM
@@ -86,4 +86,15 @@ Example #3: DNA Problem- KMP algorithm
 
 
 https://discuss.codechef.com/questions/48877/data-structures-and-algorithms
+
+Print all environment variables with values
+> printenv
+> env
+
+>echo $SHELL
+
+Shell Scripting She-bang : The sign #! is called she-bang and is written at top of the script. It passes instruction to program /bin/sh
+
+
+
 	

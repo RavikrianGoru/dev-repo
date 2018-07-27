@@ -149,5 +149,10 @@ SQL> select * from d_proj;
 15) Fetch records that are present in one table but not in another table.
 		(select * from table1) minus (select * from table2);
 
-	
+
+*) An attribute which is not a part of GROUP BY clause can’t be used for selection. 
+   Any attribute which is part of GROUP BY CLAUSE can be used for selection but it is not mandatory.
+   Error Query:	SELECT ROLL_NO, ADDRESS, SUM(AGE) FROM STUDENT GROUP BY (ADDRESS);
+   	
+   	
 +--------------------------+

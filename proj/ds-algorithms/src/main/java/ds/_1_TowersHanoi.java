@@ -1,4 +1,4 @@
-package com.rk.learn.proj.ds;
+package ds;
 
 
 public class _1_TowersHanoi {

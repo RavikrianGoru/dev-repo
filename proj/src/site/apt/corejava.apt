@@ -908,4 +908,7 @@ C:\Users\zgorrav\codebase\dev-repo\proj\corejava\target\classes\java8features\fu
 	If different serialVersionUIDs throws InvalidClassException.
 	
 	
+ Generics:
  
+ 	Generic is used to define a logic/algorithm once and apply to any type of data.
+   
