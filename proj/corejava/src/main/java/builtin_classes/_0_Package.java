@@ -1,12 +1,13 @@
-package com.javapoint.packagedemo;
+package builtin_classes;
 
 
-public class PackageClassdemo {
+public class _0_Package {
 
 	public static void main(String[] args) {
 
 		Package p=Package.getPackage("java.lang");
-//		Package p=Package.getPackage("com.javapoint.packagedemo");
+//		Package p=Package.getPackage("builtin_classes");
+
 		System.out.println(p.getName());
 		System.out.println(p.getImplementationTitle());
 		System.out.println(p.getImplementationVendor());
@@ -16,5 +17,4 @@ public class PackageClassdemo {
 		System.out.println(p.getSpecificationVersion());
 		System.out.println(p.isSealed());
 	}
-
 }

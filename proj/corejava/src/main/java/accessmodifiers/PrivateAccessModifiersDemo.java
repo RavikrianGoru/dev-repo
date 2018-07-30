@@ -1,4 +1,4 @@
-package com.javapoint.accessmodifiers;
+package accessmodifiers;
 
 class A
 {

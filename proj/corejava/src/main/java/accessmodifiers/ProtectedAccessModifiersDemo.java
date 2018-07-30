@@ -1,4 +1,4 @@
-package com.javapoint.accessmodifiers;
+package accessmodifiers;
 
 import com.javapoint.subpack.PublicClassHavingProtectedInfo;
 

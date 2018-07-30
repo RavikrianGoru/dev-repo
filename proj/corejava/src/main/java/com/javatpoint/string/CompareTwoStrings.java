@@ -52,7 +52,7 @@ public class CompareTwoStrings {
 		String str2="Goru";
 		
 		System.out.println("str1: with new Operator:"+str1);
-		System.out.println("str2: with assigning in double quotes:"+str2);
+		System.out.println("str2: with literal:"+str2);
 		if(str1==str2)
 		{
 			System.out.println("st1==str2");
