@@ -1,6 +1,6 @@
 package com.javatpoint.threads;
 
-import com.javatpoint.exception.FinalizeMethodDemo;
+import exception.FinalizeMethodDemo;
 
 class GCScope
 {

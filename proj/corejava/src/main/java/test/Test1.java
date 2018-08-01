@@ -78,7 +78,7 @@ public class Test1 {
 
 	public static void main(String[] args) {
 
-		eventsMedalBoard3();
+	    eventsMedalsBoard();
 	}
 
 	public static void eventsMedalBoard3() {

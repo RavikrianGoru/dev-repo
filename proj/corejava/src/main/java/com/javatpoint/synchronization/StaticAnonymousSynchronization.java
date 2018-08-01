@@ -8,7 +8,7 @@ class Multiplication
 		synchronized (Multiplication.class) {
 		for(int i=1;i<=5;++i)
 		{
-			System.out.println(i*n);
+			System.out.println(Thread.currentThread().getName()+"- "+(i*n));
 			try{
 			Thread.sleep(500);
 			}catch(InterruptedException e)
