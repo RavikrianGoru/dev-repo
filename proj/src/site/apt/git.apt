@@ -73,6 +73,9 @@ Git Commands
  	git add <fileName>
  	git commit -m "msg"
  	git push origin HEAD:refs/for/release/1.8	
+ 	
+ 	Official:
+ 	git push origin HEAD:refs/for/master 
 
  12	Stash your local code changes, update your code with repo and then apply your local changes.
   	do some local file changes
