@@ -1,6 +1,7 @@
+package com.gfg.javabeats;
 import java.util.HashSet;
 
-public class T
+public class NoOfDistinctPairsForGivenSum
 {
     static int numberOfPairsHashing(int[] a, int k)
     {
@@ -71,7 +72,7 @@ public class T
         { 2, 4, 5, 1, 1, 45, 1, 46, 46, 1, 8, 46 };
         int k = 47;
         System.out.println(numberOfPairs(a, k));
-        System.out.println(numberOfPairsHashing(a, k));
+        System.out.println(numberOfPairsHashing(a, k));// This will couse an logical error if array is not sorted.
     }
 
 }
