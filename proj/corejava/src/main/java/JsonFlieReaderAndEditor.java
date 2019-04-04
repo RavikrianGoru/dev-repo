@@ -144,7 +144,7 @@ public class JsonFlieReaderAndEditor
         System.out.println(getInterfaceEntityMap(getJsonNode("json/standard.json")));
         System.out.println(getInterfaceEntityMap(getJsonNode("json/custom.json")));
         System.out.println(getCustomInterfaceEntityMap("prop/InterfaceEntity.properties"));
-
         System.out.println(combineEntityMaps(getInterfaceEntityMap(getJsonNode("json/standard.json")), getInterfaceEntityMap(getJsonNode("json/custom.json"))));
+        
     }
 }

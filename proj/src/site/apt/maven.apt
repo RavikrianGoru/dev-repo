@@ -39,6 +39,9 @@ Maven commands
  	
  11	mvn dependency:tree
  
+ 12 Sonar:
+	mvn clean org.jacoco:jacoco-maven-plugin:0.7.4.201502262128:prepare-agent install sonar:sonar
+ 
 +-------------------------------+
 
 <<How to display console data and store in file at a time:>>
@@ -49,3 +52,20 @@ Maven commands
 +-------------------------------+		
 
 
+
+
+setenv M2_HOME /opt/local/dev_tools/maven/latest;
+setenv M2 $M2_HOME/bin;
+setenv MAVEN_OPTS "-Xmx1024m -XX:MaxPermSize=256m -Xms256m";
+setenv JAVA_HOME /opt/local/dev_tools/java/x64/latest-1.8;
+setenv PATH $JAVA_HOME/bin:$PATH;
+setenv PATH $M2/:$PATH;
+
+
+
+mvn clean install -s ../settings.xml
+
+
+mvn -Dtest=TestCounterImpl#testIncrementSuccess test
+mvn test -Dtest=ContainerUtilsTest -DfailIfNoTests=false  -DlaunchLocalContainer=true
+mvn test -Dtest=ContainerUtilsTest

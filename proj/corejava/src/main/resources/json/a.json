@@ -1,0 +1,167 @@
+[{
+	"applicationName": "charging.charging",
+	"label": "Charging",
+	"priority": 10,
+	"functionIds": [],
+	"parentGroup": "charging"
+}, {
+	"applicationName": "tools.configurationTools",
+	"label": "Configuration Tools",
+	"path": "configuration-tools",
+	"priority": 10,
+	"functionIds": [],
+	"parentGroup": "tools"
+}, {
+	"label": "Import",
+	"configName": "tools.configurationTools.configimport",
+	"path": "/configuration-tools/import",
+	"parentApp": "tools.configurationTools",
+	"priority": 10,
+	"functionIds": []
+}, {
+	"label": "Export",
+	"configName": "tools.configurationTools.configexport",
+	"path": "/configuration-tools/export",
+	"parentApp": "tools.configurationTools",
+	"priority": 20,
+	"functionIds": []
+}, {
+	"applicationName": "customer.partyConfiguration",
+	"label": "Party Configuration",
+	"priority": 10,
+	"functionIds": [],
+	"parentGroup": "customer"
+}, {
+	"applicationName": "customer.partyCharSpecs",
+	"label": "Party Char Specs",
+	"priority": 20,
+	"functionIds": [],
+	"parentGroup": "customer"
+}, {
+	"label": "Prepaid Lifecycle Specs",
+	"configName": "prePaidLifeCycleSpec",
+	"path": "SELFHOST://cpm/ui/index.html#cpm/ui/pplcspecification",
+	"parentApp": "customer.partyConfiguration",
+	"priority": 10,
+	"functionIds": []
+}, {
+	"label": "Contact Medium Specs",
+	"configName": "contactMediumSpecification",
+	"path": "SELFHOST://cpm/ui/index.html#cpm/ui/contactmediumspecification",
+	"parentApp": "customer.partyConfiguration",
+	"priority": 20,
+	"functionIds": []
+}, {
+	"label": "Payment Method Specs",
+	"configName": "paymentMethodSpecification",
+	"path": "SELFHOST://cpm/ui/index.html#cpm/ui/paymentmethodspecification",
+	"parentApp": "customer.partyConfiguration",
+	"priority": 30,
+	"functionIds": []
+}, {
+	"label": "Customer Sales Representative Specs",
+	"configName": "customerSalesRepresentativeSpecification",
+	"path": "SELFHOST://cpm/ui/index.html#cpm/ui/customersalesrepresentativespecification",
+	"parentApp": "customer.partyConfiguration",
+	"priority": 40,
+	"functionIds": []
+}, {
+	"label": "Entity Lifecycle Action Specs",
+	"configName": "entityLifecycleActionSpecification",
+	"path": "SELFHOST://cpm/ui/index.html#cpm/ui/entitylifecycleactionspecification",
+	"parentApp": "customer.partyConfiguration",
+	"priority": 50,
+	"functionIds": []
+}, {
+	"label": "Party",
+	"configName": "partySpecification",
+	"path": "SELFHOST://cpm/ui/index.html#cpm/ui/partyspecification",
+	"parentApp": "customer.partyCharSpecs",
+	"priority": 10,
+	"functionIds": []
+}, {
+	"label": "Customer",
+	"configName": "customerSpecification",
+	"path": "SELFHOST://cpm/ui/index.html#cpm/ui/customerspecification",
+	"parentApp": "customer.partyCharSpecs",
+	"priority": 20,
+	"functionIds": []
+}, {
+	"label": "Contract",
+	"configName": "contractSpecification",
+	"path": "SELFHOST://cpm/ui/index.html#cpm/ui/contractspecification",
+	"parentApp": "customer.partyCharSpecs",
+	"priority": 30,
+	"functionIds": []
+}, {
+	"label": "Calender Entry",
+	"configName": "calendarEntrySpecification",
+	"path": "SELFHOST://cpm/ui/index.html#cpm/ui/calendarentryspecification",
+	"parentApp": "customer.partyCharSpecs",
+	"priority": 40,
+	"functionIds": []
+}, {
+	"label": "Party Identification",
+	"configName": "partyIdentificationSpecification",
+	"path": "SELFHOST://cpm/ui/index.html#cpm/ui/partyidentificationspecification",
+	"parentApp": "customer.partyCharSpecs",
+	"priority": 50,
+	"functionIds": []
+}, {
+	"label": "User",
+	"configName": "userSpecification",
+	"path": "SELFHOST://cpm/ui/index.html#cpm/ui/userspecification",
+	"parentApp": "customer.partyCharSpecs",
+	"priority": 60,
+	"functionIds": []
+}, {
+	"label": "Customer Sales Representative",
+	"configName": "csrSpecification",
+	"path": "SELFHOST://cpm/ui/index.html#cpm/ui/csrspecification",
+	"parentApp": "customer.partyCharSpecs",
+	"priority": 70,
+	"functionIds": []
+}, {
+	"applicationName": "product.catalogManagement",
+	"label": "Catalog Management",
+	"priority": 10,
+	"functionIds": [],
+	"parentGroup": "product"
+}, {
+	"applicationName": "customer.notifications",
+	"label": "Notifications",
+	"priority": 30,
+	"functionIds": [],
+	"parentGroup": "customer"
+}, {
+	"label": "Notifications",
+	"configName": "customer.notifications.notifications",
+	"parentApp": "customer.notifications",
+	"priority": 10,
+	"functionIds": []
+}, {
+	"label": "Text Segments",
+	"configName": "customer.notifications.textSegements",
+	"parentApp": "customer.notifications",
+	"priority": 20,
+	"functionIds": []
+}, {
+	"label": "Personalization Rules",
+	"configName": "customer.notifications.personalizationRules",
+	"parentApp": "customer.notifications",
+	"priority": 30,
+	"functionIds": ["NTF.c0000007"]
+}, {
+	"applicationName": "supervision.workflowManagement",
+	"label": "Workflow Management",
+	"priority": 10,
+	"functionIds": [],
+	"parentGroup": "supervision"
+}, {
+	"label": "Business Configurations",
+	"configName": "supervision.workflowManagement.workflows",
+	"path": "/workflow-management/businessconfigurations",
+	"parentApp": "supervision.workflowManagement",
+	"priority": 10,
+	"functionIds": ["CUS.c0000002"]
+}]

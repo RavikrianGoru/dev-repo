@@ -21,6 +21,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<jeluard.plantuml.maven.plugin.version>1.2</jeluard.plantuml.maven.plugin.version>
 		<apache.common.io.version>2.4</apache.common.io.version>
+		<guava.version>23.0</guava.version>
 	</properties>
 
 
@@ -31,7 +32,14 @@
 				<artifactId>org.apache.commons.io</artifactId>
 				<version>${apache.common.io.version}</version>
 			</dependency>
+			<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+			<dependency>
+				<groupId>com.google.guava</groupId>
+				<artifactId>guava</artifactId>
+				<version>${guava.version}</version>
+			</dependency>
 		</dependencies>
+
 	</dependencyManagement>
 
 	<build>

@@ -151,9 +151,9 @@ public class JsonChangesTest
         String tableName = attributeRoot.path("table").asText();
         String qualifier = attributeRoot.path("qualifier").asText();
         String resultset = cacheBaseLineTableRoot.get(tableName + qualifier);
-//        System.out.println(tableName);
-//        System.out.println(qualifier);
-//        System.out.println(resultset);
+        System.out.println("tableName :"+tableName);
+        System.out.println("qualifier:"+qualifier);
+        System.out.println("resultset:"+resultset);
 
         System.out.println("attributeRoot :"+attributeRoot);
         JsonNode inputRootFromTable1 = jsonMapper.readTree(resultset);

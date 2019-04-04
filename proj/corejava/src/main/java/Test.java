@@ -1,4 +1,39 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
+enum Capability {
+
+    CREATE_NEWSPEC("CREATE_NEWSPEC"),
+    CREATE_ABC("CREATE_ABC"),
+    CREATE_XYZ("CREATE_XYZ");
+    private final String value;
+    private final static Map<String, Capability> CONSTANTS = new HashMap<String, Capability>();
+
+    static {
+        for (Capability c: values()) {
+            CONSTANTS.put(c.value, c);
+        }
+    }
+    private Capability(String value) {
+        this.value = value;
+    }
+    @Override
+    public String toString() {
+        return this.value;
+    }
+    public String value() {
+        return this.value;
+    }
+    public static Capability fromValue(String value) {
+        Capability constant = CONSTANTS.get(value);
+        if (constant == null) {
+            throw new IllegalArgumentException(value);
+        } else {
+            return constant;
+        }
+    }
+}
 public class Test
 {
 
@@ -9,7 +44,15 @@ public class Test
        String inputCreeateOrReplaceCaps="CREATE OR REPLCE VIEW dfs.Custom.`DailyChaRefillSummaryView` AS SELECT CAST(DateId as INT) as DateId, CAST(CustomerId AS VARCHAR) as CustomerId, CAST(ContractId AS VARCHAR) as ContractId, CAST(SumOfRequestedRefilAmount AS DOUBLE) as SumOfRequestedRefilAmount, CAST(SumOfRefillAdjustAmt AS DOUBLE) as SumOfRefillAdjustAmt, CAST(UoM AS VARCHAR) as UoM from dfs.Custom.`Transformation/2017/12/20/DailyChaRefillSummary/0_0_0.parquet`";
        String input="CREATE TABLE dfs.Custom.`Transformation/2017/12/20/DailyChaRefillSummary` AS ( select  DateId, CustomerId, ContractId, SUM(RequestedRefilAmount) SumOfRequestedRefilAmount, SUM(RefillAdjustAmt) SumOfRefillAdjustAmt, UoM  from ( select  tb2.DateId as DateId, tb2.CustomerId as CustomerId, tb2.ContractId as ContractId, tb2.RequestedRefilAmount as RequestedRefilAmount, (COALESCE(tb2.RefillProductResultsArray.refillAdjustmentResult.refillAmount.amount.number,0)/ POW(10,COALESCE(tb2.RefillProductResultsArray.refillAdjustmentResult.refillAmount.amount.decimalPlaces,0))) as RefillAdjustAmt, COALESCE(tb2.RefillProductResultsArray.refillAdjustmentResult.refillAmount.unitOfMeasurement,'') as UoM  from ( select    '20171220' as DateId , tb1.customerInformation.customerId CustomerId , tb1.customerInformation.contractId ContractId, (COALESCE(tb1.refillInformation.requestedRefillAmount.amount.number,0)/POW(10,COALESCE(tb1.refillInformation.requestedRefillAmount.amount.decimalPlaces,0))) as RequestedRefilAmount, FLATTEN(tb1.refillResult.refillProductResults.`array`) as RefillProductResultsArray  from dfs.Staging.`Extraction/2017/12/20/ChaRefillEvent/*.parquet` as tb1 ) as tb2 ) as tb3 group by DateId, CustomerId, ContractId, UoM )";
        
-       show(input);
+       ArrayList<Capability >capabilities=new ArrayList<>();
+       capabilities.add(Capability.CREATE_ABC);
+       capabilities.add(Capability.CREATE_XYZ);
+       System.out.println(capabilities);
+       String importUri="/items";
+       if(capabilities!=null && !capabilities.isEmpty() && capabilities.contains(Capability.CREATE_NEWSPEC))
+           importUri=importUri+"?"+Capability.CREATE_NEWSPEC.toString().toLowerCase();
+       System.out.println(importUri);
+//       show(input);
     }
 
     private static void show(String inputCreeate)

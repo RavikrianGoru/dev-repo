@@ -13,7 +13,7 @@ public class _3_StreamTerminalOpts
     {
         ConcurrentHashMap<String,List<Double>> opriceMap =new ConcurrentHashMap<>();
         
-        Supplier<Stream<Integer>> streamSupplier=()->Stream.of(1,3,3,6,6);
+        Supplier<Stream<Integer>> streamSupplier=()->Stream.of(3,1,3,3,6,6);
 
         System.out.println("----- Optional<Integer> optn=streamSupplier.get().findFirst();");
         Optional<Integer> optn=streamSupplier.get().findFirst();

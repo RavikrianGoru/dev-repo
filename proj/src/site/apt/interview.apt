@@ -418,3 +418,76 @@ how many joins required to get data from 4 tables?
 
 
 
+===========
+Muthukumar:
+=========
+java,
+Rest,
+Batch jobs
+
+=========
+1.8
+==================
+java 1.8 featues:
+lambda expression:?
+Functional Interface?
+
+
+1) Design pattern?
+	Singleton....?
+	Builder Patern?
+	Immutable?
+	JDK,JRE,JVM----------->()
+	MarkerInterface?
+	WrapperClass
+	Enum?
+	Serialization Deserialation?----(Parent and Chaild class)
+		
+	
+	
+2) Collections?
+
+	fail-safe and fail-fast Iterator------()
+	Hashtable, HashMap, ConcurrentHashMap,Collections.synchronizedMap()?
+	ConcurrentModificationException?
+	UnsupportedOperationException?------()
+	HashMap works?
+	Custom Oject as hashKey?
+	
+
+
+Abstract class with all implemented methods?----()
+
+Queues?
+Synchronization?
+Diff StringBuffer StringBuilde?
+Try-with-Resource
+Comparable and Comparator? -----()
+String Constant pool.
+
+?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

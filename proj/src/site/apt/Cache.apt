@@ -1,0 +1,129 @@
+Google common utility library- core level:(Collection,Concurrencey,Cache......)
+com.google.guava latest version:
+
+
+com.google.common.base
+static imports recomended:
+
+	1) Preconditions
+			checkNotNull(-)---NPE
+			checkArgument(-,-,-);---IAE
+			checkState(-,-);-----ISE
+	2)Objects.toStringHelper(this)
+				   .add(-,-)
+				   .add(-,-)
+				   .add(-,-)
+				   .omitNullValues()
+				   .toString();
+	3) Stopwatch
+			use Stopwatch instead of System.nanoTime() or System.currentMillis()
+			Stopwatch stopwatch=new Stopwatch(0
+			stopwatch.start();
+			doSomeOperations();
+			long millis=stopwatch.elapsedMillis();
+			long nanos=stopwatch.elapsedTime(TimeUnit.NANOSECONDS);
+			stopwatch.stop();
+	4) String splitting
+			Splitter.on(',')
+					.trimResults()
+					.omitEmptyStrings()
+					.split(" hi, ,yes, bye,");
+		ex:
+			private static final Splitter SPLITTER=Splitter.on(',').trimResults();
+			
+			SPLITTER.split("Hi, this is , ravi, , , & kiran.")
+	5) String Joiner
+					.skipNulls()
+					.useForNull(String)
+		ex:
+			private static final Joiner JOINER = Joiner.on(", ").skipNulls();
+			JOINER.join("Ravi","kiran",null,"Goru");
+	6) CharMatcher 
+					.is('x')
+					.isNot('_')
+					.oneOf("aeiou")
+					.inRange('a','z')
+					
+					matchesAllOf,matchesAnyOf,matchesNoneOf,indexIn,lastIndexIn,countIn,removeFrom,retainFrom,trimFrom,trimLeadingFrom,trimAndCollapseFrom,
+					collapseForm,replaceFrom
+		ex: CharMatcher.DIGIT.or(CharMatcher.is('_')).retainForm(userInput);
+	7) Optional<T>
+	   Function<F,T>
+	   Predicate<F>
+
+com.goole.common.collect
+	
+	1) MultiSet<E> ||y Map<E,Integer>  only +ve count bag
+		size() returns total number of items not keys
+		count()
+		elementSet().iterator()
+	2) MultiMap<K,V>
+	3) BiMap<K1,K2> both key and values are unique.
+	4) Table<R,C,V> ||y to Map with two keys.
+com.google.common.hash
+	
+	1) HashCode hash = Hashing.murmur3_128().newHasher()
+											.putInt(_)
+											.putLogn(_)
+											.putString(-)
+											.putObject(_)
+											.putBytes(_)
+											.hash();
+				hash.asLong()
+				hash.asBytes()
+				hash.toString()
+		goodFastHash(-)
+		
+	2) BloomFilter--probabilistic set.
+	
+com.google.common.cache
+https://www.youtube.com/watch?v=keqKDhGIJZ8
+
+	1) in-memory cache, Thread-safe
+
+		*) Cache instances are internally implemented very similar to ConcurrentHashMap. so Thread-Safe.
+		*) Multiple thread access same absent key. It will block all threads and load method is called once and return results to all threads.		
+		*) load method does allow checked exceptions.
+		i) 
+		CacheLoader<String,String> loader=new CacheLoader<String, String>()
+                {
+                    @Override
+                    public String load(String key) throws Exception
+                    {
+                        return key.toUpperCase();
+                    }
+                };
+                
+         LoadingCache<String, String> cache=CacheBuilder.newBuilder().build(loader); 
+	
+		ii)
+		
+	
+	 
+	
+											
+	
+	
+	
+	   
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+			
+	

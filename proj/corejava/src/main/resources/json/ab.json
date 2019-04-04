@@ -1,0 +1,196 @@
+[{
+	"tpgName": "CPM",
+	"capabilities": [],
+	"consolidate": true,
+	"configurations": [{
+		"configName": "All",
+		"groupName":"Name/Other",
+		"entityName":"abc",
+		"configExport": {
+			"uri": "/cpm/configurationManagement/v1/export",
+			"method": "POST"
+		},
+		"functionIds": []
+	}, {
+		"configName": "prePaidLifeCycleSpec",
+		"configList": {
+			"uri": "/cpm/specificationManagement/v1/prePaidLifeCycleSpec/*?readDefined=true",
+			"dataMapping": {
+				"name": "(resources[*]).name",
+				"state": "(resources[*]).editState",
+				"id": "(resources[*]).id",
+				"type": "(resources[*]).entityType"
+			}
+		},
+		"configExport": {
+			"uri": "/cpm/configurationManagement/v1/export",
+			"method": "POST"
+		},
+		"configImport": {
+			"uri": "/cpm/configurationManagement/v1/prePaidLifeCycleSpec",
+			"method": "POST"
+		},
+		"functionIds": []
+	}, {
+		"configName": "contactMediumSpecification",
+		"configList": {
+			"uri": "/cpm/specificationManagement/v1/contactMediumSpecification/*",
+			"dataMapping": {
+				"name": "(resources[*]).name",
+				"description": "(resources[*]).description",
+				"state": "(resources[*]).versions..state",
+				"id": "(resources[*]).id",
+				"type": "(resources[*]).entityType"
+			}
+		},
+		"configExport": {
+			"uri": "/cpm/configurationManagement/v1/export",
+			"method": "POST"
+		},
+		"configImport": {
+			"uri": "/cpm/configurationManagement/v1/contactMediumSpecification",
+			"method": "POST"
+		},
+		"functionIds": []
+	}, {
+		"configName": "paymentMethodSpecification",
+		"configList": {
+			"uri": "/cpm/specificationManagement/v1/paymentMethodSpecification/*",
+			"dataMapping": {
+				"name": "(resources[*]).name",
+				"description": "(resources[*]).description",
+				"state": "(resources[*]).versions..state",
+				"id": "(resources[*]).id",
+				"type": "(resources[*]).entityType"
+			}
+		},
+		"configExport": {
+			"uri": "/cpm/configurationManagement/v1/export",
+			"method": "POST"
+		},
+		"configImport": {
+			"uri": "/cpm/configurationManagement/v1/paymentMethodSpecification",
+			"method": "POST"
+		},
+		"functionIds": []
+	}, {
+		"configName": "customerSalesRepresentativeSpecification",
+		"configList": {
+			"uri": "/cpm/specificationManagement/v1/customerSalesRepresentativeSpecification/*",
+			"dataMapping": {
+				"name": "(resources[*]).name",
+				"description": "(resources[*]).description",
+				"state": "(resources[*]).versions..state",
+				"id": "(resources[*]).id",
+				"type": "(resources[*]).entityType"
+			}
+		},
+		"configExport": {
+			"uri": "/cpm/configurationManagement/v1/export",
+			"method": "POST"
+		},
+		"configImport": {
+			"uri": "/cpm/configurationManagement/v1/customerSalesRepresentativeSpecification",
+			"method": "POST"
+		},
+		"functionIds": []
+	}, {
+		"configName": "entityLifecycleActionSpecification",
+		"configList": {
+			"uri": "/cpm/specificationManagement/v1/entityLifecycleActionSpecification/*",
+			"dataMapping": {
+				"name": "(resources[*]).name",
+				"description": "(resources[*]).description",
+				"state": "(resources[*]).state",
+				"id": "(resources[*]).id",
+				"type": "(resources[*]).entityType"
+			}
+		},
+		"configExport": {
+			"uri": "/cpm/configurationManagement/v1/export",
+			"method": "POST"
+		},
+		"configImport": {
+			"uri": "/cpm/configurationManagement/v1/entityLifecycleActionSpecification",
+			"method": "POST"
+		},
+		"functionIds": []
+	}, {
+		"configName": "partySpecification",
+		"configExport": {
+			"uri": "/cpm/configurationManagement/v1/export",
+			"method": "POST"
+		},
+		"configImport": {
+			"uri": "/cpm/configurationManagement/v1/entitySpecification/party",
+			"method": "POST"
+		},
+		"functionIds": []
+	}, {
+		"configName": "customerSpecification",
+		"configExport": {
+			"uri": "/cpm/configurationManagement/v1/export",
+			"method": "POST"
+		},
+		"configImport": {
+			"uri": "/cpm/configurationManagement/v1/entitySpecification/customer",
+			"method": "POST"
+		},
+		"functionIds": []
+	}, {
+		"configName": "contractSpecification",
+		"configExport": {
+			"uri": "/cpm/configurationManagement/v1/export",
+			"method": "POST"
+		},
+		"configImport": {
+			"uri": "/cpm/configurationManagement/v1/entitySpecification/contract",
+			"method": "POST"
+		},
+		"functionIds": []
+	}, {
+		"configName": "calendarEntrySpecification",
+		"configExport": {
+			"uri": "/cpm/configurationManagement/v1/export",
+			"method": "POST"
+		},
+		"configImport": {
+			"uri": "/cpm/configurationManagement/v1/entitySpecification/calendar",
+			"method": "POST"
+		},
+		"functionIds": []
+	}, {
+		"configName": "partyIdentificationSpecification",
+		"configExport": {
+			"uri": "/cpm/configurationManagement/v1/export",
+			"method": "POST"
+		},
+		"configImport": {
+			"uri": "/cpm/configurationManagement/v1/entitySpecification/partyIdentification",
+			"method": "POST"
+		},
+		"functionIds": []
+	}, {
+		"configName": "userSpecification",
+		"configExport": {
+			"uri": "/cpm/configurationManagement/v1/export",
+			"method": "POST"
+		},
+		"configImport": {
+			"uri": "/cpm/configurationManagement/v1/entitySpecification/user",
+			"method": "POST"
+		},
+		"functionIds": []
+	}, {
+		"configName": "csrSpecification",
+		"configExport": {
+			"uri": "/cpm/configurationManagement/v1/export",
+			"method": "POST"
+		},
+		"configImport": {
+			"uri": "/cpm/configurationManagement/v1/entitySpecification/csr",
+			"method": "POST"
+		},
+		"functionIds": []
+	}]
+}]

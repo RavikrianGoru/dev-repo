@@ -95,6 +95,8 @@ Git Commands
  	............
  	............
  
+ 14 Write console output into file : Any command |tee log.txt 
+ 	Ex: mvn clean install | tee log.txt
 +-------------------------------+
   	
  	
@@ -120,3 +122,20 @@ Git Commands
 	git mergetool <fileName>
 	git cherry-pick --continue
 +-------------------------------+	
+
+
+Pax:
+===
+Karafprovisioner.java
+
+run pax TCs at Container Level:
+================================
+	mvn test -Dtest=ContainerUtilsTest
+	mvn test -Dtest=LaunchOSGIContainerTest -DlaunchLocalContainer=true
+	mvn test -Dtest=ContainerUtilsTest -DfailIfNoTests=false  -DlaunchLocalContainer=true 
+	mvn test -Dtest=ContainerUtilsTest#testUserProfile | tee containerLog 
+	
+
+Connect karaf while pax is running:
+==================================
+	ssh karaf@localhost -p 7777

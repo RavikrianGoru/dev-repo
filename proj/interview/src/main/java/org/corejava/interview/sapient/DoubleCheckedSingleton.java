@@ -22,6 +22,5 @@ public class DoubleCheckedSingleton
         System.out.println("Project: EventGeneration.java locadsschemas and created CelDeserialization.java instance");
         System.out.println("private class variable and synchronized factory method: singleton but expensive due to synchronized method");
         System.out.println("when we use synchronized block we need double check and volatile class variable");
-
     }
 }
