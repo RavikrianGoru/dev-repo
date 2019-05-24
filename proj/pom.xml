@@ -14,11 +14,11 @@
     <description>${project.name} description: sample project with modules and site docs</description>
 
     <modules>
-        <module>compile</module>
-        <module>corejava</module>
-        <module>ds-algorithms</module>
+	<module>compile</module>
+	<module>corejava</module>
+	<module>ds-algorithms</module>
 	<module>interview</module>
-	<module>try<module>
+	<module>try</module>
     </modules>
 
     <distributionManagement>
