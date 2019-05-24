@@ -17,7 +17,8 @@
         <module>compile</module>
         <module>corejava</module>
         <module>ds-algorithms</module>
-        <module>interview</module>
+	<module>interview</module>
+	<module>try<module>
     </modules>
 
     <distributionManagement>
