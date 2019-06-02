@@ -1,8 +1,7 @@
 package accessmodifiers;
 
 import accessmodifiers.subpack.PublicClass;
-// import accessmodifiers.subpack.DefaultClass;
-// import accessmodifiers.subpack.ProtectedClass;
+//import accessmodifiers.subpack.DefaultClass;
 
 public class AccessModifiers extends PublicClass
 {

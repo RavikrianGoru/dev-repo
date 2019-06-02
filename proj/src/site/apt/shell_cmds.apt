@@ -1,0 +1,158 @@
+Shell
+-----
+* Download ubuntu....or any other linux OS
+* use any editors visual code
+* all commands are in lower case
+
+some basic commands
+> sudo su
+> who am i
+> pwd
+> mkdir
+> cd ..
+> ls
+> ls -lrt
+> uptime
+> clear
+
+
+1) cal command for current/specified month
+	> cal
+	> man cal
+	> cal 7 2016
+	> cal feb 2013
+	
+2) date command for date and time
+	> date
+	> date '+DATE:%m-%y%nTIME:%H:%M:%S'
+	
+3) touch is used to create empty text file
+	> touch test1 test2 test3
+	
+4) mkdir is used to create directory/folder
+	> mkdir rk
+	> mkdir rk/d1
+	
+5) cd is used to change directory
+	> cd rk/d1
+	> cd ..
+	> cd -
+	
+6) cat is used to view text file, with > file_name create a file and opened write mode.
+	> cat test				# it gives error 
+	> cat > test
+	This is test file.			ctrl+D
+	
+	> cat < test						# view the test file content.
+	> cat test1 test2 > test			# merges test1 and test2 content in test
+	
+7) mv is used to rename and move file/directory from one location to another
+	> mv test1 test2
+	> mv test2 ../rk/.
+
+8) rm is used to remove file/directory with -rf
+	> rm test1
+	> rm -r rk
+	> rmdir rk			# same as rm -r
+
+9) cp is used to copy a file from one location to another
+	> cp test1 test1_new
+	> cp test1 rk/.
+
+10) soft links: ls -s			# reference/pointer to original file/directory
+	hard links: ls 				# hard link is copy of file/directory
+	> ln old old_hard			# when add data in old that reflect in old_hard, remove old file but old_hard remains same
+	
+	> ln -s old old_soft		 
+	> rm old					# can not open ols_soft as link is broken (original file deleted)
+	
+11) ls
+	> umask						# given octal number of 3 digits octal number /7 
+		0022 - 666 = 644
+		4 r read
+		2 w write
+		1 x execute
+	> cat > test
+		I am feeling hungry
+		ctrl+D
+	
+	> ls						# lists all the file and directories in current directory
+	> ls l						# -l for log listing
+	> touch .hi					# create a hidden file file name start with .
+	> ls -a						# display all (normal and hidden files)
+	> ls -lrt
+
+12) chmod						# change permission of a file/directory
+	> touch test
+	> ls -l
+	> chmod 777 test			# 4 read, 2 write, 1 execute for owner group and others.
+	> chmod 444 test
+
+13) uname -a 					# kernal machine system processor os ... information
+	> uname -a
+
+14) file is used as ls but it tells more file or directory
+	> cat > ravi
+		This is ravi file bla bla.......
+		Some data not all
+		all are junk data
+		no useful inforation used full to none not even some.
+	> file *
+
+15) wc is used to get no of lines, no of words , no of chars: -l for no of lines, lly -w and -c
+	> wc ravi
+	> wc -l ravi
+	> wc -w ravi
+	> wc -c ravi
+	
+16) sort command:
+	> cat > animals
+		owls
+		camels
+		pigs
+		dogs
+		lions
+		elephant
+	> cat > humans
+		ravi
+		kiran
+		devi
+		surya
+		lakshmi
+		chinna
+	> sort animals 						# shows data in sorted form
+	> sort humans						# shows data in sorted form
+	> sort								# prompt console inputs ctrl+d the displays sorted order.
+
+17) cut
+	> cat > players						# here - is delimiter, by default tab, -d"" for dilimiter information -f n1,n2.... fields information
+		ravi-cricket-30
+		kiran-tennis-25
+		Kumar Babu-golf-37
+	> cat players
+	> cut -d"-"	-f 1,3 players
+	> cut -d"-" -f 1,2 players
+	> man cut
+
+18) dd used for conversion, if= input file, of= output file, conv= 
+	> cat > test
+	this is test file
+	AScci format file
+	> cat test
+	> dd if=test of=test_converted conv=ucase
+	> dd if=test of=test_new conv=ebcdic
+	> cat test_converted
+	> file *
+	> man dd							# dd can be used for format, char encoding, 
+
+19) man, banner, compress & uncompress command 
+	> man banner
+	> banner I am a bad programmer
+	> banner "I am a bad programmer"			# banner displays 10 chars only
+	> compress -v largefile.txt
+	> cat largefile.txt							# shows non printable
+	> zcat largefile.txt						# shows printable form
+	> uncompress largefile.txt
+	
+
+	

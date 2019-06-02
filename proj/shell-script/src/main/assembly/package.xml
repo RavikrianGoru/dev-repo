@@ -9,14 +9,8 @@
 	<includeBaseDirectory>false</includeBaseDirectory>
 	<files>
 		<file>
-			<source>src/main/resources/Sample.txt</source>
-			<outputDirectory>some_txt_file/</outputDirectory>
-			<destName>Sample-${project.version}.txt</destName>
-		</file>
-		<file>
-			<source>src/main/resources/old/Sample_old.txt</source>
-			<outputDirectory>some_txt_file/</outputDirectory>
-			<destName>Sample_old-${project.version}.txt</destName>
+			<source>src/main/resources/scripts/*</source>
+			<outputDirectory>shell-scripts-${project.version}/</outputDirectory>
 		</file>
 	</files>
 </assembly>

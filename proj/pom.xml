@@ -19,6 +19,7 @@
 	<module>ds-algorithms</module>
 	<module>interview</module>
 	<module>try</module>
+	<module>shell-script</module>
     </modules>
 
     <distributionManagement>

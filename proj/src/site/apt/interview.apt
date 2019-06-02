@@ -10,7 +10,8 @@ Caterpiller-
 
 Sample Interview Questions in Java
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Ref: https://www.journaldev.com/7153/core-java-tutorial#core-java-tutorial
+Ref: 
+https://www.journaldev.com/7153/core-java-tutorial#core-java-tutorial
 http://javaconceptoftheday.com/difference-between-shallow-copy-vs-deep-copy-in-java/
 
 
@@ -24,7 +25,6 @@ Can we overload main method or static method? Yes.
 Can we override the static method or main method? No
 
 Constructor returns a value but, what ?
-
 yes, that is current class instance (You cannot use return type yet it returns a value).
 
 Can we create a program without main method ?
@@ -146,90 +146,6 @@ Why String is immutable in java?
 	   String type the best suitable type for key in HashMap.
 String pool?	 	
 
-Spring:
-
-1) What are the types of Dependency Injection Spring supports?
-
-2) Types of IOC container in spring
-    BeanFactory
-    ApplicationContext
-
-
-3) Bean lifecycle in Spring framework
-	Instantiate: First the spring container finds the bean’s definition from the XML file and instantiates the bean.
-	Populate properties: Using the dependency injection, spring populates all of the properties as specified in the bean definition.
-	Set Bean Name: If the bean implements BeanNameAware interface, spring passes the bean’s id to setBeanName() method.
-	Set Bean factory: If Bean implements BeanFactoryAware interface, spring passes the beanfactory to setBeanFactory() method.
-	Pre Initialization: Also called post process of bean. If there are any bean BeanPostProcessors associated with the bean, Spring calls postProcesserBeforeInitialization() method.
-	Initialize beans: If the bean implements IntializingBean,its afterPropertySet() method is called. If the bean has init method declaration, the specified initialization method is called.
-	Post Initialization: – If there are any BeanPostProcessors associated with the bean, their postProcessAfterInitialization() methods will be called.
-	Ready to use: Now the bean is ready to use by the application
-	Destroy: If the bean implements DisposableBean , it will call the destroy() method
-
-
-4) What is Spring IOC container
-
-5) What bean scopes does Spring support
-	Singleton: This scopes the bean definition to a single instance per Spring IoC container.
-	Prototype: This scopes a single bean definition to have any number of object instances.
-	Request: This scopes a bean definition to an HTTP request. Only valid in the context of a web-aware Spring ApplicationContext
-	Session: This scopes a bean definition to an HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
-	Global-session: This scopes a bean definition to a global HTTP session. Only valid in the context of a web-aware Spring ApplicationContext.
-
-5a) In which scenario, you will use singleton and prototype scope
-
-6) Difference between BeanFactory and ApplicationContext(BeanFactory + spring AOP, message resource handling for i18n etc.)?
-7) What is autowiring in spring? What are the autowiring modes(no,byName,byType,constructor)?
-
-7) which ViewResolver class widely used ?
-org.springframework.web.servlet.view.InternalResourceViewResolver class is widely used
-
-8) What does @Controller annotation,@RequestMapping  
-
-Webservices
-==========
-http://docs.oracle.com/javaee/6/tutorial/doc/gijvh.html
-
-(JAX-WS)? (JAX-RS)?
-
-How can we decide which type of web service to use?
-
-JAX-WS: addresses advanced QoS requirements commonly occurring in enterprise computing.provide standards for security and reliability.
-
-Web Services Description Language (WSDL)?
-Diff b/w SOAP and RestFul?
-
-
-
-Java API for XML Web Services (JAX-WS) and Java API for RESTful Web Services (JAX-RS)
-
-
-JAX-RS provides the functionality for Representational State Transfer (RESTful) web services.
-
-Exaplain different annotations u used in RestFul webservices?
-@Path,@GET,@PUT,@POST,@DELETE,@HEAD,
-@PathParam
-@QueryParam
-@Consumes
-@Produces
-@Provider
-
-Diff @PUT and @POST?
-How can you validate a path param? www.facebook.com/viswa123
-
-@Path("users/{username: [a-zA-Z][a-zA-Z_0-9]*}")
-In this example the username variable will match only user names that begin with one uppercase or lowercase letter and zero or more alphanumeric characters and the underscore character. If a user name does not match that template, a 404 (Not Found) response will be sent to the client.
- 
-Can we maintain user session in web services?
-Web services are stateless so we can’t maintain user sessions in web services.
-
-Can you tell some Headers in HTTP Request?(Accept, Context-Type)
-
-
-https://localhost:8080/UserManagement/rest/UserService/users/1
-If you hit the above url using your browser or using a java based client or using Postman, 
-The result will always be the User XML whose Id is 1 because the server does not store any information about the client.
-
 
 
 OOPS concepts?
@@ -262,10 +178,6 @@ JVM, JDK and JRE?
 
 1)will finally block executes after exit, break, return.
 A)finally executes in all senarios except exit which causes JVM failure/terminating the process. Also at power shutdown finally/OS failover wont executes.
-
-
-
-
 
 Singleton:
 

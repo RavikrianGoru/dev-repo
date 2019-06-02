@@ -1,0 +1,923 @@
+Use IDE: visual code studio
+
+Shell
+	Shell interprets user commands or shell file which contains commands.
+	No need to compile
+
+Types of shells:
+	>cat /etc/shells
+	/bin/sh
+	/bin/dash
+	/bin/bash
+	/bin/rbash
+
+		
+	>which bash
+	/bin/bash
+	
+	>mkdir rk_shell
+	>cd rk_shell
+	
+	
+	we can give any name for shell file with .sh extension or not
+	>touch hello.sh
+	>touch hello
+	>ls -al
+	
+1)	
+	vi hello
+	esc+i
+		#!/bin/bash
+		#here #! is Shabang 
+		echo "Hellow World"
+	esc+ wq!
+	
+	./hello
+	Permission denined
+	
+	chmod +x hello
+	
+	./hello
+	
+2) Comments start with # This is comments text
+
+3) Variables
+	System Variable: Created and maintained by OS, Defined in Capital case
+			echo $PATH
+			echo $BASH
+			echo $BASH_VERSION
+			echo $PWD
+			echo $MAIL
+			echo $HOME
+			echo $LOGNAME
+			env
+	User defined variables:Created and maintained by user.
+			name=Mark
+			age=30
+			echo $name $age
+			echo The name is $name and age\'s is $age
+	The variable should not start with number
+4) read from terminal/keyboard:
+	echo "Enter you name:"
+	read name1
+	echo "User name is $name"
+	
+	
+	echo "Enter 3 names:"
+	read name1 name2 name3
+	echo "Names are $name1 $name2 $name3" 
+	
+	# read -p sometext var1 var2 ....
+	# read -sp, here -s for secreate for password
+	read -p "User Name: " user_var
+	read -sp "Password:" pass_var
+	echo "User : $user_var"
+	echo "Password : $pass_var"
+	
+	#read -a, reads inputs as array
+	echo "Enter names:"
+	read -a names
+	echo "Names are ${names[0]} ${names[1]} & ${names[2]}
+	
+	
+	#read without any variable that input will go to built in variables $REPLY
+	
+	echo "Enter Name:"
+	read
+	echo $REPLY
+	
+5) Command line args: $0 $1 $2 $3, $@ , $# 
+
+	> ./shellScriptName.sh $1 $2 $3.....
+	$0 holds shellScriptName.sh
+	$1 1st argument
+	.
+	.
+	.
+	$@ array of all args
+	$# number of args
+	
+	> ./shellScriptName.sh $1 $2 $3.....
+	
+	cmd line args are stored in default variables $@
+	
+	Convert $@ in to array
+	args=("$@")
+	
+	echo $@
+	echo ${args[0]} ${args[1]} ${args[2]}
+	echo "Number of cmd args $#"
+	
+6) if statement in script:
+	
+	1)
+	if [ condition ]
+	then
+		statements
+	fi
+	
+	2)
+	if [ condition ]
+	then
+		statements
+	else
+		statements
+	fi
+	
+	3)
+	if [ condition ]
+	then
+		statements
+	elif [ condition ]
+	then
+		statements
+	else
+		statements
+	fi
+	
+	
+	
+	integer operators
+	-----------------
+	-eq      if [ "$a" -eq "$b" ]
+	-ne	     
+	-gt
+	-ge
+	-lt
+	-le
+	<		 (( "$a" < "$b"))
+	<=
+	>
+	>=
+	
+	string operators
+	----------------
+	=		if [ "$a" -eq "$b" ]
+	==
+	!=
+	<	 	if [[ "$a" < "$b" ]]
+	>
+	-z striing is null has 0 length
+	
+7) file test operator:
+	
+	echo -e "some text \c"
+	\c 
+	-e enables the interpretation in echo
+	
+	
+	file_name=abc.txt
+	
+	if [[ -e $file_name ]]
+	then 
+		echo "file is exist"
+	else
+		echo "file is not exist"
+	fi
+	
+	file operations
+	---------------
+	-e 		is file exist or not
+	-f 		is file or not(regular file or not)
+	-d 		is directory or not
+	-b		is block special/binary file or not 
+	-c		is char/text file or not
+	-s 		is empty file or not
+	-r 		is file has read permission
+	-w		is file has write permission
+	-x 		is file has executable permission
+	
+8) AND logical operator && , -a 
+	
+	age=18
+	if [ $age -gt 18 ] && [ $age -lt 100 ]
+	
+	or
+	
+	if [ $age -gt 18 -a $age -lt 100 ]
+	
+	or
+	
+	if [[ $age -gt 18 &&  $age -lt 100 ]]
+
+	
+9) OR logical operator || 	
+		
+	age=18
+	if [ $age -gt 18 ] || [ $age -lt 100 ]
+	
+	or
+	
+	if [ $age -gt 18 -o $age -lt 100 ]
+	
+	or
+	
+	if [[ $age -gt 18 ||  $age -lt 100 ]]
+	
+	
+10) Arithmetic operations: on integers
+	
+	echo $(( a + b ))	echo $(expr $a + $b )
+	echo $(( a - b ))	echo $(expr $a - $b )
+	echo $(( a * b ))	echo $(expr $a \* $b )
+	echo $(( a / b ))	echo $(expr $a / $b )
+	echo $(( a % b ))	echo $(expr $a % $b )
+	
+	
+11) Arithmetic operations: on floating number
+	
+	shell does not support by f=default arithmetic operaions on decimal numbers.
+	Need bc tool. bc - basic calculator
+	man bc
+	a=24.5
+	b=2.5
+	
+	echo "12.5+3.3" | bc
+	echo "12.5-3.3" | bc
+	echo "12.5*3.3" | bc
+	echo "12.5/3.3" | bc				#it will result interger
+	echo "scale=2:12.5/3.3" | bc		#it it results 2 decimal points
+	echo "12.5%3.3" | bc
+	
+	echo "$a+$b" | bc
+	echo "$a-$b" | bc
+	echo ""$a*$b" | bc
+	echo "$a/$b" | bc				#it will result interger
+	echo "scale=2:$a/$b" | bc		#it it results 2 decimal points
+	echo "$a%$b" | bc
+	
+	echo "scale=3:sqrt($a)" | bc -l			#-l is for calling math library
+	echo "scale=3:3^4" | bc -l			#-l is for calling math library
+	
+12) case statement: 
+
+	case expression in
+		
+		pattern1 )
+			statements ;;
+		pattern2 )
+			statements ;;
+	esac
+	
+	
+	ex: case_script.sh
+	--------------------
+	#! /bin/bash
+	
+	vehicle=$1
+	
+	case $vehicle in
+		"car" )
+			echo "Rent of $vechival is Rs. 1000" ;;
+		"van" )
+			echo "Rent of $vechival is Rs. 1500" ;;
+		"bicycle" )
+			echo "Rent of $vechival is Rs. 500" ;;
+		* )
+			echo "Unknow vehicle $vehicle" ;;
+	esac
+	---------------------
+	>./case_script.sh car
+	>./case_script.sh bicycle
+	>./case_script.sh van
+	>./case_script.sh truck
+	
+13)  
+			 
+	ex: case_pattern_script.sh
+	------------------
+	
+	echo -e "Enter char : \c:"
+	read value
+	
+	case $value in
+		[a-z] )
+			echo "Entered char is a-z = $value" ;;
+		[A-Z] )
+			echo "Entered char is A-Z = $value" ;;
+		[0-9] )
+			echo "Entered char is 0-9 = $value" ;;
+		? )
+			echo "Entered char special char = $value" ;;
+		* )
+			echo "Unknown char = $value" ;;
+	esac
+	--------------------
+	if it is not working as case censitive
+	set env variable in console as below
+	>LANG=c
+	>./case_pattern_script.sh 
+		a
+	>./case_pattern_script.sh
+		D 
+	>./case_pattern_script.sh A
+		$
+	>./case_pattern_script.sh A
+		rggfg
+	>./case_pattern_script.sh A
+		8
+	for more information about pattern refer wiki for patterns.
+
+14) arrays in shell, bash support 1-d array.
+
+	names=('ravi' 'kiran' 'chinna')
+	echo "${names[@]}"		# all elements 
+	echo "${names[0]}"
+	echo "${names[1]}"
+	echo "${names[2]}"
+	echo "${!names[@]}"		# indexes 0 1 2
+	echo "${#names[@]}"		# length of array 3
+	names[3]='devi'			# add new element
+	names[10]='Kavi'		# add new element
+	echo "${names[@]}		
+	names[0]='Ravi'	 		# update existing element
+	echo "${names[@]} 
+	
+	unset names[1]			# remove element
+	echo "${names[@]}		 
+	
+	
+	name=RavikiranGoru
+	echo "${name[@]}"		# prints RavikiranGoru
+	echo "${name[0]}"		# prints RavikiranGoru
+	echo "${name[1]}"		# prints nothing
+	echo "${#name[@]}"		# prints 1 as length is 1
+	
+15) while loop:
+
+	while [ condition ]
+	do
+		statement1
+		statement 2
+		.
+		.
+	done
+	
+	ex: while_script.sh
+	-------------------
+	n=1
+	
+	while [ $n -le 10 ]
+	do
+		echo "$n"
+		n=$(( n+1 ))
+		#(( n++ ))
+		#(( ++n ))
+	done
+		
+		
+	ex: while_script.sh
+	-------------------
+	n=1
+	while [[ $n <= 10 ]]
+	do
+		echo "$n"
+		n=$(( n+1 ))
+		#(( n++ ))
+		#(( ++n ))
+	done
+	
+	
+16) while with sleep:
+
+	ex: while_sleep.sh
+	------------------
+	n=1
+	while [ $n -le 10 ]
+	do
+		echo "$n"
+		(( n++ ))
+		sleep 1		# sleep for 1 sec
+	done
+	
+	ex: while_onpe_terminal.sh 				# how to open 3 +3 terminal by using bash script
+	--------------------------
+	n=1
+	while [ $n -le 3 ]
+	do
+		echo "Opening $n terminal"
+		gnome-terminal &
+		xterm &
+		(( n++ ))
+		sleep 5
+	done
+
+17) reading file by while:
+	
+	#create abx.txt whit some date
+	
+	ex: while_read_file.sh
+	---------------------
+	while read p
+	do
+		echo $p
+	done < abc.txt		# < abc.txt redirection abc.txt is mapper to p
+	
+	
+	ex: while_read_file.sh
+	----------------------
+	cat abc.txt | while read p
+	do
+		echo $p
+	done
+	
+	ex: while_read_file.sh
+	----------------------
+
+	# The above process some times wont work if file contains some special chars.
+	# here IFS=<some some space, -r preents backslash escapes interpreted.
+	# assume /etc/ab.txt is available
+	# reading file content can be done by filedescriptors
+	
+			
+	while IFS= read -r line
+	do 
+		echo $line
+	done < abc.txt
+	
+	or
+	
+	while IFS=' ' read -r line
+	do 
+		echo $line
+	done < /etc/abc.txt
+	
+	
+18) Until loop: similar to while loop
+	# here until stops when condition false.
+
+	until [ condition ]
+	do
+		statements
+		statements
+		.
+		.
+		
+	done
+	
+	ex:until_script.sh
+	------------------
+	n=1;
+	util [ $n -gt 10 ]
+	do
+		echo "$n"
+		(( n++ ))
+	done
+	
+	
+	
+	ex:until_script.sh
+	-----------------
+	n=1
+	until (( $n > 10 ))
+	do
+		echo "$n"
+		(( ++n ))
+	done
+
+	
+19) for-loop:
+	
+	1) syntax
+	
+	for variable in 1 2 3 4 5 .. n
+	do
+		command1
+		command2
+		..
+		..
+	done
+	
+	2) syntax
+	
+	for variable in file1 file2 file3
+	do
+		command1 on $variable
+		command2
+		..
+	done
+	
+	3) syntax
+	
+	for output in $(linux-or-unix-command)
+	do
+		command1
+		command2
+		..
+	done
+	
+	4) syntax
+	
+	for (( EXP1; EXP2; EXP3 ))
+	do
+		command1
+		command2
+		..
+	done
+	
+	
+	ex: for_loop.sh
+	---------------
+	for i in 1 2 3 4 5
+	do
+		echo "$i"
+	done
+
+	ex: for_loop.sh when you have bash version > 3, echo $BASH_VERSION
+	---------------
+	for i in {1..10} 				# {start..end}
+	do
+		echo "$i"
+	done
+	
+	ex: for_loop.sh
+	---------------
+	for i in {1..10..2}				 # {start..end..incrent}
+	do
+		echo "$i"
+	done
+	
+	for i in {10..0..-2}			 # {start..end..decrement}
+	do
+		echo "$i"
+	done
+	
+	ex: for_loop.sh
+	---------------
+	
+	for (( i=0; i<=10; i++ ))
+	do
+		echo $i
+	done
+
+20)	
+	ex: for_loop.sh with commands and files.
+	---------------
+	
+	for cmd in ls pwd date
+	do 
+		echo "-----------$cmd-----------"
+		$cmd
+	done
+	
+	ex: for_loop.sh # if your directory has a file/dir name has spaces it will give some warnings
+	---------------
+	
+	for item in *
+	do
+		if [ -d $item ]
+		then
+			echo "$item is directory"
+		elif [ -f $item ]
+			echo "$item is file"
+		else
+			echo "$item is not dir or file"
+		fi
+	done
+	
+		
+21) select loop: select loop used with case
+	syntax:
+	------
+	
+	select variable in list
+	do
+		command1
+		command2
+		..
+		..
+	done
+	
+	ex: select_loop.sh 
+	------------------
+	select name in ravi kiran devi raju
+	do
+		echo "$name is selected"
+	done
+	
+	output:
+	------
+	1) ravi
+	2) kiran
+	3) devi
+	4) taju
+	#? 2				# prompt 
+	kiran is selected
+	
+	
+	ex: select_loop_case.sh
+	----------------------
+	
+	select name in ravi kiran devi chinna
+	do
+		case $name in
+			"ravi" )
+				echo "ravi is selected"
+				;;
+			"kiran: )
+				echo "kiran is selected"
+				;;
+			"devi" )
+				echo "devi is selected"
+				;;
+			"chinna": )
+				echo "chinna is selected"
+				;;
+			* )
+				echo "Default case Error. Please provide 1 to 4"
+		esac
+	done
+
+22) break and continue statements:
+
+	for (( i=1; i<=10; i++ ))
+	do 
+		if [ $i -gt 5 ]
+		then
+			break
+		fi
+		echo "$i"
+	done
+	
+	
+	for (( i=1; i<=10; i++ ))
+	do 
+		if [ $i -eq 3 -0 $i -eq 6 ]
+		then
+			continue
+		fi
+		echo "$i"
+	done
+	
+23) functions: 
+
+	syntax:
+	------
+	
+	function funname(){
+		commands
+	}
+
+	syntax:
+	------
+	
+	funName(){
+		commands
+	}
+	
+	ex: function_hello.sh
+	---------------------
+	function hello(){
+		echo "hello Shell..."
+	}
+	
+	quit(){
+		exit
+	}
+	
+	print(){
+		echo "$1 $2"
+		echo $1 $2
+	}
+	
+	echo "start of script"
+	hello
+	print "Hello" "Ravi" 
+	quit
+	echo "end of script"
+
+	---------------------
+
+24) local variables: all variables are global in shell script
+	
+	function print(){
+		name=$1
+		echo "The name is $name"
+	}
+	
+	name="Ravi"
+	echo "This is $name :Befor"		# here name is Ravi
+	print "RAVI"
+	echo "This is $name :After"		# here name is RAVI as we did not use local in print function
+	----------------------
+	function print(){
+		local name=$1
+		echo "The name is $name"
+	}
+	
+	name="Ravi"
+	echo "This is $name :Befor"		# here name is Ravi
+	print "RAVI"
+	echo "This is $name :After"		# here name is Ravi as we used 'local' in print function
+	
+25) function examples:
+	
+	1) file exists or not
+	create abc.txt
+	
+	ex: file_check.sh
+	----------------
+	
+	usage(){
+		echo "You need to provid ean argument:"
+		echo "usage: $0 file_name"
+	}
+	is_file_exist(){
+		local file_name="$1"
+		[[ -f "$file_name" ]] && return 0 || return 1			# terninary operator -f for file existe or not
+		
+	}
+	
+	[[ $# -eq 0 ]] && usage
+	
+	if ( is_file_exist "$1" )
+	then
+		echo "File is found"
+	else
+		echo "File not found"
+	fi
+	
+	
+	--------------------
+	./file_check.sh
+	./file_check.sh abc.txt
+	--------------------
+
+26) readonly command for variables(readonly) and functions(readonlt -f):
+	---------------------
+	var=50
+	readonly var	#readonly var we can not modify further if tries waring
+	var=55
+	echo "$var"		# prints 50 only
+	
+	
+	hello(){
+		echo "Hello Shell"
+	}
+	
+	readonly -f hello		# making function readonly -f , can not be override function. Warning
+	
+	hello(){
+		echo "Hello Shell version 2.0"
+	}
+	
+	hello
+	readonly				# print all readonly variables
+	readonly -p				# print all readonly variables
+	readonly -f 			# print all readonly functions	
+	------------------------
+
+27) Signals and traps: trap can not catch sigstop and sigkill
+	
+	signal_trap.sh
+	---------------------
+	#! /bin/bash
+	
+	trap "echo Exit cmd is detected" 0
+	#trap "echo SIGINT ctrl+c  exit cmd is detected" SIGINT
+	#trap "echo SIGINT ctrl+c  exit cmd is detected" 2
+	
+	
+	echo "pid is $$"				# pid of script
+	
+	while (( COUNT < 10 ))
+	do
+		sleep 10
+		(( COUNT ++ ))
+		echo $COUNT
+	done
+	exit 0							#exit signal
+	
+	------------------
+	while running the above script 
+	ctrl+c ----> interrupt signal(sigint)
+	ctrl+z ----> suspend signal (sigtstp)
+	open other terminal
+	kill -9 <pid>
+	
+	==================
+	man 7 signal
+	man kill
+	
+	
+	ex: signal_trap.sh
+	--------------
+	#! /bin/bash
+	trap "echo Exit cmd is detected" 0
+	echo "Hello world"
+	exit
+	--------------
+	
+	ex: signal_trap.sh
+	--------------
+	#! /bin/bash
+	
+	file=/home/test/abc.txt
+	trap "rm -f $file && echo file deleted; exit" 0 2 15
+	
+	echo "pid is $$"				# pid of script
+	while (( COUNT < 10 ))
+	do
+		sleep 10
+		(( COUNT ++ ))
+		echo $COUNT
+	done
+	exit 0							#exit signal
+	---------------
+	execute in other terminal
+	kill -15 <pid>
+	trap
+	trap - 0 2 15                   #How we can remove traps?
+	trap
+	---------------
+
+
+28) debugging script:	bash -x ./scriptName.sh
+
+	#! /bin/bash
+
+	file=/home/test/abc.txt
+	trap "rm -f $file && echo file deleted; exit" 0 2 15
+	echo "pid is $$"				# pid of script
+	while (( COUNT < 10 ))
+	do
+		sleep 10
+		(( COUNT ++ ))
+		echo $COUNT
+	done
+	exit 0							#exit signal
+	
+	
+	--------------------
+	./signal_trap.sh
+	bash -x ./signal_trap.sh
+	
+	Then remove one ) in above script
+	bash -x ./signal_trap.sh		#way -1
+
+	ex: singnal_trap.sh
+	-------------------
+	#! /bin/bash -x					#way -2
+	file=/home/test/abc.txt
+	trap "rm -f $file && echo file deleted; exit" 0 2 15
+	echo "pid is $$"				# pid of script
+	while (( COUNT < 10 ))
+	do
+		sleep 10
+		(( COUNT ++ ))
+		echo $COUNT
+	done
+	exit 0							#exit signal
+	
+	--------------------
+	#! /bin/bash
+	
+	set -x							#way -3 set debug
+	file=/home/test/abc.txt
+	trap "rm -f $file && echo file deleted; exit" 0 2 15
+	echo "pid is $$"				# pid of script
+	
+	set +x							#way -3 set normal execution not debug
+	while (( COUNT < 10 ))
+	do
+		sleep 10
+		(( COUNT ++ ))
+		echo $COUNT
+	done
+	exit 0							#exit signal
+	
+		
+
+
+
+
+				
+	
+	
+ 
+	
+	
+	
+	
+	
+	
+		
+	
+	
+	
+		
+	
+	
+		
+			
+		
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
