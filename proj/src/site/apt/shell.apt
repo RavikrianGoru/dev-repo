@@ -41,7 +41,8 @@ Types of shells:
 	
 2) Comments start with # This is comments text
 
-3) Variables
+3) Variables: variables names can start with alphabet or with _ and case sensitive
+
 	System Variable: Created and maintained by OS, Defined in Capital case
 			echo $PATH
 			echo $BASH

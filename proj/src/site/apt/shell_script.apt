@@ -2,5 +2,28 @@ shell scripting:
 ---------------
 shell script a file which contains some commands.
 
+ss1.sh
+	Hellow world script with comments
 
+ss2.sh
+	ls -l
+	pwd
+	banner "Hi"
 
+ss3.sh
+	variables
+	read
+
+ss4.sh
+	position parameters $1 $2 $3........ $0 script file , $@ all args as array , $* all elements $#   args length .... $?
+	bash debugging
+	rename file name
+
+ss5.sh
+	chmod of files
+
+ss6.sh
+	position parameters $1 $2 $3........ $0 script file , $@ all args as array , $* all elements $#   args length .... $?
+	bash debugging
+	
+===================23 tutorial===============
