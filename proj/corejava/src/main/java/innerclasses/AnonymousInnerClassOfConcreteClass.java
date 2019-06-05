@@ -2,6 +2,7 @@ package innerclasses;
 
 class ConcreteClass
 {
+	
 	void method1()
 	{
 		System.out.println("mthod1() from ConcreteClass.");

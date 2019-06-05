@@ -1,4 +1,4 @@
-1) OutOfMemoryError:
+1) OuOfMemoryError:
 	cell schema changes caused caused OutOfMemoryError.
 	1st schema change creates 1 cell object.
 	2st schema change creates 2^1=2 cell object.
@@ -18,6 +18,23 @@
 
 4) Multiple REST Calls through java code: Keeping all responses in Map and writing in MapR File system.(code changes)
 
+5) UI job triggered, All webapllications deploy into webapps folder and extracted automatically.
+   RPM update will deploy the web application(updates) the war. But extraction failed due to that UI is not up.
+   Sol:Autoextraction disables.
+
+6) weserver_ctrl.sh start and stop : webserver service gows to FAILED to STOP / FAILE to START.
+	-force   
+7) Memory issue : to karaf by calulating total memory, 40% min memory, instance memory(max) 50%  if 16gb or more else 25%
+
+8) Tomcat internal: logback implementation
+	deps:
+		tomcat-extras-juli					add in classpath
+		tomcat-extras-juli-adaptos
+		log4j-over-slf4j
+	remove tomcat dependency:
+		tomcat-juli.jar
+	add logback.xml in config folder then add JAVA_OPTS="$JAVA_OPTS -Dlogback.configurationFile=$CATALINA_HOME/config/logback.xml
+ 
    
    
    

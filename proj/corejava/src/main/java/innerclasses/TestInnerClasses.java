@@ -9,9 +9,9 @@ public class TestInnerClasses {
 		PriorityQueue<String> pq=new PriorityQueue<>();
 		pq.add("A");
 		pq.add("B");
-//		pq.add("C");
-//		pq.add("D");
-//		pq.add("E");
+		pq.add("C");
+		pq.add("D");
+		pq.add("E");
 		System.out.println(pq);
 		
 		

@@ -7,7 +7,15 @@ interface OuterIterface
 	{
 		void innerMethod();
 	}
+	class innerClassInter
+	{
+		public static void main(String... args)
+		{
+			System.out.println("Hi");
+		}
+	}
 }
+
 
 public class NestedInterfaceInInterface implements OuterIterface.InnerInterface{
 

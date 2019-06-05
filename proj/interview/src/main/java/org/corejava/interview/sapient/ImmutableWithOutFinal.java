@@ -23,8 +23,10 @@ public class ImmutableWithOutFinal
 
     public static void main(String[] args)
     {
-        Immutable obj=Immutable.create("Hi");
-        System.out.println("Immutable class:"+obj.hashCode());
+        Immutable obj1=Immutable.create("Hi");
+        Immutable obj2=Immutable.create("Hi");
+        System.out.println("Immutable class:"+obj1.hashCode());
+        System.out.println("Immutable class:"+obj1.hashCode());
         String s=null;
         
     }

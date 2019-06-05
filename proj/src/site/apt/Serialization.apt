@@ -1,0 +1,50 @@
+
+Serialization in Java allows us to convert an Object to stream that we can send over the network or save it as file or store in DB for later usage. 
+
+Deserialization is the process of converting Object stream to actual Java Object to be used in our program.
+
+
+
+Class implements java.io.Serializable interface
+--------------------------------------- 
+	-  Implement the java.io.Serializable interface(marker interface has no fields or methods to implement)
+	-  Serialization in java is implemented by ObjectInputStream and ObjectOutputStream,
+	If these methods are present in the class, they are used for serialization purposes.
+		readObject(ObjectInputStream ois)
+		writeObject(ObjectOutputStream oos)
+		Object writeReplace()
+		Object readResolve()
+		
+	-  transient and static variables not be serializable.
+	-  Compiler will generate serialVersionUID when you compile the class.
+	-  Actually if the class doesn’t define serialVersionUID, it’s getting calculated automatically and assigned to the class. 
+			Java uses class variables, methods, class name, package etc to generate this unique long number.
+	
+
+Class Refactoring with Serialization and serialVersionUID
+---------------------------------------------------------
+	
+	Serialization in java permits some changes in the java class if they can be ignored.
+	Some of the changes in class that will not affect the deserialization  
+
+	+ add new variables
+	+ transient to non-transient like adding new variable
+	+ static to non-static like addingnew variables
+	* The above chanes work if Class has serialVersionUID
+	  i.e 
+	* Generate serialVersionUID by using java tool
+		> serialver -classpath . com.journaldev.serialization.Employee
+	
+
+* Suber class (non-serializable) & sub class (serializable) then automatic serialization and deserialization will not store state of suer class object.
+* FOr the above issue can be solved by placig readObjcet(-) and writeObject(-) methods in sub class and place custom logic to store and retieve super class object state.
+
+* if super calss implemented serializable the no need of sub class implementig serializable interface.
+
+
+Class implemnts java.io.Externalizable interface
+-----------------------------------------------
+	-  Implementing java.io.Externalizable interface and provide implementation of writeExternal() and readExternal()
+	-  override writeExternal(ObjectOutput) and readExternal(ObjectInput)
+	
+	

@@ -4,6 +4,7 @@ public class StaticInnerClass {
 
 	int a=100;
 	static int b=200;
+	
 	static void methodStaticOuter()
 	{
 		System.out.println("methodStaticOuter(): Outer class");

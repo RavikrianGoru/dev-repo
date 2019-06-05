@@ -15,19 +15,7 @@ https://www.journaldev.com/7153/core-java-tutorial#core-java-tutorial
 http://javaconceptoftheday.com/difference-between-shallow-copy-vs-deep-copy-in-java/
 
 
-		java8-core design patter/ds/mutlitheres / JMS
-		messaging desig patterns
-		webservice RESTful webservice
-		java 9
-		spring APO/DI/IoC... MVC
-		junit ---
-		
-		sapient-------
-		
-		Coding - 2 30 hr
-		Technical interview
-
-What will happer when you run >java Test?
+What will happens when you run >java Test?
 -----------------------------------------
 	1) JVM starts
 	2) JVM creates & starts main thread
@@ -43,6 +31,21 @@ main mehtod:Allows final strictfp synchronized
 	public static void main(String... args)
 	public static final strictfp synchronized void main(String... args)
 	
+public class and non public class:
+----------------------------------
+source java file : MultipleClasses.java
+	1) A source file can have any number of non-public classes.
+	2) source file can have all non-public classes.
+	3) source file have only one pubic class and that source file name too same.
+	4) all class file can have main methods
+		java A
+		java B
+		java MutlipleClasses will takes which mail method to calls.
+
+static and non-static methods:
+-----------------------------
+	1) static method can not acces non-static method/variables directly.
+	2) static method can not use super or this keywords.
 
 Diff b/w new and netInstance():
 -------------------------------
@@ -69,6 +72,33 @@ ClassNotFoundException
 	- Object obj = Class.forName("Test").netInstance(); if Test.class is not available at runtime.
 	- Class Name is passed dynamically
 
+Shallow and Deep copy:
+----------------------
+	Cloning is a process of creating an exact copy of an existing object in the memory.
+	The objects which implement Cloneable interface are only eligible for cloning process.
+Shallow Copy:
+	The default version of clone() method creates the shallow copy of an object. 
+	The shallow copy of an object will have exact copy of all the fields of original object. 
+	If original object has any references to other objects as fields, then only references of those objects are copied into clone 
+	object, copy of those objects are not created.
+	 Shallow copy is not 100% disjoint from original object. 
+	 Shallow copy is not 100% independent of original object.
+	
+	
+	protected Object clone() throws CloneNotSupportedException
+    {
+        return super.clone();
+    }
+	
+Deep Copy:
+	Deep copy of an object will have exact copy of all the fields of original object just like shallow copy. 
+	But in additional, if original object has any references to other objects as fields, then copy of those objects are also 
+	created by calling clone() method on them.
+	That means clone object and original object will be 100% disjoint. 
+	They will be 100% independent of each other.
+	Any changes made to clone object will not be reflected in original object or vice-versa.
+	 
+		 
 
 
 
@@ -168,9 +198,7 @@ Object Cloning
 
 How many ways we can create an object?
 
-There are five different ways to create an object in Java,
-
-1. Using new keyword → constructor get called
+1. Using new keyword  constructor get called
 
 Employee emp1 = new Employee();
 2. Using newInstance() method of Class → constructor get called
@@ -389,70 +417,6 @@ How to optimized SQL queries?
 SQL query for All managers and emp-->manager?
 joins ?
 how many joins required to get data from 4 tables?
-
-
-
-
-
-
-===========
-Muthukumar:
-=========
-java,
-Rest,
-Batch jobs
-
-=========
-1.8
-==================
-java 1.8 featues:
-lambda expression:?
-Functional Interface?
-
-
-1) Design pattern?
-	Singleton....?
-	Builder Patern?
-	Immutable?
-	JDK,JRE,JVM----------->()
-	MarkerInterface?
-	WrapperClass
-	Enum?
-	Serialization Deserialation?----(Parent and Chaild class)
-		
-	
-	
-2) Collections?
-
-	fail-safe and fail-fast Iterator------()
-	Hashtable, HashMap, ConcurrentHashMap,Collections.synchronizedMap()?
-	ConcurrentModificationException?
-	UnsupportedOperationException?------()
-	HashMap works?
-	Custom Oject as hashKey?
-	
-
-
-Abstract class with all implemented methods?----()
-
-Queues?
-Synchronization?
-Diff StringBuffer StringBuilde?
-Try-with-Resource
-Comparable and Comparator? -----()
-String Constant pool.
-
-?
-
-
-
-
-
-
-
-
-
-
 
 
 
