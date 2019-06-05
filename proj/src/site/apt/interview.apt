@@ -15,8 +15,73 @@ https://www.journaldev.com/7153/core-java-tutorial#core-java-tutorial
 http://javaconceptoftheday.com/difference-between-shallow-copy-vs-deep-copy-in-java/
 
 
+		java8-core design patter/ds/mutlitheres / JMS
+		messaging desig patterns
+		webservice RESTful webservice
+		java 9
+		spring APO/DI/IoC... MVC
+		junit ---
+		
+		sapient-------
+		
+		Coding - 2 30 hr
+		Technical interview
+
+What will happer when you run >java Test?
+-----------------------------------------
+	1) JVM starts
+	2) JVM creates & starts main thread
+	3) main thread loads Test.class
+	4) Main thread executes public static void main(String... args) of Test calls if available
+			if not it will executes main method of its parent class
+	5) Unloads Test.class
+	6) Terminates Main thread
+	7) Shoutdown JVM
+
+main mehtod:Allows final strictfp synchronized
+
+	public static void main(String... args)
+	public static final strictfp synchronized void main(String... args)
+	
+
+Diff b/w new and netInstance():
+-------------------------------
+
+new 
+	- operator, used to create object/instance of a class
+	- if we know class at begining then it can be used.
+	- if no corresponding .class then NoClassDefFoundError at run time.
+
+newInstance()
+	- is a method in Class.class used to create an object/instanct by passing Class name at runtime
+	- Object obj = Class.forName("java.lang.String").newInstance();
+	- if .class not available at runtime throws ClassNotFoundException
+
+Diff between NoClassDefFoundError and ClassNotFoundException
+-----------------------------------------------------------
+
+NoClassDefFoundError
+	- Unchecked Exception
+	- Test t = new Test(); if Test.class is not available at runtime.
+	- Class Name hardcoded in program
+ClassNotFoundException
+	- Checked Exception
+	- Object obj = Class.forName("Test").netInstance(); if Test.class is not available at runtime.
+	- Class Name is passed dynamically
 
 
+
+
+Diff bewteen instanceof and isInstsnce:
+---------------------------------------
+instanceof"
+	- operator, used to check given object is particular type or not.
+	- String s = "Ravi"
+		if (s instsnceof String || s instanceof Object)
+			System.out.print("Hi");
+isInstance:
+	- isInstance() method , Available in Class.clss used to check the given object is of particular type or not. Type is available at runtime.
+	- 
 
 OOPS?
 

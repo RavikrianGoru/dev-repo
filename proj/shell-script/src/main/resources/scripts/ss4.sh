@@ -1,6 +1,8 @@
 #! /bin/bash -x
 
 # rename a file: src and dest file names can be passes as cmd line args
+# position parameters $1 $2 $3........ $0 script file , $@ all args as array , $* all elements $#   args length .... $?
+
 if [ $# -eq 2 ]
 then
 	mv $1 $2
