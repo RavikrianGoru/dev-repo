@@ -29,7 +29,8 @@ public class TriWithResourceCustomAutoCloseableImplementation {
 	public static void main(String[] args) throws Exception {
 
 		System.out.println("we can use custom class in try-with-resource block but that custome class has to implement AutoCloseable Interface and has to override close() method.");
-		try(CutstomAutoClosableImplementedClass obj=new CutstomAutoClosableImplementedClass();)
+		try(CutstomAutoClosableImplementedClass obj=new CutstomAutoClosableImplementedClass();
+		        CutstomAutoClosableImplementedClass obj1=new CutstomAutoClosableImplementedClass();)
 //				CustomNotAutoClosableClass obj1=new CustomNotAutoClosableClass();)-----------// Compile time Exception says CustomNotAutoClosableClass is not implements AutoClosable interface
 		{
 			obj.doIt();

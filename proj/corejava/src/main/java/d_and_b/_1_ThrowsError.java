@@ -5,9 +5,9 @@ public class _1_ThrowsError
 
     public static void m1() throws Throwable
     {
-        // throw new Error();
-        throw new Throwable();
-        // throw new Exception();
+         //throw new Error();
+        //throw new Throwable();
+        throw new Exception();
     }
 
     public static void main(String[] args)

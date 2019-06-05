@@ -2,7 +2,7 @@ package interview;
 
 /*
 http://www.journaldev.com/tutorials
-http://www.programmingsimplified.com/java/source-code/java-program-to-generate-random-numbers
+
 http://www.softwareandfinance.com/Java/Loops_Diamond_Pattern.html
 http://www.dailyfreecode.com/mysearchresult.aspx?q=program+print+pyramid+stars+in+java&stype=all
 
@@ -254,7 +254,7 @@ If String would not have been immutable, then String interning would not have be
 
 2. If String is not immutable then it would cause severe security threat to the application. 
 For example, database username, password are passed as String to get database connection and in socket programming host and port details passed as String. 
-Since String is immutable it’s value can’t be changed otherwise any hacker could change the referenced value to cause security issues in the application.
+Since String is immutable itï¿½s value canï¿½t be changed otherwise any hacker could change the referenced value to cause security issues in the application.
 
 3. Since String is immutable, it is safe for multithreading and a single String instance can be shared across different threads. 
 This avoid the usage of synchronization for thread safety, Strings are implicitly thread safe.
@@ -263,8 +263,8 @@ This avoid the usage of synchronization for thread safety, Strings are implicitl
 For example, think of an instance where you are trying to load java.sql.Connection class but the referenced value is changed to myhacked. 
 Connection class that can do unwanted things to your database.
 
-5. Since String is immutable, its hashcode is cached at the time of creation and it doesn’t need to be calculated again. 
-This makes it a great candidate for key in a Map and it’s processing is fast than other HashMap key objects. 
+5. Since String is immutable, its hashcode is cached at the time of creation and it doesnï¿½t need to be calculated again. 
+This makes it a great candidate for key in a Map and itï¿½s processing is fast than other HashMap key objects. 
 This is why String is mostly used Object as HashMap keys.
 
 
@@ -272,7 +272,7 @@ Heap & Static Memory: http://www.journaldev.com/4098/java-heap-memory-vs-stack-m
 
 Java Heap memory:
 Heap memory is used by java runtime to allocate memory to Objects and JRE classes.
-Whenever we create any object, it’s always created in the Heap space. Garbage Collection runs on the heap memory to free the memory used by objects that doesn’t have any reference. 
+Whenever we create any object, itï¿½s always created in the Heap space. Garbage Collection runs on the heap memory to free the memory used by objects that doesnï¿½t have any reference. 
 Any object created in the heap space has global access and can be referenced from anywhere of the application.
 
 Java Stack Memory:
@@ -286,10 +286,10 @@ Stack memory size is very less compared to Heap memory.
 Difference between Heap and Stack Memory
 ----------------------------------------
     1. Heap memory is used by all the parts of the application whereas stack memory is used only by one thread of execution.
-    2. Whenever an object is created, it’s always stored in the Heap space and stack memory contains the reference to it. 
+    2. Whenever an object is created, itï¿½s always stored in the Heap space and stack memory contains the reference to it. 
 		Stack memory only contains local primitive variables and reference variables to objects in heap space.
-    3. Objects stored in the heap are globally accessible whereas stack memory can’t be accessed by other threads.
-    4. Memory management in stack is done in LIFO manner whereas it’s more complex in Heap memory because it’s used globally. 
+    3. Objects stored in the heap are globally accessible whereas stack memory canï¿½t be accessed by other threads.
+    4. Memory management in stack is done in LIFO manner whereas itï¿½s more complex in Heap memory because itï¿½s used globally. 
 		Heap memory is divided into Young-Generation, Old-Generation etc, more details at Java Garbage Collection.
     5. Stack memory is short-lived whereas heap memory lives from the start till the end of application execution.
     6. We can use -Xms and -Xmx JVM option to define the startup size and maximum size of heap memory. We can use -Xss to define the stack memory size.
@@ -340,20 +340,20 @@ We just need to use JVM switch to enable the garbage collection strategy for the
     
     4. Concurrent Mark Sweep (CMS) Collector (-XX:+UseConcMarkSweepGC): CMS Collector is also referred as concurrent low pause collector. It does the garbage collection for Old generation. 
     CMS collector tries to minimize the pauses due to garbage collection by doing most of the garbage collection work concurrently with the application threads.
-    CMS collector on young generation uses the same algorithm as that of the parallel collector. This garbage collector is suitable for responsive applications where we can’t afford longer pause times. 
+    CMS collector on young generation uses the same algorithm as that of the parallel collector. This garbage collector is suitable for responsive applications where we canï¿½t afford longer pause times. 
     We can limit the number of threads in CMS collector using -XX:ParallelCMSThreads=n JVM option.
     
-    5. G1 Garbage Collector (-XX:+UseG1GC): The Garbage First or G1 garbage collector is available from Java 7 and it’s long term goal is to replace the CMS collector. 
+    5. G1 Garbage Collector (-XX:+UseG1GC): The Garbage First or G1 garbage collector is available from Java 7 and itï¿½s long term goal is to replace the CMS collector. 
     The G1 collector is a parallel, concurrent, and incrementally compacting low-pause garbage collector.
-    Garbage First Collector doesn’t work like other collectors and there is no concept of Young and Old generation space. It divides the heap space into multiple equal-sized heap regions. 
-    When a garbage collection is invoked, it first collects the region with lesser live data, hence “Garbage First”. You can find more details about it at Garbage-First Collector Oracle Documentation.
+    Garbage First Collector doesnï¿½t work like other collectors and there is no concept of Young and Old generation space. It divides the heap space into multiple equal-sized heap regions. 
+    When a garbage collection is invoked, it first collects the region with lesser live data, hence ï¿½Garbage Firstï¿½. You can find more details about it at Garbage-First Collector Oracle Documentation.
 
 Java Garbage Collection Tuning
 ==============================
 Java Garbage Collection Tuning should be the last option you should use for increasing the throughput of your application and only when you see drop in performance because of longer GC timings causing application timeout.
 
 If you see java.lang.OutOfMemoryError: PermGen space errors in logs, then try to monitor and increase the Perm Gen memory space using -XX:PermGen and -XX:MaxPermGen JVM options. 
-You might also try using -XX:+CMSClassUnloadingEnabled and check how it’s performing with CMS Garbage collector.
+You might also try using -XX:+CMSClassUnloadingEnabled and check how itï¿½s performing with CMS Garbage collector.
 If you are see a lot of Full GC operations, then you should try increasing Old generation memory space.
 Overall garbage collection tuning takes a lot of effort and time and there is no hard and fast rule for that. 
 You would need to try different options and compare them to find out the best one suitable for your application.
@@ -361,7 +361,7 @@ You would need to try different options and compare them to find out the best on
 
 String in Java
 =============
-    1. String class represents character strings, we can instantiate String by two ways.  String str = “abc”; or String str = new String (“abc”);
+    1. String class represents character strings, we can instantiate String by two ways.  String str = ï¿½abcï¿½; or String str = new String (ï¿½abcï¿½);
     2. String is immutable in java, so its easy to share it across different threads or functions.
     	When we create a String using double quotes, it first looks for the String with same value in the JVM string pool, 
     	if found it returns the reference else it creates the String object and then place it in the String pool.
@@ -371,10 +371,10 @@ String in Java
     4. String overrides equals() and hashCode() methods, two Strings are equal only if they have same characters in same order. 
     	Note that equals() method is case sensitive, so if you are not looking for case sensitive checks, you should use equalsIgnoreCase() method.
     4. A String represents a string in the UTF-16 format
-    5. String is a final class with all the fields as final except “private int hash”. 
+    5. String is a final class with all the fields as final except ï¿½private int hashï¿½. 
     	This field contains the hashCode() function value and created only when hashCode() method is called and then cached in this field. 
     	Furthermore, hash is generated using final fields of String class with some calculations, so every time hashCode() method is called, 
-    	it will result in same output. For caller, its like calculations are happening every time but internally it’s cached in hash field.
+    	it will result in same output. For caller, its like calculations are happening every time but internally itï¿½s cached in hash field.
 
 String vs StringBuffer vs StringBuilder(in java 1.5):
 =======================================

@@ -2,6 +2,7 @@ package javahungry;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Vector;
 
 /*
 
@@ -16,7 +17,7 @@ ArrayList:-----default size 10---Collection
 4) ArrayList does not define the increment size.
 5) AraayList uses Iterator and ListIterator for traversing.
 
-Vector: -------Legacy Data structure.
+Vector: -------default size 10 ---Legacy Data structure.
 1) Synchronized
 2) slower due to synchronization
 3) Vector by default doubles the size of its array.
@@ -27,6 +28,7 @@ Vector: -------Legacy Data structure.
 public class _10_ArrayListVsVector {
 
 	public static void main(String[] args) {
+//	    Vector<E> = null;
 		ArrayList<String > al=new ArrayList<>();
 		al.add(new String("Ravi"));
 		al.add("Ravi");

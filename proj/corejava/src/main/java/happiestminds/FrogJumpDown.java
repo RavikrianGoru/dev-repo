@@ -27,6 +27,10 @@ public class FrogJumpDown {
 		System.out.println("The Total number of days required: " + findDays(10, 3, 2));
 		// System.out.println(findDays(4,3,2));
 		// System.out.println(findDays(3,3,2));
+        System.out.println((int)'A');
+        System.out.println((int)'Z');
+        System.out.println((int)'a');
+        System.out.println((int)'z');
 		System.out.println("The Total number of days required: " + findDaysRecursive(10, 3, 2));
 	}
 

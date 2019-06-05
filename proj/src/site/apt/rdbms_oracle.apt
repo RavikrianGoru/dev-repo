@@ -157,6 +157,34 @@ empno			proj				sal
 		where 2 =( select count(distinct e2.sal) from d_proj e2 where e2.sal >e1.sal);
 
 	Note: Nth highest n-1 =(....)
+
+10) Oracle tables in different schemas
+	By default, only the person who create a table may access it.  To access tables within separate schemas, you must grant access
+	
+	connect tom/thumb;
+	grant select on emp to harry;
+
+	connect dick/nixon;
+	grant select to emp to harry;
+
+	connect harry/potter;
+
+	select * from emp
+	union
+	select * from tom.emp
+	union
+	select * from dick.emp;
+
+This for distributed tables (using a db link):
+
+CREATE DATABASE LINK new_york
+CONNECT TO tom IDENTIFIED BY thumb
+USING 'NEWYORK.world';  -- entry from tnsnames.ora
+
+select * from emp@new_york
+union
+select * from dick.emp;
+
 	
 	
 12) Fetch only odd rown from table.

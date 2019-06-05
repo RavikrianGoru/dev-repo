@@ -24,7 +24,7 @@ public class ExceptionMethodOverload1 extends SuperClass{
 //		System.out.println(10/0);
 //	}
 	
-//	void method2() throws FileNotFoundException
+//	void method2() throws FileNotFoundException //Checked
 //	{
 //		System.out.println(10/0);
 //	}

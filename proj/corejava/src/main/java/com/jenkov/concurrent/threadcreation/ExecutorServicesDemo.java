@@ -89,7 +89,7 @@ public class ExecutorServicesDemo
         }*/
         
 //     2a) Executors.newCachedThreadPool() ; There is no newCachedThreadPool(n) method as this pool size changes as per threads
-//     ExecutorService cashedThreadPoolExecutorService=Executors.newCachedThreadPool(); by using this method we can have cashed thread pool of sixe 1.
+//     ExecutorService cashedThreadPoolExecutorService=Executors.newCachedThreadPool(); by using this method we can have cashed thread pool of size 1.
 //     If no existing thread is available, a new thread will be created and added to the pool.
 //     Threads that have not been used for sixty seconds are terminated and removed from the cache.
 //     Thease pools improve the performance of programs that execute many short-lived asynchronous tasks
