@@ -21,6 +21,7 @@ public class TestThreads {
 		lock.lock();
 		lock.unlock();
 
+		
 		final ReentrantReadWriteLock rwLock = new ReentrantReadWriteLock(true);
 		rwLock.readLock().lock();
 		rwLock.readLock().unlock();

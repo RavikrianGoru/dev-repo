@@ -8,7 +8,6 @@ public class UnixCmdExecInJava {
 
 	private static void executeCommand(String[] cmdArray )
     {
-		
 		System.out.println("Cmd :"+cmdArray);
         try
         {

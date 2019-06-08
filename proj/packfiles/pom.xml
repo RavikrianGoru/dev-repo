@@ -10,8 +10,8 @@
 		<relativePath>../compile</relativePath>
 	</parent>
 
-	<artifactId>try</artifactId>
-	<name>try</name>
+	<artifactId>packfiles</artifactId>
+	<name>packfiles</name>
 	<url>TODO: try link with github url:try</url>
 	<inceptionYear>2019</inceptionYear>
 	<packaging>pom</packaging>

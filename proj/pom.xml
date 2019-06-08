@@ -1,11 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <!-- Parent project or module information: This module is not having 
-        parent. -->
-    <!-- <parent> <groupId>xxx</groupId> <artifactId>yyy</artifactId> <version>zzz</version> 
-        </parent> -->
-
     <groupId>com.rk.learn</groupId>
     <artifactId>proj</artifactId>
     <version>0.0.1-SNAPSHOT</version>
@@ -18,7 +13,7 @@
 	<module>corejava</module>
 	<module>ds-algorithms</module>
 	<module>interview</module>
-	<module>try</module>
+	<module>packfiles</module>
 	<module>shell-script</module>
     </modules>
 

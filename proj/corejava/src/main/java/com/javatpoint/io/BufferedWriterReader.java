@@ -10,6 +10,7 @@ public class BufferedWriterReader {
 
 	public static void main(String[] args) throws Exception{
 
+		
 		File f=new File("abc.txt");
 		f.createNewFile();//create new file 
 		

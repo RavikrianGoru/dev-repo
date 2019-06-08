@@ -6,7 +6,6 @@ import java.util.List;
 public class JoinMethodDemo {
 
 	public static void main(String[] args) {
-
 		System.out.println(String.join("-", "Hi","Hey","Ravi","Kiran","Goru"));
 		String [] sArray={"ravi","kiran","goru","ram","raj","anil"};
 		System.out.println(String.join(",", sArray));

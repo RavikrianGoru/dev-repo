@@ -1,4 +1,39 @@
 Spring:
+	Spring is a lightweight framework. 
+	It can be thought of as a framework of frameworks because it provides support to various frameworks such as Struts, Hibernate, Tapestry, EJB, JSF etc.
+	basic spring framework 2mb.
+	The Spring framework comprises several modules such as IOC, AOP, DAO, Context, ORM, WEB MVC etc. 
+
+Inversion Of Control (IOC) and Dependency Injection:
+	In Spring framework, IOC container is responsible to inject the dependency. We provide metadata to the IOC container either by XML file or annotation.
+	+ makes the code loosely coupled so easy to maintain
+	+ makes the code easy to test
+
+Advantages of Spring Framework:
+	
+	
+	---------------------------
+	Resource resource=new ClassPathResource("applicationContext.xml");  
+    BeanFactory factory=new XmlBeanFactory(resource);  
+      
+    Student student=(Student)factory.getBean("studentbean");  
+    student.displayInfo();  		
+	-------------------------
+	
+	IoC Container
+	Using BeanFactory
+	Using ApplicationContext
+	
+	The IoC container is responsible to instantiate, configure and assemble the objects. The IoC container gets informations from the XML file and works accordingly. The main tasks performed by IoC container are:
+	
+	to instantiate the application class
+	to configure the object
+	to assemble the dependencies between the objects
+	
+	There are two types of IoC containers. They are:
+		BeanFactory
+		ApplicationContext
+
 
 1) What are the types of Dependency Injection Spring supports?
 
@@ -36,4 +71,4 @@ Spring:
 7) which ViewResolver class widely used ?
 org.springframework.web.servlet.view.InternalResourceViewResolver class is widely used
 
-8) What does @Controller annotation,@RequestMapping  
+8) What does @Controller annotation, @RequestMapping  

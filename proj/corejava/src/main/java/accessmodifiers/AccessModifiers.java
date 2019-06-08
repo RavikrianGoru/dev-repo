@@ -8,7 +8,7 @@ public class AccessModifiers extends PublicClass
 
     public static void main(String[] args)
     {
-        System.out.println("Access modifeirs scope: private->protected->default->public\n");
+        System.out.println("Access modifeirs scope: private->default->protected->public\n");
 
         System.out.println("private scope: \nA class cannot be private or protected except nested class.\n");
 

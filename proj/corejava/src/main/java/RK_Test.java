@@ -10,6 +10,7 @@ public class RK_Test {
 	public static void main(String[] args) {
 		A a = new A();
 		I b = new A();
+		
 		// A c =(A) new I();
 		// CT error if no type casting
 		// RT can not convert to child class

@@ -7,6 +7,7 @@ public class FileWriterReaderDemo {
 
 	public static void main(String[] args) throws Exception {
 
+		
 		System.out.println("FileWrite: for writing data char by char or char[],String but we need to give line separator \\n, when we want to insert primitive data we need to covert into String.");
 		System.out.println("FileReader: for readig char by char, or char[], can not read line by line.");
 		System.out.println("-------------------------");

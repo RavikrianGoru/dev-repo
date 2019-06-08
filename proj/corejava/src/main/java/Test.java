@@ -9,7 +9,6 @@ enum Capability {
     CREATE_XYZ("CREATE_XYZ");
     private final String value;
     private final static Map<String, Capability> CONSTANTS = new HashMap<String, Capability>();
-
     static {
         for (Capability c: values()) {
             CONSTANTS.put(c.value, c);
