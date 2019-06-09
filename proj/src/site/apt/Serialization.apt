@@ -48,3 +48,21 @@ Class implemnts java.io.Externalizable interface
 	-  override writeExternal(ObjectOutput) and readExternal(ObjectInput)
 	
 	
+ Serialization:
+ 	
+ 	All subtypes of a serializable class are themselves serializable.
+ 
+ 		private void writeObject(java.io.ObjectOutputStream out) throws IOException
+ 		private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException;
+ 		private void readObjectNoData() throws ObjectStreamException;
+
+	The writeObject method is responsible for writing the state of the object for its particular class so that the corresponding readObject method can restore it.
+	
+	ANY-ACCESS-MODIFIER Object writeReplace() throws ObjectStreamException;
+	
+	ANY-ACCESS-MODIFIER Object readResolve() throws ObjectStreamException;
+	
+	serialVersionUID: which is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization.
+	If different serialVersionUIDs throws InvalidClassException.
+	
+	

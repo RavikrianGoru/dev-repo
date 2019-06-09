@@ -1,212 +1,181 @@
- -----
- The APT format: 
- -----
- The Maven Team:
- -----
- -----
+Core Java
+---------
 
-<<Core Java>>
+1) Can we overload main method or static method? Yes.
 
- <<An object has three characteristics:>>
- 
- [[1]] <<state:>> represents data (value) of an object.
-	
- [[2]] <<behavior:>> represents the behavior (functionality) of an object such as deposit, withdraw etc.
-	
- [[3]] <<identity:>> Object identity is typically implemented via a unique ID. 
- 
- 		The value of the ID is not visible to the external user. 
- 		But, it is used internally by the JVM to identify each object uniquely
+2) Can we override the static method or main method? No - method hiding only
 
-[]
- 
- <The new keyword is used to allocate memory at run time. All objects get memory in Heap memory area.>
+3) Constructor returns a value but, what ?
+	yes, that is current class instance (You cannot use return type yet it returns a value).
 
- <<Initializing object>>
- 
- [[1]] By <<reference:>> s1.rollNo=10; s1.name="ravi";
-	
- [[2]] By <<method:>> s1.insertRecord(10,"ravi");
-	
- [[3]] By <<constructor:>> new Student(10,"ravi");
- 
-[]
+4) Can we create a program without main method ?
+	Yes, one of the way is static block but in previous version of JDK not in JDK 1.7.
+		In JDK7 and above, output will be:
+		Output:Error: Main method not found in class A3, please define the main method as:
+		public static void main(String[] args)
 
-+-------------------------------+	
- Student
- {
-	int rollNo;
-	String name;
-	insertRecord(int rollNo,String name){}
-	Student(){}
-	Student(int rollNo,String name){}
- }
-+-------------------------------+
+5) Why multiple inheritance is not supported in java ?
+	To reduce the complexity and simplify the language, multiple inheritance is not supported in java.
+	Diamond problem?
 
- <<What are the different ways to create an object ?>>
+6) Why use aggregation(has-a relation) ?: code reusability
 
- [[1]] By new keyword
-	
- [[2]] By clone() method
-	
- [[3]] By deserialization
-	
- [[4]] By newInstance() method
- 
- 	   Class.forName("ClassName").newInstance(); <it internally uses new key word.>
-	
- [[5]] By factory method etc <it internally uses new key word.>
- 
- <Ex: ObjectCreationWays.java>
- 
- []
-	
- <Actually, 3 ways to create objects.(><<new keyword>>, <<clone()>> and <<deserialization>><).>
+7) When use Aggregation?
+	Code reuse is also best achieved by aggregation when there is no is-a relationship.
+	Inheritance should be used only if the relationship is-a is maintained throughout the lifetime of the objects involved; otherwise, aggregation is the best choice.
 
- <<Usage of >><static><< keyword:>>
+8) What is covariant return type ?
+	since Java5, it is possible to override method by changing the return type if subclass overrides any method whose return type is Non-Primitive but it changes its return type to subclass type.
 
- [[1]]variables
-	
- [[2]]methods
-	
- [[3]]block
-	
- [[4]]nested class
- 
- []
-	
- <static method can not access non-static data members and methods directly.>
- 
- <static method can not use this and super keywords.>
+9) Is final method inherited?
+	Yes, final method is inherited but you cannot override it.
 
- <<Usage of >><this><< keyword:>> refers to current class object.
+10) Can we initialize blank final variable?
+	Yes, but only in constructor. For example:
+	*A static final variable that is not initialized at the time of declaration is known as static blank final variable. It can be initialized only in static block.
+
+11) Can we declare a constructor final?
+	No, because constructor is never inherited.
+
+12) will finally block executes after exit, break, return.
+	finally executes in all senarios except exit which causes JVM failure/terminating the process. Also at power shutdown finally/OS failover wont executes.
+	
+13) How do you prevent for creating another instance of Singleton using clone() method?
+	Dont implement Clonable interface or Override clone method and return same obj/ throw Exception.
+
+14) How do you prevent for creating another instance of Singleton using reflection?
+	private cunstructor can be called by using reflection. we throw Exception in constructor or return same obj.
+
+15) How do you prevent for creating another instance of Singleton during serialization?
+	You can prevent this by using readResolve() method, since during deserialization readObject() is used to create instance and 
+	it return new instance every time but by using readResolve you can replace it with original Singleton instance.	
+
+
+main mehtod allows final strictfp synchronized
+	public static void main(String... args)
+	public static final strictfp synchronized void main(String... args)
+
+
+Usage of <static> keyword:
+ 1 variables
+ 2 methods
+ 3 block
+ 4 nested class
+	
+ * static method can not access non-static data members and methods directly.
+ * static method can not use this and super keywords.
+
+
+Usage of <this> keyword: refers to current class object.
  
-+-------------------------------+
   this.instanceVarible      ----- refers to current class variables
   this.instanceMethod()     ----- refers to current class instance method
   method(this)              ----- can be passed as method argument
   Constructor(this)         ----- can be passed as constructor argument
   this()                    ----- constructor-default
   return this;              ----- returns current class obj.
-+-------------------------------+
 
- <<Inheritance:>>  One object/class acquires all the properties and behavior of parent object/class. code reusability and runtime polymorphism.
+
+public class and non public class:
+	source java file : MultipleClasses.java
+	1) A source file can have any number of non-public classes.
+	2) source file can have all non-public classes.
+	3) source file have only one pubic class and that source file name too same.
+	4) all class file can have main methods
+		java A
+		java B
+		java MutlipleClasses will takes which mail method to calls.
+
+ Inheritance:  One object/class acquires all the properties and behavior of parent object/class. code reusability and runtime polymorphism.
   
- [[1]] <<IS-A>> relationship or parent-child relation: <a class extends other class>
+ 1  IS-A relationship or parent-child relation: <a class extends other class>
 	
- [[2]] Aggregation or <<Has-A>> relation:If <a class has an entity reference> is known as Aggregation.
+ 2  Aggregation or Has-A relation:If <a class has an entity reference> is known as Aggregation.
 	
- [[3]] <<Consist-A>> relation:If <a method/block has an entity reference>
+ 3  Consist-A relation:If <a method/block has an entity reference>
  
- []
 	
- <<Types of Inheritance:>>
+ Types of Inheritance:
 	 
- [[1]] Single
-	 
- [[2]] Multilevel
-	 
- [[3]] Hierarchical
-	  	
- [[4]] Multiple(with interfaces)
-	 
- [[5]] Hybrid(with interface)
- 
- []
+ 1  Single
+ 2  Multilevel
+ 3  Hierarchical
+ 4  Multiple(with interfaces)
+ 5  Hybrid(with interface)
 		
- <<Method overloading:>> If a class has multiple methods having same name but different in parameters, it is known as method overloading.
+ Method overloading: If a class has multiple methods having same name but different in parameters, it is known as method overloading.
  		Method Overloading is not possible by changing the return type of the method only because of ambiguity.
-	
- <Compile Time Error is better than Run Time Error.> So, java compiler renders compiler time error if you declare the same method having same parameters inside a class.
+		<Compile Time Error is better than Run Time Error.> So, java compiler renders compiler time error if you declare the same method having same parameters inside a class.
 
- <<Method overriding:>> If subclass (child class) has the same method as declared in the parent class, it is known as method overriding. 
+ Method overriding: If subclass (child class) has the same method as declared in the parent class, it is known as method overriding. 
  		Method overriding is used to provide <specific implementation> of a method that is already provided by its super class & used for runtime polymorphism.
  		static, final and private methods can not be overridden.
 
- <<super keyword:>> <super> keyword is a reference variable which is used to refer <immediate parent class object>. 
+ super keyword: <super> keyword is a reference variable which is used to refer <immediate parent class object>. 
  		Whenever we create the instance of subclass, an instance of parent class is created implicitly which is referred by super reference variable.
 
-+-------------------------------+		
- super() : default constructor
- super.instanceMethod()
- super.instanceVariable;
-+-------------------------------+
-	
- <super() is added in each class constructor automatically by compiler if there is no super()>
- <if we want to call immediate parent call constructor it should be 1st statement inside current class constructor.>
+	super() : default constructor
+ 	super.instanceMethod()
+ 	super.instanceVariable;
+	<super() is added in each class constructor automatically by compiler if there is no super()>
+ 	<if we want to call immediate parent call constructor it should be 1st statement inside current class constructor.>
  
- <<Usage of >><final><< keyword:>> <final> keyword can be used at the following levels. 
- 
-+-------------------------------+	
- variable ------ constants, can not be modified once initialized or assigned value at 1st time.
- method   ------ can not be overridden in subclass.
- class    ------ can not be inherited.
-+-------------------------------+	
+Usage of <final> keyword: <final> keyword can be used at the following levels. 
+ 	variable ------ constants, can not be modified once initialized or assigned value at 1st time.
+ 	method   ------ can not be overridden in subclass.
+ 	class    ------ can not be inherited.
 
- <<Polymorphism >> It is a concept by which we can perform a single action by different ways.		
+Polymorphism  It is a concept by which we can perform a single action by different ways.		
  
- [[1]] <<Compile time polymorphism:>> Caller of the method is identified at compile time.
-	
+ 1  Compile time polymorphism: Caller of the method is identified at compile time.
 		Ex:  overloaded static methods
- 
- [[2]] <<Runtime polymorphism>> <(Dynamic Method Dispatch):>
+ 2  Runtime polymorphism <(Dynamic Method Dispatch):>
 		It is a process in which a call to an overridden method is resolved at runtime rather than compile-time.
 		In this process, an overridden method is called through the reference variable of a superclass. 
 		The determination of the method to be called is based on the object being referred to by the reference variable.
-	
 		<Method can be overridden not the datamembers, so runtime polymorphism can't be achieved by data members.>		
 
-[]
-
- <<Static Binding and Dynamic Binding:>>
+ Static Binding and Dynamic Binding:
 		Connecting a method call to the method body is known as binding.
 		There are two types of binding
 	
- [[1]] <<Static binding>> <(Early binding):>
- 
+ 1  Static binding <(Early binding):>
 		When type of the object is determined at compiled time(by the compiler), it is known as static binding. 
 		If there is any <private, final or static method in a class>, there is static binding.
 		
- [[2]] <<Dynamic binding>> <(Late binding):>
-  
+ 2  Dynamic binding <(Late binding):>
 		When type of the object is determined at run time, it is known as late binding. Overridden methods
- 
- []
 	
- <<instanceof>> <type comparison operator> is used to test whether the object is an instance of the specified type (class or subclass or interface).
+ instanceof <type comparison operator> is used to test whether the object is an instance of the specified type (class or subclass or interface).
  
- <<Downcasting>> When Subclass type refers to the object of Parent class, it is known as downcasting.
+ Downcasting When Subclass type refers to the object of Parent class, it is known as downcasting.
 		If we perform it directly, compiler gives Compilation error. If you perform it by typecasting, ClassCastException is thrown at runtime. 
 		But if we use instanceof operator, downcasting is possible.
 
- <<Upcasting>> When Parent type refers to the object of child class, it is known as upcasting.
-
-------------
+ Upcasting When Parent type refers to the object of child class, it is known as upcasting.
 
 		Ex:
 			Child c=new Child();
 			Parent p=(Parent)c;                 Up casting
-			
+
+			Parent p = new Parent();			
 			if(p instanceof Child)
 			{
 				c=(Child)p;						Down casting: actual object is child only. Upcasted then Down casted.
 			}
-			
-			
-------------
 
- <<Abstraction>> It is a process of hiding the implementation details and showing only functionality to the user.
+ Abstraction It is a process of hiding the implementation details and showing only functionality to the user.
  		There are two ways to achieve abstraction.
 
- [[1]] <<Abstract class (0 to 100%)>>
+ 1  Abstract class (0 to 100%)
  		An abstract class can have data member, abstract method, concrete method, constructor and even main() method.
 
- [[2]] <<Interface (100%)>>
+ 2  Interface (100%)
 		It is a blueprint of a class. It has static constants and abstract methods.
 		It also represents IS-A relationship. Multiple inheritance is not supported in case of class because of ambiguity. 
 		But it is supported in case of interface because there is no ambiguity as implementation is provided by the implementation class. 
 		
-		<<Marker interfacs>>< or ><<Tagged interface>>< :An interface that have no member.>
+		Marker interfacs< or >Tagged interface< :An interface that have no member.>
 		They are used to provide some essential information to the JVM so that JVM may perform some useful operation.
 		
 		<Ex: Serializable, Cloneable, Remote etc.>
@@ -219,133 +188,26 @@
  
  		With the introduction of annotation, annotation has become a better choice over maker interface.
 		In short a marker interface  is used to indicate something to compiler, JVM or any other tool but Annotation is better way of doing same thing.
- 
- 		Ref: {{http://mrbool.com/what-is-marker-interface-in-java/28557}}
-		
- []
- 
- <<Factory method>> A factory method is the method that returns the instance of the class.
 
- <<Serialization>> is the process of converting the state of an object into byte stream so that the byte stream can be reverted back into a copy of the object.
  
- <<Deserialization>> is the process of converting the serialized form of an object back into a copy of the object.
- 
-		<Any class which implements <java.io.Serializable interface> or <java.io.Externalizable> can be serialized and deserialized.>
-  
-  <<Immutable class and custom immutable class>> 
-  	
-  	"An object is considered immutable if its state cannot change after it is constructed".
-  	Simply an immutable class is a class whose properties can not be modified after creation.
-  	
-  	Advantages:
-  		1) Immutable classes are great for concurrent applications.(thread-safe)
-  		2) More error resistant and secure due to the immutability.
-  		
-  	Steps to create immtutable class:
-  		1) final class : can not be extended.
-  		2) Make all fields private and final  
-  		3) No setters
-  		4) Initialize fields via constructor
+ Access modifiers :
+	1  private-variable,method,constructor
+	2  default
+	3  protected
+	4  public
 
-  <<Why String is immutable:>>
-  
-  	<<Security:>> parameters are typically represented as String in network connections, database connection urls, usernames/passwords etc. 
-  	If it were mutable, these parameters could be easily changed.
-  	
-  	<<Synchronization and concurrency:>> making String immutable automatically makes them thread safe thereby solving the synchronization issues.
-  	
-  	<<Caching:>> when compiler optimizes your String objects, it sees that 
-  	if two objects have same value (a="test", and b="test") and thus you need only one string object (for both a and b, these two will point to the same object).
-  	
-  	<<Class loading:>> String is used as arguments for class loading. If mutable, it could result in wrong class being loaded (because mutable objects change their state).	
-  	
-  	<<Colleactions>>: If we are going to perform any hashing related operations on any object we must override the hashCode() method and try to generate an accurate hashcode by using the state of the object. 
-  	If object's state is getting changed which means its hashcode should also change.
-  	
-  
-  
-  
- <<Access modifiers :>>
-	
-	[[1]] private-variable,method,constructor
-	
-	[[2]] default
-	
-	[[3]] protected
-	
-	[[4]] public
-	
-	[]
-
-+----------------------------+	
 	private-> default-> protected-> public
-	
 	If you are overriding any method, overridden method (i.e. declared in subclass) must not be more restrictive.
-+----------------------------+
 	
- <<Non-Access modifiers :>>
- 
-	[[1]] static
-	
-	[[2]] abstract
-	
-	[[3]] synchronized
-	
-	[[4]] native
-	
-	[[5]] volatile
-	
-	[[6]] transient ...etc
-	
-	[]
-	
+ Non-Access modifiers :
+	1  static
+	2  abstract
+	3  synchronized
+	4  native
+	5  volatile
+	6  transient ...etc
 
 
- <<Encapsulation:>> It is a process of wrapping code and data together into a single unit.
-		By providing only setter or getter method, you can make the class read-only or write-only. Fully encapsulated class- java bean
-
- <<Nested Class>>
- 
-	[[1]] <<static nested class >> <(static nested class):> Static nested classes can access only static members of the outer class.
-	
-	[[2]] <<inner class >><(non static nested class):> can access all the variables and methods of the outer class. we can not have any static variables inside them.
-	
-		[[i]] <<Local inner class :>> A class is defined in a method body/block.
-		
-		[[ii]] <<Anonymous inner class:>> A local inner class without name is known as anonymous inner class.
-		
-	  
- <<ClassLoader>> Java ClassLoader loads a java class file into java virtual machine.
- 	
- 	Ref: https://javapapers.com/core-java/java-class-loader/
-
-	[[1]] <<Bootstrap class loader:>> Every JVM implements this loader.
-		It loads core java API classes from <JAVA_HOME/jre/lib directory>(bootstrap path).
-		Bootstrap class loader loads java’s core classes like java.lang, java.util etc.
-		
-		<This is implemented by native languages like C C++.>
-								
-	[[2]] <<Extension class loader:>> Child of Bootstrap class loader. implemented by java.
-		It loads classes form <JAVA_HOME/jre/lib/ext> or any other path specified by <java.ext.dirs> path
-		
-		JVM implemented extension class loader is <sun.misc.Launcher$ExtClassLoader> class.
-								
-	[[3]] <<System/Application class loader:>>It is child of extension class loader.
-		It loads classes from <application path> or any other from environment variable <java.class.path>.
-		
-		JVM implemented extension class loader is <sun.misc.Launcher$AppClassLoader> class.
-	
-	We can see more class loaders like java.net.URLClassLoader, java.security.SecureClassLoader etc. Those are all extended from java.lang.ClassLoader
-
-	These class loaders have a hierarchical relationship among them. Class loader can load classes from one level above its hierarchy. 
-	First level is bootstrap class loader, second level is extensions class loader and third level is system class loader.	
-
-
- +-----------------------------------------------+
- 
- Concurrent systems: multiple threads communicate each other.
- Distributed system: multiple processors communicate each other(different nodes/computers).
- 
  
  Sample concurrent models:
  	
@@ -381,11 +243,11 @@
  	    The difference between a same-threaded and a multi-threaded system is that the threads in a same-threaded system do not share state.
  	    There is no shared memory which the threads access concurrently. No concurrent data structures etc.
  
- <<Thread:>> A single flow of execution.
+ Thread: A single flow of execution.
  The problems arise when multiple threads access(writes) the same resources. 
  For instance the same memory (variables, arrays, or objects), systems (databases, web services etc.) or files.
  
- <<Thread creation:>>
+ Thread creation:
  
  	0) Create built-in Thread class instance.
  	    Thread t=new Thread();
@@ -464,11 +326,8 @@
         System.out.println("Finished all threads");
  	
  	   
- +-----------------------------------------------+
-
+ 
 ExecutorService is an interface: used to create pool of threads and submit callable or execute runnable or schedule callable/runnable threads.
-
- +------------+
 
 	1a) ExecutorService singleThreadExecutorService = Executors.newSingleThreadExecutor();
 	1b) ExecutorService fixedThreadPoolExecutorService=Executors.newFixedThreadPool(5);
@@ -487,9 +346,6 @@ ExecutorService is an interface: used to create pool of threads and submit calla
 	singleThreadExecutorService.execute(-);
 	singleThreadExecutorService.submit(-);
 	
- +------------+
-  
- +-----------------------------------------------+
  
 
  An application may process one task at at time (sequentially) or work on multiple tasks at the same time (concurrently)
@@ -500,9 +356,6 @@ ExecutorService is an interface: used to create pool of threads and submit calla
  
  Critical Section: A code section that leads to race conditions is called a critical section.
  
- +-----------------------------------------------+
- 
- +-------------------------------+
  
  //Sample code for Critical Section:
  
@@ -514,15 +367,14 @@ ExecutorService is an interface: used to create pool of threads and submit calla
 			this.count = this.count + value;
 		}
    }
- +-------------------------------+
 
- <<Preventing Race Conditions:>> To prevent race conditions from occurring you must make sure that the critical section is executed as an atomic instruction. 
+
+ Preventing Race Conditions: To prevent race conditions from occurring you must make sure that the critical section is executed as an atomic instruction. 
 	That means that once a single thread is executing it, no other threads can execute it until the first thread has left the critical section.  
 	By using <synchronized blocks> or <synchronized methods> 
  
  
- 
- +-------------------------------+
+
  
  Sample code for Preventing Critical Section:
    
@@ -543,18 +395,18 @@ ExecutorService is an interface: used to create pool of threads and submit calla
       }
 	}
 	
- +-------------------------------+ 
+
  
   <Code that is safe to call by multiple threads simultaneously is called thread safe.>
 
- <<Local Variables:>> Local variables are stored in each thread's own stack. 
+ Local Variables: Local variables are stored in each thread's own stack. 
 	That means that local variables are never shared between threads.
 	
- <<Local Object Reference:>> All objects are stored in the shared heap.
+ Local Object Reference: All objects are stored in the shared heap.
 	If an object created locally never escapes the method it was created in, it is thread safe. 
 	In fact you can also pass it on to other methods and objects as long as none of these methods or objects make the passed object available to other threads.	
 
- <<Thread Safety and Immutability:>> Race condition <occurs> when two or more threads <writes> to shared resource[s].
+ Thread Safety and Immutability: Race condition <occurs> when two or more threads <writes> to shared resource[s].
 	Race condition can <not occur> when two or more threads <reads> shared resource.
 	We can make sure that objects shared between threads are never updated by any of the threads by making the shared objects immutable, and thereby thread safe.
 	
@@ -563,23 +415,9 @@ ExecutorService is an interface: used to create pool of threads and submit calla
 
 
 
-<<Java Memory Model:>>
- 
- JMM, specifies
-		How different threads see the values written to the shared variables by  other threads.
-		How to synchronize access to shared variables when necessary.
-
-Modern computer often have more than one CPUs, Some of these CPUs may have multiple cores too. It is possible to have more than one thread running simultaneously.
-Each CPU contains set of registers. The CPU can perform operations much faster on these registers than can perform operations in main memory.
-CPUs can have one or multiple cache memory layers. A computer also contains a main memory area (RAM). All CPUs can access the main memory.
-
-Typically, when a CPU needs to access main memory it will read part of main memory into its CPU cache. It may even read part of the cache into its internal registers and then perform operations on it.
-When the CPU needs to write the result back to main memory it will flush the value from its internal register to the cache memory, and at some point flush the value back to main memory.
-
-
 Problems With Threads while accessing shared resources:
 
-<<Visibility and Race condition on shared variables.>>:
+Visibility and Race condition on shared variables.:
 If two or more threads acccesing shared resources/objects/variable: updated value of shared resource may not be visible to all thereds.
 Solution: We can avoid visibility and race condition issues by declaring volatile keyword and synchronized blocks/methods.
 The volatile keyword can make sure that a given variable is read directly from main memory, and always written back to main memory when updated.
@@ -589,7 +427,7 @@ and when the thread exits the synchronized block, all updated variables will be 
 regardless of whether the variable is declared volatile or not.
 
 
- <<Synchronized keyword:>> A Java synchronized block marks a method or a block of code as synchronized. Java synchronized blocks can be used to avoid race conditions.
+ Synchronized keyword: A Java synchronized block marks a method or a block of code as synchronized. Java synchronized blocks can be used to avoid race conditions.
 	The synchronized keyword can be used to mark four different types of blocks. 
 
 +--------------------+ 
@@ -599,7 +437,7 @@ regardless of whether the variable is declared volatile or not.
 4. Code blocks inside static methods
 +--------------------+ 
 
- <<synchronized instance method:>> we can make an instance method synchronized by declaring a method with synchronized keyword as follow. 
+ synchronized instance method: we can make an instance method synchronized by declaring a method with synchronized keyword as follow. 
    this can be synchronized on <instance(object)>. Only one thread can execute inside the synchronized method at a time.
   
 +-----------------+
@@ -609,7 +447,7 @@ public synchronized void add(int value)
 }
 +-----------------+
 
- <<synchronized static method:>> Synchronized static methods are synchronized on the class object of the class the synchronized static method belongs to. 
+ synchronized static method: Synchronized static methods are synchronized on the class object of the class the synchronized static method belongs to. 
    Since only one class object exists in the Java VM per class, only one thread can execute inside a static synchronized method in the same class.
   
 +-----------------+
@@ -619,7 +457,7 @@ public static synchronized void add(int value)
 }
 +-----------------+
 
- <<Synchronized Blocks in Instance Methods:>> it is preferable to synchronize only part of a method.
+ Synchronized Blocks in Instance Methods: it is preferable to synchronize only part of a method.
   The object taken in the parentheses by the synchronized construct is called a monitor object. The code is said to be synchronized on the monitor object. 
   A synchronized instance method uses the object it belongs to as monitor object.
 
@@ -633,7 +471,7 @@ public void add(int value)
 }
 +-----------------+
 
-	 <<Synchronized Blocks in static Methods:>> static synchronized block been synchronized on a different object than MyClass.class, 
+	 Synchronized Blocks in static Methods: static synchronized block been synchronized on a different object than MyClass.class, 
 	  then one thread could execute inside each method at the same time.
 
 +-----------------+
@@ -650,26 +488,26 @@ public class MyClass
 +-----------------+	
 
  
- <<volatile is Not Always Enough>>
+ volatile is Not Always Enough
  
  Even if the volatile keyword guarantees that all reads of a volatile variable are read directly from main memory, and all writes to a volatile variable are 
  written directly to main memory, there are still situations where it is not enough to declare a variable volatile.
  
- <<When is volatile Enough?>>
+ When is volatile Enough?
   
   if two threads are both reading and writing to a shared variable, then using the volatile keyword for that is not enough. 
   
-  [[i]]  We can use synchronization which makes the reading and writing of the variable is atomic.
+  i   We can use synchronization which makes the reading and writing of the variable is atomic.
   
-  [[ii]] We can also use one of the many atomic data types found in the java.util.concurrent package. < AutomicLong , AutomicReference...>
+  ii  We can also use one of the many atomic data types found in the java.util.concurrent package. < AutomicLong , AutomicReference...>
   
  
-  <<Performance Considerations of volatile>>
+  Performance Considerations of volatile
 
   Reading and writing of volatile variables causes the variable to be read or written to main memory. Reading from and writing to main memory is more expensive than accessing the CPU cache.
   We should only use volatile variables when you really need to enforce visibility of variables.
  
-  <ThreadLocal :>>
+  <ThreadLocal :
  The ThreadLocal class in Java enables you to create variables that can only be read and written by the same thread. 
  Thus, even if two threads are executing the same code, and the code has a reference to a ThreadLocal variable, 
  then the two threads cannot see each other's ThreadLocal variables.
@@ -693,7 +531,7 @@ public class MyClass
  A thread cannot call wait(), notify() or notifyAll() without holding the lock on the object the method is called on. If it does, an IllegalMonitorStateException is thrown.
  Once a thread calls wait() it releases the lock it holds on the monitor object.
  
- <<Thread Deadlock>> A deadlock is when two or more threads are blocked waiting to obtain locks that some of the other threads in the deadlock are holding.
+ Thread Deadlock A deadlock is when two or more threads are blocked waiting to obtain locks that some of the other threads in the deadlock are holding.
  Ex: if thread 1 locks A, and tries to lock B, and thread 2 has already locked B, and tries to lock A, a deadlock arises. Thread 1 can never get B, and thread 2 can never get A.
 
 +-----------+
@@ -703,18 +541,18 @@ Thread 2  locks B, waits for A
  
  
  
- <<Deadlock Prevention:>>
+ Deadlock Prevention:
  	
- 	[[1]] Lock Ordering:
+ 	1  Lock Ordering:
  	
- 	[[2]] Lock Timeout:
+ 	2  Lock Timeout:
  	
- 	[[3]] Deadlock Detection :
+ 	3  Deadlock Detection :
 
- <<Starvation:>> If a thread is not granted CPU time because other threads grab it all, it is called "starvation".
-	 The solution to starvation is called <<fairness>> - that all threads are fairly granted a chance to execute.
+ Starvation: If a thread is not granted CPU time because other threads grab it all, it is called "starvation".
+	 The solution to starvation is called fairness - that all threads are fairly granted a chance to execute.
 
-  <<A simple implementation of the Lock class could look like this: but it is not reentrant lock>>
+  A simple implementation of the Lock class could look like this: but it is not reentrant lock
  
  +-------+
 public class Lock{
@@ -848,67 +686,9 @@ public class ReentrantCustomLock
     }
 }
 
-+------------------+
 
 
-<Read / Write Lock:>
-
-Read Access: No threads are writing / not requested for write access.
-Write Access: No threads are reading/writing.
-
-
-
-
-<<Decompiler:CFR>>
+Decompiler:CFR
 
 C:\Users\zgorrav\codebase\dev-repo\proj\corejava\target\classes\java8features\functionalinterface>java -jar C:\tools\cfr_0_129.jar LambdaExpForCustomInterface.class
 
-
- 	  
- <<Reference Sites>>
-
- {{http://www.geeksforgeeks.org/jvm-works-jvm-architecture/}}
- 
- {{https://www.journaldev.com}}
- 
- {{http://javaconceptoftheday.com/difference-between-shallow-copy-vs-deep-copy-in-java/}}
- 
- {{http://javahungry.blogspot.com/}}
- 
- {https://github.com/sreedharnuli/Learnings}
- 
- {http://tutorials.jenkov.com/java-util-concurrent/index.html}
-
- Data Science:
-  Read white papers by Google....
-  Open source contribution. writing blogs, linkedin connections,...
- {https://www.meetup.com/}
- {https://www.kaggle.com/}
- {http://www.hackathon.io/events}
- {https://www.coursera.org/}
- 
- {https://aws.amazon.com/training/course-descriptions/machine-learning/}
- 
- 
- Serialization:
- 	
- 	All subtypes of a serializable class are themselves serializable.
- 
- 		private void writeObject(java.io.ObjectOutputStream out) throws IOException
- 		private void readObject(java.io.ObjectInputStream in) throws IOException, ClassNotFoundException;
- 		private void readObjectNoData() throws ObjectStreamException;
-
-	The writeObject method is responsible for writing the state of the object for its particular class so that the corresponding readObject method can restore it.
-	
-	ANY-ACCESS-MODIFIER Object writeReplace() throws ObjectStreamException;
-	
-	ANY-ACCESS-MODIFIER Object readResolve() throws ObjectStreamException;
-	
-	serialVersionUID: which is used during deserialization to verify that the sender and receiver of a serialized object have loaded classes for that object that are compatible with respect to serialization.
-	If different serialVersionUIDs throws InvalidClassException.
-	
-	
- Generics:
- 
- 	Generic is used to define a logic/algorithm once and apply to any type of data.
-   

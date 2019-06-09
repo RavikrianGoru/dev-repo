@@ -1,22 +1,10 @@
- -----
- The APT format
- -----
- The Maven Team
- -----
-ThoughtWorks-
-Ford-
-Caterpiller-
- -----
-
 Sample Interview Questions in Java
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Ref: 
-https://www.journaldev.com/7153/core-java-tutorial#core-java-tutorial
-http://javaconceptoftheday.com/difference-between-shallow-copy-vs-deep-copy-in-java/
 
+1) How to handle shared resource in mapR jobs?
+	Zk for small shared data and DistributedCache for large data.
 
-What will happens when you run >java Test?
------------------------------------------
+2) What will happens when you run >java Test?
 	1) JVM starts
 	2) JVM creates & starts main thread
 	3) main thread loads Test.class
@@ -26,409 +14,135 @@ What will happens when you run >java Test?
 	6) Terminates Main thread
 	7) Shoutdown JVM
 
-main mehtod:Allows final strictfp synchronized
 
-	public static void main(String... args)
-	public static final strictfp synchronized void main(String... args)
+3) What are the different ways to create an object in Java?
+	1) By new keyword						Employee emp1 = new Employee();
+	2) By clone() method					Employee emp4 = (Employee) emp3.clone();
+	3) By deserialization					ObjectInputStream in = new ObjectInputStream(new FileInputStream("data.obj"));
+											Employee emp5 = (Employee) in.readObject();
 	
-public class and non public class:
-----------------------------------
-source java file : MultipleClasses.java
-	1) A source file can have any number of non-public classes.
-	2) source file can have all non-public classes.
-	3) source file have only one pubic class and that source file name too same.
-	4) all class file can have main methods
-		java A
-		java B
-		java MutlipleClasses will takes which mail method to calls.
+	*) By newInstance() method				Employee emp2 = (Employee) Class.forName("org.programming.mitra.exercises.Employee").newInstance();
+											
+											or Employee emp2 = Employee.class.newInstance();
+											
+											or Constructor<Employee> constructor = Employee.class.getConstructor();
+											Employee emp3 = constructor.newInstance();
+											
+	*) By factory method etc----it internally uses new key word.
+	* Actually, 3 ways to create objects.(new keyword, clone() and deserialization).
 
-static and non-static methods:
------------------------------
-	1) static method can not acces non-static method/variables directly.
-	2) static method can not use super or this keywords.
+4) Difference b/w new and netInstance():
+	new 
+		- operator, used to create object/instance of a class
+		- if we know class at begining then it can be used.
+		- if no corresponding .class then NoClassDefFoundError at run time.
 
-Diff b/w new and netInstance():
--------------------------------
+	newInstance()
+		- is a method in Class.class used to create an object/instanct by passing Class name at runtime
+		- Object obj = Class.forName("java.lang.String").newInstance();
+		- if .class not available at runtime throws ClassNotFoundException
 
-new 
-	- operator, used to create object/instance of a class
-	- if we know class at begining then it can be used.
-	- if no corresponding .class then NoClassDefFoundError at run time.
+5) Difference between instanceof and isInstsnce:
+	instanceof
+		- operator, used to check given object is particular type or not.
+		- String s = "Ravi"
+			if (s instsnceof String || s instanceof Object)
+				System.out.print("Hi");
+	isInstance:
+		- isInstance() method , Available in Class.clss used to check the given object is of particular type or not. Type is available at runtime.
 
-newInstance()
-	- is a method in Class.class used to create an object/instanct by passing Class name at runtime
-	- Object obj = Class.forName("java.lang.String").newInstance();
-	- if .class not available at runtime throws ClassNotFoundException
+6) Difference between NoClassDefFoundError and ClassNotFoundException
 
-Diff between NoClassDefFoundError and ClassNotFoundException
------------------------------------------------------------
+	NoClassDefFoundError
+		- Unchecked Exception
+		- Test t = new Test(); if Test.class is not available at runtime.
+		- Class Name hardcoded in program
+	ClassNotFoundException
+		- Checked Exception
+		- Object obj = Class.forName("Test").netInstance(); if Test.class is not available at runtime.
+		- Class Name is passed dynamically
 
-NoClassDefFoundError
-	- Unchecked Exception
-	- Test t = new Test(); if Test.class is not available at runtime.
-	- Class Name hardcoded in program
-ClassNotFoundException
-	- Checked Exception
-	- Object obj = Class.forName("Test").netInstance(); if Test.class is not available at runtime.
-	- Class Name is passed dynamically
-
-Shallow and Deep copy:
-----------------------
+7) Shallow and Deep copy:
 	Cloning is a process of creating an exact copy of an existing object in the memory.
 	The objects which implement Cloneable interface are only eligible for cloning process.
-Shallow Copy:
-	The default version of clone() method creates the shallow copy of an object. 
-	The shallow copy of an object will have exact copy of all the fields of original object. 
-	If original object has any references to other objects as fields, then only references of those objects are copied into clone 
-	object, copy of those objects are not created.
-	 Shallow copy is not 100% disjoint from original object. 
-	 Shallow copy is not 100% independent of original object.
 	
-	
-	protected Object clone() throws CloneNotSupportedException
-    {
-        return super.clone();
-    }
-	
-Deep Copy:
-	Deep copy of an object will have exact copy of all the fields of original object just like shallow copy. 
-	But in additional, if original object has any references to other objects as fields, then copy of those objects are also 
-	created by calling clone() method on them.
-	That means clone object and original object will be 100% disjoint. 
-	They will be 100% independent of each other.
-	Any changes made to clone object will not be reflected in original object or vice-versa.
-	 
+* Shallow Copy:
+		The default version of clone() method creates the shallow copy of an object. 
+		The shallow copy of an object will have exact copy of all the fields of original object. 
+
+		If original object has any references to other objects as fields, then only references of those objects are copied into clone object, copy of those objects are not created.
 		 
+		Shallow copy is not 100% disjoint from original object. 
+		Shallow copy is not 100% independent of original object.
+		Any changes made to clone object will be reflected in original object or vice-versa.
+		protected Object clone() throws CloneNotSupportedException
+    	{
+    	    return super.clone();
+    	}
 
+* Deep Copy:
+		Deep copy of an object will have exact copy of all the fields of original object just like shallow copy. 
+		But in additional, if original object has any references to other objects as fields, then copy of those objects are also created by calling clone() method on them.
+		
+		That means clone object and original object will be 100% disjoint. 
+		They will be 100% independent of each other.
+		Any changes made to clone object will not be reflected in original object or vice-versa.
+	 
 
-
-Diff bewteen instanceof and isInstsnce:
----------------------------------------
-instanceof"
-	- operator, used to check given object is particular type or not.
-	- String s = "Ravi"
-		if (s instsnceof String || s instanceof Object)
-			System.out.print("Hi");
-isInstance:
-	- isInstance() method , Available in Class.clss used to check the given object is of particular type or not. Type is available at runtime.
-	- 
-
-OOPS?
-
-Can we overload main method or static method? Yes.
-
-Can we override the static method or main method? No
-
-Constructor returns a value but, what ?
-yes, that is current class instance (You cannot use return type yet it returns a value).
-
-Can we create a program without main method ?
-Yes, one of the way is static block but in previous version of JDK not in JDK 1.7.
-	In JDK7 and above, output will be:
-	Output:Error: Main method not found in class A3, please define the main method as:
-	public static void main(String[] args)
-
-What are the 6 ways to use this keyword ?
-
-Why multiple inheritance is not supported in java ?
-To reduce the complexity and simplify the language, multiple inheritance is not supported in java.
-Diamond problem?
-
-Why use aggregation(has-a relation) ?: code reusability
-
-When use Aggregation?
-Code reuse is also best achieved by aggregation when there is no is-a relationship.
-Inheritance should be used only if the relationship is-a is maintained throughout the lifetime of the objects involved; otherwise, aggregation is the best choice.
-
-
-
-
-What is covariant return type ?
-since Java5, it is possible to override method by changing the return type if subclass overrides any method whose return type is Non-Primitive but it changes its return type to subclass type.
-
-What are the three usage of super keyword?
-Why use instance initializer block?
-
-What is the usage of blank final variable ?
-A final variable that is not initialized at the time of declaration is known as blank final variable.
-
-Is final method inherited?
-Yes, final method is inherited but you cannot override it.
-
-Can we initialize blank final variable?
-Yes, but only in constructor. For example:
-*A static final variable that is not initialized at the time of declaration is known as static blank final variable. It can be initialized only in static block.
-
-Can we declare a constructor final?
-No, because constructor is never inherited.
-
-What is marker or tagged interface ?
-
-What is runtime polymorphism or dynamic method dispatch ?
-What is the difference between static and dynamic binding ?
-How downcasting is possible in java ?
-What is the purpose of private constructor?
-What is object cloning ?
-
-Advantage of OOPs
-Naming Convention
-Object and class
-Method overloading
-Constructor
-static keyword
-this keyword with 6 usage
-Inheritance
-Aggregation
-Method Overriding
-Covariant Return Type
-super keyword
-Instance Initializer block
-final keyword
-Abstract class
-Interface
-Runtime Polymorphism
-Static and Dynamic Binding
-Downcasting with instanceof operator
-Package
-Access Modifiers
-Encapsulation
-Object Cloning
-
-
-
-How many ways we can create an object?
-
-1. Using new keyword  constructor get called
-
-Employee emp1 = new Employee();
-2. Using newInstance() method of Class → constructor get called
-
-Employee emp2 = (Employee) Class.forName("org.programming.mitra.exercises.Employee")
-                                .newInstance();
-It can also be written as
-
-Employee emp2 = Employee.class.newInstance();
-3. Using newInstance() method of Constructor → constructor get called
-
-Constructor<Employee> constructor = Employee.class.getConstructor();
-Employee emp3 = constructor.newInstance();
-4. Using clone() method → no constructor call
-
-Employee emp4 = (Employee) emp3.clone();
-5. Using deserialization → no constructor call
-
-ObjectInputStream in = new ObjectInputStream(new FileInputStream("data.obj"));
-Employee emp5 = (Employee) in.readObject();
-
-* What are the different ways to create an object in Java?
-	1) By new keyword
-	2) By clone() method
-	3) By deserialization
-	
-	*) By newInstance() method--Class.forName("ClassName").newInstance()----it internally uses new key word.
-	*) By factory method etc----it internally uses new key word.
-* Actually, 3 ways to create objects.(new keyword, clone() and deserialization).
-
-
-Why String is immutable in java?
+7) Why String is immutable in java?
 	1) String pool is possible as String is immutable. it saves a lot of heap memory.
-	2) Security threats: if String is not immutable. Socket programming(host and port) and to get DB connection(username and pwd) as Strings. Sice String is immutable value can not be changed.
+	2) Security threats: if String is not immutable. Socket programming(host and port) and to get DB connection(username and pwd) as Strings. Since String is immutable value can not be changed.
 	3) Thread-safety: As String is immutable it can be shared across thread without any synchronization.
-	4) String are used in classloaders, no one change the calss name as String is immutable.
+	4) String are used in classloaders, no one change the class name as String is immutable.
 	5) String is immutable and hashcode is generated at the time of String creation.There is no need to calculate hash code again.
 	   String type the best suitable type for key in HashMap.
-String pool?	 	
 
+8) Immutable class and custom immutable class 
+  	
+  	"An object is considered immutable if its state cannot change after it is constructed".
+  	Simply an immutable class is a class whose properties can not be modified after creation.
+  	
+  	Advantages:
+  		1) Immutable classes are great for concurrent applications.(thread-safe)
+  		2) More error resistant and secure due to the immutability.
+  		
+  	Steps to create immtutable class:
+  		1) final class : can not be extended.
+  		2) Make all fields private and final  
+  		3) No setters
+  		4) Initialize fields via constructor
 
+9)  ClassLoader Java ClassLoader loads a java class file into java virtual machine.
+ 	
+ 	Ref: https://javapapers.com/core-java/java-class-loader/
 
-OOPS concepts?
-Polymorphism- Method overloading and overridig?
-what is synchronization? where and why we use it?
-Dynamic binding
-	When type of the object is determined at run-time, it is known as dynamic binding. 
-
-Life cycle of thread?
-What is theread sheduler? preemptive or time slicing scheduling
-
-when we get IllegalThreadStateException?
-join() method?
-public void join()throws InterruptedException
-public void join(long milliseconds)throws InterruptedException
-
-Thread pool? how cn we create thread pool?
-java.util.concurrent.Executors;
-java.util.concurrent.ExecutorService;
-
-diff sleep() or wait()?
-
-what is immutable class and how to create it?
-
-peek and pool methods in  Queue?
-
-Java 1.7 features?
-JVM, JDK and JRE?
-
-
-1)will finally block executes after exit, break, return.
-A)finally executes in all senarios except exit which causes JVM failure/terminating the process. Also at power shutdown finally/OS failover wont executes.
-
-Singleton:
-
-1) What is Singleton class? Have you used Singleton before?
+	1  Bootstrap class loader: Every JVM implements this loader.
+		It loads core java API classes from <JAVA_HOME/jre/lib directory>(bootstrap path).
+		Bootstrap class loader loads java�s core classes like java.lang, java.util etc.
+		
+		<This is implemented by native languages like C C++.>
+								
+	2  Extension class loader: Child of Bootstrap class loader. implemented by java.
+		It loads classes form <JAVA_HOME/jre/lib/ext> or any other path specified by <java.ext.dirs> path
+		
+		JVM implemented extension class loader is <sun.misc.Launcher$ExtClassLoader> class.
+								
+	3  System/Application class loader:It is child of extension class loader.
+		It loads classes from <application path> or any other from environment variable <java.class.path>.
+		
+		JVM implemented extension class loader is <sun.misc.Launcher$AppClassLoader> class.
 	
-2) Which classes are candidates of Singleton? Which kind of class do you make Singleton in Java?
+	We can see more class loaders like java.net.URLClassLoader, java.security.SecureClassLoader etc. Those are all extended from java.lang.ClassLoader
 
-3) Can you write code for getInstance() method of a Singleton class in Java?
-	public static synchronized  Singleton getInstance()
-	{
-		return new Singleton();
-	}
+	These class loaders have a hierarchical relationship among them. Class loader can load classes from one level above its hierarchy. 
+	First level is bootstrap class loader, second level is extensions class loader and third level is system class loader.	
+
+10) Difference between JDK, JRE, and JVM https://www.javatpoint.com/difference-between-jdk-jre-and-jvm
 	
-	or
+11) JVN architecture/ internals https://www.javatpoint.com/internal-details-of-jvm
+
+12) 
+
+
 	
-	private volatile static Singleton _instance;//volatile is recommended
-	public static Singleton getInstance()
-	{
-		if(_instance==null)//Singe-check: get rid of half intitialization issue
-		{
-			sychronized(Singleton.class)
-			{
-				if(_instance==null)//Double-check
-				{
-					return new Singleton();
-				}
-				return _instance;
-			}
-		}
-		return _instance;
-	}	
-	
-4) Is it better to make whole getInstance() method synchronized or just critical section is enough? Which one you will prefer?
-
-5) What is lazy and early loading of Singleton and how will you implement it?
-
-6) Give me some examples of Singleton pattern from Java Development Kit?
-	Runtime.java
-	
-7) What is double checked locking in Singleton?
-	See above
-8) It is recommended to used synchronized block then synchronized method due to cost expensive.
-	
-9) How do you prevent for creating another instance of Singleton using clone() method?
-	Dont implement Clonable interface or Override clone method and return same obj/ throw Exception.
-10) How do you prevent for creating another instance of Singleton using reflection?
-	private cunstructor can be called by using reflection. we throw Exception in constructor or return same obj.
-
-11) How do you prevent for creating another instance of Singleton during serialization?
-	You can prevent this by using readResolve() method, since during deserialization readObject() is used to create instance and 
-	it return new instance every time but by using readResolve you can replace it with original Singleton instance.	
-
-
-
-
-int[] arr = {4,1,9,8,.......10,....1,9,4,8,....}
-
-class Employee{
-  String name;
-  int id;
-  Date doj;
-  Address addr;
-}
-
-class Employee implements Serializable{
-  
-}
-
-class Manager extends Employee{
-  
-}
-
-mgr1 mgr2 mgr3 mgr4
-
-
-class Employee{
-String name; setters/getters
-}
-Employee e1 = new Employee("Sapient");
-HashMap<Employee,String> map
-map.put(e1,"ABC");
-e1.setName("Nitro");
-map.get(e1); -- > ??
-  
-Set<Employee> obj = new TreeSet();
-
-
-
-1-5-2-8-6-9-4-7-0-null
-  
-  
-2/3/4/5 -->
-
-==============================
-  
-  
-
-1-5-2-8-6-9-4-7-0-null
-  
-  
-2/3/4/5 -->
-
-==============================
-  
-  Singleton:
-
-  private Singleton single=null;
-
-  public static Singleton getInstance()
-  {
-    
-    //why another check
-    if(single!=null)
-    
-    synchronized(Singleton.class)
-    {
-      
-    if(single==null)
-    {
-      single= new Singleton();
-    }
-    }
-    return single;
-  }
-
-syncronized reccursive method with deal lock issue.(Reentrancelock).
-
-
-Real time example for all DPs.
-
-
-arr---[ 1,3,8,4,5,2,7,24,25,67,24,26,4,78,97,9} sum=9
-(1,8),(2,7),(4,7)---- print 9
-
-
-diff wait() and sleep()?
-Overriding rules wrt access modifiers and Exception?
-REST diff Accept and ContentType headers?
-Diff b/w SOAP and REST?
-
-How to handle shared resource in mapR jobs?
-Zk for small shared data and DistributedCache for large data.
-How to optimized SQL queries?
-SQL query for All managers and emp-->manager?
-joins ?
-how many joins required to get data from 4 tables?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

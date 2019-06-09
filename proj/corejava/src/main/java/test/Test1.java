@@ -78,7 +78,7 @@ public class Test1 {
 
 	public static void main(String[] args) {
 
-	    eventsMedalsBoard();
+		eventsMedalsBoard();
 	}
 
 	public static void eventsMedalBoard3() {
@@ -129,8 +129,7 @@ public class Test1 {
 
 		});
 
-		for(Map.Entry<String, Country> each: list)
-		{
+		for (Map.Entry<String, Country> each : list) {
 			System.out.println(each.getValue());
 		}
 //		System.out.println(list);
