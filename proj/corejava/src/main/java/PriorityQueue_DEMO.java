@@ -1,5 +1,36 @@
 import java.util.PriorityQueue;
 
+class Emp1 implements Comparable<Emp1>
+{
+	int id;
+	String name;
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public Emp1(int id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+	@Override
+	public int compareTo(Emp1 o) {
+		return 0;
+	}
+	@Override
+	public String toString() {
+		return "Emp1 [id=" + id + ", name=" + name + "]";
+	}
+	
+}
 public class PriorityQueue_DEMO {
 	public static void main(String[] args) {
 
@@ -20,6 +51,7 @@ public class PriorityQueue_DEMO {
 		PriorityQueue<String> pq = new PriorityQueue<String>();
 		pq.add("ravi1");
 		pq.add("kiran");
+		pq.add("kiran");
 		pq.offer("avinash");
 		pq.offer("balu");
 		pq.add("rupa");
@@ -29,6 +61,22 @@ public class PriorityQueue_DEMO {
 		System.out.println(pq.remove());
 		System.out.println(pq.poll());
 		System.out.println(pq);
+		
+		
+		Emp1 e1= new Emp1(1,"ravi");
+		Emp1 e2= new Emp1(1,"ravi");
+		Emp1 e3= new Emp1(5,"kiarn");
+		Emp1 e4= new Emp1(8,"Goru");
+		
+		PriorityQueue<Emp1> peq =new PriorityQueue<Emp1>();
+		peq.add(e1);
+		peq.add(e2);
+		peq.add(e2);
+		peq.add(e3);
+		peq.add(e4);
+//		peq.add(null);
+		
+		System.out.println(peq);
 	}
 
 }

@@ -320,10 +320,86 @@ sed and awk cmds to manipulate log file.
 		-- peek()					retrieves head will not remove , null if queue is empty.
 		
 	PriorityQueue: But it does not orders the elements in FIFO manner. It inherits AbstractQueue class.
-		* not in FIFO order, order in Comparable implementation, Non-sync, No null,
+		* not in FIFO order, order in Comparable implementation
+		* Non-sync
+		* No null,
+		* To add user-defined objects in PriorityQueue, you need to implement the Comparable interface. else ClassCastException 
+		* override equals and hashcode methods for Custom class
+
+15) Deque interface: insertion and deletion at both ends. Double ended queue.
+
+	ArrayDeque:The ArrayDeque class provides the facility of using deque and resizable-array
+		* The elements in FIFO manner.
+		* both end operations
+		* No nulls
+		* Not thread safe(non-sync)
+		* ArrayDeque is faster than LinkedList and Stack.
+		* Custom objects should implements equals method
+ 		
+		
 				
+16) HashMap<Integer,String> hm = new HashMap<Integer,String>();
+
+	 * If you override the equals() method, then it is mandatory to override the hashCode() method.
+	 	Index = hashcode(Key) & (n-1)
+	 	Index = 2657860 & (16-1) = 4  
+		Node
+		{
+			int hash
+			T key
+			V value
+			Node next
+		}
+	* Hashing: an integer representation object, Process of converting an object into Integer value.
+	* Hashing Collision: if hash code(index) for two or more objects same then it is called hash collision.
+	*  	 	  
+HashMap sorting:
+		hm.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach((a)->{System.out.println(a);});
+		hm.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.reverseOrder())).forEach(System.out::println);
+		hm.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(System.out::println);
+		Map<Integer,String> hm1 = hm.entrySet().stream().sorted(Map.Entry.<Integer,String>comparingByValue()).collect(Collectors.toMap(e->e.getKey(), e->e.getValue(),(e1,e2)->e1,LinkedHashMap::new));
+		hm.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).forEach((a)->{System.out.println(a);});
+
+		Use LinkedHashMap for collecting the result to keep the sorting intact
+		
+		Map<Integer,String> hm1 = hm.entrySet().stream().sorted(Map.Entry.<Integer,String>comparingByKey()).collect(Collectors.toMap(e->e.getKey(), e->e.getValue(),(e1,e2)->e1,LinkedHashMap::new));
+		Map<Integer,String> hm2 = hm.entrySet().stream().sorted(Map.Entry.<Integer,String>comparingByKey(Comparator.reverseOrder())).collect(Collectors.toMap(e->e.getKey(), e->e.getValue(), (e1, e2)->e1,LinkedHashMap::new));
+	
+		Map<EmpKey,EmpVal> emphm1=empHm.entrySet().stream().sorted(Map.Entry.<EmpKey,EmpVal>comparingByKey((k1,k2)->{return k1.getId()-k2.getId();})).collect(Collectors.toMap(e->e.getKey(), e->e.getValue(),(e1,e2)->e1, LinkedHashMap::new));
+		Map<EmpKey,EmpVal> emphm2=empHm.entrySet().stream().filter(entry->{return entry.getValue().getSal()>15000.00d;}).collect(Collectors.toMap(e->e.getKey(), e->e.getValue(),(e1,e2)->e1, LinkedHashMap::new));
+
+	FunctionalInterfaces
+	====================
+	Consmer
+		void accept(T t);
+		al.forEach((each)->{System.out.println(each);});
+		al.iterator().forEachRemaining((each)->{System.out.println(each);});
+
+	Predicate	
+		boolean test(T t);
+		hs.removeIf(each->each!=null&&each.contains("Kumar"));
+		hs.removeIf(each->each!=null&&!each.endsWith("vi"));
+
+	Comparator<T>
+		int compare(T o1, T o2);
+	
+17) LinkedHashMap:
+	* insertion order
+	
+18) TreeMap:
+	Java TreeMap class is a red-black tree based implementation. It provides an efficient means of storing key-value pairs in sorted order.
+	map.headMap(102);  
+    map.tailMap(102);  
+	map.subMap(100, 102);
+	
+19) Hashtable 11, 0.75
+	* sync
+	* no null key, no null value
+	    
+
 
 			
+
 		
 		
 		 
