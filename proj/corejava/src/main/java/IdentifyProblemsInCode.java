@@ -1,0 +1,53 @@
+
+class IdentifyProblemsInCode
+{
+
+    public void howToDoInJava_method1()
+    {
+        System.out.println("how to do");
+        return;
+        // System.out.println("in java");
+    }
+
+    public void howToDoInJava_method2()
+    {
+        System.out.println("how to do");
+        if (true)
+        {
+            return;
+        }
+        System.out.println("in java");
+    }
+
+    public void howToDoInJava_method3()
+    {
+        System.out.println("how to do");
+        while (true)
+        {
+            return;
+        }
+        // System.out.println("in java");
+    }
+
+    public void howToDoInJava_method4()
+    {
+        System.out.println("how to do");
+
+        if (true)
+        {
+            return;
+        }
+        else
+        {
+            return;
+        }
+
+        // System.out.println("in java");
+    }
+
+    public static void main(String[] args)
+    {
+        System.out.println("Check each and every method in this class adn commets too");
+    }
+
+}

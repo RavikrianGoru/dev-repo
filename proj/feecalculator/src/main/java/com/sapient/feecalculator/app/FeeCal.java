@@ -14,7 +14,7 @@ public class FeeCal
 {
     /**
      * Staring point of FeeCal application main method
-     * @param args
+     * @param args 
      * @throws IOException
      */
     public static void main(String[] args) throws IOException

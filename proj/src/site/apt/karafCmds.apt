@@ -9,6 +9,80 @@
 karaf commands
 ~~~~~~~~~~~~~~
 
+Karaf is a osgi runtime container can be used as webserver.
+OSGi is a specification
+	1) Equinox
+	2) Felix
+	+ Host Deployment(war,jar,kar)
+
+Rereq: java
+Download karaf from RM -> Copy links	
+	wget <link>
+	tar 
+	bin
+		./karaf
+		./clent
+		Declaretive service are not part of karaf by defaulr
+		scr:list
+		feature:list
+		check scr in above list
+		feature:install scr
+		scr:list
+
+		./stop
+		./karaf clean
+		scr:list
+		feature:list
+		
+cd ../etc/
+vi orm.apache.karaf.feature.cfg
+featureBoot then add scr element (check)
+
+cd ../deploy 			we can deply kar, jar, war.....
+cd ../log
+
+open log file in 
+feature:install webconsole
+feature info webconsole
+	localhost:8181/system/console/bundle
+	karaf/karaf
+vi org.apache.webconsole.*cfg
+
+instances:
+---------
+instance:create test
+instance:start test
+cd /instance/*
+ps -ef|grep karaf
+
+ngee has its karaf instance
+and tpg has its own karaf instance.
+instance:destroy test
+cd /instance/*
+ps -ef|grep karaf
+
+
+1) COD cloud orchestration and deployment:(UMI) reponsible for base image(os + rm features) and karaf
+2) ngee (oam) features:
+	1 & 2 is a virtula machine
+rpm pom.xml check plugin: related to feature/karaf... etc
+
+
+
+simple webservice: with out web.xml/features
+--------------------------------------------
+
+	
+
+
+
+
+
+
+
+
+
+	
 Useful commands
 
 bundle:
