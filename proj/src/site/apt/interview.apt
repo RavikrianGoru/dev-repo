@@ -1,6 +1,83 @@
 Sample Interview Questions in Java
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+	https://www.javatpoint.com/access-modifiers#accessoverriding
+	https://www.javatpoint.com/exception-handling-with-method-overriding
+	https://www.javatpoint.com/strictfp-keyword
+	https://www.javatpoint.com/java-string
+	https://www.javatpoint.com/immutable-string
+	https://www.javatpoint.com/difference-between-string-and-stringbuffer
+	https://www.javatpoint.com/difference-between-stringbuffer-and-stringbuilder
+	https://www.javatpoint.com/how-to-create-immutable-class
+	StringTokenizer class is deprecated now. It is recommended to use split() method of String class or regex (Regular Expression). Ref https://www.javatpoint.com/string-tokenizer-in-java
+
+
+Design patterns/Design Principles/MVC ,Highavailability and Integration DP examples in JEE/JDK/JRE
+Factory--->Calender
+Decorator--->IO
+Strategy --- Comparator
+DS---sorting,Searching,Hashing
+Caching algo
+egg break problems from multiple heights
+find 5 fastest hourses from 25 given a race track that allows 5 hources to run at a time. 
+shortest path algo
+8 queen problem
+snack and ladder
+
+anonymous and inner classes
+IO bufferstreams
+cloan 
+serialization/externalization/transient
+generic classess and generic methods
+LinkedHashSet, TreeSet, PriorityQueue, LinkedHashMap, TreeMap when to use why?
+HashMap- hashing,collision, rehashing?, LoadFactor
+Comparable/Comparator short object
+ReentranceLock and Condition interface?
+GC types and explination Custom Class Loader example?
+Class Loading concept , annotation example and process
+java/nio
+java.net
+Concurrent package
+dead locks and solution for dead loacks
+Jconsole threaddump analysis
+fork/join framework
+theads pools, latch, barrier and semaphores
+GC dump analysis ,  tuning, Memory management, Tuning ways, weak and strong collections.
+GC in java 8
+usage of static and default methods in interface
+java nio, collections
+concurrency framework
+code debugging
+exceptions and logging frameworks
+Method reference, Streams, Predicate, Function and its flavours , Reactive Stream, CompletableFeature, PredicateFunctions
+Value bases sorting in hashmap
+finding middle node in single linked list
+
+XML and JSON parsing tools r libs 
+Time ans space complexity of an algo balanced tree, AVL tree, Stack and queue ,Recursiion and heap
+RDBMS- SQL queries, Joins,JDBC concepts Statements, PreparedStatements, ResultSet, Transactions management, DB modeling, Keys, Sequence, View,
+Indexing and query Tunning?
+Transaction managenet concepts optimistinc locking, atomicity , isolation levels
+batch procesing in RDBMS
+Stored Procedure and Trigger Two phase locking
+Distributed Transaction two phase commit, Global temp tables 
+NoSql vs SQlQuerying in NoSQl
+
+ActiveMQ
+RabbitMQ
+
+JUnit and Test coverage?
+
+Script replace a pattern in a file?
+sed and awk cmds to manipulate log file.
+
+
+
+
+
+	
+	
+
 1) How to handle shared resource in mapR jobs?
 	Zk for small shared data and DistributedCache for large data.
 
@@ -141,8 +218,116 @@ Sample Interview Questions in Java
 	
 11) JVN architecture/ internals https://www.javatpoint.com/internal-details-of-jvm
 
-12) 
+12) Queue implementation PriorityQueue and ArrayDeque
+		
+	PriorityQueue: FIFO
+		- no null
+		- Not thread-safe for thread-safe use java.util.concurrent.PriorityBlockingQueue
+		- Comparable Natural ordering (sorted) & can be custom Comparator order
 
+		- offer(-)		insert element into queue
+		- add(-)		insert element into queue
 
+		- element()  	retrieves head element but does not remove throws NullPointerException if empty
+		- peek()		retrieves head element but does not remove returns null if empty
+		
+		- remove()		removes head element & returns. throws exception if empty.
+		- poll()		removes head element & returns. returns null if empty.
+		
+		* pop() is not available
+		
+	ArrayDeque: FIFO 
+		- insertion and deletion both ends
+		- ArrayDeque is faster than ArrayList and Stack and has no capacity restrictions.
+		- no null
+		- no order or not sorted
+		- not thread-safe
+		
+		- add(-)
+		- addFirst(-)
+		- addLast(-)
+
+		- offer(-)
+		- offerFirst(-)
+		- offerLast(-)
+		
+		- element()
+		- peek()
+		- peekFirst()
+		- peekLast()
+		- getFirst()
+		- getLast()
+
+		- poll()
+		- pollFirst()
+		- pollLast()
+
+		- remove()
+		- removeFirst()
+		- removeLast()
+		 
+13) List---
+	ArrayList(AbstractList List) good at read operations (frequently) bad at manipulation (frequently)
+		* insertion order, duplicate, non-sync, 
+		-- for loop by index
+		-- iterator
+		-- listiterator
+		-- foreach  for(Type obj:list)
+		-- al.forEach((each)->{System.out.println(each);});
+		-- al.iterator().forEachRemaining((each)->{System.out.println(each);});
 	
+	LinkedList(AbstractList List and Deque) good at manipulation(frequently) bad at reading(frequently)
+		* insertion order, duplicate, non-sync, used as list, stack and queue
+		
+	HashSet(AbstractSet and Set) based on hasting. good at search operations. 16 default capacity, 0.75 load factor.
+		* no insertion order, unique, only one null, non-sync
+		-- set.add(-) returns true/false.
+		-- hs.removeIf(each->each!=null&&each.contains("Kumar"));
+		-- hs.removeIf(each->each!=null&&!each.endsWith("vi"));
+		
+	LinkedHashSet(Hastable and linked list implementation)
+		* maintains insertion order.
+		
+	TreeSet(Set and red-block tree algo) 
+		* access and retrieval times are quiet fast, no null, non-sync, sorted order.
+		* To add user-defined objects in TreeSet, you need to implement the Comparable interface. else ClassCastException 
+		* if public int compareTo(-) method returs 0 then element would be equal then will not be added. 
+		* else Exception in thread "main" java.lang.ClassCastException: Student cannot be cast to java.lang.Comparable
+		
+		-- System.out.println(ts.ceiling("Ra"));//equal or closest greater element or null if no such element in TreeSet
+		-- System.out.println(ts.floor("Ra"));//equal or closest least element or null if no such element in TreeSet
+		-- headSet(-)
+		-- tailSet(-)
+		-- first()
+		-- last()
+		-- ts.iterator()
+		-- ts.decendingIterator()
+		-- pollFirst()
+		-- pollLast()
+		-- set.headSet("C", true)
+		-- set.subSet("A", false, "E", true)
+		-- set.tailSet("C", false)
+		
+14) Queue interface: FIFO
+	
+		-- add(-)
+		-- offer(-)
+		
+		-- remove()
+		-- poll()					removes the head of queue and null if empty
+		
+		-- element()
+		-- peek()					retrieves head will not remove , null if queue is empty.
+		
+	PriorityQueue: But it does not orders the elements in FIFO manner. It inherits AbstractQueue class.
+		* not in FIFO order, order in Comparable implementation, Non-sync, No null,
+				
 
+			
+		
+		
+		 
+		
+		
+			
+		   
