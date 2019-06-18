@@ -42,3 +42,13 @@ JUnit 5 =
 	JUnit Vintage(support junit3 and 4 in junit5 platform)
 
 
+
+
+Ref: junit_template.xml
+
+Import Code Templates into Eclipse
+Eclipse: Window->Preferences
+Java->Editor->Templates
+Import…
+Choose file
+Verify for template names “setup (JUnit5)”, “teardown (JUnit5)” and “test (JUnit5)” specific to JUnit 5
