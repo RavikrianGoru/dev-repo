@@ -1,4 +1,4 @@
-package junit;
+package rk.junit;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -10,12 +10,12 @@ import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 @DisplayName ("BaseInfoTest class")
-public class BaseInfoTest
+public class BaseTest
 {
     @BeforeAll
     static void setUp()
     {
-        System.out.println("@BeforeAll");// Runs before all TC in class
+        System.out.println("@BeforeAll rk.junit.BaseTest");// Runs before all TC in class
     }
 
     @BeforeEach

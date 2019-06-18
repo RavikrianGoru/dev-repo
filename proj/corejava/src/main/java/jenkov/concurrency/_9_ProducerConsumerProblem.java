@@ -11,7 +11,6 @@ class Order
         this.orderNo = ordNo;
         this.OrderItem = ordName;
     }
-
     private int orderNo;
     private String OrderItem;
 

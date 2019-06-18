@@ -10,6 +10,94 @@ Sample Interview Questions in Java
 	https://www.javatpoint.com/difference-between-stringbuffer-and-stringbuilder
 	https://www.javatpoint.com/how-to-create-immutable-class
 	StringTokenizer class is deprecated now. It is recommended to use split() method of String class or regex (Regular Expression). Ref https://www.javatpoint.com/string-tokenizer-in-java
+	https://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries
+	https://www.geeksforgeeks.org/mvc-design-pattern/
+	https://howtodoinjava.com/java/multi-threading/object-vs-class-level-locking/
+	https://howtodoinjava.com/java/multi-threading/executor-framework-tutorial/
+	https://howtodoinjava.com/java/multi-threading/inter-thread-communication-using-piped-streams-in-java/
+		
+	
+
+------Creational
+Singleton:	lang-->Runtime.getRuntime()
+			awt--->Desktop.getDesktop()
+			lang-->System.getSecurityManager()
+Prototype:  lang--> Object.clone()
+Factory:	util-->Calander.getInstance(TimeZone)---UTF, GTM....
+			util-->ResourceBundle.getBundle(baseName)
+			text--> NumberFormat.getInstance(inLocale)
+			util.concurrent---> ThreadFactory interface
+Abstract Factory:
+			javax---> DocumentBuilderFactory.newInstance()
+					  XPathFactory.newInstance()
+					  TransformerFactory.newInstance()
+Builder 	StringBuilder.append()
+			StringBuffer.append()
+-------Structural
+Adapter 	which decorates/overrides the given instance
+			Arrays.asList()
+			Collections.list()
+			InputStreamReader
+			OutputStreamWriter
+Bridge		which delegates/uses the given instance
+			Collections.sinpletonXXX()
+			Collections.newSetFromMap()
+Decorator 	which adds additional behaviour
+			Collections.checkedXXX()
+			Collections.synchronizedXXX()
+			Collections.unmodifiableXXX()
+			All subclassed of InputStream,OutputStream, Reader, Writer classes
+Facade		internally uses instances of different independent abstract/interface types
+Proxy		java.rmi.*
+			java.lang.reflect.Proxy
+Strategy	Collection.sort(-,-) Comparator
+Observer	Publish/Subscriber			
+
+OO Design principles: SOLID
+	1) DRY: Dont Repeate Yourself : No duplicate code
+		Abstraction: Interface/Abstract classes
+		duplicate code ---> method reuse
+		hardcoded values---> constants
+	2) Encapsulate What changes
+		S/W field Changes is constant.
+		make your variables and methods private. We can changes access modifier private-->default-->protected-->publics later
+	3) Open Close Design:
+		classes methods should be open for extentions and close for modifcation
+	4) Single Resposibility:
+		a class should handle single responsibility
+		for methods too
+	5) Dependency injection and inversion principle:
+		Spring IoC/DI, Blueprint...
+	6) Use Composition over Inheritance
+	7) Liskov substitution principle:
+		Use Superclass type in method, it can access subclass methods.
+		“Derived types must be completely substitutable for their base types”
+	8) Interface segregation principle
+		“Clients should not be forced to implement unnecessary methods which they will not use”
+	9) Programmin for interface not for implementation
+		So use interface type on variables, return types of method or argument type of methods in Java.
+	10) Deligation principle
+		Don't do all stuff by yourself,  delegate it to the respective class. Classical example of delegation design principle is equals() and hashCode() method in Java.
+
+		hm.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach((a)->{System.out.println(a);});
+		hm.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.reverseOrder())).forEach(System.out::println);
+		hm.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(System.out::println);
+		Map<Integer,String> hm1 = hm.entrySet().stream().sorted(Map.Entry.<Integer,String>comparingByValue()).collect(Collectors.toMap(e->e.getKey(), e->e.getValue(),(e1,e2)->e1,LinkedHashMap::new));
+		hm.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).forEach((a)->{System.out.println(a);});
+
+		Use LinkedHashMap for collecting the result to keep the sorting intact
+		
+		Map<Integer,String> hm1 = hm.entrySet().stream().sorted(Map.Entry.<Integer,String>comparingByKey()).collect(Collectors.toMap(e->e.getKey(), e->e.getValue(),(e1,e2)->e1,LinkedHashMap::new));
+		Map<Integer,String> hm2 = hm.entrySet().stream().sorted(Map.Entry.<Integer,String>comparingByKey(Comparator.reverseOrder())).collect(Collectors.toMap(e->e.getKey(), e->e.getValue(), (e1, e2)->e1,LinkedHashMap::new));
+	
+		Map<EmpKey,EmpVal> emphm1=empHm.entrySet().stream().sorted(Map.Entry.<EmpKey,EmpVal>comparingByKey((k1,k2)->{return k1.getId()-k2.getId();})).collect(Collectors.toMap(e->e.getKey(), e->e.getValue(),(e1,e2)->e1, LinkedHashMap::new));
+		Map<EmpKey,EmpVal> emphm2=empHm.entrySet().stream().filter(entry->{return entry.getValue().getSal()>15000.00d;}).collect(Collectors.toMap(e->e.getKey(), e->e.getValue(),(e1,e2)->e1, LinkedHashMap::new));
+
+		hm.entrySet().stream().filter((e)->{return e.getValue()%2==0;}).count();
+		hm.entrySet().stream().filter((e)->e.getValue()%2==0).count();
+
+		Comparator<Tran> com=Comparator.comparing(Tran::getName,Comparator.nullsFirst(String::compareTo));
+		Collections.sort(al,com);
 
 
 Design patterns/Design Principles/MVC ,Highavailability and Integration DP examples in JEE/JDK/JRE
@@ -397,13 +485,198 @@ HashMap sorting:
 	* no null key, no null value
 	    
 
+20) 
+	class MyGeneric<T>
+	{
+		T obj;
+		public void add(T obj)
+		{
+			this.obj=obj;
+		}
+	
+		public T get()
+		{
+			return obj;
+		}
+	}		
 
-			
+	
+21) java 1.5---> Executor, semaphore, mutex, barrier, latches, concurrent collections and blocking queues;
+	java 1.7---> JDK 1.7 added support for ForkJoinPool which implemented work-stealing technique to maximize the throughput.
+	java 1.8--->  CompletableFuture and CompletionException.
+	
+22) Java Compare and Swap Example – CAS Algorithm
 
+23) finding middle node in single linked list:
+Method2)
+	p1 moves 1 step at a time
+	p2 moves 2 steps at a time
+	when p2 points to null p1 points to mid.
+
+Method1)
+	1st time iterate and count no of nodes.
+	2nd time count/2 is the mid
+
+24) Value bases sorting in hashmap
+		hm.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach((a)->{System.out.println(a);});
+		hm.entrySet().stream().sorted(Map.Entry.comparingByKey(Comparator.reverseOrder())).forEach(System.out::println);
+		hm.entrySet().stream().sorted(Map.Entry.comparingByValue()).forEach(System.out::println);
+		Map<Integer,String> hm1 = hm.entrySet().stream().sorted(Map.Entry.<Integer,String>comparingByValue()).collect(Collectors.toMap(e->e.getKey(), e->e.getValue(),(e1,e2)->e1,LinkedHashMap::new));
+		hm.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).forEach((a)->{System.out.println(a);});
+
+		Use LinkedHashMap for collecting the result to keep the sorting intact
 		
+		Map<Integer,String> hm1 = hm.entrySet().stream().sorted(Map.Entry.<Integer,String>comparingByKey()).collect(Collectors.toMap(e->e.getKey(), e->e.getValue(),(e1,e2)->e1,LinkedHashMap::new));
+		Map<Integer,String> hm2 = hm.entrySet().stream().sorted(Map.Entry.<Integer,String>comparingByKey(Comparator.reverseOrder())).collect(Collectors.toMap(e->e.getKey(), e->e.getValue(), (e1, e2)->e1,LinkedHashMap::new));
+	
+		Map<EmpKey,EmpVal> emphm1=empHm.entrySet().stream().sorted(Map.Entry.<EmpKey,EmpVal>comparingByKey((k1,k2)->{return k1.getId()-k2.getId();})).collect(Collectors.toMap(e->e.getKey(), e->e.getValue(),(e1,e2)->e1, LinkedHashMap::new));
+		Map<EmpKey,EmpVal> emphm2=empHm.entrySet().stream().filter(entry->{return entry.getValue().getSal()>15000.00d;}).collect(Collectors.toMap(e->e.getKey(), e->e.getValue(),(e1,e2)->e1, LinkedHashMap::new));
+
+		hm.entrySet().stream().filter((e)->{return e.getValue()%2==0;}).count();
+		hm.entrySet().stream().filter((e)->e.getValue()%2==0).count();
+
+		Comparator<Tran> com=Comparator.comparing(Tran::getName,Comparator.nullsFirst(String::compareTo));
+		Collections.sort(al,com);
+
+25) OO Design principles: SOLID
+	1) DRY: Dont Repeate Yourself : No duplicate code
+		Abstraction: Interface/Abstract classes
+		duplicate code ---> method reuse
+		hardcoded values---> constants
+	2) Encapsulate What changes
+		S/W field Changes is constant.
+		make your variables and methods private. We can changes access modifier private-->default-->protected-->publics later
+	3) Open Close Design:
+		classes methods should be open for extentions and close for modifcation
+	4) Single Resposibility:
+		a class should handle single responsibility
+		for methods too
+	5) Dependency injection and inversion principle:
+		Spring IoC/DI, Blueprint...
+	6) Use Composition over Inheritance
+	7) Liskov substitution principle:
+		Use Superclass type in method, it can access subclass methods.
+		“Derived types must be completely substitutable for their base types”
+	8) Interface segregation principle
+		“Clients should not be forced to implement unnecessary methods which they will not use”
+	9) Programmin for interface not for implementation
+		So use interface type on variables, return types of method or argument type of methods in Java.
+	10) Deligation principle
+		Don't do all stuff by yourself,  delegate it to the respective class. Classical example of delegation design principle is equals() and hashCode() method in Java.
+
+ 	
+26)
+public class DemoClass
+{
+    private final static Object lock = new Object();
+ 
+    public void demoMethod()
+    {
+        //Lock object is static
+        synchronized (lock)
+        {
+            //other thread safe code
+        }
+    }
+}		
+
+27) https://howtodoinjava.com/java/multi-threading/object-vs-class-level-locking/
+
+*	Java synchronized keyword is re-entrant in nature it means if a synchronized method calls another synchronized method which requires same lock then 
+	current thread which is holding lock can enter into that method without acquiring lock.		 
+* 	Do not synchronize on non final field on synchronized block in Java. because reference of non final field may change any time and then different thread might synchronizing on different objects i.e. no synchronization at all.
+*	Do not use String literals because they might be referenced else where in the application and can cause deadlock. String objects created with new keyword can be used safely. 
+	But as a best practice, create a new private scoped Object instance OR lock on the shared variable itself which we want to protect.		
+	
+	private final Object obj = new Object();
+	
+28) https://howtodoinjava.com/java/multi-threading/java-runnable-vs-thread/
+	
+*	Implementing Runnable is the preferred way to do it. Here, you’re not really specializing or modifying the thread’s behavior. You’re just giving the thread something to run. That means composition is the better way to go.
+*	Java only supports single inheritance, so you can only extend one class.
+* 	Instantiating an interface gives a cleaner separation between your code and the implementation of threads.
+*	Implementing Runnable makes your class more flexible. If you extend Thread then the action you’re doing is always going to be in a thread. However, if you implement Runnable it doesn’t have to be. You can run it in a thread,
+	or pass it to some kind of executor service, or just pass it around as a task within a single threaded application.
+
+29) Programmers using concurrency classes will feel a lot more confident than programmers directly handling synchronization stuff using wait(), notify() and notifyAll() method calls. 
+	I will also recommend to use these newer APIs over synchronization yourself
+	
+	https://howtodoinjava.com/java/multi-threading/wait-notify-and-notifyall-methods/
 		
-		 
-		
-		
+30) wait(): It tells the calling thread to give up the lock and go to sleep until some other thread enters the same monitor and calls notify(). 
+			The wait() method is actually tightly integrated with the synchronization lock.
+	
+synchronized( lockObject )
+{
+    while( ! condition )
+    {
+        lockObject.wait();
+    }
+     
+    //take the action here;
+}	
 			
-		   
+31) notify(): It wakes up one single thread that called wait() on the same object. It should be noted that calling notify() does not actually give up a lock on a resource.
+			  It tells a waiting thread that that thread can wake up. However, the lock is not actually given up until the notifier’s synchronized block has completed.
+
+synchronized(lockObject)
+{
+    //establish_the_condition;
+ 
+    lockObject.notify();
+     
+    //any additional code if needed
+}
+
+32) notifyAll(): It wakes up all the threads that called wait() on the same object. The highest priority thread will run first in most of the situation, though not guaranteed. Other things are same as notify() method above.
+
+synchronized(lockObject)
+{
+    establish_the_condition;
+ 
+    lockObject.notifyAll();
+}
+
+33) Thread.sleep(1000) can be used in non-synchronized block too.
+ 
+synchronized(LOCK) {  
+    Thread.sleep(1000); // LOCK is held
+}
+3.1. Method called on
+		wait() – Call on an object; current thread must synchronize on the lock object.
+		sleep() – Call on a Thread; always currently executing thread.
+3.2. Synchronized
+		wait() – when synchronized multiple threads access same Object one by one.
+		sleep() – when synchronized multiple threads wait for sleep over of sleeping thread.
+3.3. Lock duration
+		wait() – release the lock for other objects to have chance to execute.
+		sleep() – keep lock for at least t times if timeout specified or somebody interrupt.
+3.4. wake up condition
+		wait() – until call notify(), notifyAll() from object
+		sleep() – until at least time expire or call interrupt().
+3.5. Usage
+		sleep() – for time-synchronization
+		wait() – for multi-thread-synchronization.
+
+34) locks and monitor
+	locks provide necessary support for implementing monitors. 
+	
+35) https://howtodoinjava.com/java/multi-threading/inter-thread-communication-using-piped-streams-in-java/
+
+36) Lock interface: java.util.concurrent.lock.Lock
+	
+	Lock lock = new ReentrantLock();
+	lock.lock();
+ 	//critical section
+ 	lock.unlock();
+ 	
+ 	* First a Lock is created. Then it’s lock() method is called. Now the Lock instance is locked. Any other thread calling lock() will be blocked until the thread that locked the lock calls unlock(). 
+ 	  Finally unlock() is called, and the Lock is now unlocked so other threads can lock it.
+
+
+37) Difference between Lock Interface and synchronized keyword
+
+	1) Having a timeout trying to get access to a synchronized block is not possible. Using Lock.tryLock(long timeout, TimeUnit timeUnit), it is possible.
+	2) The synchronized block must be fully contained within a single method. A Lock can have it’s calls to lock() and unlock() in separate methods.  
+
+

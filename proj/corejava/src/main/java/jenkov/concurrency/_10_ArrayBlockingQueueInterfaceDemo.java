@@ -16,6 +16,7 @@ class Producer1 implements Runnable
         this.max = max;
     }
 
+    
     @Override
     public void run()
     {
