@@ -1,0 +1,44 @@
+https://howtodoinjava.com/junit-5-tutorial/
+
+* Junit support java 8 style so, We need jdk8
+
+1) Create sample maven project:
+2) Add the following dependencies
+<dependencies>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId><!-- public API for writing tests and extensions -->
+        <version>5.4.2</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-engine</artifactId><!-- the implementation of the JUnit Jupiter test engine that runs our unit tests -->
+        <version>5.4.2</version>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+
+3) Configuring the Maven Surefire Plugin : Because we don’t want to specify the dependencies of the Maven Surefire Plugin, we have to use its native JUnit 5 support
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.22.1</version>
+        </plugin>
+    </plugins>
+</build>
+
+4) create test class in src/test/java. class name start/ends with "Test" or ends with "Tests"/"TestCase"
+	cleart a method @Test
+5)
+	maven clean test
+------------------
+
+JUnit 5 = 
+	JUnit Platform(provide plat form for junit tests,IDEs,build tools/plugins and testing framework)
+	JUnit Jupiter( new programming for writing test tests)
+	JUnit Vintage(support junit3 and 4 in junit5 platform)
+
+
