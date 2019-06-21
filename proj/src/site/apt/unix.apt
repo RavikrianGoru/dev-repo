@@ -11,90 +11,125 @@ Unix Commands
 ~~~~~~~~~~~~~
 man <cmd>
 
+tar command:
+-----------
 
-get hostname
-> hostname
-get host ip address
-> hostname -i
-get host domain name
-> hostname -d
-get hostname and domain name
-> hostname -f
-
-
-sed is a stream editor. A stream editor is used to perform basic text transformations on an input stream (a file, or input from a pipeline).
-
-
-* netstat (network statistics) is a command line tool for monitoring network connections both incoming and outgoing as well as viewing routing tables, interface statistics etc.
-
-> netstat -a		[tcp and udp connections]
-> netstat -at		[tcp only]
-> netstat -au		[udp only]
-> netstat -l 		[listing all active listening ports]
-> netstat -lt		[listening tcp ports]
-> netstat -lu 		[listening udp port]
-> netstat -lx		[all listening unix ports]
-> netstat -a		[Displays statistics by protocol. By default, statistics are shown for the TCP, UDP, ICMP, and IP protocols. ]
-> netstat -st		[Displays statistics by protocol. By default, statistics are shown for the TCP, UDP, ICMP, and IP protocols. ]
-> netstat -su
-> netstat -tp		[Displaying service name with their PID number]
-> netstat -ac |grep tcp [Displaying Promiscuous mode with -ac switch, netstat print the selected information or refresh screen every five second.]
-> netstat -k 		[Display Kernel IP routing table with netstat and route command.]
-> netstat -i 		[Showing Network Interface Transactions]
-> netstat -ie 		[Showing Kernel interface table, similar to ifconfig command.]
-> netstat -g		[Displays multicast group membership information for both IPv4 and IPv6.]
-> netstat -c 		[To get netstat information every few second, then use the following command, it will print netstat information continuously, say every few seconds.]
-> netstat --verbose 	[Finding un-configured address families with some useful information.]
-> netstat -ap | grep http	[Find out how many listening programs running on a port.]
-
-
-File operation:
---------------
-A file is having 1000 lines of data:
-
-0) see line number in file
-
-open file in vi editor
-> vi <fileName>
-> <esc> + :set number
-
-1) view only 500 th line to end of file.
-> tail -n +500 <fileName>
-
-try these:
----------
-
-sed 1,42d dump.sql
-sed -i 1,42d dump.sql
-
-tail -n +500 <file.txt >tile2.txt
-tail -n +500 file.txt >tile2.txt
-
-sed '1,42d' test.sql > test2.sql
-
-		
-We can connect remove machine: 
-Jconsole
-Java VisualVM
-JMC
+Create
+	tar cvf <filename>.tar dirName/
+Extract
+	tar xvf <filename>.tar
+View content without extractions
+	tar tvf <filename>.tar
+Add file[s] to existing tar
+	tar rvf <filename>.tar file/dir
+Estimate the tar archive size
+	tar -cf - dirName |wc -c
 	
 
-https://www.programiz.com/dsa
-Example #1: Age Group Problem
-Example #2: Rubik's Cube Problem
-Example #3: DNA Problem- KMP algorithm
+c - create
+v - verbose
+f - filename 
+z - gzip compression
+
+x - extract
+r - add a file to exiting tar
+
+grep commands:(search a word in file)
+-------------------------------------
+grep -i "<searchWord>" <fileName>
+	grep -i "snapshot" repo.log
+	grep -i "<searchWord>" *.log
+Displaying lines before/after/around the match using grep -A, -B and -C
+	grep -A 3 -i "snapdhot" repo.log
+Word search:
+	grep -iw "is" ram.txt
+	grep -r "snapshot"  *
+	grep -r -i "snapshot" *
+Highlighting the search using GREP_OPTIONS
+	export GREP_OPTIONS='--color=auto' GREP_COLOR='100;8'
+Invert match using grep -v
+	grep -v "snapshot" <fileName>
+Counting the number of matches using grep -c
+	grep -v "is" ram.txt
+	grep -vc "is" ram.txt
+	grep -c "is" ram.txt
+Display only the file names which matches the given pattern using grep -l
+	grep -l "is" *.txt
+Show only matched string	
+	grep -o "is.*line" demo_file
+	grep -o "I.*all" *.txt
+Show line number while displaying the output using grep -n
+	grep -n "is" *.txt
+
+find command 
+------------
+	find -iname "filename"
+	find -iname ravi.txt
+Find all empty file in home direcpry(recursevly)
+	find ~ -empty
+Find all empty file in current direcpry(recursevly)
+	find . -empry
+Find checksum of given file
+	find -iname "ram.txt" -exec md5sum {} \;	
+
+Find a file from root path	
+	find / -iname ram.txt
+
+* Find largest 5 file in ssystem:
+	du -a /|sort -n -r|head -n 5
+	du -cks / | sort -nr |head -n 5
+	find . -type f -exec ls -s {} \; | sort -nr | head -n 5
+
+* Find largest 5 file in ssystem:
+	du -a / |sort -n |head -n 5
+	find / -type f -exec ls -s {} \; | sort -n | head -n 5
+
+* Find largest 5 file in ssystem: Non empty
+	 find / -not -empty -type f -exec ls -s {} \; | sort -n  | head -5
+
+Find files bigger than the given size
+	find ~ -size +100M
+Find files bigger than the given size
+	find ~ -size -100M
+
+Alias:
+	alias small="find . -not -empty -type f -exec ls -s {} \; | sort -n "
+
+* Remove big archive files using find command
+	find / -type f -name *.zip -size +100M -exec rm -i {} \;"
+	
+man du
+man sort
+man find
+man head
+man tail
+
+	>find / -maxdepth 4 -iname "ravi.txt"
+/home/admin/rk_unix/ravi.txt
+
+	>find / -maxdepth 4 -mindepth 2 -iname "ram.txt"
+/home/admin/rk_unix/ram.txt
+
+ssh comand: with verbose
+------------------------
+	ssh -l userName nodeName
+	ssh -v -l userName nodeName
+	ssh -l admin vmx-tpg-000
+	ssh admin@vm-tpg-000
+	
+Clent version
+	ssh -V
+
+sed command
+-----------
+
+	
+	
 
 
-https://discuss.codechef.com/questions/48877/data-structures-and-algorithms
 
-Print all environment variables with values
-> printenv
-> env
-
->echo $SHELL
-
-Shell Scripting She-bang : The sign #! is called she-bang and is written at top of the script. It passes instruction to program /bin/sh
-
+	
+	
 
 
 	
