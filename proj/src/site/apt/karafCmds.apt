@@ -72,6 +72,36 @@ rpm pom.xml check plugin: related to feature/karaf... etc
 simple webservice: with out web.xml/features
 --------------------------------------------
 
+felix annotations
+@Activate: 
+@Service
+@Component
+jar tvf file.tar/zip
+
+feature:list -i
+
+create new maven project with 
+add slf4j dependency
+add felix annotaion dependency
+ws-api dependency
+osgi-core dependency
+
+build and deploy in karaf
+scr:list
+bundle is activated but not exposed as service then how?
+Jersey to work
+we need some bundles: jersey, h2k*, aoppolo* asm*, validation* publisher.jar
+
+cofig:list
+sudo netstat -ltnp |grep 8181
+
+
+
+
+
+
+
+
 	
 
 

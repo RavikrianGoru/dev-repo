@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class RK_Test {
+public class ThreadExecutorsExample {
 
 	private static final AtomicInteger nextId = new AtomicInteger(0);
 
