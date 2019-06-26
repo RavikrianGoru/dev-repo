@@ -34,6 +34,7 @@ public class ThreadExecutorsExample {
 		Lock l = new ReentrantLock();
 		l.lock();
 		l.unlock();
+		System.out.println("Hi");
 
 	}
 

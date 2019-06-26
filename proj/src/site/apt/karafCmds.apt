@@ -143,7 +143,7 @@ feature:
 		Ex: 
 		Repository                   | URL                                                                                                     
 		-----------------------------------------------------------------------------------
-		karaf                        | mvn:com.ericsson.ngee/oam-bundle/LATEST/xml/features
+		karaf                        | mvn:com.rk.somepackage/oam-bundle/LATEST/xml/features
 	repo-add name/url  [-i, --install]
 		Add a features repository
 	install [options] features
@@ -209,11 +209,11 @@ For ex. <for consolidation bundle>,
 
 <properties> 
    <bundle.symbolicName>
-     com.ericsson.bss.rm.edm.exposure.common.integration.processors.eventconsolidator
+   	some name with package
    </bundle.symbolicName>     
    <bundle.namespace>
-     com.ericsson.bss.rm.edm.exposure.common.integration.processors.eventconsolidator
-        </bundle.namespace>
+	package name
+</bundle.namespace>
 </properties>
 
 b)	Packaging should be ‘bundle’ instead of ‘jar’, 
@@ -234,8 +234,8 @@ For ex.,
                         <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Name>${project.Name}</Bundle-Name>
                         <Bundle-Version>${project.version}</Bundle-Version>
-                        <Export-Package>com.ericsson.bss.rm.edm.exposure.eventFilter.*</Export-Package>
-                        <Import-Package>*,com.ericsson.bss.rmca.entityserviceviews.cdac</Import-Package>
+                        <Export-Package>com.exposure.eventFilter.*</Export-Package>
+                        <Import-Package>*,com.entityserviceviews.cdac</Import-Package>
                     </instructions>
                 </configuration>
             </plugin>
