@@ -7,6 +7,7 @@
 													-----
 
 
+
 Maven commands
 ~~~~~~~~~~~~~~
 
@@ -69,3 +70,9 @@ mvn clean install -s ../settings.xml
 mvn -Dtest=TestCounterImpl#testIncrementSuccess test
 mvn test -Dtest=ContainerUtilsTest -DfailIfNoTests=false  -DlaunchLocalContainer=true
 mvn test -Dtest=ContainerUtilsTest
+
+
+
+
+	
+	

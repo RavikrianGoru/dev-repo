@@ -1,6 +1,6 @@
 package durgasoft.one;
 
-public class Infinity {
+public class InfinityAndNaN {
 
 	public static void main(String[] args) {
 		

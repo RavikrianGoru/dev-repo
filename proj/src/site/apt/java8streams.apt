@@ -1,0 +1,69 @@
+Stream:
+The Java Stream API provides a more functional programming approach to iterating and processing elements of e.g. a collection
+
+Stream.forEach()
+---------------
+It can be used instead of iterator.
+The forEach() method takes a Consumer as parameter. The Consumer interface contains a function called test().
+	void accept(T t);	
+	
+Stream.filter()
+---------------
+The filter() method takes a Predicate as parameter. The Predicate interface contains a function called test().
+	boolean test(T t)
+
+Stream.map()
+-----------
+The map() method takes a Function as parameter. The Function interface contains a function called apply().
+	R apply(T t);
+
+It is possible to map the items in a collection to other objects.
+items.stream().map( item -> item.toUpperCase() )
+
+Stream.collect()
+---------------
+The collect() method is one of the stream processing methods on the Stream interface. 
+When this method is invoked, the filtering and mapping will take place and the object resulting from those actions will be collected
+
+List<String> filtered = items.stream().filter( item -> item.startsWith("o")).collect(Collectors.toList());
+
+.forEach(System.out::println);
+
+List<Employee> eList = new ArrayList<>();
+        eList.add(new Employee("5000"));
+        eList.add(new Employee("5050"));
+        eList.add(new Employee("1000"));
+        eList.add(new Employee("2500"));
+		
+List<Integer> iList=new ArrayList<>();
+        iList.add(1000);
+        iList.add(500);
+        iList.add(5000);
+        iList.add(6000);
+        iList.add(2500);
+		
+		
+Stream.count()
+--------------
+long count = iList.stream().count();
+
+Stream.min()
+------------
+Integer min= iList.stream().min((i1,i2)->{return i1.compareTo(i2);}).get();
+
+Stream.max()
+------------
+Integer min= iList.stream().max((i1,i2)->{return i1.compareTo(i2);}).get();
+
+Stream.sum()
+------------
+long sum= iList.stream().mapToLong((s)->{return (long)s;}).sum();
+
+Stream.reduce()
+--------------
+The reduce() method can reduce the elements of a stream to a single value.
+	Optional<Float> optlFloat=eList.stream().map((e)->{return e.sal;}).reduce((x,y)->x+y);
+	Float sumSal =eList.stream().map(s->s.sal).reduce(0.0f,(o1,n1)->o1+n1).floatValue();
+
+
+

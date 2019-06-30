@@ -13,7 +13,6 @@ public class Child extends Parent{
 		// It will execute Parent.main(-)
 	@Override
 	protected Object clone() throws CloneNotSupportedException {
-		// TODO Auto-generated method stub
 		return super.clone();
 	}
 }

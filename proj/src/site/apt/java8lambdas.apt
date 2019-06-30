@@ -1,0 +1,21 @@
+Java lambda expressions 
+	-> functional programming.
+	-> Anonymous implementation of single method interface/functional interface
+	-> function can be created without any class.
+	-> used for single event listener/ callbacks
+	-> A lambda expression is stateless. no instance variables allowed.
+	-> static / private/ instance final / effectively final varibles can be accessed in lambda.
+
+From Java 11 you can use the var keyword as parameter type. The var keyword was introduced in Java 10 as local variable type inference. 
+From Java 11 var can also be used for lambda parameter types. Here is an example of using the Java var keyword as parameter types in a lambda expression:
+
+Variable Capture
+A Java lambda expression is capable of accessing variables declared outside the lambda function body under certain circumstances.
+
+
+Java lambdas can capture the following types of variables:
+
+	Local variables
+	Instance variables
+	Static variables
+
