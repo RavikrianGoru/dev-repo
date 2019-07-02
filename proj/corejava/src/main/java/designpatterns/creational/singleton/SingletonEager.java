@@ -2,8 +2,8 @@ package designpatterns.creational.singleton;
 
 public class SingletonEager
 {
-    // private static class variable
-    private static SingletonEager singleton = new SingletonEager();
+    // private static class variable final is optional
+    private static final SingletonEager singleton = new SingletonEager();
 
     // private constructor
     private SingletonEager()

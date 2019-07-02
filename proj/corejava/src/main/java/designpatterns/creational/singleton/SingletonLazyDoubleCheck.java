@@ -2,6 +2,7 @@ package designpatterns.creational.singleton;
 
 public class SingletonLazyDoubleCheck
 {
+    // instance variable should be volatile
     private volatile static SingletonLazyDoubleCheck singleton = null;
 
     private SingletonLazyDoubleCheck()
@@ -22,14 +23,11 @@ public class SingletonLazyDoubleCheck
             }
         }
         return singleton;
-        
-      /*
-        Apart from this, there are some other ways to break the singleton pattern.
-        • If the class is Serializable.
-        • If it’s Clonable.
-        • It can be break by Reflection.
-        • And also if, the class is loaded by multiple class loaders.
-        
-        */
+
+        /*
+         * Apart from this, there are some other ways to break the singleton pattern. • If the class is Serializable. • If it’s Clonable. • It can be
+         * break by Reflection. • And also if, the class is loaded by multiple class loaders.
+         * 
+         */
     }
 }

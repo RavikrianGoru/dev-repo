@@ -9,6 +9,7 @@ public class SingletonLazyMultithreaded
 
     }
 
+    //synchronized method overhead cost is more. low performance.
     public static synchronized SingletonLazyMultithreaded getInstance()
     {
         if (singleton == null)

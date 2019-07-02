@@ -2,7 +2,7 @@ package designpatterns.creational.singleton;
 
 import java.io.Serializable;
 
-public class Singleton implements Serializable
+public class Singleton implements Serializable,Cloneable
 {
 
     // Apart from this, there are some other ways to break the singleton pattern.
@@ -35,6 +35,7 @@ public class Singleton implements Serializable
         throw new CloneNotSupportedException("Singleton, Can not clone.");
     }
 
+    //if, the class is loaded by multiple class loaders.
     private static Class getClass(String className) throws ClassNotFoundException
     {
         ClassLoader loader = Thread.currentThread().getContextClassLoader();

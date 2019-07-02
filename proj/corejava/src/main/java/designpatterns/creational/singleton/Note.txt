@@ -1,0 +1,77 @@
+Singleton:
+---------
+   It is one of the Gange of Four Design patterns and comes in the creational design pattern category.
+   Singleton pattern restricts the instantiation of a class and ensures that only one instance of the class exists in the java virtual machine. 
+   The singleton class must provide a global access point to get the instance of the class.
+   
+   * Singleton pattern is used for logging, driver objects, caching and thread pool. 
+   Singleton Design Pattern is also used in other Design Patterns such as Abstract Factory, Builder, Prototype,Facade... etc.
+   
+   Ex: java.lang.Runtime, java.awt.Desktop
+   
+   public class Runtime { private static Runtime currentRuntime = new Runtime();
+   
+   private Runtime() {
+   
+   }
+   
+   public static Runtime getRuntime() { return currentRuntime; } . . . }
+
+Implementation:
+---------------
+   
+   1. private constructor 
+   2. private static (final) variable of same class type.(for only one instance)---- final is optional 
+   3. public static method which returns instance of Singleton class.
+   
+   Different Approaches of Singleton Class: 
+   I) Eager Initialization creating singleton instance while declaring singleton class variable. 
+   		Ex. java.lang.Runtime 
+            -) singleton instance will be created while loading class. 
+            -) No Exception handling
+   
+   II) Static Block Initialization creating singleton instance within static block with exception handling. 
+            -) singleton instance will be created while loading class. 
+            +) Exception handling 
+   
+   III) Lazy Initialization Creating singleton instance when we about to use first time.(in method) 
+   			+) works fine in single threaded environment 
+   			-) some issues in multi-threaded environment: if "if- condition get executes " by two or more threads at a time. two or more instances will be created.
+   
+   IV) ThreadSafe Singleton Creating singleton instance when we about to use first time.(in synchronized method) 
+   			+) Thread sfae 
+   			-) synchronized method overhead cost is more. 
+   			-) low performance due to synchronized
+   
+   V) Bill Pugh Singleton it uses inner static helper class for creating singleton class instance. 
+   		when the singleton class is loaded, inner helper class is not loaded into memory and only when someone calls the getInsatance() method,
+   		this class gets loaded and creates the Singleton class instance. 
+   			+) This is the most widely used approach 
+   			+) No need of synchronization
+   
+   			-) All these singleton patterns can be broke by Reflection.
+   
+   if we implement Serializable interface, we can achieve serialization in singleton class. but when we deserialize that object it creates new object.
+   
+   VI) Serialization Singleton if we want to store state of singleton object in file system in distributed environment. 
+   		we have to implement Serializable interface. 
+   		-) while deserializing object from file it creates new instance. so Singleton breaks.
+   
+   
+   VII) EnumSingletone +) Java ensures that any enum value is instantiated only once in a Java program. Since java Enums are globally accessible, so
+   is the singleton. 
+   		-) Does not support lazy instantiation. 
+   		+) Enum is threadsafe, defence Serializable and Reflection attacks.
+   
+   public enum EnumSingleton 
+   { 
+   		INSTANCE;
+   		public void doMethod() 
+   		{ 
+   			System.out.println("Accessing EnumSingleton class instance.");
+   		}
+   }
+
+   * a single-element enum type is the best way to implement a singleton. 
+   
+ 
