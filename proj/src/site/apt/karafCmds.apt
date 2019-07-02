@@ -143,7 +143,7 @@ feature:
 		Ex: 
 		Repository                   | URL                                                                                                     
 		-----------------------------------------------------------------------------------
-		karaf                        | mvn:com.rk.somepackage/oam-bundle/LATEST/xml/features
+		karaf                        | mvn:com.ericsson.ngee/oam-bundle/LATEST/xml/features
 	repo-add name/url  [-i, --install]
 		Add a features repository
 	install [options] features
@@ -209,11 +209,11 @@ For ex. <for consolidation bundle>,
 
 <properties> 
    <bundle.symbolicName>
-   	some name with package
+     com.ericsson.bss.rm.edm.exposure.common.integration.processors.eventconsolidator
    </bundle.symbolicName>     
    <bundle.namespace>
-	package name
-</bundle.namespace>
+     com.ericsson.bss.rm.edm.exposure.common.integration.processors.eventconsolidator
+        </bundle.namespace>
 </properties>
 
 b)	Packaging should be ‘bundle’ instead of ‘jar’, 
@@ -234,8 +234,8 @@ For ex.,
                         <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Name>${project.Name}</Bundle-Name>
                         <Bundle-Version>${project.version}</Bundle-Version>
-                        <Export-Package>com.exposure.eventFilter.*</Export-Package>
-                        <Import-Package>*,com.entityserviceviews.cdac</Import-Package>
+                        <Export-Package>com.ericsson.bss.rm.edm.exposure.eventFilter.*</Export-Package>
+                        <Import-Package>*,com.ericsson.bss.rmca.entityserviceviews.cdac</Import-Package>
                     </instructions>
                 </configuration>
             </plugin>
@@ -318,4 +318,114 @@ d)	1. Clean ‘data’ folder for the karaf instance,
 
 feature:install <featureName> 
 
-		
+
+
+===========================================================================================
+
+OSGi	
+	Modularity (Reduce complexity)
+	Reusable
+	loosely coupled
+	muliple class paths and jars with different versions.
+	bundle = jar + MANIFEST.MF
+
+interfaec App
+{
+	start();
+	stop();
+	restart();
+}
+
+@Component
+@Service(App.class)
+@Property(type="Android")
+class Android implements App
+{
+	--
+	--
+	--
+}	
+
+@Component
+@Service(App.class)
+@Property(type="IOS")
+class IOS implements App
+{
+	--
+	--
+	--
+}	
+
+@Component
+class Comsumer
+{
+	@Reference(interface="IOS" target=Andrios.class)
+	App obj;
+	
+	@Reference(interface="IOS")
+	List<App> list;
+
+	@Reference (name = "LanguageTranslationRestApi", policy = ReferencePolicy.DYNAMIC, cardinality = ReferenceCardinality.MANDATORY_UNARY, bind = "bindLanguageTranslationRestApi", unbind = "unbindLanguageTranslationRestApi", referenceInterface = LanguageTranslationRestApi.class)
+    private LanguageTranslationRestApi theLanguageTranslationRestApi;
+	
+	//cardinality required atleas one implementation 
+	//policy ReferencePolicy.DENAMIC/STATIC/
+	
+}
+
+
+Apache Felix (implementation of OSGi framwork)
+
+
+Useful commands:
+----------------
+headers <id>
+diag <id>
+
+find-class <fully qualified name of class>    ---------- which 
+exports |grep <packageName>
+import |grep <packageName>
+
+help
+start --help
+
+scr:list
+scr:info <component name>
+
+===========================
+https://karaf.apache.org/manual/latest/
+http://sully6768.blogspot.com/2012/09/scr-components-with-karaf.html
+
+Bringing up a REST webservice in Karaf using Jersey / PAX-WEB
+by Chandrasekar Swaminathan at 12:42 in Tips&Tricks
+As of today (7th Nov 2016), the below steps are valid to bring up a sample REST resource in your local Karaf container.
+
+Download the below JARs from ARM / Maven central and copy them to karaf/deploy folder. You can find the groupId / artifactId from "charging/com.ericsson.bss.rm.charging.productiondependencies/definition/pom.xml" repoâ€‹.
+Write your REST application (Sample: https://github.com/hstaudacher/osgi-jax-rs-connector/tree/master/examples/karafintegration/jax-rs-sample/src/main/java/com/eclipsesource/jaxrs/sample/service)
+Copy the generated JAR from your REST application to karaf/deploy folder.
+Now you are all good to go
+
+Additional bundles required:
+â€‹aopalliance-repackaged-2.4.0-b31.jar
+asm-all-repackaged-2.4.0-b31.jar
+hk2-api-2.4.0-b31.jar
+hk2-locator-2.4.0-b31.jar
+hk2-utils-2.4.0-b31.jar
+javassist-3.18.1-GA.jar
+javax.annotation-api-1.2.jar
+javax.inject-2.4.0-b31.jar
+javax.ws.rs-api-2.0.1.jar
+jersey-client-2.17.jar
+jersey-common-2.17.jar
+jersey-container-servlet-core-2.17.jar
+jersey-guava-2.17.jar
+jersey-server-2.17.jar
+osgi-resource-locator-1.0.1.jar
+publisher-5.0.jar
+servlet-api-2.5_1.jar
+validation-api-1.1.0.Final.jar
+
+For more read Jersey documentation & https://github.com/hstaudacher/osgi-jax-rs-connectorâ€‹.
+
+
+	

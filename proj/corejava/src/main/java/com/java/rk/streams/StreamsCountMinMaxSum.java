@@ -1,6 +1,7 @@
 package com.java.rk.streams;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class StreamsCountMinMaxSum
@@ -52,6 +53,14 @@ public class StreamsCountMinMaxSum
 
         max= eList.stream().map(s->s.sal).map(Integer::parseInt).max((s1,s2)->{return s1.compareTo(s2);}).get();
         System.out.println("Max:"+max);
+        
+        
+        List<String> strList=new ArrayList<>();
+        strList.add("Hi, This is ravi kiran");
+        strList.add("Here, find the total number of words in given list of elements");
+        strList.add("separated by space. Bye.");
+        
+        System.out.println("Words count:"+strList.stream().flatMap((s)->{return Arrays.asList(s.split(" ")).stream();}).count());
     }
 
 }

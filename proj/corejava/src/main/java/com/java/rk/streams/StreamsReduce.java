@@ -36,6 +36,19 @@ public class StreamsReduce
         Float sumSal =eList.stream().map(s->s.sal).reduce(0.0f,(o1,n1)->o1+n1).floatValue();
         System.out.println(sumSal);
         
+        
+        List<String> wordsList=new ArrayList<>();
+        wordsList.add("Hi,");
+        wordsList.add("How");
+        wordsList.add("are");
+        wordsList.add("you?");
+        wordsList.add("shall");
+        wordsList.add("we");
+        wordsList.add("move");
+        wordsList.add("on?");
+        
+        Optional<String> optString= wordsList.stream().reduce((one,two)->{return one+" "+two;});
+        System.out.println(optString);
 
         
         

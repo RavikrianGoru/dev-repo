@@ -19,3 +19,5 @@ Java lambdas can capture the following types of variables:
 	Instance variables
 	Static variables
 
+Terminal Operations
+The terminal operations of the Java Stream interface typicall return a single value.

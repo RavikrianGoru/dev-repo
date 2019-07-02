@@ -65,5 +65,24 @@ The reduce() method can reduce the elements of a stream to a single value.
 	Optional<Float> optlFloat=eList.stream().map((e)->{return e.sal;}).reduce((x,y)->x+y);
 	Float sumSal =eList.stream().map(s->s.sal).reduce(0.0f,(o1,n1)->o1+n1).floatValue();
 
+Stream.flatMap()
+---------------
+The Java Stream flatMap() methods maps a single element into multiple elements.
 
+Stream.distinct()
+----------------
+The Java Stream distinct() method is a non-terminal operation that returns a new Stream which will only contain the distinct elements from the original stream.
+
+Stream.limit(-)
+--------------
+The Java Stream limit() method can limit the number of elements in a stream to a number given to the limit() method as parameter.
+
+Stream.peek()
+-------------
+The Java Stream peek() method is a non-terminal operation that takes a Consumer (java.util.function.Consumer) as parameter. 
+The Consumer will get called for each element in the stream. The peek() method returns a new Stream which contains all the elements in the original stream.
+
+Terminal Operations
+===================
+The terminal operations of the Java Stream interface typicall return a single value.
 
