@@ -157,6 +157,28 @@ empno			proj				sal
 		where 2 =( select count(distinct e2.sal) from d_proj e2 where e2.sal >e1.sal);
 
 	Note: Nth highest n-1 =(....)
+12) Fetch only odd rown from table.
+	
+	select E.empno, E.ename, E.mgr from (select Row_number() over(order by empno) as Rownumber, empno,ename,mgr from d_emp) E where MOD(E.Rownumber,2) =0;
+		or
+	select e1.empno, e1.ename ,e1.mgr from ( select rownum as RowNumber from d_emp order by empno) e1 where mod(RowNumber,2) =0;
+	
+12) Fetch only even rown from table.
+	
+	select E.empno, E.ename, E.mgr from (select Row_number() over(order by empno) as Rownumber, empno,ename,mgr from d_emp) E where MOD(E.Rownumber,2) =1;
+		or
+	select e1.empno, e1.ename ,e1.mgr from ( select rownum as RowNumber from d_emp order by empno) e1 where mod(RowNumber,2) =1;
+
+13) Copy entire table and data from one table to another.
+	select * into newTale from oldTable;-----(not working in oracle)
+
+13) Copy only structure f table from one to another.
+	select * info newTale from oldTable where 1=0;-----(not working in oracle)
+
+14) Fetch common records between two tables.
+		(select * from table1) intersect (select * from table2);
+15) Fetch records that are present in one table but not in another table.
+		(select * from table1) minus (select * from table2);
 
 10) Oracle tables in different schemas
 	By default, only the person who create a table may access it.  To access tables within separate schemas, you must grant access
@@ -187,28 +209,7 @@ select * from dick.emp;
 
 	
 	
-12) Fetch only odd rown from table.
-	
-	select E.empno, E.ename, E.mgr from (select Row_number() over(order by empno) as Rownumber, empno,ename,mgr from d_emp) E where MOD(E.Rownumber,2) =0;
-		or
-	select e1.empno, e1.ename ,e1.mgr from ( select rownum as RowNumber from d_emp order by empno) e1 where mod(RowNumber,2) =0;
-	
-12) Fetch only even rown from table.
-	
-	select E.empno, E.ename, E.mgr from (select Row_number() over(order by empno) as Rownumber, empno,ename,mgr from d_emp) E where MOD(E.Rownumber,2) =1;
-		or
-	select e1.empno, e1.ename ,e1.mgr from ( select rownum as RowNumber from d_emp order by empno) e1 where mod(RowNumber,2) =1;
 
-13) Copy entire table and data from one table to another.
-	select * info newTale from oldTable;-----(not working in oracle)
-
-13) Copy only structure f table from one to another.
-	select * info newTale from oldTable where 1=0;-----(not working in oracle)
-
-14) Fetch common records between two tables.
-		(select * from table1) intersect (select * from table2);
-15) Fetch records that are present in one table but not in another table.
-		(select * from table1) minus (select * from table2);
 
 
 *) An attribute which is not a part of GROUP BY clause can’t be used for selection. 
@@ -255,7 +256,7 @@ SQL constraints are the set of rules that impose some restriction while insertio
 column level  and table level constraints
 	Primary Key	- Not Null : a column or a combination of columns which uniquely identifies a record in the database. : only one primary key in a table.
 	Foreign Key - used for enforcing referential integrity in which a field marked as foreign key in one table is linked with primary key of another table.
-	Unique Key	-only unique value(no duplication)., allows onle NULL
+	Unique Key	-only unique value(no duplication)., allows one NULL
 	Not NULL	- used for ensuring that the value in the field cannot be NULL.
 	DEFAULT - used for providing a default value to a column when no value is supplied at the time of insertion of record in the database.
 	CHECK - used for enforcing referential integrity in which a field marked as foreign key in one table is linked with primary key of another table. Salary INT CHECK (Salary > 1000)

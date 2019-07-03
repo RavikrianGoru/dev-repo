@@ -18,6 +18,29 @@ DS and Algorithms
 				Operations
 				Cost of Operations
 				Implementation.
+Algorithms:
+	
+	Flowcharts: A flowchart is a visual representation of an algorithm's control flow. (For 
+				1) Flowcharts belong to the structured programming era and aren't as useful in an object-oriented context.
+				2) Unified Modeling Language (UML): is more appropriate for creating object-oriented visual representations.
+				Note: Check any UML tool to draw diagrams
+				
+	Pseudocode: An alternative to flowcharts is pseudocode, which is a textual representation of an algorithm that approximates the final source code
+	
+How to choose right algorithm?
+	Two factors:
+		1) Memory usage(Datastructure)
+		2) CPU time (for algorithms that interact with those datastructures)
+		
+		
+	
+
+spiral tree traversal?
 					
 			
 			
+Template Method for tree and graph traversals;
+Decorator for balanced trees and graphs;
+Iterator for sequences, trees, and graphs.
+
+

@@ -6,6 +6,10 @@
 													Date: 2017-09-05
 													-----
 
+Bharathi:
+core
+
+sudo setfacl -m u:karaf:rwx <filepath>
 
 Unix Commands
 ~~~~~~~~~~~~~
