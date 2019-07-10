@@ -10,6 +10,8 @@ Bharathi:
 core
 
 sudo setfacl -m u:karaf:rwx <filepath>
+sudo ln -s srcPath despLinkPath
+
 
 Unix Commands
 ~~~~~~~~~~~~~
@@ -128,11 +130,15 @@ sed command
 -----------
 
 	
-	
+
+restrict user to execute some commands.
+vi /etc/sudoers
 
 
 
-	
+Create symbolic link to directory: here /home/papso/ "test is not available"
+
+ln -s /src_actual_path/test /home/papso/test	
 	
 
 

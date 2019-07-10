@@ -43,12 +43,27 @@ JUnit 5 =
 
 
 
+Project:
+=======
 
-Ref: junit_template.xml
-
-Import Code Templates into Eclipse
-Eclipse: Window->Preferences
-Java->Editor->Templates
-Import…
-Choose file
-Verify for template names “setup (JUnit5)”, “teardown (JUnit5)” and “test (JUnit5)” specific to JUnit 5
+<dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+		<dependency>
+        <groupId>org.powermock</groupId>
+        <artifactId>powermock-module-junit4</artifactId>
+        <version>1.7.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.powermock</groupId>
+        <artifactId>powermock-api-mockito</artifactId>
+        <version>1.7.0</version>
+      </dependency>
+      <dependency>
+        <groupId>org.powermock</groupId>
+        <artifactId>powermock-core</artifactId>
+        <version>1.7.0</version>
+      </dependency>
