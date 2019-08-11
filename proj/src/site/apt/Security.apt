@@ -1,0 +1,48 @@
+Security:
+---------
+* Black hat vs White Hat(Ethical hacking)
+* Ethical hacking
+
+* Password:
+	What you know		Pwd/PIN/Pattern
+	What you have 		OTP/PassCodeGenerator
+	What you are		Fingure Print
+
+
+
+Seurity Architecure:
+	How to secure data(data in server and transfering one machine to other).
+
+OWASP: non profitable org.
+	1) SQLInjection
+	   Ex: One form take account number and gives data: Internally it calls the sql query
+		   select * from Acount where account_id=00001;
+		   select * from Account where account_id=00001 OR 1=1;
+	   Ex: Login page: username and pwd
+	       select * from Login where username='xxx' and pwd='****';
+		   select * from Login where username='xxx' and pwd='****' OR 1=1;
+	2) Broken Access Control
+	   Ex: 
+		What you know		Pwd/PIN/Pattern
+		What you have 		OTP/PassCodeGenerator
+		What you are		Fingure Print
+	3) CSRF:
+	   Ex: You logged in Bank/Some Portal used cookies to hold user credentials/token for further transaction.
+		   You open some image, when you click on image, It interally reads you cookie and do some traction on you account.
+	    Use CSRFToken to prevent this vulnarability
+	4) XSS/Clickjacking
+		Get access of someones device
+		Use XSS-Protection-ON
+		    CSP- Content security policy
+	5) Phishing:
+	   Similar UI as Original Site.
+	   check https but this is not also secure because we get free certification. Better to check Owner Name at https place. This can not be tampered.
+	* FTP and Http is not secure.
+	6) DOS
+	   DDOS
+	   Layer 7 Dos methods
+	   XL bombs
+	   
+	7)  
+	
+* FindMyBug in java

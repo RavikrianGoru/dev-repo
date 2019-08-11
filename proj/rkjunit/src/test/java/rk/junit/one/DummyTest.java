@@ -72,12 +72,12 @@ public class DummyTest {
 			return "result";
 		});
 
-		assertTimeout(Duration.ofMillis(100), () -> {
+		assertTimeout(Duration.ofMillis(350), () -> {
 			Thread.sleep(200);
 			return "result";
 		});
 
-		assertTimeoutPreemptively(Duration.ofMillis(100), () -> {
+		assertTimeoutPreemptively(Duration.ofMillis(300), () -> {
 			Thread.sleep(200);
 			return "result";
 		});

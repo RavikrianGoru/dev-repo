@@ -1,7 +1,12 @@
 package com.jenkov.concurrent.threadcreation;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.ThreadFactory;
 
 class MyRunnable implements Runnable
@@ -116,7 +121,7 @@ public class ExecutorServicesDemo
 
         
 //      3a) Executors.newSingleThreadScheduledExecutor(); This can be used when we want to execute a taks/command to run after a given delay, or to execute periodically.
-//      ExecutorService t3=Executors.newSingleThreadScheduledExecutor(); by using this method we can have scheduled thread pool of sixe 1.
+//      ExecutorService t3=Executors.newSingleThreadScheduledExecutor(); by using this method we can have scheduled thread pool of max 1.
 //      No more than one task will be active at any given time. if new thread is submitted to get execution it will wait in the queue until a thread is available
 //      if this single thread terminates due to a failure during execution prior to shutdown, a new one will take its place if needed to execute subsequent tasks.
 //      No more than one task will be active at any given time.
@@ -193,7 +198,7 @@ public class ExecutorServicesDemo
 //      4b) Executors.Executors.newWorkStealingPool(n); Creates a work-stealing thread pool using all available processors as its target parallelism level.
 //      ExecutorService workStealingPoolN=Executors.newWorkStealingPool(n); by using this method we can have  thread pool of sixe n.        
         
-        /*ExecutorService workStealingPoolN=Executors.newWorkStealingPool(5);
+        ExecutorService workStealingPoolN=Executors.newWorkStealingPool(5);
         workStealingPoolN.execute(new MyRunnable());
         workStealingPoolN.execute(new MyRunnable());
         workStealingPoolN.execute(new MyRunnable());
@@ -211,7 +216,7 @@ public class ExecutorServicesDemo
         for(Future each:futureList4)
         {
             System.out.println("Returned from MyCallable by using  future.get():"+each.get()); 
-        }*/
+        }
     }
 
 }

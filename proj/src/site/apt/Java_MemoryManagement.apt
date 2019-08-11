@@ -1,0 +1,76 @@
+Oracle JRockit JVM
+Ref https://docs.oracle.com/cd/E13150_01/jrockit_jvm/jrockit/geninfo/diagnos/garbage_collect.html
+
+
+Java Memory Management:
+-----------------------
+The process of allocating memory for new objects and free-up the space if no reference available for the objects. Java does it automatically by Garbage collection.
+
+
+Java objects are stored in heap space.
+Heap is create when JVM starts up and may increase/decrease when appplication runs.
+if heap is full---> garbage is collected.
+
+
+Java Method/Class area	--------------- It stores per-class structures such as the run-time constant pool, field and method data, and the code for methods and constructors, including the special methods used in class and instance initialization and interface initialization.
+
+Heap					--------------- Young/nursery space and Old space
+thread stack			--------------- 
+PC Register
+Native Method Stack
+
+
+JVM(Java Virtual Machine) acts as a run-time engine to run Java applications. It calls the main method. 
+
+* New objects are stored in young space.
+* When young space becomes full--> young collection free up the space of unused objects and log lived objects are promoted/moved to old space.
+* When old space becomes full--> Old collection free up the space of unused objects.
+* Young collection faster than old collection.
+* Young space has keep area(reserved area). This contains most recently allocated objects and it is not garbage collected until the next young collection. 
+  This prevents objects from being promoted to old soace because thos object are allocated right before young collection started.
+  
+Object Allocation:
+-----------------
+JRockit_JVM distinguishes between small and large objects (2 to 128KB) ref about -XXtlaSize and -XXlargeObjectLimit params.
+Small objects are allocated in Thread Local Area(TLAs). if TLA is full, the thread simply request new TLA. TLS will be in Young space if exist, else anyware in heap.(No synchronization)
+Large objects that dont fill in TLA are allocated directly in Old space on heap.
+
+ORacle JRockit JVM: 
+------------------
+JRockit uses the mark and sweep model performing garbage collections of the whole heap.
+The Mark and Sweep model--> twp phases(1-mark phase and 2-sweep pahase)
+------------------------
+
+Mark phase: all object are that are reachable from java threads,native handlers are marked as alive and rest considered garbage.
+Sweep phase: This phase, Heap is traversed and finds the gaps between the live objects. THease gaps are recorded in free list and made avaible for new object allocations.
+
+* JRockit uses two improved verions of mark and sweep model.
+	1) Mostly Concurrent Mark and Sweep (Concurrent garbage collection)
+	2) Parallel Mark and Sweep( Parallel garbage collection)
+
+Mostly Concurrent Mark and Sweep: 
+	It allows the java threads to continue running during the garbage collection(large partition)
+	Threads will be stopped a few times for synchronization.
+
+The mostly concurrent mark phase is divided into four parts:	
+	There are 4 phase in CMS:
+	i)  Initial marking: Here, Root set of live object is identified.(Done while threads are paused)
+	ii) Concurrent marking: Here, Reference from root set followed to find and mark the rest of the live objects in the heap.(Done while threads are ruuning)
+	iii)Precleaning:Here, Additional live objects are identified if any changes on the heap during concurrent mark phase.(Done while thread are running)
+	iv) Final Marking:Here, Additional live objects are identified if any changes on the heap during precleaning phase (Done while threads are paused)
+
+The mostly concurrent sweep phase consists of four parts:
+	i)  Sweeping of one half of heap:Threads are allowned to allocate objects in the other part of heap which being swept.(Done while thread are running)
+	ii) A short pause to switch halves
+	iii)Sweeping of other half of heap:Threads are allowned to allocate objects in the other part of heap which being swept.(Done while thread are running)
+	iv) A short pause for synchronization and recording statistics.
+
+Parallel Mark and Sweep:
+	It uses all the avalable CPUs in the system for performing the garbage collection as fast as possible. 
+	All the threads are paused during this process.
+
+
+Generational Garbage Collection:
+if young/nursery is exist, garbage collected by young collection(it is called generational garbage collection strategy).
+It promotes all live objects to ols space. This done by parallel threads available for all CUPs. The Java threads are paused during the entire young collection.
+

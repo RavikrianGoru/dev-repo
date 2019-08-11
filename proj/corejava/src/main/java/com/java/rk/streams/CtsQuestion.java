@@ -2,6 +2,7 @@ package com.java.rk.streams;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 class Employee
 {
@@ -159,6 +160,8 @@ public class CtsQuestion
         el1.stream().filter((e)->{
             return e.getWorkedIn().stream().anyMatch((company)->{return company.getRating()>=5;});
         }).forEach((s)->{System.out.println(s.getName() + "----" + s.getWorkedIn());});
+        
+        System.out.println(el1.stream().filter((e)->{return e.getWorkedIn().stream().anyMatch((c)->{return c.getRating()>=5;});}).collect(Collectors.toList()));
 
     }
 }

@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 interface Department
 {
     public void setName(String name);
-
     public void display();
 }
 class Sales implements Department

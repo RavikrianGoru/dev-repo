@@ -24,8 +24,8 @@ public class ReferenceEqualAndEqual
         String s1 = new String("Ravi");
         StringBuffer sbuf1 = new StringBuffer("Ravi");
 
-        // System.out.println(sbuf1 == sbuilder);
-        // System.out.println(sbuf1 instanceof StringBuilder);
+         //System.out.println(sbuf1 == sbuilder);//C.E no relation
+        // System.out.println(sbuf1 instanceof StringBuilder);//C.E no relation
         
         
 

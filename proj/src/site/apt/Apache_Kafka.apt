@@ -1,0 +1,236 @@
+Ref:https://www.tutorialspoint.com/apache_kafka/
+
+
+LinkedIn--> Kafka --> Apache S/w Foundation
+
+Apache Karaf writtern (scala + java): Publish -Subscribe based fault tolerant messaging system.
+	Fast + scalable + distributed by design
+	Better throughput, built-in partitions, replication and inherent fault-tolerance.
+
+When we deal with large volume of data need a messaging system.
+
+Messaging system: Responsible for transfering data from one application to other. Focus on data but not on how to share it.
+----------------
+	Messages are queued asynchronously between client applications and messaging system.
+	Types of messaging syatems:
+		1) Point-to-point 
+		2) Publish-subscribe (pub-sub)
+	Most of messaging patterns follow pus-sub.
+
+1) Point-to-Point messaging system:
+----------------------------------
+	Messages are persisted in a queue. one or more comsumers consums messages in the queue but a particular message can be consumed by a maximum of one consumer only. 
+	Once a consumer reads a message in the queue, it disappears from that queue.
+	Ex: Order Processing system.
+	--	Each order can be processed by one Order Processor, but Multiple Order Processors can work as well at the same time.
+	
+2) Publish-Subscribe messaging system:
+-------------------------------------
+	Messages are persisted in a topic. In this syestem, message producers are called publishers and message consumers are called subscribers.
+	Consumers can subscribe to one or more topic and consume all the messages in that topic.
+	
+What is Kafka:
+-------------
+	It is distributed publish-subscribe messaging system. It can hable high volume of data and enables pass data from one end to another.
+	It is suitable for online and offline message consumption. Kafka messages are persisted on disk and replicate within the cluster to prevent loss of data.
+	It is built on top of zookeeper synchronization service. 
+	It integrates very well with Apache Storm and Spark for real-time streaming data analysis.
+
+Benefits:
+--------
+	Reliability: It is distributed, partitioned, replicated and fault tolerance.
+	Scalability: It scales without downtime.
+	Durability: It uses distributed commit log, means messages persisted on disk as fast as possible.
+	Performance: It has high through for both publishing and subscribing messages.
+	* Kafka is very fast and guarantees zero downtime and zero data loss.
+
+===================================================================================================================================================================
+-------------------------------------------------------------------------------------------------------------------------
+							Topics						Kafka Brokers									Consumer Group
+
+Producer-1				Partition 1(0 1)			Leader:   Server-1 : P1 (Replica-1)					Consumer-1
+
+Producer-2				Partition 2(0 1 2 3)		Follower: Server-2 : P2 (Replica-2)					Consumer-2
+
+Producer-3				Partition 3(0)				Follower: Server-3 : P3 (Replica-3)					Consumer-3
+-------------------------------------------------------------------------------------------------------------------------
+
+
+
+Topics:
+------ 
+	A sream of messages belonging to a particular category is called a topic. Data is stored in topics.
+	Topics are split into partitions. 
+	For each topic, kafka keeps minimum of one partition. 
+	Each such partition contains messages in an immutable ordered  sequence.
+	A partition is implemented as a set of segment files of equal size.
+
+Partiton:
+--------
+	Topics may have many partitions, so it can handles an arbitrary amount of data.
+
+Partition offset:
+----------------
+	Each partitioned message has a unique sequence id called as "offset".
+
+Replicas of partition:
+----------------------
+	Backup of a partition. Replicas are never read/write data. used to prevent loss of data.
+
+Brokers:
+--------
+	Brokers are simple systems, Responsible for maintaining the published data.
+	Each broker may have zero/more partitions per topic.
+	Ex-1:
+		N number of partition in a topic and N number of brokers then Each broker will have one partition.
+	Ex-2:
+		N number of partition in a topic and (N + M)number of brokers then N broker will have one partition and next M brokers will not have any partition for that particular topic.
+	Ex-3:
+		N number of partition in a topic and (N - M) number of brokers then Each broker will share one/more partition amoung them. But it is not recommended(unequal load distribution).
+
+Kafka cluster:
+------------
+	kafka's having more than one broker is called kafka cluster. It can be expanded without downtime.
+	These cluster are used to manage the persistence and replication of message data.
+
+Producers:
+----------
+	Producers are publishers of messages into one/more kafka topics.
+	Send data into kafka brokers.
+	Every time a producer publishes a message to a broker, broker simply append the message to the last segment file(partition).
+	Producer can also send messages to a partition of their choice.
+
+Consumers:
+----------
+	Consumers read data from brokers. Consumers subscribe to one or more topics and consumes messages by pulling data from brokers.
+	
+Leader:
+-------
+	leader is the node, responsible for all the reads and writes for the given partition. Every partition has one server acting as a leader.
+
+Follower:
+---------
+	Node which follows leader instructions are called as follower.
+	if the leader fails, one of the follower will automatically become the new leader.
+	A follower acts as normal consumer, pulls messages and updates its own data store.
+
+
+===================================================================================================================================================================
+Apache Karfka - Cluster Architecture
+====================================
+					     Kafka EcoSystem			
+					-------------------------      Consumer Group
+------------|		|						|	   --------------
+			|		|	Kafka Cluster		|      |			|
+Producer-1	|		|	-----------------	|      | Consumer-1	|
+------------| (1)	|	|	Broker-1	|	|      |------------|
+			|\		|	|				|	|      |			|
+Producer-2	|-\---->|	|				|	|<-----| Consumer-2	|
+------------|  \	|	|	Broker-2	|	|      |------------|
+			|	\	|	|				|	|      |			|
+Producer-3	|	 \	|	|				|	|      | Consumer-3	|
+			|  (2)\	|	|	Broker-3	|	|      |			|
+			|	   \|	-----------------	|      |			|
+------------|		|\:===>Zookeeper		|	    -------------
+					-------------------------
+	
+	
+	(1) Push messages
+	(2) get kafka broker ID
+
+Broker:
+------
+	Kafka cluster typically consists of multiple brokers to maintain load balance.
+	kafka brokers are stateless, So they use zookeeper to maintain their cluster state.
+	One Kafka broker instance can handle hundreds of thousands of reads and writes per second.
+	Each broker can handle TB of messages without performance impact.
+	Kafka broker leader election can be done by ZooKeeper.
+	
+Zookeeper:
+---------
+	Zookeeper is used to manage and coordinate kafka broker. 
+	ZooKeeper service is mainly used to notify producer and consumer about the presence of any new broker in the Kafka system or failure of the broker in the Kafka system
+	Zookeeper gives the notification about brokers(available/failure), produces and consumers start coordinate with other brokers.
+
+Producers:
+---------
+	Producers push data to brokers.
+	When new broker added/available/started, All the producers search it automatically and push data to new broker.
+	Kafka Producer doesnot wait for acknowledgments from the broker.
+	Send data s fast as broker can handle.
+
+Consumers:
+--------
+	Kafka broker is stateless, means comsumer has to maintain how many messages have been consumed by using partition offset.
+	If the consumer acknowledges a partitcular message offset it means the consumer has consumed all prior messages.
+	The consumers issues an asynchronous pull request to the broker to have a buffer of bytes ready to consume.
+	Consumer can rewind /skip to any point in a partition by supplying offset value.
+	Consumer offset value is notified by ZooKeeper.
+==========================================================================================================================================================================
+
+Apache kafka workflow:
+---------------------
+	Kafka is simply a collection of topics split into one or more partitions.
+	A Kafka partition is a linearly ordered sequence of messages, where each message is identified by their index (called as offset).
+	Incoming messages are written at the end of a partition and messages are sequentially read by consumers.
+	Durability is provided by replicating messages to different brokers.
+	
+	Kafka provides both pub-sub and queue based messaging system in a fast, reliable, persisted, fault-tolerance and zero downtime manner.
+
+Workflow of Pub-Sub Messaging:
+------------------------------
+	1) Producers send message to a topic at regular intervals.
+	2) Kafka broker stores all messages in the partitions configured for that particular topic. 
+	   It ensures the messages are equally shared between partitions. 
+	   If the producer sends two messages and there are two partitions, Kafka will store one message in the first partition and the second message in the second partition.
+	3) Consumer subscribes to a specific topic.
+	4) Once the consumer subscribes to a topic, Kafka will provide the current offset of the topic to the consumer and also saves the offset in the Zookeeper ensemble.
+	5) Consumer will request the Kafka in a regular interval (like 100 Ms) for new messages.
+	6) Once Kafka receives the messages from producers, it forwards these messages to the consumers.
+	7) Consumer will receive the message and process it.
+	8) Once the messages are processed, consumer will send an acknowledgement to the Kafka broker.
+	9) Once Kafka receives an acknowledgement, it changes the offset to the new value and updates it in the Zookeeper.
+	   Since offsets are maintained in the Zookeeper, the consumer can read next message correctly even during server outrages.
+   10) This above flow will repeat until the consumer stops the request.
+   11) Consumer has the option to rewind/skip to the desired offset of a topic at any time and read all the subsequent messages.
+ 
+Workflow of Queue Messaging / Consumer Group:
+--------------------------------------------
+	In a queue messaging system instead of a single consumer, a group of consumers having the same Group ID will subscribe to a topic.
+	
+	1) Producers send message to a topic in a regular interval.
+	2) Kafka stores all messages in the partitions configured for that particular topic similar to the earlier scenario.
+	3) A single consumer subscribes to a specific topic, assume Topic-01 with Group ID as Group-1.
+	4) Kafka interacts with the consumer in the same way as Pub-Sub Messaging until new consumer subscribes the same topic, Topic-01 with the same Group ID as Group-1.
+	5) Once the new consumer arrives, Kafka switches its operation to share mode and shares the data between the two consumers. 
+	   This sharing will go on until the number of con-sumers reach the number of partition configured for that particular topic.
+	6) Once the number of consumer exceeds the number of partitions, the new consumer will not receive any further message until any one of the existing consumer unsubscribes. 
+	   This scenario arises because each consumer in Kafka will be assigned a minimum of one partition and once all the partitions are assigned to the existing consumers, the new consumers will have to wait.
+	7) This feature is also called as Consumer Group. In the same way, Kafka will provide the best of both the systems in a very simple and efficient manner.
+
+Role of ZooKeeper:
+-----------------
+	A critical dependency of Apache Kafka is Apache Zookeeper, which is a distributed configuration and synchronization service.
+	Zookeeper serves as the coordination interface between the Kafka brokers and consumers.
+	The Kafka servers share information via a Zookeeper cluster. 
+	Kafka stores basic metadata in Zookeeper such as information about topics, brokers, consumer offsets (queue readers) and so on.
+	
+	Since all the critical information is stored in the Zookeeper and it normally replicates this data across its ensemble, failure of Kafka broker / Zookeeper does not affect the state of the Kafka cluster.
+	
+	Kafka will restore the state, once the Zookeeper restarts. This gives zero downtime for Kafka.
+	The leader election between the Kafka broker is also done by using Zookeeper in the event of leader failure.
+	
+	
+	
+	
+	
+
+	
+	
+		
+
+	
+	
+	
+
+

@@ -31,7 +31,7 @@ https://howtodoinjava.com/junit-5-tutorial/
 </build>
 
 4) create test class in src/test/java. class name start/ends with "Test" or ends with "Tests"/"TestCase"
-	cleart a method @Test
+   create a method @Test
 5)
 	maven clean test
 ------------------

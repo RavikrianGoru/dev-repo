@@ -1,71 +1,540 @@
-													-----
-													Title: maven site documentation (Zookeeper) 
-													-----
-													Author:RavikiranGoru,... 
-													-----
-													Date: 2017-09-05
-													-----
+Ref: https://www.tutorialspoint.com/zookeeper/index.htm
 
-		
-A distributed application can run on multiple systems in a n/w at a given time (simultaneously) by coordinating among themselves
-to complete a particular task in a fast and efficient manner.
-													
-Zookeeper:
-~~~~~~~~~
+Co-ordinating and managing a service in a distributed environment is a complicated process.
+ZooKeeper solves this issue with its simple architecture and API.
+
 ZooKeeper is a distributed co-ordination service to manage large set of hosts.
-ZooKeeper (ZK) is a highly-available, highly-reliable and fault-tolerant coordination and consensus service for distributed applications like Apache Storm or Kafka. 
-(Specifically in the case of Kafka it also acts as distributed metadata and configurations service). 
-ZK uses a simple database a.k.a data tree.
 
-Highly-available and highly-reliable – ZK achieves these through replication, and is designed to have good performance in read-heavy workloads. 
-Total replication of the ZK database is performed on an ensemble, i.e., an array of hosts/nodes, of which one is the leader of a quorum (i.e., majority)
+The ZooKeeper framework was originally built at “Yahoo!”
+Apache ZooKeeper became a standard for organized service used by Hadoop, HBase, and other distributed frameworks.
+Apache HBase uses ZooKeeper to track the status of distributed data.
 
-Quorum is nothing but the number of nodes that should be up and running in the ensemble for the ZK service to be considered up. ZK, by default uses “node majority quorum”.
+Distributed Application:
+------------------------
+A distributed application can run on multiple systems in a network at a given time (simultaneously) by coordinating among themselves to complete a particular task in a fast and efficient manner.
+A group of systems in which a distributed application is running is called a Cluster and each machine running in a cluster is called a Node.
+
+Benefits: DA
+------------
++ Reliability - Failure of a single or a few systems does not make the whole system to fail.
++ Scalability - Performance can be increased as and when needed by adding more machines with minor change in the configuration of the application with no downtime.
++ Transparency - Hides the complexity of the system and shows itself as a single entity / application.
+
+Challenges: DA
+----------
+- Race condition - Two or more machines trying to perform a particular task, which actually needs to be done only by a single machine at any given time. 
+		For example, shared resources should only be modified by a single machine at any given time.
+- Deadlock - Two or more operations waiting for each other to complete indefinitely.
+- Inconsistency - Partial failure of data.
+
+====================================================================================================================
+Apache ZooKeeper is a service used by a cluster (group of nodes) to coordinate between themselves and maintain shared data with robust synchronization techniques.
+ZooKeeper provides the following services:
+-----------------------------------------
+1) Naming service - Identifying the nodes in a cluster by name. It is similar to DNS, but for nodes.
+2) Configuration management - Latest and up-to-date configuration information of the system for a joining node.
+3) Cluster management - Joining / leaving of a node in a cluster and node status at real time.
+4) Leader election - Electing a node as leader for coordination purpose.
+5) Locking and synchronization service - Locking the data while modifying it. 
+	This mechanism helps you in automatic fail recovery while connecting other distributed applications like Apache HBase.
+6) Highly reliable data registry - Availability of data even when one or a few nodes are down.
+
+Benefits Zookeeper:
+------------------
++ Simple distributed coordination process
++ Synchronization - Mutual exclusion and co-operation between server processes. 
++ Ordered Messages
++ Serialization - Encode the data according to specific rules. Ensure your application runs consistently.
++ Reliability
++ Atomicity - Data transfer either succeed or fail completely, but no transaction is partial.
 
 
-ENSEMBLE
---------------------------
-|						|
-| ZKNode1	ZKNode2		|
-|						|
-| ZKNode3	ZKNode4		|
-|						|
-|		ZKNode5			|
+Architecture of ZooKeeper
 -------------------------
-Size of quorum =(N+1)/2---------(5+1)/2=3
+											    Zookeeper Esemble
+										---------------------------------
+										|								|
+client 1			1 to 3				|1		ZK server Follower		|
+										|								|
+										|								|
+client 2			2 to 1				|2		ZK server Follower		|
+										|								|
+										|								|
+client 3			3 to 2				|3		ZK server Leader		| Leader connect to all Followers
+										|								|
+										|								|
+client 4			4 to 4				|4		ZK server Follower		|
+										|								|
+										|								|
+client 5			5 to 5				|5		ZK server Follower		|
+										|								|
+										-----------------------------------
 
-Number of failures that can be tolerated =round(N/2)-1
-if n=5
-		round(5/2)-1=3-1=2
-if n=6
-		round(6/2)-1=3-1=2
-if it is recommended to have odd number of nodes.
+Client:	
+------
+	It is one of the nodes in distributed application cluster access information from the server.
+	Client sends message to server for particular time interval so server knows that Client is alive.
+	Server sends an acknodledgement if no acknodledgement means client knows that that server is dead and redirect messages to other server.
 
-* if you want N failures to tolerate , then you need 2N+1 nodes in your cluster.
-		
+Server:
+-------
+	Server, one of the nodes in our ZooKeeper ensemble, provides all the services to clients. Gives acknowledgement to client to inform that the server is alive.
+	
+Ensemble:
+--------
+	Group of ZooKeeper servers. The minimum number of nodes that is required to form an ensemble is 3.
+
+Leader:
+------
+	Server node which performs automatic recovery if any of the connected node failed. Leaders are elected on service startup.
+
+Follower:
+--------
+	Server node which follows leader instruction.
+	
+Hierarchical Namespace:
+----------------------
+The tree structure of ZooKeeper file system used for memory representation. 
+ZooKeeper node is referred as znode. Every znode is identified by a name and separated by a sequence of path (/).
+
+										'/'
+						
+				/config									/workers
+						
+	/app1					/app2
+	
+	
+	/app1/p1			/app2/p1/a1		/app2/p2/a2
+	
+	
+A root znode separated by “/”. Under root, you have two logical namespaces config and workers.
+The config namespace is used for centralized configuration management and the workers namespace is used for naming.
+Under config namespace, each znode can store upto 1MB of data.
+The main purpose of this structure is to store synchronized data and describe the metadata of the znode. This structure is called as ZooKeeper Data Model.
+
+
+Every znode in the ZooKeeper data model maintains a stat structure. A stat simply provides the metadata of a znode. 
+It consists of Version number, Action control list (ACL), Timestamp, and Data length.
+
+Version number - 
+		Every znode has a version number, which means every time the data associated with the znode changes, its corresponding version number would also increased. The use of version number is important when multiple zookeeper clients are trying to perform operations over the same znode.
+
+Action Control List (ACL) - 
+	ACL is basically an authentication mechanism for accessing the znode. It governs all the znode read and write operations.
+
+Timestamp - 
+	Timestamp represents time elapsed from znode creation and modification. It is usually represented in milliseconds. 
+	ZooKeeper identifies every change to the znodes from “Transaction ID” (zxid). Zxid is unique and maintains time for each transaction so that you can easily identify the time elapsed from one request to another request.
+
+Data length - 
+	Total amount of the data stored in a znode is the data length. You can store a maximum of 1MB of data.
+
+Types of Znodes:
+===============
+	Znodes are categorized as persistence, sequential, and ephemeral
+
+Persistence znode - 
+-----------------
+	Persistence znode is alive even after the client, which created that particular znode, is disconnected. 
+	By default, all znodes are persistent unless otherwise specified.
+	
+Ephemeral znode - 
+--------------
+	Ephemeral znodes are active until the client is alive. When a client gets disconnected from the ZooKeeper ensemble, then the ephemeral znodes get deleted automatically. 
+	For this reason, only ephemeral znodes are not allowed to have a children further. 
+	If an ephemeral znode is deleted, then the next suitable node will fill its position. Ephemeral znodes play an important role in Leader election.
+	
+Sequential znode - 
+----------------
+	Sequential znodes can be either persistent or ephemeral. 
+	When a new znode is created as a sequential znode, then ZooKeeper sets the path of the znode by attaching a 10 digit sequence number to the original name. 
+	For example, if a znode with path /myapp is created as a sequential znode, ZooKeeper will change the path to /myapp0000000001 and set the next sequence number as 0000000002. If two sequential znodes are created concurrently, then ZooKeeper never uses the same number for each znode. Sequential znodes play an important role in Locking and Synchronization.	
+
+Sessions:
+--------
+	Sessions are very important for the operation of ZooKeeper. Requests in a session are executed in FIFO order.
+	Once a client connects to a server, the session will be established and a session id is assigned to the client.
+
+	The client sends heartbeats at a particular time interval to keep the session valid.
+	If the ZooKeeper ensemble does not receive heartbeats from a client for more than the period (session timeout) specified at the starting of the service, it decides that the client died.
+	
+	Session timeouts are usually represented in milliseconds. When a session ends for any reason, the ephemeral znodes created during that session also get deleted.
+	
+Watches:
+-------
+	Watches are a simple mechanism for the client to get notifications about the changes in the ZooKeeper ensemble.
+	Clients can set watches while reading a particular znode. Watches send a notification to the registered client for any of the znode (on which client registers) changes.
+	
+	Znode changes are modification of data associated with the znode or changes in the znode’s children.
+	Watches are triggered only once.
+	If a client wants a notification again, it must be done through another read operation.
+	When a connection session is expired, the client will be disconnected from the server and the associated watches are also removed.
+	
+
+
+Zookeeper Workflow:
+==================
+	Once a ZooKeeper ensemble starts, it will wait for the clients to connect. 
+	Clients will connect to one of the nodes in the ZooKeeper ensemble. It may be a leader or a follower node.
+	Once a client is connected, the node assigns a session ID to the particular client and sends an acknowledgement to the client. 
+	If the client does not get an acknowledgment, it simply tries to connect another node in the ZooKeeper ensemble.
+	Once connected to a node, the client will send heartbeats to the node in a regular interval to make sure that the connection is not lost.
+	
+	*) If a client wants to read a particular znode, it sends a read request to the node with the znode path and the node returns the requested znode by getting it from its own database. For this reason, reads are fast in ZooKeeper ensemble.
+	
+	*) If a client wants to store data in the ZooKeeper ensemble, it sends the znode path and the data to the server.
+	The connected server will forward the request to the leader and then the leader will reissue the writing request to all the followers.
+	If only a majority of the nodes respond successfully, then the write request will succeed and a successful return code will be sent to the client.
+	Otherwise, the write request will fail. The strict majority of nodes is called as Quorum.
+	
+Nodes in a ZooKeeper Ensemble:
+-----------------------------
+	Let us analyze the effect of having different number of nodes in the ZooKeeper ensemble.
+	
+	1) If we have a single node, then the ZooKeeper ensemble fails when that node fails.
+	It contributes to “Single Point of Failure” and it is not recommended in a production environment.
+	
+	2) If we have two nodes and one node fails, we don’t have majority as well, since one out of two is not a majority.
+	
+	3) If we have three nodes and one node fails, we have majority and so, it is the minimum requirement. 
+	It is mandatory for a ZooKeeper ensemble to have at least three nodes in a live production environment.
+	
+	4) If we have four nodes and two nodes fail, it fails again and it is similar to having three nodes. 
+	The extra node does not serve any purpose and so, it is better to add nodes in odd numbers, e.g., 3, 5, 7.
+	
+*) We know that a write process is expensive than a read process in ZooKeeper ensemble, since all the nodes need to write the same data in its database. 
+   So, it is better to have less number of nodes (3, 5 or 7) than having a large number of nodes for a balanced environment.
+	
+Write:
+-----
+	Write process is handled by the leader node.
+	The leader forwards the write request to all the znodes and waits for answers from the znodes.
+	If half of the znodes reply, then the write process is complete.
+	
+Read:
+----
+	Reads are performed internally by a specific connected znode, so there is no need to interact with the cluster.
+
+Replicated Database:
+-------------------
+	It is used to store data in zookeeper. Each znode has its own database and every znode has the same data at every time with the help of consistency.
+
+Leader:
+------
+	Leader is the Znode that is responsible for processing write requests.
+
+Follower:
+--------
+	Followers receive write requests from the clients and forward them to the leader znode.
+
+Request Processor:
+------------------
+	Present only in leader node. It governs write requests from the follower node.
+
+Atomic broadcasts:
+------------------
+	Responsible for broadcasting the changes from the leader node to the follower nodes.
 
 
 
+Zookeeper Leader Election
+=========================
+Let us analyze how a leader node can be elected in a ZooKeeper ensemble. Consider there are N number of nodes in a cluster. The process of leader election is as follows -
+	
+	1) All the nodes create a sequential, ephemeral znode with the same path, /app/leader_election/guid_.
+	
+	2) ZooKeeper ensemble will append the 10-digit sequence number to the path and the znode created will be 
+		/app/leader_election/guid_0000000001,
+		/app/leader_election/guid_0000000002, etc.
+	
+	3) For a given instance, the node which creates the smallest number in the znode becomes the leader and all the other nodes are followers.
+	
+	4) Each follower node watches the znode having the next smallest number. 
+		For example, the node which creates znode /app/leader_election/guid_0000000008 will watch the znode /app/leader_election/guid_0000000007 and 
+		the node which creates the znode /app/leader_election/guid_0000000007 will watch the znode /app/leader_election/guid_0000000006.
+	
+	5) If the leader goes down, then its corresponding znode /app/leader_electionN gets deleted.
 
-The ZooKeeper framework was originally built at “Yahoo!” for accessing their applications in an easy and robust manner.
+	6) The next in line follower node will get the notification through watcher about the leader removal.
+	
+	7) The next in line follower node will check if there are other znodes with the smallest number. 
+		If none, then it will assume the role of the leader. Otherwise, it finds the node which created the znode with the smallest number as leader.
+	
+	8) Similarly, all other follower nodes elect the node which created the znode with the smallest number as leader.
+	
+	Leader election is a complex process when it is done from scratch. But ZooKeeper service makes it very simple. 
+	Let us move on to the installation of ZooKeeper for development purpose.
+
+Zookeeper instalation:
+----------------------
+ZooKeeper server is created in Java and it runs on JVM.
+Download zookeeper tar file extract then set ZOOKEEPER_HOME, Path variables.
+
+Update cofig properties in ZOOKEEPER_HOME/config/
+
+cd zookeeper-3.4.6
+> mkdir data
+
+Create configuration file
+>conf/zoo.cfg
+	tickTime = 2000
+	dataDir = /path/to/zookeeper/data
+	clientPort = 2181
+	initLimit = 5
+	syncLimit = 2
+Start ZooKeeper server
+> bin/zkServer.sh start
+
+Start CLI
+> bin/zkCli.sh
+
+ZooKeeper Command Line Interface (CLI):
+---------------------------------------
+It is used to interact with the ZooKeeper ensemble for development purpose.
+It is useful for debugging and working around with different options.
+
+To perform ZooKeeper CLI operations, 
+first turn on your ZooKeeper server (“bin/zkServer.sh start”) and then, ZooKeeper client (“bin/zkCli.sh”).
+
+Once the client starts, you can perform the following operation
+	Create znodes
+	Get data
+	Watch znode for changes
+	Set data
+	Create children of a znode
+	List children of a znode
+	Check Status
+	Remove / Delete a znode
+	
+Create Znodes:
+-------------
+	Create a znode with the given path. 
+	The flag argument specifies whether the created znode will be ephemeral, persistent, or sequential. By default, all znodes are persistent.
+	
+	Ephemeral znodes (flag: e) will be automatically deleted when a session expires or when the client disconnects.
+	Sequential znodes guaranty that the znode path will be unique.
+	ZooKeeper ensemble will add sequence number along with 10 digit padding to the znode path.
+		For example, the znode path /myapp will be converted to /myapp0000000001 and the next sequence number will be /myapp0000000002. 
+		If no flags are specified, then the znode is considered as persistent.
+	#Syntax:
+	> create /path /data
+	#Sample:
+	> create /FirstZnode “Myfirstzookeeper-app”
+	#Output:
+	>[zk: localhost:2181(CONNECTED) 0] create /FirstZnode “Myfirstzookeeper-app”
+	Created /FirstZnode
+	
+To create a Sequential znode, add -s flag as shown below
+	[zk: localhost:2181(CONNECTED) 2] create -s /FirstZnode “second-data”
+	Created /FirstZnode0000000023
+	
+To create an Ephemeral Znode, add -e flag as shown below.
+	[zk: localhost:2181(CONNECTED) 2] create -e /SecondZnode “Ephemeral-data”
+	Created /SecondZnode
+
+Remember when a client connection is lost, the ephemeral znode will be deleted. You can try it by quitting the ZooKeeper CLI and then re-opening the CLI.
+
+Get Data:
+--------
+	It returns the associated data of the znode and metadata of the specified znode. 
+	You will get information such as when the data was last modified, where it was modified, and information about the data. This CLI is also used to assign watches to show notification about the data.
+	
+	#Syntax:
+	> get /path 
+
+	#Sample:
+	> get /FirstZnode
+
+	#Output:
+	[zk: localhost:2181(CONNECTED) 1] get /FirstZnode
+	“Myfirstzookeeper-app”
+	cZxid = 0x7f
+	ctime = Tue Sep 29 16:15:47 IST 2015
+	mZxid = 0x7f
+	mtime = Tue Sep 29 16:15:47 IST 2015
+	pZxid = 0x7f
+	cversion = 0
+	dataVersion = 0
+	aclVersion = 0
+	ephemeralOwner = 0x0
+	dataLength = 22
+	numChildren = 0
+
+To access a sequential znode, you must enter the full path of the znode.
+	
+Watch:
+-----
+	Watches show a notification when the specified znode or znode’s children data changes. You can set a watch only in get command.
+	
+	#Syntax:
+	get /path [watch] 1
+
+	#Sample:
+	get /FirstZnode 1
+	
+	#Output:
+	[zk: localhost:2181(CONNECTED) 1] get /FirstZnode 1
+	“Myfirstzookeeper-app”
+	cZxid = 0x7f
+	ctime = Tue Sep 29 16:15:47 IST 2015
+	mZxid = 0x7f
+	mtime = Tue Sep 29 16:15:47 IST 2015
+	pZxid = 0x7f
+	cversion = 0
+	dataVersion = 0
+	aclVersion = 0
+	ephemeralOwner = 0x0
+	dataLength = 22
+	numChildren = 0
+	
+The output is similar to normal get command, but it will wait for znode changes in the background. <Start here>
+
+Set Data:
+--------
+	Set the data of the specified znode. Once you finish this set operation, you can check the data using the get CLI command.
+	#Syntax:
+	set /path /data
+	
+	#Sample:
+	set /SecondZnode Data-updated
+	
+	#Output:
+	[zk: localhost:2181(CONNECTED) 1] get /SecondZnode “Data-updated”
+	cZxid = 0x82
+	ctime = Tue Sep 29 16:29:50 IST 2015
+	mZxid = 0x83
+	mtime = Tue Sep 29 16:29:50 IST 2015
+	pZxid = 0x82
+	cversion = 0
+	dataVersion = 1
+	aclVersion = 0
+	ephemeralOwner = 0x15018b47db00000
+	dataLength = 14
+	numChildren = 0
+	
+If you assigned watch option in get command (as in previous command), then the output will be similar as shown below:
+
+	[zk: localhost:2181(CONNECTED) 1] get /FirstZnode “Mysecondzookeeper-app”
+	
+	WATCHER: :
+
+	WatchedEvent state:SyncConnected type:NodeDataChanged path:/FirstZnode
+	cZxid = 0x7f
+	ctime = Tue Sep 29 16:15:47 IST 2015
+	mZxid = 0x84
+	mtime = Tue Sep 29 17:14:47 IST 2015
+	pZxid = 0x7f
+	cversion = 0
+	dataVersion = 1
+	aclVersion = 0
+	ephemeralOwner = 0x0
+	dataLength = 23
+	numChildren = 0
+	
+Create Children / Sub-znode:
+---------------------------
+Creating children is similar to creating new znodes. The only difference is that the path of the child znode will have the parent path as well.
+	#Syntax:
+	create /parent/path/subnode/path /data
+	
+	#Sample:
+	create /FirstZnode/Child1 firstchildren
+	
+	#Output:
+	[zk: localhost:2181(CONNECTED) 16] create /FirstZnode/Child1 “firstchildren”
+	created /FirstZnode/Child1
+	[zk: localhost:2181(CONNECTED) 17] create /FirstZnode/Child2 “secondchildren”
+	created /FirstZnode/Child2
+	
+List Children:
+-------------
+	This command is used to list and display the children of a znode.
+	#Syntax:
+	ls /path
+	
+	#Sample:
+	ls /MyFirstZnode
+	
+	#Output:
+	[zk: localhost:2181(CONNECTED) 2] ls /MyFirstZnode
+	[mysecondsubnode, myfirstsubnode]
+	
+Check Status:
+-------------
+	Status describes the metadata of a specified znode. It contains details such as Timestamp, Version number, ACL, Data length, and Children znode.
+	#Syntax:
+	stat /path
+	
+	#Sample:
+	stat /FirstZnode
+	
+	#Output:
+	[zk: localhost:2181(CONNECTED) 1] stat /FirstZnode
+	cZxid = 0x7f
+	ctime = Tue Sep 29 16:15:47 IST 2015
+	mZxid = 0x7f
+	mtime = Tue Sep 29 17:14:24 IST 2015
+	pZxid = 0x7f
+	cversion = 0
+	dataVersion = 1
+	aclVersion = 0
+	ephemeralOwner = 0x0
+	dataLength = 23
+	numChildren = 0
+	
+Remove a Znode:
+--------------
+Removes a specified znode and recursively all its children. This would happen only if such a znode is available.
+	
+	#Syntax:
+	rmr /path
+
+	#Sample:
+	rmr /FirstZnode
+	
+	#Output:
+	[zk: localhost:2181(CONNECTED) 10] rmr /FirstZnode
+	[zk: localhost:2181(CONNECTED) 11] get /FirstZnode
+	Node does not exist: /FirstZnode
+
+*) Delete (delete /path) command is similar to remove command, except the fact that it works only on znodes with no children.
 
 
-Ref: https://www.tutorialspoint.com/zookeeper/zookeeper_overview.htm
+Zookeeper - API:
+================
+ZooKeeper has an official API binding for Java and C.
+Using ZooKeeper API, an application can connect, interact, manipulate data, coordinate, and finally disconnect from a ZooKeeper ensemble.
+ZooKeeper API provides both synchronous and asynchronous methods.
 
-Zookeeper Architecture: ref: https://www.tutorialspoint.com/zookeeper/zookeeper_fundamentals.htm
+Basics of ZooKeeper API:
+-----------------------
+	Application interacting with ZooKeeper ensemble is referred as ZooKeeper Client or simply Client.
+	Znode is the core component of ZooKeeper ensemble and ZooKeeper API provides a small set of methods to manipulate all the details of znode with ZooKeeper ensemble.
+	A client should follow the steps given below to have a clear and clean interaction with ZooKeeper ensemble.
+	
+	1) Connect to the ZooKeeper ensemble. ZooKeeper ensemble assign a Session ID for the client.
+	2) Send heartbeats to the server periodically. Otherwise, the ZooKeeper ensemble expires the Session ID and the client needs to reconnect.
+	3) Get / Set the znodes as long as a session ID is active.
+	4) Disconnect from the ZooKeeper ensemble, once all the tasks are completed. 
+		If the client is inactive for a prolonged time, then the ZooKeeper ensemble will automatically disconnect the client.
 
-Client ?
-Server ?
-Ensemble ? [min number of node required is 3 in ensemble (odd number is recommended)]
-Leader- when Leader is elected ?
-Follower ?
-what is zk quorum?
+Java Binding:
+------------
+	The central part of the ZooKeeper API is ZooKeeper class. It provides options to connect the ZooKeeper ensemble in its constructor and has the following methods -
+	
+	connect - connect to the ZooKeeper ensemble
 
-znode?
-types of znodes?
-	Persistence znode
-	Ephemeral znode
-	Sequential znode
-The strict majority of nodes is called as Quorum.	
-Ref:https://www.tutorialspoint.com/zookeeper/
-													
+	create - create a znode
+
+	exists - check whether a znode exists and its information
+
+	getData - get data from a particular znode
+
+	setData - set data in a particular znode
+
+	getChildren - get all sub-nodes available in a particular znode
+
+	delete - get a particular znode and all its children
+
+	close - close a connection
+=====================================

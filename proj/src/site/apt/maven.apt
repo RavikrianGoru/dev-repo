@@ -42,7 +42,8 @@ Maven commands
  
  12 Sonar:
 	mvn clean org.jacoco:jacoco-maven-plugin:0.7.4.201502262128:prepare-agent install sonar:sonar
- 
+ 14 run as different profiles -P <profileName>
+	mvn clean install -P rpmOs
 +-------------------------------+
 
 <<How to display console data and store in file at a time:>>
@@ -75,4 +76,23 @@ mvn test -Dtest=ContainerUtilsTest
 
 
 	
-	
+Add this to set bundle range:
+-----------------------------	
+
+ <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+              <configuration>
+                   <instructions>
+                        <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+                        <Import-Package>
+                            com.ericsson.bss.rm.trm.cdac.*;version="[1.0,3)", *
+                        </Import-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
