@@ -1,7 +1,5 @@
 package collection;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.TreeSet;
 
 public class DispSecondMaxOfGivenNum {
@@ -19,8 +17,6 @@ public class DispSecondMaxOfGivenNum {
 		System.out.println("headSet of 500 (<500): "+ts.headSet(500));
 		System.out.println("secod Max of 500: "+ts.headSet(500).last());
 		System.out.println("tailSet of 500 (>=500): "+ts.tailSet(500));
-		Student s111=new Student();
-		s111.getAge();
 
 	}
 

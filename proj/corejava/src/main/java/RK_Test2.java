@@ -8,6 +8,7 @@ public class RK_Test2
 {
     public static void main(String[] args) throws InterruptedException
     {
+        tripletCampare();
     }
 
     public static void tripletCampare()

@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class All_Elements_Two_Tinmes_Except_One {
 
 	static char getOddTimesElement(char ar[]) {
@@ -5,6 +7,7 @@ public class All_Elements_Two_Tinmes_Except_One {
 		char result = 0;
 		for (i = 0; i < ar.length; i++) {
 			result = (char) (result ^ ar[i]);
+//			System.out.println(result);
 		}
 		return result;
 	}
@@ -17,8 +20,8 @@ public class All_Elements_Two_Tinmes_Except_One {
 			System.out.print(each + " ");
 		}
 		System.out.println();
-
 		System.out.println("One and only unique element in given array is : " + getOddTimesElement(charArray));
+		
 	}
 
 }

@@ -38,13 +38,6 @@ public class SetHashSet {
 		System.out.println("All Elements:"+al);
 		System.out.println("All Unic Elements:"+uniSet);
 		System.out.println("All Duplicate Elements:"+dupSet);
-		
-		Student s111=new Student();
-		s111.getAge();
-				
-		
-		
-		
 	}
 
 }

@@ -1,0 +1,208 @@
+1) Can we throw Checked and UnChecked Exception in Constructor with zero args and Constructor with args, Methods.?
+class A
+{
+	public A()
+	{
+	.....
+    // throw new RuntimeException("RT:UnChecked");// No issues
+    // throw new Exception("E:Checked");
+       
+	   // 1) Need to habdle here by try and catch
+       // 2) or declare throws in method signature and caller of this method must handle Checked Exception/throws should be declared in caller method
+       // signature..
+	}
+
+	public A(String s)
+	{
+	.....
+	//throw new Exception("e"):
+	//throw new RuntimeException("re");
+	}
+	
+	public void getDetails()
+	{
+	.....
+	//throw new Exception("e"):
+	//throw new RuntimeException("re");
+	}
+}
+
+A obj1 = new A();
+A obj2 = new A("ravi");
+
+obj1.getDetails();
+obj2.getDetails();
+
+
+
+2) 
+class B
+{
+	private String name1;
+	private String name2;
+	
+	public String toString()
+	{
+		return name1.concatinate(name2);
+	}
+	public String toString()
+	{
+		return name1+name2;
+	}
+	
+	
+	B  obj1=null;
+	syso(obj1);
+	B  obj2=new B();
+	syso(obj2);
+
+}
+
+3) List<Employee> l = new ArrayList<Employee>();
+
+//m<a.size();
+
+public List<List<Employee> getList(List<Employee> l, int m)
+{
+....
+....
+}
+
+4) 
+
+Emp Table(eid,ename,dName), Dep Table(did,dName):
+	dName, Count(emps);
+	select d.dName, count(e.enames) from Dep d left join Emp e on d.dName = e.dName;
+	
+	
+	
+	
+	
+select e.ename, count(*) from Emp e ,Dep d  INNER JOIN ON e.dName=d.dName;
+5) Immutable class
+	
+--------------------------------------------------------------
+1)
+Delete the table without deleting structure of the table.
+Delete from Dep where 1=1;
+Why 1=1 condition what about Trncate and Drop tables cmds.
+2)
+Get emp names whos erns max sal:
+select e.names from Emp e where e.sal = (select max(sal) from Emp group by sal);
+Why group by sal here. Not required.
+
+3) Sort int number[] array by using any API.
+Arrays.sort(number);
+4) Comparator and Comparable defference.
+5) 
+
+abstract class A
+{
+	void m1();
+	void m2();
+}
+
+class B1 extends A
+{
+	void m1()
+	{
+	sysout(...);
+	}
+	void m2()
+	{
+	sysout(...);
+	}
+}
+
+class B2 extends A
+{
+	void m1()
+	{
+	sysout(...);
+	}
+	void m2()
+	{
+	sysout(...);
+	}
+}
+
+class B3 extends A
+{
+	void m1()
+	{
+	sysout(...);
+	}
+	void m2()
+	{
+	sysout(...);
+	}
+}
+
+class B4 extends A
+{
+	void m1()
+	{
+	sysout(...);
+	}
+	void m2()
+	{
+	sysout(...);
+	}
+}
+
+
+class C extends A
+{
+	void m1()
+	{
+	sysout(...);
+	}
+	void m2();// Is there any way to not to override this methods: Not to k=make this class abstarct, No interface implementation required.
+}
+
+6) 
+
+class Test
+{
+
+ public void wish()
+ {
+	wiash();
+	// No: C.E but  will cause stackOverFlow as not base condition.
+ }	
+
+}
+
+Test t =new Test();
+t.wish();
+
+7) Emp Table:
+	eid , ename, sal: can we keep index on ename ?
+	if Yes: how? if No: why?
+8) 
+@Override ?
+9) A cycle has two tyres. Each tyre can max 10 life. and you have one extrac tyre with same life. then how long can travel with 3 tyres.
+A5		B5		C5
+-------------------
+
+A1,B1
+C1,B2
+C2,A2
+A3,B3
+C3,B4
+C4,A4
+A5,B5
+				Odd: n+floor(n/2);
+C5,B6
+C6,A6
+A7,B7
+C7,B8
+C8,A8
+A9,B9
+C9,B10
+C10,A10
+				Odd: n+floor(n/2);
+
+
+
+

@@ -17,7 +17,7 @@ public class EnumMap_Demo {
 		emap.put(Days.Fri,5);
 		emap.put(Days.Sut,6);
 		emap.put(Days.Sun,0);
-		System.out.println(emap);
+        System.out.println(emap);
 		
 		
 	}

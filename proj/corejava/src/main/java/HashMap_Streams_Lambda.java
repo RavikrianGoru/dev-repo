@@ -107,7 +107,8 @@ public class HashMap_Streams_Lambda {
 		HashMap<EmpKey, EmpVal> empHm = new HashMap<>();
 		EmpKey ek1=new EmpKey(1, "IBM");
 		EmpKey ek2=new EmpKey(10, "HCL");
-		EmpKey ek3=new EmpKey(6, "GL");
+        EmpKey ek3=new EmpKey(6, "GL");
+        EmpKey ek33=new EmpKey(6, "GL");
 		EmpKey ek4=new EmpKey(23, "CTS");
 		EmpVal ev1=new EmpVal("ravi", 14000.00d, "Chennai");
 		EmpVal ev2=new EmpVal("Chinna", 17000.00d, "Guntur");
@@ -116,7 +117,8 @@ public class HashMap_Streams_Lambda {
 		
 		empHm.put(ek1, ev1);
 		empHm.put(ek2, ev2);
-		empHm.put(ek3, ev3);
+        empHm.put(ek3, ev3);
+        empHm.put(ek33, ev3);
 		empHm.put(ek4, ev4);
 		System.out.println(empHm);
 

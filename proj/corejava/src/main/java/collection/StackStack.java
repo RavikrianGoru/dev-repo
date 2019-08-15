@@ -37,11 +37,6 @@ public class StackStack {
 		System.out.println(stack);
 		System.out.println(stack.pop());
 		System.out.println(stack);
-		
-		Student s111=new Student();
-		s111.getAge();
-		
-		
 	}
 
 }

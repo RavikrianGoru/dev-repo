@@ -5,6 +5,10 @@ import java.util.stream.Collectors;
 
 public class S
 {
+    S()
+    {
+        
+    }
     public static void main(String[] args)
     {
         // vmr-cus-0051
@@ -16,5 +20,5 @@ public class S
                 .collect(Collectors.toList());
         System.out.println(al);
     }
-
+    
 }

@@ -6,7 +6,7 @@ class IdentifyProblemsInCode
     {
         System.out.println("how to do");
         return;
-        // System.out.println("in java");
+//         System.out.println("in java");
     }
 
     public void howToDoInJava_method2()
@@ -26,7 +26,7 @@ class IdentifyProblemsInCode
         {
             return;
         }
-        // System.out.println("in java");
+//         System.out.println("in java");
     }
 
     public void howToDoInJava_method4()
@@ -42,7 +42,7 @@ class IdentifyProblemsInCode
             return;
         }
 
-        // System.out.println("in java");
+//         System.out.println("in java");
     }
 
     public static void main(String[] args)

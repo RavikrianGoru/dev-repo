@@ -4,7 +4,7 @@ public class DuplicateElements_In_Array {
 
 		printArray(intArray);
 		printDuplicateEmelents(intArray);
-
+		printArray(intArray);
 	}
 
 	public static void printArray(int[] inputArray) {

@@ -1,4 +1,5 @@
 package basics;
+
 public class FinallyBlockExecutionCheck
 {
 
@@ -10,7 +11,7 @@ public class FinallyBlockExecutionCheck
             try
             {
                 System.out.println("Try block");
-                // return;
+//                return;
                 // break;
                 // continue;
                 // System.exit(0);
@@ -31,7 +32,7 @@ public class FinallyBlockExecutionCheck
     {
         System.out.println("1)will finally block executes after exit, break, continue, return.");
         System.out.println("A)finally executes in all senarios except exit which causes JVM failure/terminating the process. Also at power shutdown finally/OS failover wont execute.");
-        
+
         doFinallyTest();
     }
 }

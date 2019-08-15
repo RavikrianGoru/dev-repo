@@ -36,10 +36,6 @@ public class SortingArrayList {
 		System.out.println(intlist);
 		Collections.sort(intlist,Collections.reverseOrder());
 		System.out.println(intlist);
-		
-		Student s111=new Student();
-		s111.getAge();
-		
 	}
 
 }

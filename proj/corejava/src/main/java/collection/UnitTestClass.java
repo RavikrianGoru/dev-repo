@@ -83,8 +83,6 @@ public class UnitTestClass{
 			System.out.println(st1);
 			System.out.println(st2);
 			
-			Student s111=new Student();
-			s111.getAge();
 			
 			int a[]={1,2,3,4,5,6,7,8,9,10};
 			
@@ -95,8 +93,6 @@ public class UnitTestClass{
 			System.out.println();
 			String s=new String("RavikiranGoru");
 			System.out.println(s.concat("s5"));
-			s111.getAge();
-			
 			
 		}
 
