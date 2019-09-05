@@ -192,7 +192,7 @@ A3,B3
 C3,B4
 C4,A4
 A5,B5
-				Odd: n+floor(n/2);
+				Odd: n+floor(n/2)+(n%2);
 C5,B6
 C6,A6
 A7,B7

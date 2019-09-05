@@ -36,7 +36,7 @@ public class ListOfList
             {
                 al.add(internalList);
                 internalList = new ArrayList<>();
-                // Never user internalList.clear() wont work. it cleaar elements from al list as reference
+                // Never user internalList.clear() wont work. it clear elements from al as reference is still in use.
                 count = 0;
             }
             internalList.add(l.get(i));

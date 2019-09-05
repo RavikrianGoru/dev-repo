@@ -6,7 +6,7 @@ public class CallSameMethodNoBaseCondition
     {
         System.out.println("Hi");
         wish();
-        // No: C.E but  will cause stackOverFlow as not base condition.
+        // No: C.E but  will cause stackOverFlow as no base condition.
     }
 
     public static void main(String[] args)

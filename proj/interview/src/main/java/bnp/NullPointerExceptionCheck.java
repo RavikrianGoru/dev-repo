@@ -30,9 +30,13 @@ public class NullPointerExceptionCheck
     public static void main(String[] args)
     {
         A1 obj1 = null;
-        A2 obj2 = new A2();
         System.out.println(obj1);
+        //System.out.println(obj1.toString());
+
+        
+        A2 obj2 = new A2();
         System.out.println(obj2);
+        System.out.println(obj2.toString());
 
     }
 

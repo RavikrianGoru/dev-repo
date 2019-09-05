@@ -7,7 +7,7 @@ public class ConstructorException
     {
         // throw new RuntimeException("RT:UnChecked");// No issues
         throw new Exception("E:Checked");
-        // 1) Need to habdle here by try and catch
+        // 1) Need to handle here by try and catch
         // 2) or declare throws in method signature and caller of this method must handle Checked Exception/throws should be declared in caller method
         // signature..
     }

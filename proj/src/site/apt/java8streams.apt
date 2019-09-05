@@ -1,3 +1,15 @@
+cat manifest.mf
+---------------------------
+Main-Class: MainClassName
+
+---------------------------
+jar -cvf App.jar manifest.mf *.class
+
+jar -tvf App.jar
+jar -xvf App.jar
+
+
+
 Stream:
 The Java Stream API provides a more functional programming approach to iterating and processing elements of e.g. a collection
 
@@ -85,4 +97,5 @@ The Consumer will get called for each element in the stream. The peek() method r
 Terminal Operations
 ===================
 The terminal operations of the Java Stream interface typicall return a single value.
+A terminal operation typically does not return a new Stream instance.
 

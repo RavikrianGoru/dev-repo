@@ -33,21 +33,19 @@ public class TomcatRestart
 
     public static void main(String[] args) throws IOException
     {
-//        String scriptPath = "/opt/apache-tomcat/latest/bin/webserver_ctrl";
-//        String comand = "stop";
-//        String[] cmdAry2 = new String[]
-//        { "/opt/apache-tomcat/latest/bin/webserver_ctrl", "-c", "sudo stop" };
-//        executeCommand(cmdAry2);
+        String scriptPath = "/opt/apache-tomcat/latest/bin/webserver_ctrl";
+        String command = "stop";
+        String[] cmdAry2 = new String[]
+        { "/opt/apache-tomcat/latest/bin/webserver_ctrl", "stop" };
+        // executeCommand(cmdAry2);
 
-//        test1();
-        
-
+        test1(command);
     }
 
-    public static void test1()
+    public static void test1(String cmdArg)
     {
         ProcessBuilder processBuilder = new ProcessBuilder();
-        processBuilder.command("/opt/apache-tomcat/latest/bin/webserver_ctrl");
+        processBuilder.command("/opt/apache-tomcat/latest/bin/webserver_ctrl", cmdArg);
         try
         {
             Process process = processBuilder.start();

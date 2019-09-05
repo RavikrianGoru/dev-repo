@@ -19,28 +19,26 @@ public class Abc implements Runnable
         System.out.println("run");
         throw new RuntimeException("Problem");
     }
+
     public static void main(String[] args)
     {
-        Thread t =new Thread(new Abc());
-        
-        ArrayList al =new ArrayList();
-//        al.ensureCapacity(20);
+        Thread t = new Thread(new Abc());
         t.start();
         System.out.println("Abc-Edn");
         t.run();
         t.run();
         t.start();
-        
-        
+
     }
 }
- class Abc1 extends A
+
+class Abc1 extends A
 {
     public void f() throws RuntimeException
     {
         super.f();
         System.out.println("abc");
-        if(true)
+        if (true)
         {
             throw new RuntimeException();
         }
@@ -49,20 +47,19 @@ public class Abc implements Runnable
 
     public static void main(String[] args)
     {
-        
-        //new Abc().f();
-        
-//        try
-//        {
-//           int a = args.length;
-//           int b= 10/a;
-//           System.out.println(a);
-//        }catch(ArithmeticException s)
-//        {
-//            System.err.println("1");
-//        }
-        
-        
+
+        // new Abc().f();
+
+        // try
+        // {
+        // int a = args.length;
+        // int b= 10/a;
+        // System.out.println(a);
+        // }catch(ArithmeticException s)
+        // {
+        // System.err.println("1");
+        // }
+
     }
 
 }

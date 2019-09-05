@@ -147,7 +147,28 @@ Polymorphism  It is a concept by which we can perform a single action by differe
 		When type of the object is determined at run time, it is known as late binding. Overridden methods
 	
  instanceof <type comparison operator> is used to test whether the object is an instance of the specified type (class or subclass or interface).
- 
+        Thread t = new Thread();
+        Object o = new Object();
+        String s = new String("Ravi");
+
+        if (t instanceof Object)
+        {
+            System.out.println("t instanceof Object");
+        }
+        if (s instanceof Object)
+        {
+            System.out.println("s instanceof Object");
+        }
+        // if (s instanceof Thread)//C.E no relation between String and Thread
+        // {
+        // System.out.println("s instanceof Object");
+        // }
+        
+        if (null instanceof Object)
+        {
+            System.out.println("null instanceof Object");
+        }
+
  Downcasting When Subclass type refers to the object of Parent class, it is known as downcasting.
 		If we perform it directly, compiler gives Compilation error. If you perform it by typecasting, ClassCastException is thrown at runtime. 
 		But if we use instanceof operator, downcasting is possible.
@@ -686,7 +707,7 @@ public class ReentrantCustomLock
     }
 }
 
-
+IN-00215030/Users/edurvas/OneDrive%20-%20Ericsson%20AB/backup/CUS/Onboard_Material
 
 Decompiler:CFR
 

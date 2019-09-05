@@ -196,7 +196,7 @@ sed and awk cmds to manipulate log file.
 	*) By factory method etc----it internally uses new key word.
 	* Actually, 3 ways to create objects.(new keyword, clone() and deserialization).
 
-4) Difference b/w new and netInstance():
+4) Difference b/w new and newInstance():
 	new 
 		- operator, used to create object/instance of a class
 		- if we know class at begining then it can be used.
@@ -214,7 +214,7 @@ sed and awk cmds to manipulate log file.
 			if (s instsnceof String || s instanceof Object)
 				System.out.print("Hi");
 	isInstance:
-		- isInstance() method , Available in Class.clss used to check the given object is of particular type or not. Type is available at runtime.
+		- isInstance() method , Available in Class.class used to check the given object is of particular type or not. Type is available at runtime.
 
 6) Difference between NoClassDefFoundError and ClassNotFoundException
 
