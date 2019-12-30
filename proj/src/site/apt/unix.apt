@@ -142,4 +142,19 @@ ln -s /src_actual_path/test /home/papso/test
 	
 find . -type f | grep -i "pom.xml" |  xargs sed -i 's/1.34.1-SNAPSHOT/1.35.0-SNAPSHOT/g'
 
-	
+
+Get number of files in direcorty date wise:
+find . -type f -printf '%TY-%Tm-%Td\n' | sort | uniq -c
+
+
+1) Sprit date from file :
+   Data in abcJboss.sh:
+	cd /app/jboss/raviProfile/bin/; sh start.sh
+
+	PROFILE_NAME=$(cat abcJboss.sh | cut -d'/' -f4)
+	the above cmd gives "raviProfile"
+2) 
+	jbossprocess=$(pgrep -af jboss |grep $PROFILE_NAME | wc -l)
+	echo $PROFILE_NAME
+	echo $jbossprocess
+
