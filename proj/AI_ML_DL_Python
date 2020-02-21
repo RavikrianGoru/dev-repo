@@ -1,1 +1,14 @@
+Ref: https://github.com/digishgabhawala/deepLearningTraining/tree/master/Intro
+
+Ref: https://mybinder.readthedocs.io/en/latest/introduction.html
+     https://mybinder.readthedocs.io/en/latest/sample_repos.html
+     https://mybinder.org/v2/gh/digishgabhawala/deepLearningTraining/master?filepath=Intro
+
+0) Binder: Makes it possible to create sharable, interactive, reproducible environments. 
+    The main technical product that the community creates is called BinderHub, and one deployment of a BinderHub exists at mybinder.org 
+
+1) Download 3.7 version of Python from Python official site.
+   https://www.tensorflow.org/install/pip
+   Other important libraries : numpy, pandas, matplotlib,sklearn,keras
+   
 
