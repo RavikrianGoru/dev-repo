@@ -158,3 +158,9 @@ find . -type f -printf '%TY-%Tm-%Td\n' | sort | uniq -c
 	echo $PROFILE_NAME
 	echo $jbossprocess
 
+3) to all files count group by date: 
+	find . -type f -printf '%TY-%Tm-%Td\n' | sort | uniq -c
+4) To list the top 10 largest files from the current directory: 
+	du . | sort -nr | head -n10
+5) To list the largest directories from the current directory: 
+	du -s * | sort -nr | head -n10
