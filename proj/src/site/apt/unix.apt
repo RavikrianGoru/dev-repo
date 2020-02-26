@@ -164,3 +164,9 @@ find . -type f -printf '%TY-%Tm-%Td\n' | sort | uniq -c
 	du . | sort -nr | head -n10
 5) To list the largest directories from the current directory: 
 	du -s * | sort -nr | head -n10
+6) To list the largest directories from the current directory in human readable format:
+	du -sh * | sort -hr | head -n10
+7) To list big file and directories in specified folder.
+	 du -max /app | sort -n | tail -5
+
+	
