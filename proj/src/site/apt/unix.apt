@@ -169,4 +169,7 @@ find . -type f -printf '%TY-%Tm-%Td\n' | sort | uniq -c
 7) To list big file and directories in specified folder.
 	 du -max /app | sort -n | tail -5
 
-	
+1) Print all the file except 5 files recently modified.
+	ls -t1 /var/path/to/folder | tail -n +4 | xargs echo
+2) Delete all the file except 5 files recently modified.
+	ls -t1 /var/path/to/folder | tail -n +4 | xargs rm -r
