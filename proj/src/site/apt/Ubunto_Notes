@@ -1,0 +1,15 @@
+Install Java: Open terminal type "java" it gives some suggestions if java is not installed.
+------------
+> sudo apt-get install openjdk-8-jdk
+> vi ~/.bashrc
+Add the below line at the end.
+export JAVA_HOME=/urs/lib/jvm/java-8-openjdk-amd64
+> echo $JAVA_HOME
+
+Install Eclipse:
+---------------
+> sudo snap install --classic eclipse
+
+
+
+  
