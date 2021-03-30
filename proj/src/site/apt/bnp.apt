@@ -1,62 +1,95 @@
 1) Can we throw Checked and UnChecked Exception in Constructor with zero args and Constructor with args, Methods.?
+Ans: Yes by handling Checked & UnChecked Exception wither try-catch or throws in constructor definition.
 class A
 {
 	public A()
 	{
-	.....
-    // throw new RuntimeException("RT:UnChecked");// No issues
-    // throw new Exception("E:Checked");
-       
-	   // 1) Need to habdle here by try and catch
-       // 2) or declare throws in method signature and caller of this method must handle Checked Exception/throws should be declared in caller method
-       // signature..
+		throw new RuntimeException(":UnChecked Exception-c");
 	}
-
-	public A(String s)
+	public void someMethod()
 	{
-	.....
-	//throw new Exception("e"):
-	//throw new RuntimeException("re");
-	}
-	
-	public void getDetails()
-	{
-	.....
-	//throw new Exception("e"):
-	//throw new RuntimeException("re");
+		throw new RuntimeException(":UnChecked Exception-m");
 	}
 }
 
-A obj1 = new A();
-A obj2 = new A("ravi");
+class B
+{
+	public B()
+	{
+		try
+		{
+			throw new Exception(":Checked Exception-c");
+		}catch(Exception e)
+		{
+			System.out.println(e.getMessage());
+		}
+	}
+	public B(String s) throws Exception
+	{
+			throw new Exception(":Checked Exception-c1");
+	}
 
-obj1.getDetails();
-obj2.getDetails();
+	public void someMethod() throws Exception
+	{
+		throw new Exception(":Checked Exception-m");
+	}
+}
+
+
 
 
 
 2) 
+class A
+{
+	private String name1;
+	private String name2;
+	
+	public A()
+	{
+		
+	}
+	public A(String name1, String name2)
+	{
+		this.name1=name1;
+		this.name2=name2;
+	}
+	public String toString()
+	{
+		return name1.concat(name2);
+	}
+}
+
 class B
 {
 	private String name1;
 	private String name2;
 	
-	public String toString()
+	public B()
 	{
-		return name1.concatinate(name2);
+		
+	}
+	public B(String name1, String name2)
+	{
+		this.name1=name1;
+		this.name2=name2;
 	}
 	public String toString()
 	{
 		return name1+name2;
 	}
-	
-	
-	B  obj1=null;
-	syso(obj1);
-	B  obj2=new B();
-	syso(obj2);
-
 }
+----------------
+		A objA1=new A("ravi", null);
+		A objA2=new A(null, null);
+		System.out.println(objA1);//java.lang.NullPointerException
+		System.out.println(objA2);//java.lang.NullPointerException
+
+		B objB1=new B(null, null);
+		B objB2=new B("B", null);
+		System.out.println(objB1);//nullnull
+		System.out.println(objB2);//Bnull
+----------------
 
 3) List<Employee> l = new ArrayList<Employee>();
 
