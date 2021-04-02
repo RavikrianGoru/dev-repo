@@ -30,7 +30,9 @@ Diff @PUT and @POST?
 How can you validate a path param? www.facebook.com/viswa123
 
 @Path("users/{username: [a-zA-Z][a-zA-Z_0-9]*}")
-In this example the username variable will match only user names that begin with one uppercase or lowercase letter and zero or more alphanumeric characters and the underscore character. If a user name does not match that template, a 404 (Not Found) response will be sent to the client.
+In this example the username variable will match only user names that begin with one uppercase or lowercase letter and zero or more
+alphanumeric characters and the underscore character.
+If a user name does not match that template, a 404 (Not Found) response will be sent to the client.
  
 Can we maintain user session in web services?
 Web services are stateless so we can’t maintain user sessions in web services.
